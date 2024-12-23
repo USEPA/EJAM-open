@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <script type="application/shiny-singletons"></script>  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script><script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>NAICS text input</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <style type="text/css">.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}</style>
+    <h2>Include facilities with records in the provided list of EPA datasystems</h2>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well">
+          <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+            <label class="control-label" for="selectFrom1">
+              <h5>As you select a universe of facilities to include in the EJSCREEN query, you may limit the facility search to include only faclities with records in specific EPA datasystems. For example, if you select TRI and RCRAInfo, the search query will select specifically records with a permit or ID in TRI or RCRAInfo. Facilites that do not have permits or IDs in these datasystems will be excluded from the query. </h5> 
+              <h5>If you do not select a specific set of datasystems to include in the query, all datasystems will be inclued. </h5> 
+
+              <h5>Below is a table with the available datasystems, and the number of records available from each datasystem. <br> </br> 
+            </label>
+</h5> 
+<h5> 
+              <table border="0" cellpadding="40">
+              <tr><th>AIRS/AFS</th><th>231,293</th></tr>
+              <tr><th>RCRA_BR</th><th>69,078</th></tr>
+              <tr><th>CAMDBS</th><th>2,173</th></tr>
+              <tr><th>CEDRI</th><th>5,528</th></tr>
+              <tr><th>CWNS</th><th>44,416</th></tr>
+              <tr><th>E-GGRT</th><th>12,144</th></tr>
+              <tr><th>ECRM</th><th>229</th></tr>
+              <tr><th>EGRID</th><th>5,587</th></tr>
+              <tr><th>EIS</th><th>157,143</th></tr>
+              <tr><th>LMOP</th><th>2,435</th></tr>
+              <tr><th>NEI</th><th>129,522</th></tr>
+              <tr><th>NPDES</th><th>361,128</th></tr>
+              <tr><th>OIL</th><th>21,739</th></tr>
+              <tr><th>OTAQREG</th><th>1,361</th></tr>
+              <tr><th>RCRAINFO</th><th>899,357</th></tr>
+              <tr><th>RFS</th><th>248</th></tr>
+              <tr><th>RMP</th><th>28,894</th></tr>
+              <tr><th>SEMS</th><th>13,561</th></tr>
+              <tr><th>SFDW</th><th>629,519</th></tr>
+              <tr><th>SSTS</th><th>18,129</th></tr>
+              <tr><th>TRIS</th><th>65,347</th></tr>
+              <tr><th>TSCA</th><th>15,959</th></tr>
+              </table>
+
+              </h5> 
+		<br>
+	  <div>
+          <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

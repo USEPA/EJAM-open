@@ -1,0 +1,367 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  
+  <script type="application/shiny-singletons"></script>  
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script>
+  <script src="shared/json2-min.js"></script>
+  <script src="shared/jquery.min.js"></script>
+  <link href="shared/shiny.css" rel="stylesheet" />
+  <script src="shared/shiny.min.js"></script>
+  <link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+  <!--[if lt IE 9]>
+  <script src="shared/selectize/js/es5-shim.min.js"></script>
+  <![endif]-->
+  <script src="shared/selectize/js/selectize.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+  <script src="shared/bootstrap/shim/respond.min.js"></script>  
+  
+  <title>EJAM - Specifying Locations</title>
+
+</head>
+
+<body>
+  
+<div class="container-fluid">
+
+
+<style type="text/css">
+
+.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+.notbold{
+    font-weight:normal
+}​
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}
+
+</style>
+
+<!-- # This part might not be needed here ######################################################### -->
+
+<h2>EJAM</h2>
+
+  <div class="row">
+  <div class="col-sm-12">
+    <div class="well">
+      
+      <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+        
+        <label class="control-label" for="selectFrom1">
+          
+          <h5>EPA has developed a number of different tools for environmental justice (EJ) mapping, screening, and analysis, including EJScreen. EJScreen has a dataset with environmental, demographic, and EJ indicators for each block group in the US. It can provide a report summarizing those values for the average person within some distance (e.g., 1 mile) from a specified point. </h5> 
+          <h5>It is often useful to know the nature of the environmental conditions, the demographics, and/or EJ index values near a whole set of the facilities in a particular sector, such as in the context of developing a proposed rule. EJAM allows users to select a set of facilities, defined by NAICs industrial category codes or by uploading a list of locations. The tool then can provide statistics for a user-specified buffer area around the selected facilities.</h5> 
+          <h5>See EJAM user guide or readme document for more about using the app. </h5>
+          <h5>See the R package vignette and documentation for information about using the R functions and data.</h5>
+          <h5>Features of this tool include:
+          <ul>
+            <li>Several methods of selecting a set of facilities for analysis, including industry sector and uploaded of facility locations;</li>
+            <li>User-specified buffer distance;</li>
+            <li>Very fast analysis of which residents (defined by Census blocks) are nearby, and the distance to each block's internal point.;</li>
+            <li>Optional use of the next nearest census block centroid for facilities with no census block centroid within selected buffer distance.</li> 
+            <li>At each facility, calculation of demographic, environmental, or other EJ-related statistics;</li>
+            <li>Overall, for the facilities and residents near any of them as a whole, calculation of the same kinds of statistics, but with no double counting of residents near two or more facilities.;</li>
+            <li>Interactive views of results in tables, maps, plots, and text;</li>
+            <li>Downloads of results in tables, maps, plots, and report text;</li>
+          </ul>
+          </h5>
+          
+        </label>
+          
+        <div>
+          <input type="button" value="Close this window" onclick="self.close()">
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+<!-- ########################################################## -->
+
+
+<h2 id="help_univese">Specifying Locations to Analyze</h2>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>Users may use only one of the four methods of defining the Universe of Interest: 
+            <ul>
+              <li>Select by Industry</li>
+              <!--  <li>Select by Datasystem</li>  ????  -->
+              <li>Select by EPA Facility ID (FRS Identifers)</li>
+              <li>Select by Location (latitude/longitude)</li>
+            </ul>
+            </h5>
+          </label>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_industry">Select Industry</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>You may define your universe of interest by selecting specific industries that you wish to query.
+            <br>
+            <a href="https://www.census.gov/eos/www/naics/index.html">NAICS definitions at Census</a>
+            </h5>
+            <br>
+          </label>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_naicslist">Enter NAICS Codes of Interest</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>You may enter a list of comma separated NAICS codes. <br> 
+                This tool supports the query of 2 to 6 digit NAICS codes.</h5>
+          </label>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_match">Match your NAICS code selection with NAICS from the provided list of EPA datasystems</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+          </label>
+          <h5>As you select a universe of facilities to include in the EJSCREEN query, you may limit the scope of the facilty search by specifying the datasystem(s) from which to query industry. For example, if you indicate that you would like to match your NAICS code selection with NAICS 325 from the TRI datasystem, your query selection will include only facilities with NAICS 325 in TRI. A facilty may have a different NAICS code in each datasystem. </h5> 
+          
+          <h5>The NAICS code coverage (ie, % of facilities with NAICS) by datasystem was as follows (but these should be updated):  <br> </br> 
+				  
+				  <table border="0" class='notbold'>
+				   <tr><td>AIRS/AFS&nbsp&nbsp</td><td>87%</td></tr>
+				   <tr><td>CAMDBS&nbsp&nbsp</td><td>99%</td></tr>
+				   <tr><td>E-GGRT&nbsp&nbsp</td><td>75%</td></tr>
+				   <tr><td>ECRM&nbsp&nbsp</td><td>5%</td></tr>
+				   <tr><td>EIS&nbsp&nbsp</td><td>100%</td></tr>
+				   <tr><td>NPDES&nbsp&nbsp</td><td>6%</td></tr>
+				   <tr><td>OIL&nbsp&nbsp</td><td>36%</td></tr>
+				   <tr><td>RCRAInfo&nbsp&nbsp</td><td>51%</td></tr>
+				   <tr><td>RMP&nbsp&nbsp</td><td>100%</td></tr>
+				   <tr><td>TRIS&nbsp&nbsp</td><td>95%</td></tr>
+				  </table>				
+
+				  <br>
+				  Note: Only records with Lat/Longs will be be returned.
+          </h5> 
+		      <br>
+	        <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_include">Include facilities with records in the provided list of EPA datasystems</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>As you select a universe of facilities to include in the EJSCREEN query, you may limit the facility search to include only faclities with records in specific EPA datasystems. For example, if you select TRI and RCRAInfo, the search query will select specifically records with a permit or ID in TRI or RCRAInfo. Facilites that do not have permits or IDs in these datasystems will be excluded from the query. </h5> 
+            <h5>If you do not select a specific set of datasystems to include in the query, all datasystems will be inclued. </h5> 
+
+            <h5>Below is a table with the available datasystems, and the number of records available from each datasystem. </h5>  
+          </label>
+          <h5> 
+          <table border="0" class='notbold'>
+          <!--<tr><th>AIRS/AFS</th><th>231,293</th></tr>-->
+              <tr><td>RCRA_BR&nbsp&nbsp</td><td>69,078</td></tr>
+              <tr><td>CAMDBS&nbsp&nbsp</td><td>2,173</td></tr>
+              <tr><td>CEDRI&nbsp&nbsp</td><td>5,528</td></tr>
+              <tr><td>CWNS&nbsp&nbsp</td><td>12,144</td></tr>
+              <tr><td>E-GGRT&nbsp&nbsp</td><td>12,144</td></tr>
+              <tr><td>ECRM&nbsp&nbsp</td><td>229</td></tr>
+              <tr><td>EGRID&nbsp&nbsp</td><td>5,587</td></tr>
+              <tr><td>EIS&nbsp&nbsp</td><td>157,143</td></tr>
+              <tr><td>LMOP&nbsp&nbsp</td><td>2,435</td></tr>
+              <tr><td>NEI&nbsp&nbsp</td><td>129,522</td></tr>
+              <tr><td>NPDES&nbsp&nbsp</td><td>361,128</td></tr>
+              <tr><td>OIL&nbsp&nbsp</td><td>21,739</td></tr>
+              <tr><td>OTAQREG&nbsp&nbsp</td><td>1,361</td></tr>
+              <tr><td>RCRAINFO&nbsp&nbsp</td><td>899,357</td></tr>
+              <tr><td>RFS&nbsp&nbsp</td><td>248</td></tr>
+              <tr><td>RMP&nbsp&nbsp</td><td>28,894</td></tr>
+              <tr><td>SEMS&nbsp&nbsp</td><td>13,561</td></tr>
+              <tr><td>SFDW&nbsp&nbsp</td><td>629,519</td></tr>
+              <tr><td>SSTS&nbsp&nbsp</td><td>18,129</td></tr>
+              <tr><td>TRIS&nbsp&nbsp</td><td>65,347</td></tr>
+              <tr><td>TSCA&nbsp&nbsp</td><td>15,959</td></tr>
+          </table>
+
+          <br> Note: Only records with Lat/Longs will be be returned.
+          </h5> 
+	        <br>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_frs">FRS File Upload</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>You may upload a list of FRS IDs. The FRS ID should be in the second column. It should be unique (no duplicates), and it should be titled REGISTRY_ID. Each record should be separated by a carriage return. </h5> 
+            <h5>The file should be formatted as follows: </h5> 
+          </label>
+					<br>num,REGISTRY_ID<br>
+		      1,110000308006<br>
+		      2,110000308015<br>
+      		3,110000308024<br>
+		      4,110000308202<br>
+      		5,110000308211<br>
+		      6,110000308220<br>
+      		7,110000308346<br>
+		      8,110000308355<br>
+		      9,110000308364<br>
+		      <br>
+	      	<div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_location">Location File Upload</h2>
+   
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>You may upload a list of location coordinates (latitudes and longitudes). The file should contain at least these two columns: lat and lon. There can be other columns like an ID column that should be unique (no duplicates), and each record should be separated by a carriage return. It also will work with some alternative names (and case insensitive) like Latitude, Lat, latitude, long, longitude, Longitude, Long, LONG, LAT, etc. but to avoid any mixup of names it is suggested that the file use lat and lon. </h5> 
+            <h5>The file could be formatted as follows, for example: </h5> 
+          </label>
+					<br>
+		      ID,lat,lon<br>
+		      1,36.26333,-98.48083<br>
+		      2,41.01778,-80.36194<br>
+      		3,43.43772,-91.90365<br>
+	      	4,29.69083,-91.34333<br>
+      		5,40.11389,-75.34806<br>
+      		6,35.97889,-78.88056<br>
+      		7,32.82556,-89.53472<br>
+      		8,30.11275,-83.59778<br>
+      		9,30.11667,-83.58333<br>
+      		10,38.06861,-88.75361<br><br>
+      	  <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_distance">Distance</h2>
+    
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <h5>Please enter a buffer distance for the EJ statistics.  
+                Performance will deteriorate with larger distances;<br> <br> 
+                Users may select "expand distance for facilties with no census block centroid within selected buffer distance" to use the next nearest census block centroid for facilities with no census block centroid within selected buffer distance. </h5>
+          </label>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<h2 id="help_output">Output</h2>
+    
+    div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="selectFrom1">
+            <!-- <h5>Users have two output options. Users may select the option to download EJ statistics for each facility, or they may choose to calculate and output EJ statistics for use in developing aggregate statistics characterizing the area around all selected facilities, with no double counting. At present a separate aggregation routine is used. </h5>
+            -->>
+            <h5>Users can download results as a spreadsheet. </h5>
+          </label>
+          <div>
+            <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+            </div>
+      </div>
+    </div>
+  </div>
+
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
+
+</body>
+</html>

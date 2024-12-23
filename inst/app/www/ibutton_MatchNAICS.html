@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <script type="application/shiny-singletons"></script>  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script><script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>NAICS text input</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <style type="text/css">.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}</style>
+    <h2>Match your NAICS code selection with NAICS from the provided list of EPA datasystems</h2>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well">
+          <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+            <label class="control-label" for="selectFrom1">
+            </label>
+              <h5>As you select a universe of facilities to include in the EJSCREEN query, you may limit the scope of the facilty search by specifying the datasystem(s) from which to query industry. For example, if you indicate that you would like to match your NAICS code selection with NAICS 325 from the TRI datasystem, your query selection will include only facilities with NAICS 325 in TRI. A facilty may have a different NAICS code in each datasystem. </h5> 
+              <h5>
+              The NAICS code coverage (ie, % of facilities with NAICS) by datasystem is as follows:  <br> </br> 
+
+				<table border="0" cellpadding="40">
+				  <tr><th>AIRS/AFS</th><th>87%</th></tr>
+				  <tr><td>CAMDBS</td><td>99%</td></tr>
+				  <tr><td>E-GGRT</td><td>75%</td></tr>
+				  <tr><td>ECRM</td><td>5%</td></tr>
+				  <tr><td>EIS</td><td>100%</td></tr>
+				  <tr><td>NPDES</td><td>6%</td></tr>
+				  <tr><td>OIL</td><td>36%</td></tr>
+				  <tr><td>RCRAInfo</td><td>51%</td></tr>
+				  <tr><td>RMP</td><td>100%</td></tr>
+				  <tr><td>TRIS</td><td>95%</td></tr>
+				</table>				
+
+              </h5> 
+		<br>
+	  <div>
+          <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

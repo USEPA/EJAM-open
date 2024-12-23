@@ -1,0 +1,40 @@
+.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}
+
+.toolIcon{
+	font-weight: bold;
+	margin: 5px 0px 0px 14px;
+	font-size: 16px;
+	font-family: serif;
+	border: 1px solid #666;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: #666;
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	display: inline-block;
+}
+

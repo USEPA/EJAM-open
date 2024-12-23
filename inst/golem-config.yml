@@ -1,0 +1,31 @@
+default:
+  golem_name: EJAM
+  golem_version: 2.2.2
+  app_prod: no
+  testingnow: no
+  testingnow_text: no
+
+# You can set the active configuration globally via Renviron.site or Rprofile.site
+# If did  Sys.setenv(R_CONFIG_ACTIVE = "production")  then the config settings will be the ones below)
+production:
+  app_prod: yes
+  testingnow: no
+
+  ## These could be set in the golem-config.yml file here and checked using config::get("asap_aws", file="golem-config.yml"),
+  ## or can get set in .onAttach()
+  ##
+  # asap_aws:    TRUE  # download large datasets now?           Set to FALSE while Testing/Building often
+  # asap_index:  TRUE  # build index those now?                 Set to FALSE while Testing/Building often
+  # asap_bg:     TRUE  # load now vs lazyload blockgroup data?  Set to FALSE while Testing/Building often
+
+
+## if did  Sys.setenv(R_CONFIG_ACTIVE = "dev" then the config settings will be the ones below)
+dev:
+  app_prod: no
+  golem_wd: !expr here::here()
+  testingnow: yes
+
+  # asap_aws:    FALSE  # download large datasets now?           Set to FALSE while Testing/Building often
+  # asap_index:  FALSE  # build index those now?                 Set to FALSE while Testing/Building often
+  # asap_bg:     FALSE  # load now vs lazyload blockgroup data?  Set to FALSE while Testing/Building often
+

@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <script type="application/shiny-singletons"></script>  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script><script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>NAICS text input</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <style type="text/css">.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}</style>
+    <h2>FRS File Upload</h2>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well">
+          <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+            <label class="control-label" for="selectFrom1">
+              <h5>You may upload a list of FRS IDs. The FRS ID should be in the second column. It should be unique (no duplicates), and it should be titled REGISTRY_ID. Each record should be separated by a carriage return. </h5> 
+              <h5>The file should be formatted as follows: </h5> 
+            </label>
+		<br>num,REGISTRY_ID<br>
+		1,110000308006<br>
+		2,110000308015<br>
+		3,110000308024<br>
+		4,110000308202<br>
+		5,110000308211<br>
+		6,110000308220<br>
+		7,110000308346<br>
+		8,110000308355<br>
+		9,110000308364<br>
+		<br>
+		<div>
+          <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

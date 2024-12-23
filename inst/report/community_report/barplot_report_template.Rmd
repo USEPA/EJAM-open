@@ -1,0 +1,88 @@
+---
+title: "&#32;"
+output: 
+  html_document:
+    css: ["communityreport.css"]
+params:
+  output_df: NA
+  analysis_title: NA
+  totalpop: NA
+  locationstr: NA
+  include_ejindexes: TRUE
+  in_shiny: FALSE
+  filename: NULL
+  map: NA
+  summary_plot: NA
+  summary_plot_state: NA
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r build_barplot_report}
+
+library(EJAM)
+
+build_barplot_report(
+  # output_df = params$output_df,
+  analysis_title = params$analysis_title,
+  totalpop = params$totalpop,
+  locationstr = params$locationstr,
+  # include_ejindexes = params$include_ejindexes,
+  in_shiny = params$in_shiny,
+  filename = params$filename
+)
+```
+
+```{r map, fig.align='center'}
+
+# params$map
+
+```
+
+```{r space1}
+HTML('<br>')
+```
+
+```{r summary_plot, out.width='90%', fig.align='center'}
+
+params$summary_plot
+
+```
+
+```{r space2}
+HTML('<br>')
+```
+
+```{r summary_plot_state, out.width='90%', fig.align='center'}
+
+params$summary_plot_state
+
+```
+
+```{r footer_with_version_and_date}
+
+library(desc)
+library(golem)
+
+desc <- try(desc::desc(file = "DESCRIPTION"))
+if (inherits(desc, 'try-error')) {desc <- try(desc::desc(package = "EJAM"))}
+if (inherits(desc, 'try-error')) {desc <- desc::desc(file = EJAM:::app_sys('DESCRIPTION'))}
+if (inherits(desc, 'try-error')) {stop('cannot find DESCRIPTION file in working directory or in EJAM package')}
+version <- desc$get("Version")
+## trim version number shown in report to Major.Minor
+version <- substr(version, start = 1, stop = gregexpr('\\.',version)[[1]][2] - 1)
+
+current_date <- ifelse(
+  isTRUE(getOption("shiny.testmode")),
+  "[SHINYTEST DATE]",
+  format(Sys.Date(), "%B %d, %Y"))
+
+HTML('
+  <div style="background-color: #edeff0; color: black; width: 100%; padding: 10px 20px; text-align: right; margin: 10px 0;">
+    <p style="margin-bottom: 0;">Version ', version, '| Report created on ', current_date, '</p>
+  </div>
+  ')
+```
+

@@ -1,0 +1,91 @@
+Package: EJAM
+Title: EJAM Environmental Justice Analysis Multisite tool
+Version: 2.32.0
+Author: Mark Corrales <corrales.mark@epa.gov>
+Maintainer: Mark Corrales <corrales.mark@epa.gov>
+License: MIT + file LICENSE.md
+Description: Web app and R tools to easily summarize
+    demographics and environmental indicators
+    for residents in or near a large number of areas or specific sites.
+    Sites can be specified in a variety of ways - coordinates, facility IDs,
+    type of facility, shapefile, or Census areas.
+    Very fast identification of nearby blocks and distances, and 
+    aggregation of indicators within each distance by site and overall.
+    EJScreen indicators are included.
+URL: https://usepa.github.io/EJAM, https://github.com/USEPA/EJAM
+Depends: 
+    R (>= 2.10)
+Imports:
+    arrow,
+    attempt,
+    collapse,
+    config (>= 0.3.1),
+    data.table,
+    DBI,
+    desc,
+    doSNOW,
+    dplyr,
+    DT,
+    foreach,
+    ggplot2,  
+    ggridges,
+    glue,
+    golem (>= 0.3.3),
+    hrbrthemes,
+    htmltools,
+    leaflet,
+    magrittr,
+    methods,
+    openxlsx,
+    pdist,
+    pins,
+    piggyback,
+    pkgload,
+    readxl,
+    rhandsontable,
+    rmarkdown,
+    RMySQL,
+    SearchTrees,
+    shinydisconnect,
+    sf,
+    shiny (>= 1.7.2),
+    shinycssloaders,
+    shinyjs,
+    sp,
+    tidyr,
+    tidyverse,
+    viridis,
+    webshot
+Suggests: 
+    knitr,
+    spelling,
+    testthat (>= 3.0.0),
+    AOI,
+    beepr,
+    datasets, 
+    fipio,
+    htmlwidgets, 
+    jsonlite,
+    leaflet.extras,
+    leaflet.extras2,
+    mapview,
+    rnaturalearth,
+    rvest,
+    terra,
+    tidygeocoder,
+    units
+Remotes:
+    mikejohnson51/AOI
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+Language: en-US
+VignetteBuilder: knitr, rmarkdown
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Config/testthat/parallel: false
+EJScreenVersion: 2.32
+EJScreenReleaseDate: 2024-08-12
+ACSVersion: 2018-2022
+ACSReleaseDate: 2023-12-07
+CensusVersion: 2020
