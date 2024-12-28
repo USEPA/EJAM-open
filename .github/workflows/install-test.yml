@@ -1,0 +1,58 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+#
+# See https://github.com/r-lib/actions/tree/master/examples#readme for
+# additional example workflows available for the R community.
+
+name: R
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        r-version: [4.3, 4.4]
+        install-method: [devtools::install_github, install.packages, remotes::install_url]
+
+    steps:
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.r-version }}
+  
+      - name: Install devtools and remotes (if needed)
+        if: matrix.install-method == 'devtools::install_github'
+        run: |
+          R -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+
+      - name: Install devtools and remotes (if needed)
+        if: matrix.install-method == 'remotes::install_url'
+        run: |
+          R -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")'
+  
+      - name: Install Package - ${{ matrix.install-method }}
+        run: |
+          if [ "${{ matrix.install-method }}" == "devtools::install_github" ]; then
+            R -e 'devtools::install_github("USEPA/EJAM-open")'
+          elif [ "${{ matrix.install-method }}" == "install.packages" ]; then
+            R -e 'install.packages("https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32-EJAM-open.tar.gz", repos = NULL, type = "source")'
+          elif [ "${{ matrix.install-method }}" == "remotes::install_url" ]; then
+            R -e 'remotes::install_url("https://github.com/USEPA/EJAM-open/archive/main.tar.gz")'
+          fi
+  
+      - name: Test Installation
+        run: |
+          R -e 'library(EJAM); print("Package loaded successfully")'
