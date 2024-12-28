@@ -34,14 +34,12 @@ jobs:
           r-version: ${{ matrix.r-version }}
   
       - name: Install devtools and remotes (if needed)
-        if: matrix.install-method == 'devtools::install_github'
         run: |
-          R -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
-
-      - name: Install devtools and remotes (if needed)
-        if: matrix.install-method == 'remotes::install_url'
-        run: |
-          R -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")'
+          if [ "${{ matrix.install-method }}" == "devtools::install_github" ]; then
+            R -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")'
+          elif [ "${{ matrix.install-method }}" == "remotes::install_url" ]; then
+            R -e 'if (!requireNamespace("remotes", quietly = TRUE)) install.packages("remotes")'
+          fi
   
       - name: Install Package - ${{ matrix.install-method }}
         run: |
