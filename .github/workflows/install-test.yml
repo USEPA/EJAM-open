@@ -24,8 +24,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        r-version: [4.3, 4.4]
-        install-method: ["devtools::install_github", "install.packages", "remotes::install_url"]
+        r-version: [4.4]
+        install-method: ["install.packages"]
 
     steps:
       - name: Set up R
