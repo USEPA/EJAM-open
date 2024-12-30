@@ -1,7 +1,7 @@
 EJAM Environmental Justice Analysis Multisite tool
 ================
 
-# <img src="man/figures/logo659.png" align="right" width="220px"/>
+# <img src="man/figures/favicon.png" align="right" width="220px"/>
 
 <!-- README.md is generated from README.Rmd. Please edit Rmd not md  -->
 <!-- badges: start -->
