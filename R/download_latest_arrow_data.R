@@ -35,7 +35,7 @@ download_latest_arrow_data <- function(
   
   latestArrowVersion <- piggyback::pb_releases(
     repo = repository,
-    .token = NULL
+    .token = ""
   )[1, "tag_name"]
   ejamdata_version_fpath <- paste0(installed_data_folder,"/ejamdata_version.txt")
   if (!file.exists(ejamdata_version_fpath)) {
