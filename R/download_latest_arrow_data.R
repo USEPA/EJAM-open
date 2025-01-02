@@ -68,7 +68,8 @@ download_latest_arrow_data <- function(
     dest = installed_data_folder,
     repo = repository, 
     tag = "latest",
-    use_timestamps = FALSE
+    use_timestamps = FALSE,
+    .token = ""
   )
   
   message("Finished downloading. Updating stored local version.")
