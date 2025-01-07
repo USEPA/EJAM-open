@@ -44,13 +44,13 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Overview for EJAM Users</h6></li>
-    <li><a class="dropdown-item" href="articles/0_whatis.html">What is EJAM</a></li>
-    <li><a class="dropdown-item" href="articles/0_webapp.html">Using EJAM</a></li>
+    <li><a class="dropdown-item" href="articles/0_whatis.html">What is EJAM?</a></li>
+    <li><a class="dropdown-item" href="articles/0_webapp.html">Accessing the Web App</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For analysts using R</h6></li>
     <li><a class="dropdown-item" href="articles/1_installing.html">Installing the EJAM R package</a></li>
     <li><a class="dropdown-item" href="articles/2_quickstart.html">Quick Start Guide</a></li>
-    <li><a class="dropdown-item" href="articles/3_analyzing.html">Basics of Using EJAM for Analysis in RStudio</a></li>
+    <li><a class="dropdown-item" href="articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="articles/4_advanced.html">Advanced Features</a></li>
   </ul>
 </li>
@@ -60,7 +60,6 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/USEPA/EJAM/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -87,28 +86,20 @@
 <h3 id="what-is-ejam">What is EJAM?<a class="anchor" aria-label="anchor" href="#what-is-ejam"></a>
 </h3>
 <ul>
-<li><a href="https://usepa.github.io/EJAM/articles/0_whatis.html">What is EJAM?</a></li>
+<li><a href="articles/0_whatis.html">What is EJAM?</a></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="ejams-multisite-analysis-as-a-part-of-ejscreen">EJAM’s multisite analysis as a part of EJScreen<a class="anchor" aria-label="anchor" href="#ejams-multisite-analysis-as-a-part-of-ejscreen"></a>
+<h3 id="ejam-as-a-web-application">EJAM as a Web Application<a class="anchor" aria-label="anchor" href="#ejam-as-a-web-application"></a>
 </h3>
-<ul>
-<li>EJAM powers EJScreen’s Multisite Tool, for providing public access to multisite reports. The EJScreen Multisite Tool can be reached from the <a href="https://www.epa.gov/ejscreen" class="external-link">EJScreen website</a> or <a href="https://ejscreen.epa.gov/mapper/" class="external-link">EJScreen Mapping application</a>.</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="ejam-as-a-web-app-for-use-by-epa-staff">EJAM as a web app for use by EPA staff<a class="anchor" aria-label="anchor" href="#ejam-as-a-web-app-for-use-by-epa-staff"></a>
-</h3>
-<ul>
-<li>EPA staff who are authenticated on the Agency’s internal network (by VPN or within the office) have access to a version of the web app that is configured specifically for staff use.</li>
-</ul>
+<p><a href="articles/0_webapp.html">EJAM can be used as a web app</a>, providing a simple user interface that lets anyone quickly see the results of a basic analysis.</p>
 </div>
 <div class="section level3">
 <h3 id="ejam-as-a-software-toolkit-and-local-web-app-for-analysts-and-developers">EJAM as a Software Toolkit (and Local Web App) for Analysts and Developers<a class="anchor" aria-label="anchor" href="#ejam-as-a-software-toolkit-and-local-web-app-for-analysts-and-developers"></a>
 </h3>
 <p>EJAM is also available to analysts and developers as an R Package written in the <a href="https://www.r-project.org/" class="external-link">R programming language</a>, with source code on GitHub. When used in RStudio, the EJAM package provides functions to help analysts work with block group data, points, and polygons, to very quickly aggregate and compare large numbers of locations.</p>
-<p>Note that installing the R package also allows one to use EJAM as a local web app, if the shiny app is launched locally on a user’s own computer. The EJScreen Multisite Tool configuration is available via <code>run_app(isPublic=T)</code> and the version for staff use is available via <code>run_app(isPublic=F)</code></p>
+<p>Again, installing the R package also allows one to use <a href="articles/0_webapp.html">EJAM as a local web app</a> if the shiny app is launched locally on a user’s own computer.</p>
+<p>More information about the EJAM R package:</p>
 <ul>
 <li><p><a href="https://usepa.github.io/EJAM/articles/1_installing.html">Installing the R package</a></p></li>
 <li><p><a href="https://usepa.github.io/EJAM/articles/2_quickstart.html">Quick Start Guide</a></p></li>
@@ -152,18 +143,11 @@
 <div class="section level3">
 <h3 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
 </h3>
-<p>If you have questions or comments, please contact the EJScreen team in EPA’s OEJECR, and for technical questions contact Mark Corrales (<a href="mailto:corrales.mark@epa.gov" class="email">corrales.mark@epa.gov</a>).</p>
+<p>If you have questions or comments, please email <a href="mailto:ENVIROMAIL_GROUP@epa.gov?subject=EJAM%20package%20question">ENVIROMAIL_GROUP@epa.gov</a> and put “EJAM package question” in the subject line.</p>
 </div>
 </div>
 
   </main><aside class="col-md-3">
-
-<div class="links">
-<h2 data-toc-skip>Links</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/USEPA/EJAM/" class="external-link">Browse source code</a></li>
-</ul>
-</div>
 
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
@@ -192,7 +176,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>US EPA 2024</p>
+  <p>US EPA 2025</p>
 </div>
 
 <div class="pkgdown-footer-right">

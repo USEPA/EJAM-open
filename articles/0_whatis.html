@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>What is EJAM • EJAM</title>
+<title>What is EJAM? • EJAM</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,9 +16,9 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="What is EJAM">
-<meta name="description" content="What is EJAM">
-<meta property="og:description" content="What is EJAM">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="What is EJAM?">
+<meta name="description" content="What is EJAM?">
+<meta property="og:description" content="What is EJAM?">
 <meta property="og:image" content="https://usepa.github.io/EJAM/logo.svg">
 </head>
 <body>
@@ -44,13 +44,13 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>Overview for EJAM Users</h6></li>
-    <li><a class="dropdown-item" href="../articles/0_whatis.html">What is EJAM</a></li>
-    <li><a class="dropdown-item" href="../articles/0_webapp.html">Using EJAM</a></li>
+    <li><a class="dropdown-item" href="../articles/0_whatis.html">What is EJAM?</a></li>
+    <li><a class="dropdown-item" href="../articles/0_webapp.html">Accessing the Web App</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For analysts using R</h6></li>
     <li><a class="dropdown-item" href="../articles/1_installing.html">Installing the EJAM R package</a></li>
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
-    <li><a class="dropdown-item" href="../articles/3_analyzing.html">Basics of Using EJAM for Analysis in RStudio</a></li>
+    <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
   </ul>
 </li>
@@ -60,7 +60,6 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/USEPA/EJAM/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -73,7 +72,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.svg" class="logo" alt=""><h1>What is EJAM</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>What is EJAM?</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/USEPA/EJAM/blob/main/vignettes/0_whatis.Rmd" class="external-link"><code>vignettes/0_whatis.Rmd</code></a></small>
@@ -83,17 +82,19 @@
     
     
 <div class="section level2">
-<h2 id="epas-ej-analysis-multisite-ejam-tool">EPA’s EJ Analysis Multisite (EJAM) tool<a class="anchor" aria-label="anchor" href="#epas-ej-analysis-multisite-ejam-tool"></a>
+<h2 id="epas-ejam-tool-and-the-ejscreen-multisite-tool">EPA’s EJAM tool and the EJScreen Multisite Tool<a class="anchor" aria-label="anchor" href="#epas-ejam-tool-and-the-ejscreen-multisite-tool"></a>
 </h2>
+<p>The Environmental Justice Analysis Multisite tool (EJAM) is a
+software toolkit developed by the United States Environmental Protection
+Agency (US EPA). EJAM is what powers the “EJScreen Multisite Tool” – a
+web application that is a part of <a href="https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen</a>. EJAM is also
+available as an open-source software package for developers and
+analysts.</p>
 <p>EJAM lets you easily and quickly see demographic and environmental
 information aggregated within and across hundreds or thousands of
 places, all at the same time.</p>
 <p>Using EJAM is like running an EJScreen report, but for hundreds or
 thousands of places, all at the same time.</p>
-<p>EJAM will be powering new “multisite” features in <a href="https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen</a>, and is a new toolkit
-developed by the United States Environmental Protection Agency (US EPA).
-It will be available through EJScreen and also as an open-source
-software package for developers and analysts.</p>
 <p>You can see a quick summary, explore interactive maps, tables, and
 plots, and download a summary report or detailed spreadsheet.</p>
 <p>Locations can be defined in a variety of ways, so EJAM can summarize
@@ -201,7 +202,7 @@ for the summary statistics at any distance, and can be summarized as a
 distribution of distances within each demographic group.</p>
 </div>
 <div class="section level3">
-<h3 id="updates">Updates<a class="anchor" aria-label="anchor" href="#updates"></a>
+<h3 id="data-updates">Data Updates<a class="anchor" aria-label="anchor" href="#data-updates"></a>
 </h3>
 <p>Annual data updates are synchronized with EJScreen data updates and
 main version numbers, so EJScreen 2.32 (the updated version released in
@@ -216,7 +217,7 @@ August 2024) and EJAM 2.32 use the same data. Version 2.32 has ACS
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>US EPA 2024</p>
+  <p>US EPA 2025</p>
 </div>
 
 <div class="pkgdown-footer-right">
