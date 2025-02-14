@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -85,36 +86,36 @@ based on just one row from ejamitout$results_bysite</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Average Resident in Place(s) Analyzed vs US or State</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       Ratio_to_US_avg Ratio_to_State_avg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Demog.Ind.                        1.2                1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Demog.Ind.                        1.3                1.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Suppl Demog.Ind.                  1.0                1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Low-inc.                         1.1                1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Limited English                  1.7                1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Unemployed                       1.1                1.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %&lt; High School                    1.2                1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %&lt; age 5                          1.0                1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Low-inc.                         1.0                1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Limited English                  1.5                1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Unemployed                       1.1                1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %&lt; High School                    1.2                1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %&lt; age 5                          1.1                1.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> %&gt; age 64                         0.8                0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %POC                              1.4                1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Hispanic                         1.6                1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Black NHA                        1.2                1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Asian NHA                        1.8                1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %AmerIndian/AK NHA                0.4                0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Hawaiian/PI NHA                  1.0                1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %Other race NHA                   1.4                1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %POC                              1.5                1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Hispanic                         1.4                1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Black NHA                        1.4                1.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Asian NHA                        2.2                1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %AmerIndian/AK NHA                0.6                0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Hawaiian/PI NHA                  1.6                1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %Other race NHA                   1.4                1.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> %multirace NH                     1.1                1.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> %White NHA                        0.7                0.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PM2.5                             1.1                1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ozone                             1.1                1.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NO2                               1.7                1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Diesel PM                         2.4                1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Toxic Releases to Air             0.4                1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NO2                               1.4                1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diesel PM                         1.8                1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Toxic Releases to Air             0.5                0.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Traffic                           2.4                1.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> %pre-1960                         1.8                1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NPL                               2.7                1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> RMP                               1.1                1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> TSDF                              4.0                2.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> UST                               3.9                2.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NPDES                             0.0                0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Drinking                           NA                 NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> %pre-1960                         1.5                1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NPL                               2.9                1.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> RMP                               1.1                1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TSDF                              2.9                1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> UST                               1.8                1.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NPDES                             0.1                2.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Drinking                          2.3                2.7</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -127,7 +128,7 @@ based on just one row from ejamitout$results_bysite</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

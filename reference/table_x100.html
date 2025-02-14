@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -105,11 +106,11 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span> <span class="va">names_pct_as_fraction_ejscreenit</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pctnhaiana"        "pctnhnhpia"        "pctba"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "pctaa"             "pctaiana"          "pctnhpia"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "pctotheralone"     "pctmulti"          "pctwa"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "pctlan_nonenglish" "pctlan_ie"         "pctlan_api"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "pctpoor"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pctnhaiana"         "pctnhnhpia"         "pctba"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "pctaa"              "pctaiana"           "pctnhpia"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "pctotheralone"      "pctmulti"           "pctwa"             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "pctlan_ie"          "pctlan_api"         "pctlan_non_english"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "pctpoor"           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"ejam_package_version")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Version </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "2.32.0" </span>
@@ -129,22 +130,18 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> CensusVersion </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        "2020" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"date_saved_in_package")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-02-03"</span>
 <span class="r-in"><span> <span class="va">names_pct_as_fraction_blockgroupstats</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pctlowinc"         "pctlingiso"        "pctunemployed"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "pctlths"           "pctunder5"         "pctover64"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "pctmin"            "pcthisp"           "pctnhba"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "pctnhaa"           "pctnhaiana"        "pctnhnhpia"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "pctnhotheralone"   "pctnhmulti"        "pctnhwa"          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "pctba"             "pctaa"             "pctaiana"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "pctnhpia"          "pctotheralone"     "pctmulti"         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "pctwa"             "pctlan_nonenglish" "pctlan_ie"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "pctlan_api"        "pctlan_other"      "pctlan_spanish"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "pctspanish_li"     "pctie_li"          "pctapi_li"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "pctother_li"       "pctpoor"           "pctdisability"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "lowlifex"          "pctnobroadband"    "pctunder18"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "pctover17"         "pctmale"           "pctfemale"        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [40] "pctownedunits"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pctlowinc"       "pctlingiso"      "pctunemployed"   "pctlths"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "pctunder5"       "pctover64"       "pctmin"          "pcthisp"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "pctnhba"         "pctnhaa"         "pctnhaiana"      "pctnhnhpia"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "pctnhotheralone" "pctnhmulti"      "pctnhwa"         "pctba"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "pctaa"           "pctaiana"        "pctnhpia"        "pctotheralone"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "pctmulti"        "pctwa"           "pctlan_ie"       "pctlan_api"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "pctlan_other"    "pctlan_spanish"  "pctspanish_li"   "pctie_li"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "pctapi_li"       "pctother_li"     "pctpoor"         "pctdisability"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "lowlifex"        "pctnobroadband"  "pctunder18"      "pctover17"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "pctmale"         "pctfemale"       "pctownedunits"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"ejam_package_version")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Version </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "2.32.0" </span>
@@ -164,7 +161,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> CensusVersion </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        "2020" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"date_saved_in_package")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-02-03"</span>
 <span class="r-in"><span> <span class="va">names_pct_as_fraction_ejamit</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "pctlowinc"                 "pctlingiso"               </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "pctunemployed"             "pctlths"                  </span>
@@ -192,17 +189,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [47] "pctaa"                     "pctaiana"                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [49] "pctnhpia"                  "pctotheralone"            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [51] "pctmulti"                  "pctwa"                    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "pctlan_nonenglish"         "pctlan_ie"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "pctlan_api"                "pctlan_other"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "pctlan_spanish"            "pctspanish_li"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [53] "pctlan_ie"                 "pctlan_api"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [55] "pctlan_other"              "pctlan_spanish"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [57] "pctlan_non_english"        "pctspanish_li"            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [59] "pctie_li"                  "pctapi_li"                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [61] "pctother_li"               "pctpoor"                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [63] "pctdisability"             "lowlifex"                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [65] "avg.pctdisability"         "avg.lowlifex"             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "state.avg.pctdisability"   "state.avg.lowlifex"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [69] "pctunder18"                "pctover17"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [71] "pctmale"                   "pctfemale"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [73] "pctownedunits"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [67] "avg.lifexyears_synonym"    "state.avg.pctdisability"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [69] "state.avg.lowlifex"        "pctunder18"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [71] "pctover17"                 "pctmale"                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [73] "pctfemale"                 "pctownedunits"            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"ejam_package_version")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Version </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> "2.32.0" </span>
@@ -222,7 +219,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> CensusVersion </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        "2020" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"date_saved_in_package")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-02-03"</span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\n\n"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -254,7 +251,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -44,15 +45,58 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.32" id="ejam-v232-ejscreen-multisite-open-ejscreen-multisite-tool-january-2024">EJAM v2.32-ejscreen-multisite-open (EJScreen Multisite Tool, January 2024)<a class="anchor" aria-label="anchor" href="#ejam-v232-ejscreen-multisite-open-ejscreen-multisite-tool-january-2024"></a></h2>
-<ul><li>
-<a href="https://www.epa.gov/ejscreen" title="https://www.epa.gov/ejscreen" class="external-link">EJScreen</a> incorporating the EJScreen Multisite Tool (based on EJAM) as a public resource.</li>
+<h2 class="pkg-version" data-toc-text="2.32.2" id="ejam-v2322-february-2025">EJAM v2.32.2 (February 2025)<a class="anchor" aria-label="anchor" href="#ejam-v2322-february-2025"></a></h2>
+<ul><li>Revised all language based on executive orders, to refer to environmental and residential population data analysis, rather than EJ/EJScreen/etc.</li>
+<li>Revised web links based on EJScreen website being offline</li>
+<li>Some edits made considering github repositories and gh pages may change location or go offline</li>
+<li>Updated FRS datasets, pulled on 2/12/25</li>
+<li>Remove screenshots from user guide document</li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="2.32" id="ejam-v232-ejam-open-open-source-ejam-package-december-2024">EJAM v2.32-EJAM-open (Open source EJAM package, December 2024)<a class="anchor" aria-label="anchor" href="#ejam-v232-ejam-open-open-source-ejam-package-december-2024"></a></h2>
-<ul><li>Open source R package release on public repository <a href="https://github.com/USEPA/EJAM-open" class="external-link uri">https://github.com/USEPA/EJAM-open</a>
+<h2 class="pkg-version" data-toc-text="2.32.1" id="ejam-v2321-ejam-february-2025">EJAM v2.32.1-EJAM (February 2025)<a class="anchor" aria-label="anchor" href="#ejam-v2321-ejam-february-2025"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-2-32-1">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-2-32-1"></a></h3>
+<ul><li>Fixed metadata warning shown during loading of arrow datasets</li>
+<li>Fixed typos in languages spoken indicators labels</li>
+<li>Improved labeling and legibility of ratio bar plots used in reports and downloads</li>
+<li>Fixed caps to # of points selected, analyzed</li>
+</ul></div>
+<div class="section level3">
+<h3 id="enhancements-2-32-1">Enhancements<a class="anchor" aria-label="anchor" href="#enhancements-2-32-1"></a></h3>
+<ul><li>Expanded tables of indicators shown in community report</li>
+<li>Languages spoken at home, health, community, age</li>
+<li>Added ratio columns to community report as advanced setting and heatmap highlighting optional</li>
+<li>Incorporated <code>shinytest2</code> tests for app-based functionality testing</li>
+<li>Implemented mapping for points in <code>ejam2excel</code>
 </li>
 </ul></div>
+<div class="section level3">
+<h3 id="experimental-enhancements-2-32-1">Experimental enhancements<a class="anchor" aria-label="anchor" href="#experimental-enhancements-2-32-1"></a></h3>
+<ul><li>Added plumber API for <code><a href="../reference/ejam2excel.html">ejam2excel()</a></code>
+</li>
+<li>Added widget to advanced settings</li>
+<li>Proxistat helps build proximity indicator</li>
+<li>Zipcodes vignette</li>
+</ul></div>
+<div class="section level3">
+<h3 id="other-2-32-1">Other<a class="anchor" aria-label="anchor" href="#other-2-32-1"></a></h3>
+<ul><li>Refactored community report functions, <code>app_server.R</code> script</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.32" id="ejam-v232-ejam-january-2025">EJAM v2.32-EJAM (January 2025)<a class="anchor" aria-label="anchor" href="#ejam-v232-ejam-january-2025"></a></h2>
+<div class="section level3">
+<h3 id="new-features--improvements-2-32">New Features + Improvements<a class="anchor" aria-label="anchor" href="#new-features--improvements-2-32"></a></h3>
+<ul><li>Enabled automatic download of latest arrow data from ejamdata repo</li>
+<li>Incorporated public-internal toggles to hide specific UI elements not yet applicable to the public version of EJAM</li>
+<li>Made improvements to maps of polgygons</li>
+<li>Added shapefile upload instructions</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-and-enhancements-2-32">Bug Fixes and Enhancements<a class="anchor" aria-label="anchor" href="#bug-fixes-and-enhancements-2-32"></a></h3>
+<ul><li>Added <code>leaflet.extras2</code> dependency to Imports, instead of Suggests, which is necessary for new installations</li>
+</ul></div>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
@@ -62,7 +106,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

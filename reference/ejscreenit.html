@@ -11,7 +11,7 @@ multiple locations compiled in one table."><meta property="og:image" content="ht
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,7 @@ multiple locations compiled in one table."><meta property="og:image" content="ht
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -184,7 +185,7 @@ which is more likely to be correct than the stateAbbr and stateName fields in th
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>Returns a list with map, boxplot, table</p><ul><li><p>map of sites with popups of EJ stats, as returned plot,
 viewed interactive map and .png</p></li>
-<li><p>graphic boxplot of some demographics as ratios to average, as returned plot,
+<li><p>graphic boxplot of some residential population percentages as ratios to average, as returned plot,
 viewed noninteractive plot and .png</p></li>
 <li><p>table of results as a returned data.frame,
 viewed interactive datatable, and .xlsx and .csv
@@ -202,7 +203,7 @@ rather than through the web app interface. It is an alternative to EJAM, as
 explained below.</p>
 <p>Based on a set of places, <code>ejscreenit()</code> requests an EJScreen standard report for each place
 and assembles all those results as a single spreadsheet. The indicators include
-demographic and environmental indicators as well as EJ Indexes that combine them,
+residential population and environmental indicators as well as Summary Indexes that combine them,
 and some geospatial information about each site.</p>
 <p><code>ejscreenit()</code> is the basic, high-level tool that enables easy access to the EJScreen API
 for a list of sites, outside the context of a web app. It accepts lat/lon values
@@ -337,7 +338,7 @@ and then prepends input table and renames columns as R variables like "traffic.s
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

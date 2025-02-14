@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -96,7 +97,14 @@ assuming parameter active=TRUE, which is the default</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{ </span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span> <span class="st">'This takes a while for the download.\n'</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co"># frs &lt;- frs_get()</span></span></span>
+<span class="r-in"><span>  <span class="co"># closedid &lt;-  frs_active_ids(active=FALSE) # &lt;- frs_inactive_ids()  </span></span></span>
+<span class="r-in"><span>  <span class="co"># frs &lt;- frs_drop_inactive(frs, closedid = closedid)</span></span></span>
+<span class="r-in"><span>  <span class="co"># usethis::use_data(frs, overwrite = TRUE)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span> <span class="co"># }</span></span></span>
+</code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
@@ -107,7 +115,7 @@ assuming parameter active=TRUE, which is the default</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

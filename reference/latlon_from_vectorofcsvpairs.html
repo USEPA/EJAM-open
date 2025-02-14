@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -75,16 +76,16 @@ such as c("30,-83",  "  32.5,  -86.377325 ")</p></dd>
 <span class="r-in"><span><span class="va">latlon_pairs</span> <span class="op">=</span> <span class="fu"><a href="latlon2csv.html">latlon2csv</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="va">lat_x</span>, lon <span class="op">=</span> <span class="va">lon_x</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">latlon_from_vectorofcsvpairs</span><span class="op">(</span><span class="va">latlon_pairs</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         lat        lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  30.97740  -83.36900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  32.51581  -86.37732</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  42.23498  -88.30541</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  33.87001 -118.37778</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  34.01493 -118.20539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  40.73110  -74.17307</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  37.81144 -121.29348</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  44.85387  -93.04713</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  41.18661 -111.94904</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.71239  -74.58470</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  37.64122 -122.41065</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  43.92249  -72.66370</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  40.69351  -73.98002</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45.29520  -92.98184</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39.43730  -74.72370</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45.67487  -94.81534</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  33.14865 -117.19895</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  34.01176  -80.95414</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  43.01026  -89.45952</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.74625  -74.25955</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="va">testpoints_10</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"lat"</span>, <span class="st">"lon"</span><span class="op">)</span><span class="op">]</span>, <span class="fu">latlon_from_vectorofcsvpairs</span><span class="op">(</span><span class="va">latlon_pairs</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
@@ -107,7 +108,7 @@ such as c("30,-83",  "  32.5,  -86.377325 ")</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

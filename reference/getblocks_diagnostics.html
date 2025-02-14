@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -93,10 +94,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    DISTANCES FROM BLOCKS (AND RESIDENTS) TO SITES (AND FOR CLOSEST SITE) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9991082 miles is max. distance to block internal point (distance_unadjusted)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9991082 miles is max. distance to average resident in block (distance reported)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.02014604 miles is shortest distance to block internal point (distance_unadjusted)   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.02014604 miles is shortest distance to average resident in block (distance reported)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9999117 miles is max. distance to block internal point (distance_unadjusted)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9999117 miles is max. distance to average resident in block (distance reported)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.02554516 miles is shortest distance to block internal point (distance_unadjusted)   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.02554516 miles is shortest distance to average resident in block (distance reported)   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0 block distances were adjusted (these stats may count some blocks twice if adjusted at 2+ sites)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0 block distances were adjusted up (reported dist to avg resident is &gt; dist to block internal point)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0 block distances were adjusted down (reported &lt; unadjusted)</span>
@@ -104,7 +105,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   BLOCK COUNTS PER SITE (FEWER MEANS HIGHER UNCERTAINTY AT THOSE SITES)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 191 blocks are near the avg site or in avg buffer</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164 blocks are near the avg site or in avg buffer</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (based on their block internal point, like a centroid)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   sites    blocks_per_site</span>
@@ -115,8 +116,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   BLOCK COUNTS TOTAL AND IN OVERLAPS OF AREAS (MULTIPLE SITES FOR SOME RESIDENTS) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1,914 actual unique blocks total</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1,914 blocks including doublecounting in overlaps, </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1,640 actual unique blocks total</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1,640 blocks including doublecounting in overlaps, </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              in final row count (block-to-site pairs table)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 is ratio of blocks including multicounting / actual count of unique blocks</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0% of unique blocks could get counted more than once </span>
@@ -127,7 +128,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 unique output sites</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1,914 blocks (and their residents) have exactly 1 site nearby </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1,640 blocks (and their residents) have exactly 1 site nearby </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0 blocks (and their residents) have exactly 2 sites nearby </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0 blocks (and their residents) have exactly 3 sites nearby </span>
 <span class="r-plt img"><img src="getblocks_diagnostics-1.png" alt="" width="700" height="433"></span>
@@ -163,7 +164,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

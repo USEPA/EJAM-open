@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -82,47 +83,43 @@
     
     
 <div class="section level2">
-<h2 id="web-app-for-the-public-via-ejscreens-multisite-tool">Web app for the public via EJScreen’s Multisite Tool<a class="anchor" aria-label="anchor" href="#web-app-for-the-public-via-ejscreens-multisite-tool"></a>
+<h2 id="web-app-for-the-public">Web app for the public<a class="anchor" aria-label="anchor" href="#web-app-for-the-public"></a>
 </h2>
-<p><em>EPA has integrated EJAM’s toolkit as the EJScreen Multisite
-Tool</em>. EPA’s <a href="https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen</a> provides public access
-to batches of EJ reports, with rapid multisite analysis, by leveraging
-the EJAM toolkit.</p>
+<p>EJAM’s toolkit can be used to host a web application. The web app
+provides public access to batches of reports, with rapid multisite
+analysis, by leveraging the EJAM toolkit. The version designed for use
+by the general public was specifically configured for non-expert users,
+so it does not include some less-frequently-used, complex features. More
+features are available in the web app version that was invoked using
+“isPublic=FALSE.” Those needing even more tools – the full set of
+complex analytic features – can find them in the open source R package
+described below.</p>
 </div>
 <div class="section level2">
-<h2 id="web-app-for-epa-staff">Web app for EPA staff<a class="anchor" aria-label="anchor" href="#web-app-for-epa-staff"></a>
+<h2 id="web-app-for-expert-users">Web app for expert users<a class="anchor" aria-label="anchor" href="#web-app-for-expert-users"></a>
 </h2>
-<p>EPA staff while on the Agency network can access an <a href="https://usepa.sharepoint.com/sites/EJAMWorkgroup/SitePages/access-ejam.aspx" class="external-link">internal
-version of the EJAM web app</a>. It is for use by staff at EPA offices
-or via VPN, and requires SSO authentication with a PIV card.</p>
-<!--
-EPA staff can use version 2.32 of the internal EJAM web app - The tool is accessible only at EPA offices or via VPN -- You must be inside EPA's network (e.g. using VPN) to access the EJAM web app, and need to SSO authenticate with PIV card.
--->
+<p>Expert users can launch and use the so-called “internal” version of
+the web app. It is specifically configured just for use by expert users.
+This is the same as the version any developer can run locally using the
+public code repository described below.</p>
 </div>
 <div class="section level2">
 <h2 id="web-app-for-analysts-or-developers-using-rrstudio">Web app for analysts or developers using R/RStudio<a class="anchor" aria-label="anchor" href="#web-app-for-analysts-or-developers-using-rrstudio"></a>
 </h2>
-<p><em>The EJAM software and data are available as open source
-resources</em>, so that anyone (not just EPA staff) can use EJAM in
-RStudio on their own computer.</p>
-<p>EPA staff (on-site or on the VPN) can access the internal version of
-the EJAM repository as explained <a href="https://usepa.sharepoint.com/sites/EJAMWorkgroup/SitePages/access-ejam.aspx" class="external-link">here</a>.</p>
-<p><em>Assuming you have access to the code repository, the following
-will apply:</em></p>
+<p>The EJAM software and data are available as open source resources, so
+that anyone using <a href="https://posit.co/download/rstudio-desktop/" class="external-link uri" target="_blank" rel="noreferrer noopener">R/RStudio</a> can
+use EJAM on their own computer.</p>
 <p>Analysts or developers using R/RStudio have the option of running a
 local copy of the EJAM web app on their own computer. This may be even
-faster than relying on the hosted web app, does not time out after
+faster than relying on a hosted web app, does not time out after
 inactivity, and could be customized by a developer. You can also launch
-it with customized options or use bookmarked settings.</p>
-<p>If you use the R programming language in RStudio, you can use EJAM
-through a web-based UI run on your own computer (and/or use EJAM
+it with customized options or use bookmarked settings (and/or use EJAM
 functions and data directly without the web app, for more complex
 work).</p>
-<p>You first need to install the EJAM R package and datasets as
-explained in <a href="https://usepa.github.io/EJAM/articles/1_installing.html">Installing
-the EJAM R package</a>. There is also a <a href="https://usepa.github.io/EJAM/articles/2_quickstart.html">Quick
-Start guide</a> and extensive <a href="https://usepa.github.io/EJAM/reference/index.html">documentation
-of EJAM functions/tools/data</a>.</p>
+<p>You can install the EJAM R package and datasets as explained in <a href="1_installing.html">Installing the EJAM R package</a>. There is
+also a <a href="2_quickstart.html">Quick Start guide</a> and extensive
+<a href="../reference/index.html">documentation of EJAM
+functions/tools/data</a>.</p>
 <p>Once EJAM is installed, you can launch the local web app from RStudio
 as follows:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
@@ -130,17 +127,14 @@ as follows:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>shiny.launch.browser <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="co"># so the web app uses a browser (not the RStudio viewer)</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/run_app.html">run_app</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p>The EJScreen Multisite Tool configuration is available via
-<code>run_app(isPublic=T)</code> and the version for staff use is
+<p>The Multisite Tool configuration is available via
+<code>run_app(isPublic=T)</code> and the version for expert use is
 available via <code>run_app(isPublic=F)</code></p>
-<p>See documentation of optional parameters here: <a href="https://usepa.github.io/EJAM/reference/run_app.html" class="uri">https://usepa.github.io/EJAM/reference/run_app.html</a> or
-via <code><a href="../reference/run_app.html">?run_app</a></code></p>
+<p>See documentation of optional parameters via
+<code>?run_app()</code></p>
 <p>Note this is different than running a simple shiny app that is not
 also a package via the golem package. You should use the EJAM package
 function <code><a href="../reference/run_app.html">run_app()</a></code> not <code><a href="https://rdrr.io/pkg/shiny/man/runApp.html" class="external-link">shiny::runApp()</a></code>.</p>
-<!--
-EJAM has a series of high-level functions that an analyst can use in RStudio - EJAM can be installed and then used in RStudio as explained in the articles on Installing the EJAM R package and the Quick Start Guide.
--->
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -153,7 +147,7 @@ EJAM has a series of high-level functions that an analyst can use in RStudio - E
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer>

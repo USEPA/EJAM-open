@@ -9,7 +9,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column"><
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column"><
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -79,8 +80,8 @@ unused. Not needed if you have sites2blocks table that includes a bgid column</p
 <span class="r-in"><span><span class="fu">state_from_blockid</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid(x):</span> could not find function "state_from_blockid"</span>
 <span class="r-in"><span><span class="fu"><a href="mapfast.html">mapfast</a></span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<div id="htmlwidget-756e3bf13eb93ebd21f9" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-756e3bf13eb93ebd21f9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[34.00583730000005,42.30979190000005,48.47975210000004],[-93.09568659999996,-89.04990969999994,-114.8121374999999],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 388885<br>lat: 34.0058373000001<br>lon: -93.0956866","blockid: 2322012<br>lat: 42.3097919000001<br>lon: -89.0499096999999","blockid: 4236957<br>lat: 48.4797521<br>lon: -114.8121375"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[34.00583730000005,48.47975210000004],"lng":[-114.8121374999999,-89.04990969999994]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-da403bf8187c892ade73" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-da403bf8187c892ade73">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[30.87182710000008,38.85716490000004,38.81568070000003],[-84.22816429999995,-82.79562799999997,-80.63256629999995],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 1748098<br>lat: 30.8718271000001<br>lon: -84.2281642999999","blockid: 5588897<br>lat: 38.8571649<br>lon: -82.795628","blockid: 7807756<br>lat: 38.8156807<br>lon: -80.6325663"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[30.87182710000008,38.85716490000004],"lng":[-84.22816429999995,-80.63256629999995]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu">state_from_blockid</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="state_from_blockid_table.html">state_from_blockid_table</a></span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid(x):</span> could not find function "state_from_blockid"</span>
 <span class="r-in"><span></span></span>
@@ -95,7 +96,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column</p
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

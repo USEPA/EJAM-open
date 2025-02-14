@@ -9,7 +9,7 @@ You can look up sites by REGISTRY_ID in frs, and get their location, etc."><meta
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ You can look up sites by REGISTRY_ID in frs, and get their location, etc."><meta
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -59,25 +60,25 @@ frs_update_datasets() (which is not an exported function)</p>
 <p>The definitions of active/inactive here are not quite the
 same as used in ECHO. See attributes(frs) to see date created, etc.</p>
 <p>Also, EJScreen has maps of EPA-regulated facilities of a few program types,
-as provided here: <a href="https://www.epa.gov/ejscreen/ejscreen-map-descriptions#sites-reporting-to-epa" class="external-link">https://www.epa.gov/ejscreen/ejscreen-map-descriptions#sites-reporting-to-epa</a>
+as provided here: <a href="https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#sites-reporting-to-epa" class="external-link">https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/ejscreen-map-descriptions#sites-reporting-to-epa</a>
 and for a table of acronym definitions
 see https://www.epa.gov/sites/default/files/2021-05/frs_program_abbreviations_and_names.xlsx
 and <a href="epa_programs_defined.html">epa_programs_defined</a></p><ul><li><p>Count of    all REGISTRY_ID rows:   Approx 7 million</p></li>
 <li><p>Count of unique REGISTRY_ID values: Approx 4-5 million</p></li>
 <li><p>Clearly inactive unique IDs:        Approx 1-2 million</p></li>
 <li><p>Assumed   active unique IDs:        Approx 3 million</p></li>
-<li><p>frs rows total:            Approx 2-3 million</p></li>
-<li><p>frs_by_programid rows:     Approx 3-4 million</p></li>
-<li><p>frs_by_naics rows:         Approx 700k</p></li>
-<li><p>frs_by_sic rows:           Approx 700k</p></li>
+<li><p>frs rows total:            Approx 2-3 million (2.6m as of 02/2025)</p></li>
+<li><p>frs_by_programid rows:     Approx 3-4 million (3.5m as of 02/2025)</p></li>
+<li><p>frs_by_naics rows:         Approx 640k (541k unique regid as of 02/2025, 1858 unique NAICS)</p></li>
+<li><p>frs_by_sic rows:           Approx 764k (664k unique regid as of 02/2025, 2048 unique SIC)</p></li>
 </ul><p>Classes ‘data.table’ and 'data.frame'</p>
 <p>colnames</p><ul><li><p>1, "lat"</p></li>
 <li><p>2, "lon"</p></li>
-<li><p>3, "REGISTRY_ID"</p></li>
+<li><p>3, "REGISTRY_ID" like 110000343003</p></li>
 <li><p>4, "PRIMARY_NAME"</p></li>
-<li><p>5, "NAICS"</p></li>
+<li><p>5, "NAICS" csv group of codes per site</p></li>
 <li><p>6, "SIC"</p></li>
-<li><p>7, "PGM_SYS_ACRNMS"</p></li>
+<li><p>7, "PGM_SYS_ACRNMS" like RCRAINFO:XJW000200113</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -93,7 +94,7 @@ and <a href="epa_programs_defined.html">epa_programs_defined</a></p><ul><li><p>C
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

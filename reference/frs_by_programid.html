@@ -9,7 +9,7 @@ the Facility Registry Service"><meta property="og:image" content="https://usepa.
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ the Facility Registry Service"><meta property="og:image" content="https://usepa.
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -55,25 +56,28 @@ the Facility Registry Service</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This file is not stored in the package, but is obtained via <code><a href="dataload_from_pins.html">dataload_from_pins()</a></code>.</p>
-<p>Created by frs_make_programid_lookup()  that was in EJAMfrsdata package</p>
+<p>Created by frs_make_programid_lookup()</p>
 <p>This is the format with one row per site-programid pair,
 so multiple rows for one site if it is in multiple programs.</p>
 <p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">dim</span>(frs_by_programid)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3440451</span>       <span class="dv">5</span>   as of <span class="dv">1</span><span class="sc">/</span><span class="dv">3</span><span class="sc">/</span><span class="dv">2023</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>[<span class="dv">1</span>] <span class="dv">3479560</span>       <span class="dv">6</span>   as of <span class="dv">02</span><span class="sc">/</span><span class="dv">2025</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>nn<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(frs_by_programid), <span class="dv">1</span>); frs_by_programid[REGISTRY_ID <span class="sc">==</span> frs_by_programid<span class="sc">$</span>REGISTRY_ID[nn],]</span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>            lat       lon  REGISTRY_ID  program         pgm_sys_id</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="dv">1</span><span class="sc">:</span> <span class="fl">40.21262</span> <span class="sc">-</span><span class="fl">100.6464</span> <span class="dv">110040499724</span> AIRS<span class="sc">/</span>AFS         <span class="dv">3114500040</span></span>
-<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">:</span> <span class="fl">40.21262</span> <span class="sc">-</span><span class="fl">100.6464</span> <span class="dv">110040499724</span>     NDEQ              <span class="dv">87933</span></span>
-<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>    <span class="dv">3</span><span class="sc">:</span> <span class="fl">40.21262</span> <span class="sc">-</span><span class="fl">100.6464</span> <span class="dv">110040499724</span>      AIR NE0000003114500040</span>
-<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>nn<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(frs_by_programid), <span class="dv">1</span>); frs_by_programid[REGISTRY_ID <span class="sc">==</span> frs_by_programid<span class="sc">$</span>REGISTRY_ID[nn],]</span>
-<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>            lat       lon  REGISTRY_ID program   pgm_sys_id</span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    <span class="dv">1</span><span class="sc">:</span> <span class="fl">47.00071</span> <span class="sc">-</span><span class="fl">120.5649</span> <span class="dv">110037546493</span> WA<span class="sc">-</span>FSIS      <span class="dv">1796553</span></span>
-<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    <span class="dv">2</span><span class="sc">:</span> <span class="fl">47.00071</span> <span class="sc">-</span><span class="fl">120.5649</span> <span class="dv">110037546493</span>    ICIS   <span class="dv">1800041945</span></span>
-<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    <span class="dv">3</span><span class="sc">:</span> <span class="fl">47.00071</span> <span class="sc">-</span><span class="fl">120.5649</span> <span class="dv">110037546493</span> WA<span class="sc">-</span>FSIS      <span class="dv">7886103</span></span></code></pre><p></p></div>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>Key<span class="sc">:</span> <span class="er">&lt;</span>pgm_sys_id, program, REGISTRY_ID<span class="sc">&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>         lat       lon  REGISTRY_ID  PGM_SYS_ACRNMS program pgm_sys_id</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>       <span class="sc">&lt;</span>num<span class="sc">&gt;</span>     <span class="er">&lt;</span>num<span class="sc">&gt;</span>       <span class="er">&lt;</span>char<span class="sc">&gt;</span>          <span class="er">&lt;</span>char<span class="sc">&gt;</span>  <span class="er">&lt;</span>char<span class="sc">&gt;</span>     <span class="er">&lt;</span>char<span class="sc">&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a> <span class="dv">1</span><span class="sc">:</span> <span class="fl">42.01282</span> <span class="sc">-</span><span class="fl">78.54799</span> <span class="dv">110010618705</span> ICIS<span class="sc">:</span><span class="dv">1400013175</span>    ICIS <span class="dv">1400013175</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a> <span class="dv">2</span><span class="sc">:</span> <span class="fl">42.01282</span> <span class="sc">-</span><span class="fl">78.54799</span> <span class="dv">110010618705</span> ICIS<span class="sc">:</span><span class="dv">1400013176</span>    ICIS <span class="dv">1400013176</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>nn<span class="ot">=</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(frs_by_programid), <span class="dv">1</span>); frs_by_programid[REGISTRY_ID <span class="sc">==</span> frs_by_programid<span class="sc">$</span>REGISTRY_ID[nn],]</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>Key<span class="sc">:</span> <span class="er">&lt;</span>pgm_sys_id, program, REGISTRY_ID<span class="sc">&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>       lat       lon  REGISTRY_ID           PGM_SYS_ACRNMS program          pgm_sys_id</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>     <span class="sc">&lt;</span>num<span class="sc">&gt;</span>     <span class="er">&lt;</span>num<span class="sc">&gt;</span>       <span class="er">&lt;</span>char<span class="sc">&gt;</span>                   <span class="er">&lt;</span>char<span class="sc">&gt;</span>  <span class="er">&lt;</span>char<span class="sc">&gt;</span>              <span class="er">&lt;</span>char<span class="sc">&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="fl">34.95563</span> <span class="sc">-</span><span class="fl">81.91435</span> <span class="dv">110011516840</span>  NCDB<span class="sc">:</span>C04<span class="co">#TSCAIV-98-LD11    NCDB  C04#TSCAIV-98-LD11</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> <span class="fl">34.95563</span> <span class="sc">-</span><span class="fl">81.91435</span> <span class="dv">110011516840</span> NCDB<span class="sc">:</span>C04<span class="co">#TSCAIV-98-LD11A    NCDB C04#TSCAIV-98-LD11A</span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> <span class="fl">34.95563</span> <span class="sc">-</span><span class="fl">81.91435</span> <span class="dv">110011516840</span> NCDB<span class="sc">:</span>I04<span class="co">#19980603N4005 2    NCDB I04#19980603N4005 2</span></span></code></pre><p></p></div>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -89,7 +93,7 @@ so multiple rows for one site if it is in multiple programs.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

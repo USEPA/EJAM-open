@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -82,7 +83,11 @@
 
 <dt id="arg-wherestr">wherestr<a class="anchor" aria-label="anchor" href="#arg-wherestr"></a></dt>
 <dd><p>Name of place to center on (not FIPS code!).
-Passed to API in URL as wherestr= , if lat/lon not used.
+Note that nearly half of all county fips codes are impossible to distinguish from
+5-digit zipcodes because the same numbers are used for both purposes.</p>
+<p>For zipcode 10001, use url_ejscreenmap(wherestr =  '10001')</p>
+<p>For County FIPS code 10001, use url_ejscreenmap(wherestr =  fips2name('10001'))</p>
+<p>This parameter is passed to the API as wherestr= , if lat/lon not specified.
 Can be State abbrev like "NY" or full state name,
 or city like "New Rochelle, NY" as from fips2name() – using fips2name()
 works for state, county, or city FIPS code converted to name.
@@ -113,7 +118,7 @@ Not sure that part of the EJScreen URL-encoded map request is documented.</p></d
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

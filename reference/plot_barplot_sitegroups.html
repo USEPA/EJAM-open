@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -121,51 +122,51 @@ by default – only shows top n groups.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="va">out</span> <span class="op">&lt;-</span> <span class="fu"><a href="ejamit_compare_types_of_places.html">ejamit_compare_types_of_places</a></span><span class="op">(</span><span class="va">testpoints_10</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="op">]</span>, </span></span>
 <span class="r-in"><span>   <span class="va">typeofsite</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"B"</span>, <span class="st">"C"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type 1 of 3 = A  -- Analyzing 1 points, radius of 3 miles around each.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 1 of 1 sites. Rate of 1,707 buffers per hour: 1 lat/long pairs took 2 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 1 of 1 sites. Rate of 2,111 buffers per hour: 1 lat/long pairs took 2 seconds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type 2 of 3 = B  -- </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note that ejam_uniq_id was already in sitepoints, and might not be 1:NROW(sitepoints), which might cause issues</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analyzing 2 points, radius of 3 miles around each.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 3 of 3 sites. Rate of 2,115 buffers per hour: 3 lat/long pairs took 5 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 3 of 3 sites. Rate of 2,033 buffers per hour: 3 lat/long pairs took 5 seconds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Type 3 of 3 = C  -- </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Note that ejam_uniq_id was already in sitepoints, and might not be 1:NROW(sitepoints), which might cause issues</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analyzing 1 points, radius of 3 miles around each.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 4 of 4 sites. Rate of 1,627 buffers per hour: 4 lat/long pairs took 9 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Finished 4 of 4 sites. Rate of 1,534 buffers per hour: 4 lat/long pairs took 9 seconds</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   type valid sitecount pctvalid    pop pop_persite pctofallpop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    A     1         1      100   6236        6236           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2    B     2         2      100  66820       33410          23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    C     1         1      100 222274      222274          75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   type valid sitecount pctvalid     pop pop_persite pctofallpop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    A     1         1      100  124566      124566           9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    B     2         2      100 1176931      588466          89</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    C     1         1      100   19637       19637           1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   pctofallsitecount</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3                25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ratio.to.state.avg.Demog.Index ratio.to.state.avg.Demog.Index.Supp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            0.6                                 0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                            0.6                                 0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                            0.8                                 0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                            0.9                                 0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                            1.2                                 1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                            0.7                                 0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ratio.to.state.avg.pctlowinc ratio.to.state.avg.pctlingiso</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0.8                           0.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          0.6                           0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          0.6                           0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0.5                           1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          1.1                           1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          0.8                           0.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ratio.to.state.avg.pctunemployed ratio.to.state.avg.pctlths</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              0.7                        0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                              0.9                        0.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                              0.9                        0.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              0.6                        0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                              1.1                        1.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                              1.0                        1.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ratio.to.state.avg.pctunder5 ratio.to.state.avg.pctover64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          1.7                          0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          0.9                          0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          1.1                          0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0.9                          1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          1.2                          0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                          1.2                          0.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ratio.to.state.avg.pctmin</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       0.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2                       1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                       0.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use  ejam2excel(out)  to view results, and see the types of sites compared, one row each, in the Overall tab</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Use ejam2barplot_sitegroups() to plot results.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  4 sites in 3 groups (types of sites).</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Rate of 1,626 buffers per hour: 4 lat/long pairs took 9 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Rate of 1,533 buffers per hour: 4 lat/long pairs took 9 seconds</span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>Rows_or_length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">out</span>, <span class="va">NROW</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  Rows_or_length</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> types                         3</span>
@@ -175,7 +176,7 @@ by default – only shows top n groups.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ejam_uniq_id                  4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> typeofsite                    4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> results_bysite                4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> longnames                   416</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> longnames                   417</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> validstats                    3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ratiostats                    3</span>
 <span class="r-in"><span>  </span></span>
@@ -193,7 +194,7 @@ by default – only shows top n groups.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

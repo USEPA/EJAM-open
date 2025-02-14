@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -173,19 +174,19 @@ and is only found in the map_headernames$varlist column:</p>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="fu">namesbyvarlist</span><span class="op">(</span><span class="st">'names_e_avg'</span>, <span class="st">'rname'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         varlist               rname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 413 names_e_avg              avg.pm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 414 names_e_avg              avg.o3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 415 names_e_avg             avg.no2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 416 names_e_avg             avg.dpm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 417 names_e_avg            avg.rsei</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 418 names_e_avg   avg.traffic.score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 419 names_e_avg      avg.pctpre1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 420 names_e_avg   avg.proximity.npl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 421 names_e_avg   avg.proximity.rmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 422 names_e_avg  avg.proximity.tsdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 423 names_e_avg             avg.ust</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 424 names_e_avg avg.proximity.npdes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 425 names_e_avg        avg.drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 412 names_e_avg              avg.pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 413 names_e_avg              avg.o3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 414 names_e_avg             avg.no2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 415 names_e_avg             avg.dpm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 416 names_e_avg            avg.rsei</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 417 names_e_avg   avg.traffic.score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 418 names_e_avg      avg.pctpre1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 419 names_e_avg   avg.proximity.npl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 420 names_e_avg   avg.proximity.rmp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 421 names_e_avg  avg.proximity.tsdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 422 names_e_avg             avg.ust</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 423 names_e_avg avg.proximity.npdes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 424 names_e_avg        avg.drinking</span>
 <span class="r-in"><span> <span class="fu">namesbyvarlist</span><span class="op">(</span><span class="st">'names_d'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   varlist            rname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 names_d      Demog.Index</span>
@@ -233,116 +234,116 @@ and is only found in the map_headernames$varlist column:</p>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="fu">namesbyvarlist</span><span class="op">(</span> <span class="st">'names_e_pctile'</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'r'</span>, <span class="st">'longname'</span><span class="op">)</span><span class="op">)</span>    </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            varlist                  rname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387 names_e_pctile              pctile.pm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388 names_e_pctile              pctile.o3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389 names_e_pctile             pctile.no2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390 names_e_pctile             pctile.dpm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391 names_e_pctile            pctile.rsei</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392 names_e_pctile   pctile.traffic.score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393 names_e_pctile      pctile.pctpre1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394 names_e_pctile   pctile.proximity.npl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395 names_e_pctile   pctile.proximity.rmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396 names_e_pctile  pctile.proximity.tsdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397 names_e_pctile             pctile.ust</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398 names_e_pctile pctile.proximity.npdes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399 names_e_pctile        pctile.drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386 names_e_pctile              pctile.pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387 names_e_pctile              pctile.o3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388 names_e_pctile             pctile.no2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389 names_e_pctile             pctile.dpm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390 names_e_pctile            pctile.rsei</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391 names_e_pctile   pctile.traffic.score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392 names_e_pctile      pctile.pctpre1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393 names_e_pctile   pctile.proximity.npl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394 names_e_pctile   pctile.proximity.rmp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395 names_e_pctile  pctile.proximity.tsdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396 names_e_pctile             pctile.ust</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397 names_e_pctile pctile.proximity.npdes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398 names_e_pctile        pctile.drinking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                        longname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                      US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                                               US percentile for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                                    US percentile for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                         US percentile for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391                                                     US percentile for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392       US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393                                US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394                              US percentile for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395                                US percentile for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396                    US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397                                 US percentile for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398 US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399                                             US percentile for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386                                      US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                                               US percentile for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                                    US percentile for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                         US percentile for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                                     US percentile for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391       US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392                                US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393                              US percentile for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394                                US percentile for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395                    US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396                                 US percentile for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397 US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398                                             US percentile for Drinking Water Non-Compliance</span>
 <span class="r-in"><span> <span class="fu">namesbyvarlist</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'names_e_pctile'</span>, <span class="st">'names_e_state_pctile'</span><span class="op">)</span>, </span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'varlist'</span>, <span class="st">'rname'</span>, <span class="st">'apiname'</span>, <span class="st">'csvname'</span>, <span class="st">'shortlabel'</span>, <span class="st">'longname'</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  varlist            varlist.1                        rname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387       names_e_pctile       names_e_pctile                    pctile.pm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388       names_e_pctile       names_e_pctile                    pctile.o3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389       names_e_pctile       names_e_pctile                   pctile.no2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390       names_e_pctile       names_e_pctile                   pctile.dpm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391       names_e_pctile       names_e_pctile                  pctile.rsei</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392       names_e_pctile       names_e_pctile         pctile.traffic.score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393       names_e_pctile       names_e_pctile            pctile.pctpre1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394       names_e_pctile       names_e_pctile         pctile.proximity.npl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395       names_e_pctile       names_e_pctile         pctile.proximity.rmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396       names_e_pctile       names_e_pctile        pctile.proximity.tsdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397       names_e_pctile       names_e_pctile                   pctile.ust</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398       names_e_pctile       names_e_pctile       pctile.proximity.npdes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399       names_e_pctile       names_e_pctile              pctile.drinking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 400 names_e_state_pctile names_e_state_pctile              state.pctile.pm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 401 names_e_state_pctile names_e_state_pctile              state.pctile.o3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 402 names_e_state_pctile names_e_state_pctile             state.pctile.no2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 403 names_e_state_pctile names_e_state_pctile             state.pctile.dpm</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 404 names_e_state_pctile names_e_state_pctile            state.pctile.rsei</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 405 names_e_state_pctile names_e_state_pctile   state.pctile.traffic.score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 406 names_e_state_pctile names_e_state_pctile      state.pctile.pctpre1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 407 names_e_state_pctile names_e_state_pctile   state.pctile.proximity.npl</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 408 names_e_state_pctile names_e_state_pctile   state.pctile.proximity.rmp</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 409 names_e_state_pctile names_e_state_pctile  state.pctile.proximity.tsdf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 410 names_e_state_pctile names_e_state_pctile             state.pctile.ust</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 411 names_e_state_pctile names_e_state_pctile state.pctile.proximity.npdes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 412 names_e_state_pctile names_e_state_pctile        state.pctile.drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386       names_e_pctile       names_e_pctile                    pctile.pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387       names_e_pctile       names_e_pctile                    pctile.o3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388       names_e_pctile       names_e_pctile                   pctile.no2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389       names_e_pctile       names_e_pctile                   pctile.dpm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390       names_e_pctile       names_e_pctile                  pctile.rsei</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391       names_e_pctile       names_e_pctile         pctile.traffic.score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392       names_e_pctile       names_e_pctile            pctile.pctpre1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393       names_e_pctile       names_e_pctile         pctile.proximity.npl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394       names_e_pctile       names_e_pctile         pctile.proximity.rmp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395       names_e_pctile       names_e_pctile        pctile.proximity.tsdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396       names_e_pctile       names_e_pctile                   pctile.ust</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397       names_e_pctile       names_e_pctile       pctile.proximity.npdes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398       names_e_pctile       names_e_pctile              pctile.drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 399 names_e_state_pctile names_e_state_pctile              state.pctile.pm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 400 names_e_state_pctile names_e_state_pctile              state.pctile.o3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 401 names_e_state_pctile names_e_state_pctile             state.pctile.no2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402 names_e_state_pctile names_e_state_pctile             state.pctile.dpm</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 403 names_e_state_pctile names_e_state_pctile            state.pctile.rsei</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 404 names_e_state_pctile names_e_state_pctile   state.pctile.traffic.score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405 names_e_state_pctile names_e_state_pctile      state.pctile.pctpre1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406 names_e_state_pctile names_e_state_pctile   state.pctile.proximity.npl</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 407 names_e_state_pctile names_e_state_pctile   state.pctile.proximity.rmp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 408 names_e_state_pctile names_e_state_pctile  state.pctile.proximity.tsdf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 409 names_e_state_pctile names_e_state_pctile             state.pctile.ust</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 410 names_e_state_pctile names_e_state_pctile state.pctile.proximity.npdes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 411 names_e_state_pctile names_e_state_pctile        state.pctile.drinking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              apiname      csvname                      shortlabel</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387     N_E_PM25_PER       P_PM25                    US%ile PM2.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388       N_E_O3_PER      P_OZONE                    US%ile Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389      N_E_NO2_PER        P_NO2                      US%ile NO2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390   N_E_DIESEL_PER      P_DSLPM                US%ile Diesel PM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391 N_E_RSEI_AIR_PER   P_RSEI_AIR    US%ile Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392  N_E_TRAFFIC_PER      P_PTRAF                  US%ile Traffic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393     N_E_LEAD_PER      P_LDPNT                US%ile %pre-1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394      N_E_NPL_PER       P_PNPL                      US%ile NPL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395      N_E_RMP_PER       P_PRMP                      US%ile RMP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396     N_E_TSDF_PER      P_PTSDF                     US%ile TSDF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397      N_E_UST_PER        P_UST                      US%ile UST</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398    N_E_NPDES_PER      P_PWDIS                    US%ile NPDES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399   N_E_DWATER_PER     P_DWATER                 US%ile Drinking</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 400     S_E_PM25_PER     S_P_PM25                 State%ile PM2.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 401       S_E_O3_PER    S_P_OZONE                 State%ile Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 402      S_E_NO2_PER      S_P_NO2                   State%ile NO2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 403   S_E_DIESEL_PER    S_P_DSLPM             State%ile Diesel PM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 404 S_E_RSEI_AIR_PER S_P_RSEI_AIR State%ile Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 405  S_E_TRAFFIC_PER    S_P_PTRAF               State%ile Traffic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 406     S_E_LEAD_PER    S_P_LDPNT             State%ile %pre-1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 407      S_E_NPL_PER     S_P_PNPL                   State%ile NPL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 408      S_E_RMP_PER     S_P_PRMP                   State%ile RMP</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 409     S_E_TSDF_PER    S_P_PTSDF                  State%ile TSDF</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 410      S_E_UST_PER      S_P_UST                   State%ile UST</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 411    S_E_NPDES_PER    S_P_PWDIS                 State%ile NPDES</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 412   S_E_DWATER_PER   S_P_DWATER              State%ile Drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386     N_E_PM25_PER       P_PM25                    US%ile PM2.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387       N_E_O3_PER      P_OZONE                    US%ile Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388      N_E_NO2_PER        P_NO2                      US%ile NO2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389   N_E_DIESEL_PER      P_DSLPM                US%ile Diesel PM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390 N_E_RSEI_AIR_PER   P_RSEI_AIR    US%ile Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391  N_E_TRAFFIC_PER      P_PTRAF                  US%ile Traffic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392     N_E_LEAD_PER      P_LDPNT                US%ile %pre-1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393      N_E_NPL_PER       P_PNPL                      US%ile NPL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394      N_E_RMP_PER       P_PRMP                      US%ile RMP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395     N_E_TSDF_PER      P_PTSDF                     US%ile TSDF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396      N_E_UST_PER        P_UST                      US%ile UST</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397    N_E_NPDES_PER      P_PWDIS                    US%ile NPDES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398   N_E_DWATER_PER     P_DWATER                 US%ile Drinking</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 399     S_E_PM25_PER     S_P_PM25                 State%ile PM2.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 400       S_E_O3_PER    S_P_OZONE                 State%ile Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 401      S_E_NO2_PER      S_P_NO2                   State%ile NO2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402   S_E_DIESEL_PER    S_P_DSLPM             State%ile Diesel PM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 403 S_E_RSEI_AIR_PER S_P_RSEI_AIR State%ile Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 404  S_E_TRAFFIC_PER    S_P_PTRAF               State%ile Traffic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405     S_E_LEAD_PER    S_P_LDPNT             State%ile %pre-1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406      S_E_NPL_PER     S_P_PNPL                   State%ile NPL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 407      S_E_RMP_PER     S_P_PRMP                   State%ile RMP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 408     S_E_TSDF_PER    S_P_PTSDF                  State%ile TSDF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 409      S_E_UST_PER      S_P_UST                   State%ile UST</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 410    S_E_NPDES_PER    S_P_PWDIS                 State%ile NPDES</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 411   S_E_DWATER_PER   S_P_DWATER              State%ile Drinking</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                           longname</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                         US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                                                  US percentile for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                                       US percentile for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                            US percentile for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391                                                        US percentile for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392          US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393                                   US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394                                 US percentile for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395                                   US percentile for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396                       US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397                                    US percentile for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398    US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399                                                US percentile for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 400                                      State percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 401                                                               State percentile for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 402                                                    State percentile for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 403                                         State percentile for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 404                                                     State percentile for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 405       State percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 406                                State percentile for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 407                              State percentile for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 408                                State percentile for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 409                    State percentile for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 410                                 State percentile for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 411 State percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 412                                             State percentile for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386                                         US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                                                  US percentile for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                                       US percentile for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                            US percentile for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                                        US percentile for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391          US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392                                   US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393                                 US percentile for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394                                   US percentile for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395                       US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396                                    US percentile for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397    US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398                                                US percentile for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 399                                      State percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 400                                                               State percentile for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 401                                                    State percentile for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402                                         State percentile for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 403                                                     State percentile for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 404       State percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405                                State percentile for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406                              State percentile for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 407                                State percentile for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 408                    State percentile for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 409                                 State percentile for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 410 State percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 411                                             State percentile for Drinking Water Non-Compliance</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -354,7 +355,7 @@ and is only found in the map_headernames$varlist column:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

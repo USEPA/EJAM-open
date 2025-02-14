@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -84,11 +85,7 @@ if the full record was  RCRAINFO:XJW000000174</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Failed trying to connect to pins board server.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Arrow-format datasets (blocks, etc.) are up-to-date -- locally-installed and latest-released data repository versions match.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> frs_by_programid   - is NOT in memory. Checking local disk... frs_by_programid  is loading from /home/runner/work/_temp/Library/EJAM/data/frs_by_programid.arrow ...</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Potentially unsafe or invalid elements have been discarded from R metadata.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">ℹ</span> Type: "externalptr"</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> → If you trust the source, you can set `options(arrow.unsafe_metadata = TRUE)` to preserve them.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> done.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> frs_by_programid   - is NOT in memory. Checking local disk... frs_by_programid  is loading from /home/runner/work/_temp/Library/EJAM/data/frs_by_programid.arrow ...done.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> frs_by_programid   - was loaded from local folder, so server copy was not sought.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span> <span class="va">x</span></span></span>
@@ -103,8 +100,8 @@ if the full record was  RCRAINFO:XJW000000174</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2:                        FIS:0-0000-01097</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3:                        FIS:0-0000-01103</span>
 <span class="r-in"><span> <span class="fu"><a href="mapfast.html">mapfast</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<div id="htmlwidget-d11fc4360aa0230696d7" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d11fc4360aa0230696d7">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[44.13415,40.714899,40.76395],[-104.12563,-74.003159,-73.970371],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["lat: 44.13415<br>lon: -104.12563<br>REGISTRY_ID: 110012799846<br>PRIMARY_NAME: SNOW ADVENTURE<br>NAICS: <br>SIC: 5541<br>PGM_SYS_ACRNMS: ICIS:2656510, STATE:#5005","lat: 40.714899<br>lon: -74.003159<br>REGISTRY_ID: 110019246163<br>PRIMARY_NAME: SITE RECLAMATION SYSTEMS MTU (SUN R&M)<br>NAICS: <br>SIC: <br>PGM_SYS_ACRNMS: FIS:0-0000-01097","lat: 40.76395<br>lon: -73.970371<br>REGISTRY_ID: 110019163359<br>PRIMARY_NAME: ENVIROSOUND MTU<br>NAICS: <br>SIC: <br>PGM_SYS_ACRNMS: FIS:0-0000-01103"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[40.714899,44.13415],"lng":[-104.12563,-73.970371]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-72cbf064100ce560a04c" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72cbf064100ce560a04c">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[44.13415,40.714899,40.76395],[-104.12563,-74.003159,-73.970371],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["lat: 44.13415<br>lon: -104.12563<br>REGISTRY_ID: 110012799846<br>PRIMARY_NAME: SNOW ADVENTURE<br>NAICS: <br>SIC: 5541<br>PGM_SYS_ACRNMS: ICIS:2656510, STATE:#5005","lat: 40.714899<br>lon: -74.003159<br>REGISTRY_ID: 110019246163<br>PRIMARY_NAME: SITE RECLAMATION SYSTEMS MTU (SUN R&M)<br>NAICS: <br>SIC: <br>PGM_SYS_ACRNMS: FIS:0-0000-01097","lat: 40.76395<br>lon: -73.970371<br>REGISTRY_ID: 110019163359<br>PRIMARY_NAME: ENVIROSOUND MTU<br>NAICS: <br>SIC: <br>PGM_SYS_ACRNMS: FIS:0-0000-01103"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[40.714899,44.13415],"lng":[-104.12563,-73.970371]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -116,7 +113,7 @@ if the full record was  RCRAINFO:XJW000000174</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

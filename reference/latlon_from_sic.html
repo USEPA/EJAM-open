@@ -9,7 +9,7 @@ Find all EPA Facility Registry Service (FRS) sites with this exact SIC code (not
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ Find all EPA Facility Registry Service (FRS) sites with this exact SIC code (not
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -138,11 +139,11 @@ identified by FRS data as being in a child SIC (subcategory of your exact query)
 <span class="r-out co"><span class="r-pr">#&gt;</span>   4: 41.47924  -81.07851 110000385798   2022</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   5: 43.59796  -85.14557 110000410207   2022</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ---                                        </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 362: 42.66670  -90.12916 110070384941   2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 363: 38.23239 -122.59286 110070686024   2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 364: 34.24911 -119.22682 110070816358   2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 365: 43.01911  -84.54965 110070870126   2022</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 366: 44.75453  -90.29649 110071498797   2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371: 44.75453  -90.29649 110071498797   2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372: 40.06665  -77.51666 110071723361   2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373: 38.15922 -122.66852 110071756914   2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374: 41.75465 -124.20383 110071769744   2022</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375: 37.26021 -120.99724 110071799425   2022</span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">latlon_from_sic</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'6150'</span>, <span class="st">'6300'</span>, <span class="st">'5995'</span><span class="op">)</span>, id_only<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "110000346545" "110000524200" "110000528616" "110001362427" "110002218546"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6] "110007563252"</span>
@@ -159,7 +160,7 @@ identified by FRS data as being in a child SIC (subcategory of your exact query)
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

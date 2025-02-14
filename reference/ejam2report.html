@@ -9,7 +9,7 @@ EJScreen Community Report"><meta property="og:image" content="https://usepa.gith
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ EJScreen Community Report"><meta property="og:image" content="https://usepa.gith
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -56,11 +57,22 @@ EJScreen Community Report</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ejam2report</span><span class="op">(</span></span>
 <span>  ejamitout <span class="op">=</span> <span class="va">testoutput_ejamit_10pts_1miles</span>,</span>
 <span>  sitenumber <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  analysis_title <span class="op">=</span> <span class="st">"EJAM Report"</span>,</span>
+<span>  analysis_title <span class="op">=</span> <span class="st">"Summary of Analysis"</span>,</span>
 <span>  submitted_upload_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"latlon"</span>, <span class="st">"SHP"</span>, <span class="st">"FIPS"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
 <span>  data_up_shp <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  return_html <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  launch_browser <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  launch_browser <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_ratios_in_report <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  extratable_show_ratios_in_report <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  extratable_title <span class="op">=</span> <span class="st">"EJScreen environmental and socioeconomic indicators data"</span>,</span>
+<span>  extratable_list_of_sections <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>`Breakdown by Race/Ethnicity` <span class="op">=</span> <span class="va">names_d_subgroups</span>,</span>
+<span>    `Language Spoken at Home` <span class="op">=</span> <span class="va">names_d_language</span>,</span>
+<span>    `Language in Limited English Speaking Households` <span class="op">=</span> <span class="va">names_d_languageli</span>,</span>
+<span>    `Breakdown by Sex` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pctmale"</span>, <span class="st">"pctfemale"</span><span class="op">)</span>, Health <span class="op">=</span> <span class="va">names_health</span>, Community <span class="op">=</span></span>
+<span>    <span class="va">names_community</span><span class="op">[</span><span class="op">!</span><span class="op">(</span><span class="va">names_community</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"pctmale"</span>, <span class="st">"pctfemale"</span>,</span>
+<span>    <span class="st">"pctownedunits_dupe"</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>, Poverty <span class="op">=</span> <span class="va">names_d_extra</span>, `Site counts and distance` <span class="op">=</span></span>
+<span>    <span class="va">names_e_other</span><span class="op">)</span>,</span>
+<span>  extratable_hide_missing_rows_for <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">names_d_language</span>, <span class="va">names_health</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -98,6 +110,32 @@ then the report is about <code>ejamout$results_overall</code></p></dd>
 <dt id="arg-launch-browser">launch_browser<a class="anchor" aria-label="anchor" href="#arg-launch-browser"></a></dt>
 <dd><p>set TRUE to have it launch browser and show report.</p></dd>
 
+
+<dt id="arg-show-ratios-in-report">show_ratios_in_report<a class="anchor" aria-label="anchor" href="#arg-show-ratios-in-report"></a></dt>
+<dd><p>logical, whether to add columns with ratios to US and State overall values, in main table of envt/demog. info.</p></dd>
+
+
+<dt id="arg-extratable-show-ratios-in-report">extratable_show_ratios_in_report<a class="anchor" aria-label="anchor" href="#arg-extratable-show-ratios-in-report"></a></dt>
+<dd><p>logical, whether to add columns with ratios to US and State overall values, in extra table of demog. subgroups, etc.</p></dd>
+
+
+<dt id="arg-extratable-title">extratable_title<a class="anchor" aria-label="anchor" href="#arg-extratable-title"></a></dt>
+<dd><p>Text of overall title of report table, in extra table of demog. subgroups, etc.</p></dd>
+
+
+<dt id="arg-extratable-list-of-sections">extratable_list_of_sections<a class="anchor" aria-label="anchor" href="#arg-extratable-list-of-sections"></a></dt>
+<dd><p>This defines what extra indicators are shown.
+It is a named list of vectors,
+where each name is text phrase that is title of a section of the table,
+and each vector is the vector of colnames of output_df that are indicators
+to show in that section, in extra table of demog. subgroups, etc.</p></dd>
+
+
+<dt id="arg-extratable-hide-missing-rows-for">extratable_hide_missing_rows_for<a class="anchor" aria-label="anchor" href="#arg-extratable-hide-missing-rows-for"></a></dt>
+<dd><p>only for the indicators named in this vector,
+leave out rows in table where raw value is NA,
+as with many of names_d_language, in extra table of demog. subgroups, etc.' #'</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -107,7 +145,8 @@ and has side effect of launching browser to view it depending on return_html</p>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This relies on <code><a href="build_community_report.html">build_community_report()</a></code> as used in web app
-for viewing report on 1 site from a list of sites.</p>
+for viewing report on 1 site from a list of sites.
+You can customize the report somewhat by using parameters like extratable_list_of_sections</p>
     </div>
 
     <div class="section level2">
@@ -116,29 +155,13 @@ for viewing report on 1 site from a list of sites.</p>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">testoutput_ejamit_10pts_1miles</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ejam2report</span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some names not found in df. Ignoring those ones.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: drinking</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: pctile.drinking</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: pctownedunits</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: statename</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: ST</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: REGION</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: lon</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmpa4jaB5/comm_report.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpKiiYAg/comm_report.html"</span>
 <span class="r-in"><span><span class="fu"><a href="table_gt_from_ejamit_overall.html">table_gt_from_ejamit_overall</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_overall</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gt’</span>
 <span class="r-in"><span><span class="fu"><a href="table_tall_from_overall.html">table_tall_from_overall</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_overall</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in table_tall_from_overall(out$results_overall):</span> could not find function "table_tall_from_overall"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">ejam2report</span><span class="op">(</span><span class="va">out</span>, sitenumber <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some names not found in df. Ignoring those ones.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NAs introduced by coercion</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: pctile.drinking</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: state.pctile.drinking</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: statename</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Skipping non numeric: ST</span>
 <span class="r-in"><span><span class="fu"><a href="table_gt_from_ejamit_1site.html">table_gt_from_ejamit_1site</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_bysite</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in loadNamespace(x):</span> there is no package called ‘gt’</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/browseURL.html" class="external-link">browseURL</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
@@ -154,7 +177,7 @@ for viewing report on 1 site from a list of sites.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

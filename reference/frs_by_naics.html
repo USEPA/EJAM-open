@@ -8,13 +8,13 @@ where you can find facilities based on NAICS or SIC.
 MOST SITES LACK NAICS INFO IN FRS! NAICS is missing for about 80 percent of these facilities.
 frs here had about 2.5 million unique REGISTRY_ID values, but
 frs_by_naics had only about 700k rows
-about 562,000 unique REGISTRY_ID values with
-about 2,900 unique NAICS codes.
+about 581,000 unique REGISTRY_ID values with
+about 1,858 unique NAICS codes.
 length(unique(frs_by_naics$REGISTRY_ID))
 length(unique(frs_by_naics[,REGISTRY_ID]))
 length(frs_by_naics[, unique(REGISTRY_ID)])
 frs_by_naics[,uniqueN(REGISTRY_ID)]
-   e.g., 573,411 in mid 2024
+   e.g., 581,416 in 02/2025
 
     lat       lon  REGISTRY_ID  NAICS
 
@@ -29,13 +29,13 @@ where you can find facilities based on NAICS or SIC.
 MOST SITES LACK NAICS INFO IN FRS! NAICS is missing for about 80 percent of these facilities.
 frs here had about 2.5 million unique REGISTRY_ID values, but
 frs_by_naics had only about 700k rows
-about 562,000 unique REGISTRY_ID values with
-about 2,900 unique NAICS codes.
+about 581,000 unique REGISTRY_ID values with
+about 1,858 unique NAICS codes.
 length(unique(frs_by_naics$REGISTRY_ID))
 length(unique(frs_by_naics[,REGISTRY_ID]))
 length(frs_by_naics[, unique(REGISTRY_ID)])
 frs_by_naics[,uniqueN(REGISTRY_ID)]
-   e.g., 573,411 in mid 2024
+   e.g., 581,416 in 02/2025
 
     lat       lon  REGISTRY_ID  NAICS
 
@@ -49,7 +49,7 @@ frs_by_naics[,uniqueN(REGISTRY_ID)]
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,6 +70,7 @@ frs_by_naics[,uniqueN(REGISTRY_ID)]
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -96,13 +97,13 @@ where you can find facilities based on NAICS or SIC.</p>
 <p>MOST SITES LACK NAICS INFO IN FRS! NAICS is missing for about 80 percent of these facilities.</p>
 <p>frs here had about 2.5 million unique REGISTRY_ID values, but</p>
 <p>frs_by_naics had only about 700k rows</p>
-<p>about 562,000 unique REGISTRY_ID values with</p>
-<p>about 2,900 unique NAICS codes.</p>
+<p>about 581,000 unique REGISTRY_ID values with</p>
+<p>about 1,858 unique NAICS codes.</p>
 <p>length(unique(frs_by_naics$REGISTRY_ID))</p>
 <p><code>length(unique(frs_by_naics[,REGISTRY_ID]))</code></p>
 <p><code>length(frs_by_naics[, unique(REGISTRY_ID)])</code></p>
 <p><code>frs_by_naics[,uniqueN(REGISTRY_ID)]</code></p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   e.g., <span class="dv">573</span>,<span class="dv">411</span> <span class="cf">in</span> mid <span class="dv">2024</span></span>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   e.g., <span class="dv">581</span>,<span class="dv">416</span> <span class="cf">in</span> <span class="dv">02</span><span class="sc">/</span><span class="dv">2025</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    lat       lon  REGISTRY_ID  NAICS</span></code></pre><p></p></div>
 <p>1: 34.04722 -81.15136 110000854246 325211</p>
@@ -118,13 +119,13 @@ where you can find facilities based on NAICS or SIC.</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="co"># NAICS is missing for about 80 percent of facilities</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="co"># NAICS is missing for almost 80 percent of facilities</span></span></span>
 <span class="r-in"><span> <span class="va">`frs[ NAICS == "", .N] / frs[,.N] `</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs[ NAICS == "", .N] / frs[,.N] ' not found</span>
-<span class="r-in"><span> <span class="co"># only about 562k facilities have some NAICS info</span></span></span>
+<span class="r-in"><span> <span class="co"># only about 647k facilities had some NAICS info as of 02/2025</span></span></span>
 <span class="r-in"><span> <span class="va">`frs[ NAICS != "", .N]`</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs[ NAICS != "", .N]' not found</span>
-<span class="r-in"><span> <span class="va">`frs_by_naics[, uniqueN(REGISTRY_ID)]`</span> <span class="co"># almost exactly matches the above</span></span></span>
+<span class="r-in"><span> <span class="va">`frs_by_naics[, uniqueN(REGISTRY_ID)]`</span> <span class="co"># about 581k as of 02/2025</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[, uniqueN(REGISTRY_ID)]' not found</span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">frs_by_naics</span><span class="op">)</span> </span></span>
@@ -132,20 +133,20 @@ where you can find facilities based on NAICS or SIC.</p>
 <span class="r-in"><span> <span class="co"># about 680k rows here, or pairs of 1 NAICS - 1 registry ID pair,</span></span></span>
 <span class="r-in"><span> <span class="co">#  since some IDs have 2 or more NAICS so appear as 2 or more rows here.</span></span></span>
 <span class="r-in"><span> </span></span>
-<span class="r-in"><span> <span class="co"># About 2,900 different NAICS codes appear here:</span></span></span>
+<span class="r-in"><span> <span class="co"># About 1858 different NAICS codes appear here:</span></span></span>
 <span class="r-in"><span> <span class="va">`frs_by_naics[,  uniqueN(NAICS)]`</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[,  uniqueN(NAICS)]' not found</span>
 <span class="r-in"><span> <span class="va">`frs_by_naics[, .(sum(.N &gt; 1)), by=NAICS][,sum(V1)]`</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[, .(sum(.N &gt; 1)), by=NAICS][,sum(V1)]' not found</span>
-<span class="r-in"><span>   <span class="co">#  2,457 NAICS codes are used to describe more than one Registry ID</span></span></span>
+<span class="r-in"><span>   <span class="co">#  1,699 NAICS codes are used to describe more than one Registry ID</span></span></span>
 <span class="r-in"><span>  <span class="va">`frs_by_naics[, .(sum(.N == 1)), by=NAICS][,sum(V1)]`</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[, .(sum(.N == 1)), by=NAICS][,sum(V1)]' not found</span>
-<span class="r-in"><span>   <span class="co"># [1] 425 NAICS codes appear only once, i.e., apply to only a single facility!</span></span></span>
+<span class="r-in"><span>   <span class="co">#  almost 200 NAICS codes appear only once, i.e., apply to only a single facility </span></span></span>
 <span class="r-in"><span>   </span></span>
 <span class="r-in"><span> <span class="co"># Which 2-digit NAICS are found here most often?</span></span></span>
 <span class="r-in"><span> <span class="va">`frs_by_naics[ , .N, keyby=substr(NAICS,1,2)]`</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[ , .N, keyby=substr(NAICS,1,2)]' not found</span>
-<span class="r-in"><span> <span class="va">`frs_by_naics[ , .N,   by=substr(NAICS,1,2)][order(N),]`</span> <span class="co"># Most common is 33</span></span></span>
+<span class="r-in"><span> <span class="va">`frs_by_naics[ , .N,   by=substr(NAICS,1,2)][order(N),]`</span> <span class="co"># Most common are 33 and 81</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'frs_by_naics[ , .N,   by=substr(NAICS,1,2)][order(N),]' not found</span>
 <span class="r-in"><span> <span class="co"># Top 10 most common 3-digit NAICS here:</span></span></span>
 <span class="r-in"><span> <span class="va">`x = tail(frs_by_naics[ , .N,   by=.(n3 = substr(NAICS,1,3))][order(N), ],10)`</span></span></span>
@@ -163,7 +164,7 @@ where you can find facilities based on NAICS or SIC.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

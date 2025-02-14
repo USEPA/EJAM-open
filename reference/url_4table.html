@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -87,14 +88,18 @@ to detailed ECHO facility reports</p></dd>
 
 <dt id="arg-fips">fips<a class="anchor" aria-label="anchor" href="#arg-fips"></a></dt>
 <dd><p>vector of FIPS codes if relevant, to use instead of lat lon,
-Passed to <code><a href="url_ejscreen_report.html">url_ejscreen_report()</a></code> as areaid</p></dd>
+Passed to <code><a href="url_ejscreen_report.html">url_ejscreen_report()</a></code> as areaid
+Note that nearly half of all county fips codes are impossible to distinguish from
+5-digit zipcodes because the same numbers are used for both purposes.</p></dd>
 
 
 <dt id="arg-wherestr">wherestr<a class="anchor" aria-label="anchor" href="#arg-wherestr"></a></dt>
 <dd><p>optional because inferred from fips if provided.
 Passed to <code><a href="url_ejscreenmap.html">url_ejscreenmap()</a></code> and can be name of city, county, state like
 from fips2name(201090), or "new rochelle, ny" or "AK"
-or even a zip code, but NOT a fips code!</p></dd>
+or even a zip code, but NOT a fips code! (for FIPS, use the fips parameter instead).
+Note that nearly half of all county fips codes are impossible to distinguish from
+5-digit zipcodes because the same numbers are used for both purposes.</p></dd>
 
 
 <dt id="arg-namestr">namestr<a class="anchor" aria-label="anchor" href="#arg-namestr"></a></dt>
@@ -140,7 +145,7 @@ passed to <code><a href="url_ejscreen_report.html">url_ejscreen_report()</a></co
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

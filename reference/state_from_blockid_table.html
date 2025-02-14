@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -72,8 +73,8 @@
 <span class="r-in"><span><span class="fu">state_from_blockid_table</span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span><span class="op">[</span><span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid_table(blockpoints[blockid %in% x, ]):</span> could not find function "state_from_blockid_table"</span>
 <span class="r-in"><span><span class="fu"><a href="mapfast.html">mapfast</a></span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<div id="htmlwidget-2931a41253ddcd61f464" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2931a41253ddcd61f464">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[28.66497200000003,33.99926410000006,39.27751570000004],[-81.32017169999995,-84.37630589999998,-76.69869169999998],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 1605872<br>lat: 28.664972<br>lon: -81.3201716999999","blockid: 1735793<br>lat: 33.9992641000001<br>lon: -84.3763059","blockid: 3285872<br>lat: 39.2775157<br>lon: -76.6986917"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[28.66497200000003,39.27751570000004],"lng":[-84.37630589999998,-76.69869169999998]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-756e3bf13eb93ebd21f9" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-756e3bf13eb93ebd21f9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[31.76154650000007,32.46628950000007,40.09937210000004],[-83.58284519999995,-93.71708289999998,-82.84411019999999],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 1844648<br>lat: 31.7615465000001<br>lon: -83.5828452","blockid: 3032604<br>lat: 32.4662895000001<br>lon: -93.7170829","blockid: 5453648<br>lat: 40.0993721<br>lon: -82.8441102"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[31.76154650000007,40.09937210000004],"lng":[-93.71708289999998,-82.84411019999999]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="fu">state_from_blockid_table</span><span class="op">(</span><span class="va">testoutput_getblocksnearby_10pts_1miles</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid_table(testoutput_getblocksnearby_10pts_1miles):</span> could not find function "state_from_blockid_table"</span>
 <span class="r-in"><span><span class="co"># unique(state_from_latlon(testpoints_10)$ST) # slow</span></span></span>
@@ -92,7 +93,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -40,7 +41,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.svg" class="logo" alt=""><h1>utility - what type of formula is used to aggregate this variable?</h1>
-      <small class="dont-index">Source: <a href="https://github.com/USEPA/EJAM/blob/main/R/custom_doaggregate.R" class="external-link"><code>R/custom_doaggregate.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/USEPA/EJAM/blob/main/R/PROXIMITY_FUNCTIONS.R" class="external-link"><code>R/PROXIMITY_FUNCTIONS.R</code></a></small>
       <div class="d-none name"><code>calctype.Rd</code></div>
     </div>
 
@@ -78,420 +79,421 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>        x                                                                     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1,] "EJScreen Report"                                NA                   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [2,] "EJScreen Map"                                   NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [3,] "ECHO report"                                    NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [4,] "ejam_uniq_id"                                   NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [5,] "valid"                                          NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [6,] "invalid_msg"                                    NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [7,] "pop"                                            "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [8,] "lon"                                            "input"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [9,] "lat"                                            "input"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [10,] "ST"                                             "mode"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [11,] "statename"                                      "mode"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [12,] "in_how_many_states"                             NA                   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [13,] "REGION"                                         "mode"               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [14,] "ratio.to.avg.Demog.Index"                       "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [15,] "ratio.to.avg.Demog.Index.Supp"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [16,] "ratio.to.avg.pctlowinc"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [17,] "ratio.to.avg.pctlingiso"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [18,] "ratio.to.avg.pctunemployed"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19,] "ratio.to.avg.pctlths"                           "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [20,] "ratio.to.avg.pctunder5"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [21,] "ratio.to.avg.pctover64"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [22,] "ratio.to.avg.pctmin"                            "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [23,] "ratio.to.avg.pcthisp"                           "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [24,] "ratio.to.avg.pctnhba"                           "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [25,] "ratio.to.avg.pctnhaa"                           "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [26,] "ratio.to.avg.pctnhaiana"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [27,] "ratio.to.avg.pctnhnhpia"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [28,] "ratio.to.avg.pctnhotheralone"                   "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [29,] "ratio.to.avg.pctnhmulti"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [30,] "ratio.to.avg.pctnhwa"                           "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31,] "ratio.to.avg.pm"                                "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [32,] "ratio.to.avg.o3"                                "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [33,] "ratio.to.avg.no2"                               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [34,] "ratio.to.avg.dpm"                               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [35,] "ratio.to.avg.rsei"                              "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [36,] "ratio.to.avg.traffic.score"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37,] "ratio.to.avg.pctpre1960"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [38,] "ratio.to.avg.proximity.npl"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [39,] "ratio.to.avg.proximity.rmp"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [40,] "ratio.to.avg.proximity.tsdf"                    "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [41,] "ratio.to.avg.ust"                               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [42,] "ratio.to.avg.proximity.npdes"                   "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [43,] "ratio.to.avg.drinking"                          "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [44,] "ratio.to.avg.pctdisability"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [45,] "ratio.to.avg.lowlifex"                          "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46,] "ratio.to.state.avg.Demog.Index"                 "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [47,] "ratio.to.state.avg.Demog.Index.Supp"            "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [48,] "ratio.to.state.avg.pctlowinc"                   "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [49,] "ratio.to.state.avg.pctlingiso"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [50,] "ratio.to.state.avg.pctunemployed"               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [51,] "ratio.to.state.avg.pctlths"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [52,] "ratio.to.state.avg.pctunder5"                   "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [53,] "ratio.to.state.avg.pctover64"                   "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [54,] "ratio.to.state.avg.pctmin"                      "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55,] "ratio.to.state.avg.pcthisp"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [56,] "ratio.to.state.avg.pctnhba"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [57,] "ratio.to.state.avg.pctnhaa"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [58,] "ratio.to.state.avg.pctnhaiana"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [59,] "ratio.to.state.avg.pctnhnhpia"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [60,] "ratio.to.state.avg.pctnhotheralone"             "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61,] "ratio.to.state.avg.pctnhmulti"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [62,] "ratio.to.state.avg.pctnhwa"                     "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [63,] "ratio.to.state.avg.pm"                          "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [64,] "ratio.to.state.avg.o3"                          "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [65,] "ratio.to.state.avg.no2"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [66,] "ratio.to.state.avg.dpm"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [67,] "ratio.to.state.avg.rsei"                        "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [68,] "ratio.to.state.avg.traffic.score"               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [69,] "ratio.to.state.avg.pctpre1960"                  "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [70,] "ratio.to.state.avg.proximity.npl"               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [71,] "ratio.to.state.avg.proximity.rmp"               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [72,] "ratio.to.state.avg.proximity.tsdf"              "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73,] "ratio.to.state.avg.ust"                         "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [74,] "ratio.to.state.avg.proximity.npdes"             "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [75,] "ratio.to.state.avg.drinking"                    "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [76,] "ratio.to.state.avg.pctdisability"               "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [77,] "ratio.to.state.avg.lowlifex"                    "ratio to avg"       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [78,] "Demog.Index"                                    "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [79,] "Demog.Index.Supp"                               "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [80,] "pctlowinc"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [81,] "pctlingiso"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [82,] "pctunemployed"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [83,] "pctlths"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [84,] "pctunder5"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [85,] "pctover64"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [86,] "pctmin"                                         "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [87,] "pcthisp"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [88,] "pctnhba"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [89,] "pctnhaa"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [90,] "pctnhaiana"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91,] "pctnhnhpia"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [92,] "pctnhotheralone"                                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [93,] "pctnhmulti"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [94,] "pctnhwa"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [95,] "Demog.Index.State"                              "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [96,] "Demog.Index.Supp.State"                         "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [97,] "pctlan_nonenglish"                              "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [98,] "pctlan_ie"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [99,] "pctlan_api"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [100,] "pctlan_other"                                   "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [101,] "pctlan_spanish"                                 "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [102,] "lan_nonenglish"                                 "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [103,] "lan_ie"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [104,] "lan_api"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [105,] "lan_other"                                      "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [106,] "lan_universe"                                   "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [107,] "lan_eng_na"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [108,] "lan_spanish"                                    "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109,] "pctspanish_li"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [110,] "pctie_li"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [111,] "pctapi_li"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [112,] "pctother_li"                                    "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [113,] "spanish_li"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [114,] "ie_li"                                          "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [115,] "api_li"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [116,] "other_li"                                       "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [117,] "pctpoor"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [118,] "pctdisability"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [119,] "lowlifex"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [120,] "pctunder18"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [121,] "pctover17"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [122,] "occupiedunits"                                  "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [123,] "pctmale"                                        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [124,] "pctfemale"                                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [125,] "lifexyears"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [126,] "percapincome"                                   "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127,] "pctownedunits"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [128,] "pctile.Demog.Index"                             "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [129,] "pctile.Demog.Index.Supp"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [130,] "pctile.pctlowinc"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [131,] "pctile.pctlingiso"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [132,] "pctile.pctunemployed"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [133,] "pctile.pctlths"                                 "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [134,] "pctile.pctunder5"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [135,] "pctile.pctover64"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136,] "pctile.pctmin"                                  "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [137,] "pctile.pcthisp"                                 "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [138,] "pctile.pctnhba"                                 "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [139,] "pctile.pctnhaa"                                 "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [140,] "pctile.pctnhaiana"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [141,] "pctile.pctnhnhpia"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [142,] "pctile.pctnhotheralone"                         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [143,] "pctile.pctnhmulti"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [144,] "pctile.pctnhwa"                                 "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145,] "pctile.pctdisability"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [146,] "pctile.lowlifex"                                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [147,] "avg.Demog.Index"                                "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [148,] "avg.Demog.Index.Supp"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [149,] "avg.pctlowinc"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [150,] "avg.pctlingiso"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [151,] "avg.pctunemployed"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [152,] "avg.pctlths"                                    "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [153,] "avg.pctunder5"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [154,] "avg.pctover64"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [155,] "avg.pctmin"                                     "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [156,] "avg.pcthisp"                                    "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [157,] "avg.pctnhba"                                    "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [158,] "avg.pctnhaa"                                    "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [159,] "avg.pctnhaiana"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [160,] "avg.pctnhnhpia"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [161,] "avg.pctnhotheralone"                            "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [162,] "avg.pctnhmulti"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163,] "avg.pctnhwa"                                    "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [164,] "avg.pctdisability"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [165,] "avg.lowlifex"                                   "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [166,] "state.pctile.Demog.Index"                       "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [167,] "state.pctile.Demog.Index.Supp"                  "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [168,] "state.pctile.pctlowinc"                         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [169,] "state.pctile.pctlingiso"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [170,] "state.pctile.pctunemployed"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [171,] "state.pctile.pctlths"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [172,] "state.pctile.pctunder5"                         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [173,] "state.pctile.pctover64"                         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [174,] "state.pctile.pctmin"                            "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [175,] "state.pctile.pcthisp"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [176,] "state.pctile.pctnhba"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [177,] "state.pctile.pctnhaa"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [178,] "state.pctile.pctnhaiana"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [179,] "state.pctile.pctnhnhpia"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [180,] "state.pctile.pctnhotheralone"                   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181,] "state.pctile.pctnhmulti"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [182,] "state.pctile.pctnhwa"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [183,] "state.pctile.pctdisability"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [184,] "state.pctile.lowlifex"                          "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [185,] "state.avg.Demog.Index"                          "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [186,] "state.avg.Demog.Index.Supp"                     "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [187,] "state.avg.pctlowinc"                            "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [188,] "state.avg.pctlingiso"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [189,] "state.avg.pctunemployed"                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [190,] "state.avg.pctlths"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [191,] "state.avg.pctunder5"                            "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [192,] "state.avg.pctover64"                            "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [193,] "state.avg.pctmin"                               "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [194,] "state.avg.pcthisp"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [195,] "state.avg.pctnhba"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [196,] "state.avg.pctnhaa"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [197,] "state.avg.pctnhaiana"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [198,] "state.avg.pctnhnhpia"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199,] "state.avg.pctnhotheralone"                      "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [200,] "state.avg.pctnhmulti"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [201,] "state.avg.pctnhwa"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [202,] "state.avg.pctdisability"                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [203,] "state.avg.lowlifex"                             "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [204,] "pm"                                             "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [205,] "o3"                                             "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [206,] "no2"                                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [207,] "dpm"                                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [208,] "rsei"                                           "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [209,] "traffic.score"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [210,] "pctpre1960"                                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [211,] "proximity.npl"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [212,] "proximity.rmp"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [213,] "proximity.tsdf"                                 "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [214,] "ust"                                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [215,] "proximity.npdes"                                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [216,] "drinking"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217,] "pctile.pm"                                      "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [218,] "pctile.o3"                                      "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [219,] "pctile.no2"                                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [220,] "pctile.dpm"                                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [221,] "pctile.rsei"                                    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [222,] "pctile.traffic.score"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [223,] "pctile.pctpre1960"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [224,] "pctile.proximity.npl"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [225,] "pctile.proximity.rmp"                           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226,] "pctile.proximity.tsdf"                          "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [227,] "pctile.ust"                                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [228,] "pctile.proximity.npdes"                         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [229,] "pctile.drinking"                                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [230,] "avg.pm"                                         "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [231,] "avg.o3"                                         "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [232,] "avg.no2"                                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [233,] "avg.dpm"                                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [234,] "avg.rsei"                                       "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235,] "avg.traffic.score"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [236,] "avg.pctpre1960"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [237,] "avg.proximity.npl"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [238,] "avg.proximity.rmp"                              "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [239,] "avg.proximity.tsdf"                             "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [240,] "avg.ust"                                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [241,] "avg.proximity.npdes"                            "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [242,] "avg.drinking"                                   "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [243,] "state.pctile.pm"                                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [244,] "state.pctile.o3"                                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [245,] "state.pctile.no2"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [246,] "state.pctile.dpm"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [247,] "state.pctile.rsei"                              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [248,] "state.pctile.traffic.score"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [249,] "state.pctile.pctpre1960"                        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [250,] "state.pctile.proximity.npl"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [251,] "state.pctile.proximity.rmp"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [252,] "state.pctile.proximity.tsdf"                    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253,] "state.pctile.ust"                               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [254,] "state.pctile.proximity.npdes"                   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [255,] "state.pctile.drinking"                          "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [256,] "state.avg.pm"                                   "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [257,] "state.avg.o3"                                   "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [258,] "state.avg.no2"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [259,] "state.avg.dpm"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [260,] "state.avg.rsei"                                 "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [261,] "state.avg.traffic.score"                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [262,] "state.avg.pctpre1960"                           "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [263,] "state.avg.proximity.npl"                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [264,] "state.avg.proximity.rmp"                        "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [265,] "state.avg.proximity.tsdf"                       "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [266,] "state.avg.ust"                                  "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [267,] "state.avg.proximity.npdes"                      "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [268,] "state.avg.drinking"                             "constant"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [269,] "pctile.EJ.DISPARITY.pm.eo"                      "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [270,] "pctile.EJ.DISPARITY.o3.eo"                      "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [271,] "pctile.EJ.DISPARITY.no2.eo"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [272,] "pctile.EJ.DISPARITY.dpm.eo"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [273,] "pctile.EJ.DISPARITY.rsei.eo"                    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [274,] "pctile.EJ.DISPARITY.traffic.score.eo"           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [275,] "pctile.EJ.DISPARITY.pctpre1960.eo"              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [276,] "pctile.EJ.DISPARITY.proximity.npl.eo"           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [277,] "pctile.EJ.DISPARITY.proximity.rmp.eo"           "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [278,] "pctile.EJ.DISPARITY.proximity.tsdf.eo"          "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [279,] "pctile.EJ.DISPARITY.ust.eo"                     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [280,] "pctile.EJ.DISPARITY.proximity.npdes.eo"         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [281,] "pctile.EJ.DISPARITY.drinking.eo"                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [282,] "pctile.EJ.DISPARITY.pm.supp"                    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [283,] "pctile.EJ.DISPARITY.o3.supp"                    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [284,] "pctile.EJ.DISPARITY.no2.supp"                   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [285,] "pctile.EJ.DISPARITY.dpm.supp"                   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [286,] "pctile.EJ.DISPARITY.rsei.supp"                  "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [287,] "pctile.EJ.DISPARITY.traffic.score.supp"         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [288,] "pctile.EJ.DISPARITY.pctpre1960.supp"            "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [289,] "pctile.EJ.DISPARITY.proximity.npl.supp"         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [290,] "pctile.EJ.DISPARITY.proximity.rmp.supp"         "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [291,] "pctile.EJ.DISPARITY.proximity.tsdf.supp"        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [292,] "pctile.EJ.DISPARITY.ust.supp"                   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [293,] "pctile.EJ.DISPARITY.proximity.npdes.supp"       "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [294,] "pctile.EJ.DISPARITY.drinking.supp"              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [295,] "state.pctile.EJ.DISPARITY.pm.eo"                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [296,] "state.pctile.EJ.DISPARITY.o3.eo"                "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [297,] "state.pctile.EJ.DISPARITY.no2.eo"               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [298,] "state.pctile.EJ.DISPARITY.dpm.eo"               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [299,] "state.pctile.EJ.DISPARITY.rsei.eo"              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [300,] "state.pctile.EJ.DISPARITY.traffic.score.eo"     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [301,] "state.pctile.EJ.DISPARITY.pctpre1960.eo"        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [302,] "state.pctile.EJ.DISPARITY.proximity.npl.eo"     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [303,] "state.pctile.EJ.DISPARITY.proximity.rmp.eo"     "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [304,] "state.pctile.EJ.DISPARITY.proximity.tsdf.eo"    "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [305,] "state.pctile.EJ.DISPARITY.ust.eo"               "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [306,] "state.pctile.EJ.DISPARITY.proximity.npdes.eo"   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [307,] "state.pctile.EJ.DISPARITY.drinking.eo"          "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [308,] "state.pctile.EJ.DISPARITY.pm.supp"              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [309,] "state.pctile.EJ.DISPARITY.o3.supp"              "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [310,] "state.pctile.EJ.DISPARITY.no2.supp"             "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [311,] "state.pctile.EJ.DISPARITY.dpm.supp"             "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [312,] "state.pctile.EJ.DISPARITY.rsei.supp"            "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [313,] "state.pctile.EJ.DISPARITY.traffic.score.supp"   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [314,] "state.pctile.EJ.DISPARITY.pctpre1960.supp"      "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [315,] "state.pctile.EJ.DISPARITY.proximity.npl.supp"   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [316,] "state.pctile.EJ.DISPARITY.proximity.rmp.supp"   "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [317,] "state.pctile.EJ.DISPARITY.proximity.tsdf.supp"  "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [318,] "state.pctile.EJ.DISPARITY.ust.supp"             "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [319,] "state.pctile.EJ.DISPARITY.proximity.npdes.supp" "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [320,] "state.pctile.EJ.DISPARITY.drinking.supp"        "lookedup"           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [321,] "lowinc"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [322,] "lingiso"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [323,] "unemployed"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [324,] "lths"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [325,] "under5"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [326,] "over64"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [327,] "mins"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [328,] "hisp"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [329,] "nhba"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [330,] "nhaa"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [331,] "nhaiana"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [332,] "nhnhpia"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [333,] "nhotheralone"                                   "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [334,] "nhmulti"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [335,] "nhwa"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [336,] "age25up"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [337,] "hhlds"                                          "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [338,] "unemployedbase"                                 "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [339,] "pre1960"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [340,] "builtunits"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [341,] "povknownratio"                                  "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [342,] "bgcount_near_site"                              "count of unique ids"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [343,] "blockcount_near_site"                           "count of unique ids"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [344,] "distance_min"                                   "min"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [345,] "distance_min_avgperson"                         "min"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [346,] "sitecount_max"                                  "max"                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [347,] "sitecount_unique"                               "count of unique ids"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [348,] "sitecount_avg"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [349,] "radius.miles"                                   "input"              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [350,] "over17"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [351,] "under18"                                        "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [352,] "male"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [353,] "female"                                         "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [354,] "ownedunits"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [355,] "disab_universe"                                 "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [356,] "disability"                                     "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [357,] "poor"                                           "sum of counts"      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [358,] "pctba"                                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [359,] "pctaa"                                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [360,] "pctaiana"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [361,] "pctnhpia"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [362,] "pctotheralone"                                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [363,] "pctmulti"                                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [364,] "pctwa"                                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [365,] "EJ.DISPARITY.pm.eo"                             "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [366,] "EJ.DISPARITY.o3.eo"                             "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [367,] "EJ.DISPARITY.no2.eo"                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [368,] "EJ.DISPARITY.dpm.eo"                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [369,] "EJ.DISPARITY.rsei.eo"                           "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [370,] "EJ.DISPARITY.traffic.score.eo"                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [371,] "EJ.DISPARITY.pctpre1960.eo"                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [372,] "EJ.DISPARITY.proximity.npl.eo"                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [373,] "EJ.DISPARITY.proximity.rmp.eo"                  "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [374,] "EJ.DISPARITY.proximity.tsdf.eo"                 "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [375,] "EJ.DISPARITY.ust.eo"                            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [376,] "EJ.DISPARITY.proximity.npdes.eo"                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [377,] "EJ.DISPARITY.drinking.eo"                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [378,] "state.EJ.DISPARITY.pm.eo"                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [379,] "state.EJ.DISPARITY.o3.eo"                       "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [380,] "state.EJ.DISPARITY.no2.eo"                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [381,] "state.EJ.DISPARITY.dpm.eo"                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [382,] "state.EJ.DISPARITY.rsei.eo"                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [383,] "state.EJ.DISPARITY.traffic.score.eo"            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [384,] "state.EJ.DISPARITY.pctpre1960.eo"               "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [385,] "state.EJ.DISPARITY.proximity.npl.eo"            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [386,] "state.EJ.DISPARITY.proximity.rmp.eo"            "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [387,] "state.EJ.DISPARITY.proximity.tsdf.eo"           "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [388,] "state.EJ.DISPARITY.ust.eo"                      "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [389,] "state.EJ.DISPARITY.proximity.npdes.eo"          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [390,] "state.EJ.DISPARITY.drinking.eo"                 "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [391,] "EJ.DISPARITY.pm.supp"                           "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [392,] "EJ.DISPARITY.o3.supp"                           "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [393,] "EJ.DISPARITY.no2.supp"                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [394,] "EJ.DISPARITY.dpm.supp"                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [395,] "EJ.DISPARITY.rsei.supp"                         "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [396,] "EJ.DISPARITY.traffic.score.supp"                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [397,] "EJ.DISPARITY.pctpre1960.supp"                   "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [398,] "EJ.DISPARITY.proximity.npl.supp"                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [399,] "EJ.DISPARITY.proximity.rmp.supp"                "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [400,] "EJ.DISPARITY.proximity.tsdf.supp"               "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [401,] "EJ.DISPARITY.ust.supp"                          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [402,] "EJ.DISPARITY.proximity.npdes.supp"              "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [403,] "EJ.DISPARITY.drinking.supp"                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [404,] "state.EJ.DISPARITY.pm.supp"                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [405,] "state.EJ.DISPARITY.o3.supp"                     "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [406,] "state.EJ.DISPARITY.no2.supp"                    "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [407,] "state.EJ.DISPARITY.dpm.supp"                    "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [408,] "state.EJ.DISPARITY.rsei.supp"                   "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [409,] "state.EJ.DISPARITY.traffic.score.supp"          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [410,] "state.EJ.DISPARITY.pctpre1960.supp"             "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [411,] "state.EJ.DISPARITY.proximity.npl.supp"          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [412,] "state.EJ.DISPARITY.proximity.rmp.supp"          "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [413,] "state.EJ.DISPARITY.proximity.tsdf.supp"         "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [414,] "state.EJ.DISPARITY.ust.supp"                    "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [415,] "state.EJ.DISPARITY.proximity.npdes.supp"        "wtdmean"            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [416,] "state.EJ.DISPARITY.drinking.supp"               "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [3,] "ACS Report"                                     NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [4,] "ECHO Report"                                    NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [5,] "ejam_uniq_id"                                   NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6,] "valid"                                          NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7,] "invalid_msg"                                    NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [8,] "pop"                                            "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [9,] "lon"                                            "input"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [10,] "lat"                                            "input"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11,] "ST"                                             "mode"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [12,] "statename"                                      "mode"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13,] "in_how_many_states"                             NA                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [14,] "REGION"                                         "mode"               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [15,] "ratio.to.avg.Demog.Index"                       "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16,] "ratio.to.avg.Demog.Index.Supp"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [17,] "ratio.to.avg.pctlowinc"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [18,] "ratio.to.avg.pctlingiso"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19,] "ratio.to.avg.pctunemployed"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [20,] "ratio.to.avg.pctlths"                           "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21,] "ratio.to.avg.pctunder5"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [22,] "ratio.to.avg.pctover64"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [23,] "ratio.to.avg.pctmin"                            "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [24,] "ratio.to.avg.pcthisp"                           "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25,] "ratio.to.avg.pctnhba"                           "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26,] "ratio.to.avg.pctnhaa"                           "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [27,] "ratio.to.avg.pctnhaiana"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [28,] "ratio.to.avg.pctnhnhpia"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [29,] "ratio.to.avg.pctnhotheralone"                   "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [30,] "ratio.to.avg.pctnhmulti"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31,] "ratio.to.avg.pctnhwa"                           "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [32,] "ratio.to.avg.pm"                                "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [33,] "ratio.to.avg.o3"                                "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [34,] "ratio.to.avg.no2"                               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [35,] "ratio.to.avg.dpm"                               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36,] "ratio.to.avg.rsei"                              "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37,] "ratio.to.avg.traffic.score"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [38,] "ratio.to.avg.pctpre1960"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [39,] "ratio.to.avg.proximity.npl"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [40,] "ratio.to.avg.proximity.rmp"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41,] "ratio.to.avg.proximity.tsdf"                    "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [42,] "ratio.to.avg.ust"                               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43,] "ratio.to.avg.proximity.npdes"                   "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [44,] "ratio.to.avg.drinking"                          "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [45,] "ratio.to.avg.pctdisability"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46,] "ratio.to.avg.lowlifex"                          "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [47,] "ratio.to.state.avg.Demog.Index"                 "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [48,] "ratio.to.state.avg.Demog.Index.Supp"            "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49,] "ratio.to.state.avg.pctlowinc"                   "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [50,] "ratio.to.state.avg.pctlingiso"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51,] "ratio.to.state.avg.pctunemployed"               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [52,] "ratio.to.state.avg.pctlths"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [53,] "ratio.to.state.avg.pctunder5"                   "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [54,] "ratio.to.state.avg.pctover64"                   "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55,] "ratio.to.state.avg.pctmin"                      "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56,] "ratio.to.state.avg.pcthisp"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [57,] "ratio.to.state.avg.pctnhba"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [58,] "ratio.to.state.avg.pctnhaa"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [59,] "ratio.to.state.avg.pctnhaiana"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [60,] "ratio.to.state.avg.pctnhnhpia"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61,] "ratio.to.state.avg.pctnhotheralone"             "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [62,] "ratio.to.state.avg.pctnhmulti"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [63,] "ratio.to.state.avg.pctnhwa"                     "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [64,] "ratio.to.state.avg.pm"                          "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [65,] "ratio.to.state.avg.o3"                          "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66,] "ratio.to.state.avg.no2"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67,] "ratio.to.state.avg.dpm"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [68,] "ratio.to.state.avg.rsei"                        "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [69,] "ratio.to.state.avg.traffic.score"               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [70,] "ratio.to.state.avg.pctpre1960"                  "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71,] "ratio.to.state.avg.proximity.npl"               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [72,] "ratio.to.state.avg.proximity.rmp"               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73,] "ratio.to.state.avg.proximity.tsdf"              "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [74,] "ratio.to.state.avg.ust"                         "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [75,] "ratio.to.state.avg.proximity.npdes"             "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76,] "ratio.to.state.avg.drinking"                    "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [77,] "ratio.to.state.avg.pctdisability"               "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [78,] "ratio.to.state.avg.lowlifex"                    "ratio to avg"       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79,] "Demog.Index"                                    "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [80,] "Demog.Index.Supp"                               "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81,] "pctlowinc"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [82,] "pctlingiso"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [83,] "pctunemployed"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [84,] "pctlths"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85,] "pctunder5"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86,] "pctover64"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [87,] "pctmin"                                         "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [88,] "pcthisp"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [89,] "pctnhba"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [90,] "pctnhaa"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91,] "pctnhaiana"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [92,] "pctnhnhpia"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [93,] "pctnhotheralone"                                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [94,] "pctnhmulti"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [95,] "pctnhwa"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96,] "Demog.Index.State"                              "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97,] "Demog.Index.Supp.State"                         "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [98,] "pctpoor"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [99,] "occupiedunits"                                  "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [100,] "pctmale"                                        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [101,] "pctfemale"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [102,] "lifexyears"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [103,] "percapincome"                                   "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [104,] "pctownedunits"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [105,] "pctunder18"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [106,] "pctover17"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [107,] "pctlan_ie"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [108,] "pctlan_api"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109,] "pctlan_other"                                   "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [110,] "pctlan_spanish"                                 "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [111,] "pctlan_nonenglish"                              "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [112,] "pctspanish_li"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [113,] "pctie_li"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [114,] "pctapi_li"                                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [115,] "pctother_li"                                    "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [116,] "pctdisability"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [117,] "lowlifex"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [118,] "pm"                                             "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [119,] "o3"                                             "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [120,] "no2"                                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [121,] "dpm"                                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [122,] "rsei"                                           "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [123,] "traffic.score"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [124,] "pctpre1960"                                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [125,] "proximity.npl"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [126,] "proximity.rmp"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127,] "proximity.tsdf"                                 "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [128,] "ust"                                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [129,] "proximity.npdes"                                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [130,] "drinking"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [131,] "sitecount_max"                                  "max"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [132,] "sitecount_unique"                               "count of unique ids"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [133,] "sitecount_avg"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [134,] "distance_min"                                   "min"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [135,] "distance_min_avgperson"                         "min"                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136,] "pctile.Demog.Index"                             "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [137,] "pctile.Demog.Index.Supp"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [138,] "pctile.pctlowinc"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [139,] "pctile.pctlingiso"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [140,] "pctile.pctunemployed"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [141,] "pctile.pctlths"                                 "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [142,] "pctile.pctunder5"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [143,] "pctile.pctover64"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [144,] "pctile.pctmin"                                  "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145,] "pctile.pcthisp"                                 "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [146,] "pctile.pctnhba"                                 "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [147,] "pctile.pctnhaa"                                 "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [148,] "pctile.pctnhaiana"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [149,] "pctile.pctnhnhpia"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [150,] "pctile.pctnhotheralone"                         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [151,] "pctile.pctnhmulti"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [152,] "pctile.pctnhwa"                                 "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [153,] "pctile.pctdisability"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [154,] "pctile.lowlifex"                                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [155,] "pctile.pm"                                      "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [156,] "pctile.o3"                                      "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [157,] "pctile.no2"                                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [158,] "pctile.dpm"                                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [159,] "pctile.rsei"                                    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [160,] "pctile.traffic.score"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [161,] "pctile.pctpre1960"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [162,] "pctile.proximity.npl"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163,] "pctile.proximity.rmp"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [164,] "pctile.proximity.tsdf"                          "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [165,] "pctile.ust"                                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [166,] "pctile.proximity.npdes"                         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [167,] "pctile.drinking"                                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [168,] "state.pctile.Demog.Index"                       "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [169,] "state.pctile.Demog.Index.Supp"                  "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [170,] "state.pctile.pctlowinc"                         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [171,] "state.pctile.pctlingiso"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [172,] "state.pctile.pctunemployed"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [173,] "state.pctile.pctlths"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [174,] "state.pctile.pctunder5"                         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [175,] "state.pctile.pctover64"                         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [176,] "state.pctile.pctmin"                            "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [177,] "state.pctile.pcthisp"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [178,] "state.pctile.pctnhba"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [179,] "state.pctile.pctnhaa"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [180,] "state.pctile.pctnhaiana"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181,] "state.pctile.pctnhnhpia"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [182,] "state.pctile.pctnhotheralone"                   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [183,] "state.pctile.pctnhmulti"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [184,] "state.pctile.pctnhwa"                           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [185,] "state.pctile.pctdisability"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [186,] "state.pctile.lowlifex"                          "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [187,] "state.pctile.pm"                                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [188,] "state.pctile.o3"                                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [189,] "state.pctile.no2"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [190,] "state.pctile.dpm"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [191,] "state.pctile.rsei"                              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [192,] "state.pctile.traffic.score"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [193,] "state.pctile.pctpre1960"                        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [194,] "state.pctile.proximity.npl"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [195,] "state.pctile.proximity.rmp"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [196,] "state.pctile.proximity.tsdf"                    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [197,] "state.pctile.ust"                               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [198,] "state.pctile.proximity.npdes"                   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199,] "state.pctile.drinking"                          "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [200,] "avg.Demog.Index"                                "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [201,] "avg.Demog.Index.Supp"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [202,] "avg.pctlowinc"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [203,] "avg.pctlingiso"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [204,] "avg.pctunemployed"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [205,] "avg.pctlths"                                    "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [206,] "avg.pctunder5"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [207,] "avg.pctover64"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [208,] "avg.pctmin"                                     "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [209,] "avg.pcthisp"                                    "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [210,] "avg.pctnhba"                                    "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [211,] "avg.pctnhaa"                                    "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [212,] "avg.pctnhaiana"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [213,] "avg.pctnhnhpia"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [214,] "avg.pctnhotheralone"                            "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [215,] "avg.pctnhmulti"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [216,] "avg.pctnhwa"                                    "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217,] "avg.pctdisability"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [218,] "avg.lowlifex"                                   "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [219,] "avg.pm"                                         "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [220,] "avg.o3"                                         "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [221,] "avg.no2"                                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [222,] "avg.dpm"                                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [223,] "avg.rsei"                                       "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [224,] "avg.traffic.score"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [225,] "avg.pctpre1960"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226,] "avg.proximity.npl"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [227,] "avg.proximity.rmp"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [228,] "avg.proximity.tsdf"                             "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [229,] "avg.ust"                                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [230,] "avg.proximity.npdes"                            "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [231,] "avg.drinking"                                   "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [232,] "state.avg.Demog.Index"                          "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [233,] "state.avg.Demog.Index.Supp"                     "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [234,] "state.avg.pctlowinc"                            "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235,] "state.avg.pctlingiso"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [236,] "state.avg.pctunemployed"                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [237,] "state.avg.pctlths"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [238,] "state.avg.pctunder5"                            "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [239,] "state.avg.pctover64"                            "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [240,] "state.avg.pctmin"                               "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [241,] "state.avg.pcthisp"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [242,] "state.avg.pctnhba"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [243,] "state.avg.pctnhaa"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [244,] "state.avg.pctnhaiana"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [245,] "state.avg.pctnhnhpia"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [246,] "state.avg.pctnhotheralone"                      "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [247,] "state.avg.pctnhmulti"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [248,] "state.avg.pctnhwa"                              "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [249,] "state.avg.pctdisability"                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [250,] "state.avg.lowlifex"                             "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [251,] "state.avg.pm"                                   "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [252,] "state.avg.o3"                                   "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253,] "state.avg.no2"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [254,] "state.avg.dpm"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [255,] "state.avg.rsei"                                 "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [256,] "state.avg.traffic.score"                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [257,] "state.avg.pctpre1960"                           "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [258,] "state.avg.proximity.npl"                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [259,] "state.avg.proximity.rmp"                        "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [260,] "state.avg.proximity.tsdf"                       "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [261,] "state.avg.ust"                                  "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [262,] "state.avg.proximity.npdes"                      "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [263,] "state.avg.drinking"                             "constant"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [264,] "lowinc"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [265,] "lingiso"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [266,] "unemployed"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [267,] "lths"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [268,] "under5"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [269,] "over64"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [270,] "mins"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [271,] "hisp"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [272,] "nhba"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [273,] "nhaa"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [274,] "nhaiana"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [275,] "nhnhpia"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [276,] "nhotheralone"                                   "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [277,] "nhmulti"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [278,] "nhwa"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [279,] "age25up"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [280,] "hhlds"                                          "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [281,] "unemployedbase"                                 "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [282,] "pre1960"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [283,] "builtunits"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [284,] "povknownratio"                                  "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [285,] "ownedunits"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [286,] "poor"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [287,] "female"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [288,] "male"                                           "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [289,] "over17"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [290,] "under18"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [291,] "lan_nonenglish"                                 "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [292,] "lan_ie"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [293,] "lan_api"                                        "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [294,] "lan_other"                                      "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [295,] "lan_universe"                                   "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [296,] "lan_eng_na"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [297,] "lan_spanish"                                    "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [298,] "spanish_li"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [299,] "ie_li"                                          "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [300,] "api_li"                                         "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [301,] "other_li"                                       "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [302,] "pctile.EJ.DISPARITY.pm.eo"                      "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [303,] "pctile.EJ.DISPARITY.o3.eo"                      "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [304,] "pctile.EJ.DISPARITY.no2.eo"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [305,] "pctile.EJ.DISPARITY.dpm.eo"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [306,] "pctile.EJ.DISPARITY.rsei.eo"                    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [307,] "pctile.EJ.DISPARITY.traffic.score.eo"           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [308,] "pctile.EJ.DISPARITY.pctpre1960.eo"              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [309,] "pctile.EJ.DISPARITY.proximity.npl.eo"           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [310,] "pctile.EJ.DISPARITY.proximity.rmp.eo"           "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [311,] "pctile.EJ.DISPARITY.proximity.tsdf.eo"          "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [312,] "pctile.EJ.DISPARITY.ust.eo"                     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [313,] "pctile.EJ.DISPARITY.proximity.npdes.eo"         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [314,] "pctile.EJ.DISPARITY.drinking.eo"                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [315,] "pctile.EJ.DISPARITY.pm.supp"                    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [316,] "pctile.EJ.DISPARITY.o3.supp"                    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [317,] "pctile.EJ.DISPARITY.no2.supp"                   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [318,] "pctile.EJ.DISPARITY.dpm.supp"                   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [319,] "pctile.EJ.DISPARITY.rsei.supp"                  "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [320,] "pctile.EJ.DISPARITY.traffic.score.supp"         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [321,] "pctile.EJ.DISPARITY.pctpre1960.supp"            "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [322,] "pctile.EJ.DISPARITY.proximity.npl.supp"         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [323,] "pctile.EJ.DISPARITY.proximity.rmp.supp"         "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [324,] "pctile.EJ.DISPARITY.proximity.tsdf.supp"        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [325,] "pctile.EJ.DISPARITY.ust.supp"                   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [326,] "pctile.EJ.DISPARITY.proximity.npdes.supp"       "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [327,] "pctile.EJ.DISPARITY.drinking.supp"              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [328,] "state.pctile.EJ.DISPARITY.pm.eo"                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [329,] "state.pctile.EJ.DISPARITY.o3.eo"                "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [330,] "state.pctile.EJ.DISPARITY.no2.eo"               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [331,] "state.pctile.EJ.DISPARITY.dpm.eo"               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [332,] "state.pctile.EJ.DISPARITY.rsei.eo"              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [333,] "state.pctile.EJ.DISPARITY.traffic.score.eo"     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [334,] "state.pctile.EJ.DISPARITY.pctpre1960.eo"        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [335,] "state.pctile.EJ.DISPARITY.proximity.npl.eo"     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [336,] "state.pctile.EJ.DISPARITY.proximity.rmp.eo"     "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [337,] "state.pctile.EJ.DISPARITY.proximity.tsdf.eo"    "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [338,] "state.pctile.EJ.DISPARITY.ust.eo"               "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [339,] "state.pctile.EJ.DISPARITY.proximity.npdes.eo"   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [340,] "state.pctile.EJ.DISPARITY.drinking.eo"          "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [341,] "state.pctile.EJ.DISPARITY.pm.supp"              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [342,] "state.pctile.EJ.DISPARITY.o3.supp"              "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [343,] "state.pctile.EJ.DISPARITY.no2.supp"             "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [344,] "state.pctile.EJ.DISPARITY.dpm.supp"             "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [345,] "state.pctile.EJ.DISPARITY.rsei.supp"            "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [346,] "state.pctile.EJ.DISPARITY.traffic.score.supp"   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [347,] "state.pctile.EJ.DISPARITY.pctpre1960.supp"      "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [348,] "state.pctile.EJ.DISPARITY.proximity.npl.supp"   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [349,] "state.pctile.EJ.DISPARITY.proximity.rmp.supp"   "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [350,] "state.pctile.EJ.DISPARITY.proximity.tsdf.supp"  "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [351,] "state.pctile.EJ.DISPARITY.ust.supp"             "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [352,] "state.pctile.EJ.DISPARITY.proximity.npdes.supp" "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [353,] "state.pctile.EJ.DISPARITY.drinking.supp"        "lookedup"           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [354,] "bgcount_near_site"                              "count of unique ids"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [355,] "blockcount_near_site"                           "count of unique ids"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [356,] "radius.miles"                                   "input"              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [357,] "disab_universe"                                 "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [358,] "disability"                                     "sum of counts"      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [359,] "pctba"                                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [360,] "pctaa"                                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [361,] "pctaiana"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [362,] "pctnhpia"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [363,] "pctotheralone"                                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [364,] "pctmulti"                                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [365,] "pctwa"                                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [366,] "EJ.DISPARITY.pm.eo"                             "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [367,] "EJ.DISPARITY.o3.eo"                             "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [368,] "EJ.DISPARITY.no2.eo"                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [369,] "EJ.DISPARITY.dpm.eo"                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [370,] "EJ.DISPARITY.rsei.eo"                           "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [371,] "EJ.DISPARITY.traffic.score.eo"                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [372,] "EJ.DISPARITY.pctpre1960.eo"                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [373,] "EJ.DISPARITY.proximity.npl.eo"                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [374,] "EJ.DISPARITY.proximity.rmp.eo"                  "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [375,] "EJ.DISPARITY.proximity.tsdf.eo"                 "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [376,] "EJ.DISPARITY.ust.eo"                            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [377,] "EJ.DISPARITY.proximity.npdes.eo"                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [378,] "EJ.DISPARITY.drinking.eo"                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [379,] "state.EJ.DISPARITY.pm.eo"                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [380,] "state.EJ.DISPARITY.o3.eo"                       "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [381,] "state.EJ.DISPARITY.no2.eo"                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [382,] "state.EJ.DISPARITY.dpm.eo"                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [383,] "state.EJ.DISPARITY.rsei.eo"                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [384,] "state.EJ.DISPARITY.traffic.score.eo"            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [385,] "state.EJ.DISPARITY.pctpre1960.eo"               "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [386,] "state.EJ.DISPARITY.proximity.npl.eo"            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [387,] "state.EJ.DISPARITY.proximity.rmp.eo"            "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [388,] "state.EJ.DISPARITY.proximity.tsdf.eo"           "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [389,] "state.EJ.DISPARITY.ust.eo"                      "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [390,] "state.EJ.DISPARITY.proximity.npdes.eo"          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [391,] "state.EJ.DISPARITY.drinking.eo"                 "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [392,] "EJ.DISPARITY.pm.supp"                           "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [393,] "EJ.DISPARITY.o3.supp"                           "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [394,] "EJ.DISPARITY.no2.supp"                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [395,] "EJ.DISPARITY.dpm.supp"                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [396,] "EJ.DISPARITY.rsei.supp"                         "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [397,] "EJ.DISPARITY.traffic.score.supp"                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [398,] "EJ.DISPARITY.pctpre1960.supp"                   "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [399,] "EJ.DISPARITY.proximity.npl.supp"                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [400,] "EJ.DISPARITY.proximity.rmp.supp"                "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [401,] "EJ.DISPARITY.proximity.tsdf.supp"               "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [402,] "EJ.DISPARITY.ust.supp"                          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [403,] "EJ.DISPARITY.proximity.npdes.supp"              "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [404,] "EJ.DISPARITY.drinking.supp"                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [405,] "state.EJ.DISPARITY.pm.supp"                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [406,] "state.EJ.DISPARITY.o3.supp"                     "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [407,] "state.EJ.DISPARITY.no2.supp"                    "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [408,] "state.EJ.DISPARITY.dpm.supp"                    "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [409,] "state.EJ.DISPARITY.rsei.supp"                   "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [410,] "state.EJ.DISPARITY.traffic.score.supp"          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [411,] "state.EJ.DISPARITY.pctpre1960.supp"             "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [412,] "state.EJ.DISPARITY.proximity.npl.supp"          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [413,] "state.EJ.DISPARITY.proximity.rmp.supp"          "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [414,] "state.EJ.DISPARITY.proximity.tsdf.supp"         "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [415,] "state.EJ.DISPARITY.ust.supp"                    "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [416,] "state.EJ.DISPARITY.proximity.npdes.supp"        "wtdmean"            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [417,] "state.EJ.DISPARITY.drinking.supp"               "wtdmean"            </span>
 <span class="r-in"><span> </span></span>
 </code></pre></div>
     </div>
@@ -504,7 +506,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

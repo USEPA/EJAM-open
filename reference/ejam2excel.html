@@ -11,7 +11,7 @@ as well as other tabs such as map, plot, notes, etc."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,6 +32,7 @@ as well as other tabs such as map, plot, notes, etc."><meta property="og:image" 
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -71,8 +72,9 @@ as well as other tabs such as map, plot, notes, etc.</p>
 <span>  buffer_desc <span class="op">=</span> <span class="st">"Selected Locations"</span>,</span>
 <span>  radius_or_buffer_description <span class="op">=</span></span>
 <span>    <span class="st">"Miles radius of circular buffer (or distance used if buffering around polygons)"</span>,</span>
-<span>  hyperlink_colnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EJScreen Report"</span>, <span class="st">"EJScreen Map"</span>, <span class="st">"ECHO report"</span><span class="op">)</span>,</span>
+<span>  hyperlink_colnames <span class="op">=</span> <span class="st">"ECHO Report"</span>,</span>
 <span>  site_method <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  mapadd <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -144,6 +146,10 @@ prompts RStudio user interactively asking where to save the downloaded file</p><
 optional site method parameter used to create a more specific title with create_filename</p></dd>
 
 
+<dt id="arg-mapadd">mapadd<a class="anchor" aria-label="anchor" href="#arg-mapadd"></a></dt>
+<dd><p>logical option for including a map of the points</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>optional additional parameters passed to <code><a href="table_xls_format.html">table_xls_format()</a></code>, such as
 heatmap_colnames, heatmap_cuts, heatmap_colors, etc.</p></dd>
@@ -179,7 +185,7 @@ or returns just the full path/file name of where it was saved if save_now = TRUE
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

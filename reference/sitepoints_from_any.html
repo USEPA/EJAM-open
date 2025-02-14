@@ -9,7 +9,7 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column"><meta prop
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,6 +30,7 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column"><meta prop
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -94,106 +95,100 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">testpoints_10</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon sitenumber  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt;      &lt;int&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 30.97740  -83.36900          1   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2: 32.51581  -86.37732          2   TRUE                        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3: 42.23498  -88.30541          3   TRUE                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 33.87001 -118.37778          4   TRUE                        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: 34.01493 -118.20539          5   TRUE                        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6: 40.73110  -74.17307          6   TRUE                        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: 37.81144 -121.29348          7   TRUE                        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8: 44.85387  -93.04713          8   TRUE                        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: 41.18661 -111.94904          9   TRUE                        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10: 40.71239  -74.58470         10   TRUE                       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         lat        lon sitenumber        sitename ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  37.64122 -122.41065          1  Example Site 1            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  43.92249  -72.66370          2  Example Site 2            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  40.69351  -73.98002          3  Example Site 3            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45.29520  -92.98184          4  Example Site 4            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39.43730  -74.72370          5  Example Site 5            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45.67487  -94.81534          6  Example Site 6            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  33.14865 -117.19895          7  Example Site 7            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  34.01176  -80.95414          8  Example Site 8            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  43.01026  -89.45952          9  Example Site 9            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.74625  -74.25955         10 Example Site 10           10</span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span>lon_if_used <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span>, anything <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 30.97740  -83.36900   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2: 32.51581  -86.37732   TRUE                        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3: 42.23498  -88.30541   TRUE                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 33.87001 -118.37778   TRUE                        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: 34.01493 -118.20539   TRUE                        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6: 40.73110  -74.17307   TRUE                        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: 37.81144 -121.29348   TRUE                        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8: 44.85387  -93.04713   TRUE                        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: 41.18661 -111.94904   TRUE                        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10: 40.71239  -74.58470   TRUE                       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         lat        lon ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  37.64122 -122.41065            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  43.92249  -72.66370            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  40.69351  -73.98002            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45.29520  -92.98184            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39.43730  -74.72370            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45.67487  -94.81534            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  33.14865 -117.19895            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  34.01176  -80.95414            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  43.01026  -89.45952            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.74625  -74.25955           10</span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span>, <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 30.97740  -83.36900   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2: 32.51581  -86.37732   TRUE                        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3: 42.23498  -88.30541   TRUE                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 33.87001 -118.37778   TRUE                        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: 34.01493 -118.20539   TRUE                        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6: 40.73110  -74.17307   TRUE                        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: 37.81144 -121.29348   TRUE                        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8: 44.85387  -93.04713   TRUE                        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: 41.18661 -111.94904   TRUE                        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10: 40.71239  -74.58470   TRUE                       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         lat        lon ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  37.64122 -122.41065            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  43.92249  -72.66370            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  40.69351  -73.98002            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45.29520  -92.98184            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39.43730  -74.72370            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45.67487  -94.81534            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  33.14865 -117.19895            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  34.01176  -80.95414            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  43.01026  -89.45952            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.74625  -74.25955           10</span>
 <span class="r-in"><span> <span class="va">pts</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"33,-100"</span>, <span class="st">"32,-101"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      lat   lon  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    &lt;num&gt; &lt;num&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:    33  -100   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2:    32  -101   TRUE                        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   lat  lon ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  33 -100            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  32 -101            2</span>
 <span class="r-in"><span> <span class="va">pts</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Longitude <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span>, Latitude <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced column names that were inferred to be and therefore renamed as the lat and/or lon columns!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            lon      lat  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt;    &lt;num&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1:  -83.36900 30.97740   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2:  -86.37732 32.51581   TRUE                        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3:  -88.30541 42.23498   TRUE                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: -118.37778 33.87001   TRUE                        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: -118.20539 34.01493   TRUE                        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6:  -74.17307 40.73110   TRUE                        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: -121.29348 37.81144   TRUE                        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8:  -93.04713 44.85387   TRUE                        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: -111.94904 41.18661   TRUE                        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10:  -74.58470 40.71239   TRUE                       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           lon      lat ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -122.41065 37.64122            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   -72.66370 43.92249            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   -73.98002 40.69351            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   -92.98184 45.29520            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   -74.72370 39.43730            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   -94.81534 45.67487            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -117.19895 33.14865            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   -80.95414 34.01176            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   -89.45952 43.01026            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  -74.25955 40.74625           10</span>
 <span class="r-in"><span> <span class="va">pts</span> <span class="op">=</span> <span class="fu">data.table</span><span class="op">(</span>Lat <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span>, Long <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in data.table(Lat = testpoints_10$lat, Long = testpoints_10$lon):</span> could not find function "data.table"</span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced column names that were inferred to be and therefore renamed as the lat and/or lon columns!</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            lon      lat  valid invalid_msg ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;num&gt;    &lt;num&gt; &lt;lgcl&gt;      &lt;char&gt;        &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1:  -83.36900 30.97740   TRUE                        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2:  -86.37732 32.51581   TRUE                        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3:  -88.30541 42.23498   TRUE                        3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: -118.37778 33.87001   TRUE                        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: -118.20539 34.01493   TRUE                        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6:  -74.17307 40.73110   TRUE                        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: -121.29348 37.81144   TRUE                        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8:  -93.04713 44.85387   TRUE                        8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: -111.94904 41.18661   TRUE                        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10:  -74.58470 40.71239   TRUE                       10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           lon      lat ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  -122.41065 37.64122            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   -72.66370 43.92249            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   -73.98002 40.69351            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   -92.98184 45.29520            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   -74.72370 39.43730            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   -94.81534 45.67487            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  -117.19895 33.14865            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   -80.95414 34.01176            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   -89.45952 43.01026            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  -74.25955 40.74625           10</span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="fu">sitepoints_from_anything</span><span class="op">(</span><span class="va">testpoints_bad</span>, set_invalid_to_na <span class="op">=</span> <span class="cn">F</span>, invalid_msg_table <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Some lat or lon values are invalid - NA or number entirely outside expected ranges (US including Island Areas)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon                     note  valid invalid_msg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt;                   &lt;char&gt; &lt;lgcl&gt;      &lt;lgcl&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:  40.64459  -75.19943             stateborder1   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2:  40.64042  -75.19278             stateborder2   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3:  40.64570  -75.19662             stateborder3   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4:  41.53891  -77.88995                    rural   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5:  40.74500  -73.98426                    urban   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6:  39.00000  -71.76199           invalid-nonusa   TRUE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7: -73.98426   40.74500  invalid-lat-lon-swapped  FALSE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8: 200.00000 -200.00000 invalid-impossiblelatlon  FALSE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9:        NA         NA               invalid-na  FALSE        TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2:            2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3:            3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4:            4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5:            5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6:            6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7:            7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8:            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9:            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon                     note  valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt;                   &lt;char&gt; &lt;lgcl&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:  40.64459  -75.19943             stateborder1   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:  40.64042  -75.19278             stateborder2   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:  40.64570  -75.19662             stateborder3   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:  41.53891  -77.88995                    rural   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5:  40.74500  -73.98426                    urban   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6:  39.00000  -71.76199           invalid-nonusa   TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7: -73.98426   40.74500  invalid-lat-lon-swapped  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8: 200.00000 -200.00000 invalid-impossiblelatlon  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9:        NA         NA               invalid-na  FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                     invalid_msg ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;char&gt;        &lt;int&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                                         1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2:                                                         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3:                                                         3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4:                                                         4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5:                                                         5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6:                                                         6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7: latlon may be outside States/PR/Island Areas            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8:                            latlon impossible            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9:                               latlon missing            9</span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span></span>
@@ -214,7 +209,7 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

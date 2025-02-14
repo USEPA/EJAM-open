@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -127,839 +128,841 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-in"><span>  <span class="va">vars</span> <span class="op">&lt;-</span> <span class="fu"><a href="fixcolnames.html">fixcolnames</a></span><span class="op">(</span><span class="va">vars</span>, <span class="st">'long'</span>, <span class="st">'r'</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">out</span><span class="op">$</span><span class="va">formatted</span><span class="op">[</span><span class="fu">table_order_variables</span><span class="op">(</span><span class="va">vars</span><span class="op">)</span>, <span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78     1.71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79     1.78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86       61</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80       32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82        7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81       13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83       17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84        6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85       12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14      1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15      1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22      1.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79     1.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80     1.28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87       53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81       23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83        6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82        6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84        9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85        6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86       13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23      1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19      1.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17      2.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19      1.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21      0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48      1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50      1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51      1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52      1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53      0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 128      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 129      63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 136      73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 130      58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 132      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 131      89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 133      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134      64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 135      34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 166      60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 167      58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 174      62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 168      59</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 170      64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 169      71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 171      64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 172      62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 173      39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 147    1.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 148    1.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 155      40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 149      30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 151       6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 150       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 152      11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 153       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 154      18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 185    1.54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 186    1.42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193      50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 187      25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 189       6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 188       7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 190      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 191       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 192      17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 327  103075</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 321   52030</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 323    5886</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 322    8258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 324   19014</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 325   10528</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 326   20676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 364      48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 358      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 359       9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 360       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21      1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55      1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51      1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53      1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136      58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137      33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138      43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140      68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141      54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142      65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143      35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168      57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169      41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176      62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170      50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172      63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173      49</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174      66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175      36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200    1.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201    1.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208      40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202      30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204       6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205      11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207      18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232    1.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233    1.47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240      44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234      27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236       6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235       7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237      12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239      17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270  110000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264   46000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266    7700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265    5000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267   13000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268   14000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269   27000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 365      53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 359      17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 360      12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 361       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 362      18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 363      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94       39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88       12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87       34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 362       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363       7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364      11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95       47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89       16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90       12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88       19</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 91        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92        2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93        5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30      0.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94        5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25      1.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26      2.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25      1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23      1.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26      0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27      0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28      5.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29      1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62      0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56      1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57      0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55      1.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58      0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59      0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60      4.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61      1.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 144      27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 138      73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 139      83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 137      81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140      85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141      95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142      94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 143      74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 182      38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 176      67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 177      58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 175      65</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 178      85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 179      38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 180      86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 181      69</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 163      60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 157      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 158       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 156      18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 159       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 160       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 161       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 162       3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 201      50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 195       9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 196      10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 194      26</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 197       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 198       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 199       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 200       3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 335   64711</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 329   20259</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 330   14374</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 328   56369</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 331     436</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 332      97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 333    3833</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 334    7708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97       45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27      0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28      2.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29      1.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30      1.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63      0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57      1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58      1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56      0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60      4.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62      1.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152      33</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147      87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145      70</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148      84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149      95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150      88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184      39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178      72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179      74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177      61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180      88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181      72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182      81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216      60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210      12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211       5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209      18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248      54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242      12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243       9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241      20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247       3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 278   1e+05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 272   30000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 273   30000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 271   40000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 274     400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 275     700</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 276    1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 277   10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107       7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108       6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109       2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110      13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 292   42874</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 293   35830</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 294    9800</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 291  160000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295  575168</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 296    3633</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 297   72060</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112      47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113      25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114      27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 298    2343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 299    1257</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 300    1330</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 301      68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8    212317</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 280   87417</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 279  151161</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 281  175609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 282   52699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 283   95293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 284  202460</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 98       12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101      27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102   70061</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103   19059</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 104    5824</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105    2457</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 106  157258</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 107    6362</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108   42722</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 109      58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 110      35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111       7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 113    4748</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114    2883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 115     560</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116      67</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7    167787</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 337   61844</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 336  111683</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 338  132931</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 339   17968</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 340   65004</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 341  164324</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 117      15</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 354   26340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 357    9076</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118      11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 119      18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44      0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45      0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 145      38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 146      39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 183      50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 164    13.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 165      20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 202    11.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 203      18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 355  169610</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 356   18905</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184      53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 204   10.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 205    67.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 206    12.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 207   0.415</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 208    1813</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 209 4328185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 210    0.28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 211    1.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 212       2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 213    16.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 214    23.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 215    1797</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 216    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31      1.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32      1.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33      1.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34      2.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35      0.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36      2.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37      0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38        4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39      3.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40      4.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41      6.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42        0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43     &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63      1.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 285   33361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 286   10660</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116       9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117      17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46      0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77      0.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153      26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154      25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185      35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217    13.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218      20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249    11.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250      18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 357  210565</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 358   20000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186      43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118    8.41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119    62.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120    15.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121   0.591</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122     540</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123 5400000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124    0.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125    1.61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126    0.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127    18.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128    14.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129   10000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130       6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33        1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35      3.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36      0.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37      3.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38      1.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39      4.1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40      0.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41      5.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42      3.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43        0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44      2.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 64        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65      1.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65        1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 66      1.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67        1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68      1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69      0.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70      1.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71      3.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72      2.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73      3.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74      0.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75     &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 217      89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 218      79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 219      88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 220      92</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 221      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 222      89</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 223      56</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 224      94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 225      94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 226      95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 227      97</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 228      78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 229    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 243      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 244      52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 245      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 246      79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 247      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 248      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 249      46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 250      70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 251      82</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 252      79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 253      47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 254      60</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 255    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 230    8.45</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 231    61.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 232     7.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 233   0.191</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 234    4612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 235 1687230</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 236     0.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 237    0.39</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 238    0.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 239     3.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 240     3.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 241  701805</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 242     2.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 256    9.74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 257    67.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 258     8.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 259   0.264</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 260    1885</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 261 2603011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 262    0.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 263    1.01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 264    0.62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 265     7.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 266     6.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 267   13392</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 268    1.52</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 344       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 345     0.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 346       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 347      10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 348       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 365 117.312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 366 121.441</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 367  147.75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 368 153.513</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 369 114.724</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 370 141.447</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 371   91.88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 372 145.606</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 373 139.698</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 374 152.021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 375  92.452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 376 109.501</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 377  10.825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 378 142.892</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 379 110.472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 380 154.348</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 381 158.451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 382 149.919</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 383 146.261</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 384  85.508</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 385 143.983</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 386 162.213</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387 156.911</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388  94.797</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389  108.36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390  12.691</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 269      78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 270      81</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 271      83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 272      85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 273      80</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 274      82</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 275      72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 276      86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 277      83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 278      85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 279      72</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 280      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 281      73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 295       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 296       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 297       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 298       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 299       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 300       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 301      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 302      33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 303      24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 304       6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 305      54</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 306      11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67      1.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68      0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69      1.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70      1.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71      1.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72      0.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73      2.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74        2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75      0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76      1.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155      59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156      61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157      97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158      97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159      48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160      92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162      95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163      38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164      96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165      93</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166      88</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167      91</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187      69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188      44</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189      81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190      76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191      69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193      55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194      72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195      53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196      80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197      69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198      69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199      37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219    8.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220    61.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221     7.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222   0.191</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223    4600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224 1700000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225     0.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226    0.39</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227    0.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228     3.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229     3.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230   7e+05</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231     2.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251    8.13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252    63.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253     9.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254   0.318</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255     810</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256 2900000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257    0.48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258    0.89</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259    0.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260     7.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261     7.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262   11000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263    3.97</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132      10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135     0.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134       0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 366  72.662</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367  83.142</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 368 117.641</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369 116.821</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 370  59.572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371 118.693</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372  94.692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373 108.065</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374  36.502</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375 123.057</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376  99.994</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377 105.869</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 378  80.294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 379  91.953</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 380  58.857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 381 104.733</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 382  97.954</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 383   91.73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 384 101.953</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 385  76.136</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386  92.378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387  54.627</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388 106.043</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389  83.854</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390  91.479</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391   46.56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 302      63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 303      69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 304      76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 305      77</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 306      58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 307      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391 117.153</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392 122.523</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393   152.1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394 157.202</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395 119.338</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396 144.478</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397  95.278</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398 147.302</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399 142.706</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 400  155.08</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 401 103.231</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 402  114.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 403  14.414</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 404  131.09</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 405 100.312</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 406 139.762</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 407 143.106</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 408 135.386</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 409 133.632</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 410  74.151</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 411 128.183</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 412 144.944</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 413 141.488</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 414  98.275</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 415 100.185</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 416  14.286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 282      75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 283      79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 284      85</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 285      87</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 286      76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 287      84</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 288      62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 289      86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 290      82</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 291      86</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 292      68</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 293      74</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 294      73</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 308       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 309       0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 310       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 311       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 312       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 313       1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 314      12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 315      32</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 316      23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 317       5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 318      53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319      10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 320      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 120      23</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 121      77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 350  128643</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 351   39143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122   61844</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123      50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 124      50</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 125      78</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 126   43668</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 127    &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 352   84334</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 353   83452</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 308      73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 309      80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 310      45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311      78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 312      74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 313      76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314      83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 328      66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 329      53</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 330      68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 331      65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 332      66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 333      68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 334      60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 335      64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 336      58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 337      68</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 338      59</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 339      66</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 340      45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392  66.552</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393  78.034</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394 110.354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395 109.369</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396  56.357</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397 110.815</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398  91.293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 399 101.699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 400  35.509</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 401 114.085</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402  94.901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 403  99.413</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 404   78.09</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405  85.146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406  55.113</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 407  97.476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 408  92.088</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 409  85.865</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 410  93.448</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 411  71.343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 412  87.488</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 413  53.506</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 414  97.693</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 415  80.199</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 416  84.606</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 417  47.318</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 315      47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 316      57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317      72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 318      73</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319      41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320      74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 321      60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322      74</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 323      32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 324      75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325      64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 326      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 327      76</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 341      64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342      45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 343      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 344      65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 345      61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 347      54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 348      64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 349      51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 350      67</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351      56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 352      63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 353      43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105      19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106      81</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 289  171920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290   40397</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99    87417</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100      48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101      52</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102      78</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103   78766</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104      38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287  110517</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 288  101800</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 355    1640</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 356       1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13     &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 342     170</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 343    1914</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 349       1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 354     211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5      &lt;NA&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6      &lt;NA&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12        7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      &lt;NA&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13        7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                          indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 78                                                                           Demographic Index USA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 79                                                              Supplemental Demographic Index USA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 86                                                                               % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 80                                                                                    % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 82                                                                                    % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 81                                                        % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 83                                                          % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 84                                                                                   % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 85                                                                                   % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95                                                                         Demographic Index State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 96                                                            Supplemental Demographic Index State</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                                               Ratio to US avg Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15                        Ratio to US avg Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                                               Ratio to US avg % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 16                                                                    Ratio to US avg % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                                                    Ratio to US avg % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                        Ratio to US avg % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                          Ratio to US avg % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                                                   Ratio to US avg % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                   Ratio to US avg % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 46                                                            Ratio to State avg Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47                     Ratio to State avg Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 54                                                            Ratio to State avg % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                                                                 Ratio to State avg % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 50                                                                 Ratio to State avg % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 49                                     Ratio to State avg % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 51                                       Ratio to State avg % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 52                                                                Ratio to State avg % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 53                                                                Ratio to State avg % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 128                                                            US percentile for Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 129                     US percentile for Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 136                                                            US percentile for % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 130                                                                 US percentile for % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 132                                                                 US percentile for % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 131                                     US percentile for % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 133                                       US percentile for % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 134                                                                US percentile for % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 135                                                                US percentile for % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 166                                                         State percentile for Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 167                  State percentile for Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 174                                                         State percentile for % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 168                                                              State percentile for % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 170                                                              State percentile for % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 169                                  State percentile for % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 171                                    State percentile for % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 172                                                             State percentile for % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 173                                                             State percentile for % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 147                                                               US Average for Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 148                        US Average for Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 155                                                               US Average for % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 149                                                                    US Average for % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 151                                                                    US Average for % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 150                                        US Average for % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 152                                          US Average for % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 153                                                                   US Average for % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 154                                                                   US Average for % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 185                                                            State Average for Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 186                     State Average for Supplemental EJ Index for Supplemental Demographic Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 193                                                            State Average for % People of Color</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 187                                                                 State Average for % Low Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 189                                                                 State Average for % Unemployed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 188                                     State Average for % in limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 190                                       State Average for % with Less Than High School Education</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 191                                                                State Average for % under Age 5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 192                                                                State Average for % over Age 64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 327                                                                 People of Color resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 321                                                                      Low income resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 323                                                                      Unemployed resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 322                                                            Limited English-speaking Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 324                                                 Less Than High School Education resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 325                                                                     Under Age 5 resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 326                                                                     Over Age 64 resident count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 364                                                       % White (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 358                                   % Black or African American (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 359                                                       % Asian (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 360                           % American Indian and Alaska Native (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 361                  % Native Hawaiian and Other Pacific Islander (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 362                                                  % Other race (single race, includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 363                                                        % Two or more races (includes Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 94                                                             % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88                                         % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 89                                                             % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 87                                                                            % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90                                 % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 91                        % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 92                                                        % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 93                                                              % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 30                                             Ratio to US avg % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 24                         Ratio to US avg % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 25                                             Ratio to US avg % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                                            Ratio to US avg % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26                 Ratio to US avg % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 27        Ratio to US avg % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 28                                        Ratio to US avg % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 29                                              Ratio to US avg % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 62                                          Ratio to State avg % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 56                      Ratio to State avg % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 57                                          Ratio to State avg % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 55                                                         Ratio to State avg % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 58              Ratio to State avg % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 59     Ratio to State avg % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 60                                     Ratio to State avg % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 61                                           Ratio to State avg % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 144                                          US percentile for % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 138                      US percentile for % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 139                                          US percentile for % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 137                                                         US percentile for % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 140              US percentile for % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 141     US percentile for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 142                                     US percentile for % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 143                                           US percentile for % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 182                                       State percentile for % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 176                   State percentile for % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 177                                       State percentile for % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 175                                                      State percentile for % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 178           State percentile for % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 179  State percentile for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 180                                  State percentile for % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 181                                        State percentile for % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 163                                             US Average for % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 157                         US Average for % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 158                                             US Average for % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 156                                                            US Average for % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 159                 US Average for % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 160        US Average for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 161                                        US Average for % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 162                                              US Average for % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 201                                          State Average for % White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 195                      State Average for % Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 196                                          State Average for % Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 194                                                         State Average for % Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 197              State Average for % American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 198     State Average for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 199                                     State Average for % Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 200                                           State Average for % Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 335                                                     Count of White (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 329                                 Count of Black or African American (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 330                                                     Count of Asian (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 328                                                                    Count of Hispanic or Latino</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 331                         Count of American Indian and Alaska Native (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 332                Count of Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 333                                                Count of Other race (non-Hispanic, single race)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 334                                                      Count of Two or more races (non-Hispanic)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 97                                              Percent of population speaking non-English at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 98                                      Percent of population speaking Other Indo-European at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 99                       Percent of population speaking Asian and Pacific Island languages at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 100                         Percent of population speaking Other and Unspecified languages at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 101                                                 Percent of population speaking Spanish at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 102                                                            Number speaking non-English at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 103                                                              Speak Other Indo-European at Home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 104                                                    Speak Asian-Pacific Island language at Home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 105                                        Number speaking Other and Unspecified languages at home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 106                    Number of Persons for whom Language Ability is Determined--age 5 and above.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 107                                                           Persons who Speak English Not at All</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 108                                                                          Speak Spanish at Home</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 109                                  Percent Speaking Spanish (as % of limited English households)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 110            Percent Speaking Other Indo-European languages (as % of limited English households)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 111           Percent Speaking Asian-Pacific Island languages (as % of limited English households)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 112                          Percent Speaking Other languages (as % of limited English households)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 113                                                   Speak Spanish (in limited English household)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 114                                       Speak Other Indo-European (in limited English household)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 115                                      Speak Asian-Pacific Island (in limited English household)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 116                                                     Speak Other (in limited English household)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                                                 Total Population</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 337                                                                            Count of Households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 336                                                                  Count of Population Age 25 up</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 338                                           Universe for percent unemployed (denominator, count)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 339                                                          Count of Housing Units Built Pre 1960</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 340                                   Built housing units count (denominator for percent pre 1960)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 341                                      Count of Population for whom Poverty Status is Determined</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 117                                                      Percent of Households below Poverty Level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 354                                                          Count of Owner Occupied Housing Units</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 357                                                                 Households below Poverty Level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 118                                                                            % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 119                                                                           %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 44                                                             Ratio to US avg % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 45                                                            Ratio to US avg %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 76                                                          Ratio to State avg % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 77                                                         Ratio to State avg %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 145                                                          US percentile for % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 146                                                         US percentile for %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 183                                                       State percentile for % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 164                                                             US Average for % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 165                                                            US Average for %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 202                                                          State Average for % with Disabilities</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 203                                                         State Average for %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 355                        Civilian noninstitutionalized population (denominator for % disability)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 356                                                               Count of Persons with Disability</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 184                                                      State percentile for %Low life expectancy</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 204                                                           Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 205                                                                                    Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 206                                                                         Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 207                                                              Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 208                                                                          Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 209                            Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 210                                                     Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 211                                                   Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 212                                                     RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 213                                         Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 214                                                      Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 215                      Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 216                                                                  Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                                              Ratio to US avg Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 32                                                                           Ratio to US avg Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                          Ratio to US avg Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                                       Ratio to US avg Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                           Ratio to US avg Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                    Ratio to US avg Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                            Ratio to US avg Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 38                                                             Ratio to US avg Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 39                                                                   Ratio to US avg RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 40                                                       Ratio to US avg Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                             Ratio to US avg Underground Storage Tanks indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 42                                                  Ratio to US avg Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 43                                                   Ratio to US avg Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 63                                                           Ratio to State avg Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 64                                                                        Ratio to State avg Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 65                                                       Ratio to State avg Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 66                                                    Ratio to State avg Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 67                                                        Ratio to State avg Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 68                                                 Ratio to State avg Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69                                                         Ratio to State avg Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 70                                                          Ratio to State avg Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 71                                                                Ratio to State avg RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 72                                                    Ratio to State avg Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 73                                          Ratio to State avg Underground Storage Tanks indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 74                                               Ratio to State avg Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75                                                Ratio to State avg Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 217                                         US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 218                                                                  US percentile for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 219                                                       US percentile for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 220                                            US percentile for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 221                                                        US percentile for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 222          US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 223                                   US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 224                                 US percentile for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 225                                   US percentile for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 226                       US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 227                                    US percentile for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 228    US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 229                                                US percentile for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 243                                      State percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 244                                                               State percentile for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 245                                                    State percentile for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 246                                         State percentile for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 247                                                     State percentile for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 248       State percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 249                                State percentile for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 250                              State percentile for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 251                                State percentile for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 252                    State percentile for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 253                                 State percentile for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 254 State percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 255                                             State percentile for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 230                                            US Average for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 231                                                                     US Average for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 232                                                          US Average for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 233                                               US Average for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 234                                                           US Average for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 235             US Average for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 236                                      US Average for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 237                                    US Average for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 238                                      US Average for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 239                          US Average for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 240                                       US Average for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 241       US Average for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 242                                                   US Average for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 256                                         State Average for Particulate Matter (PM 2.5 in ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 257                                                                  State Average for Ozone (ppb)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 258                                                       State Average for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 259                                            State Average for Diesel Particulate Matter (ug/m3)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 260                                                        State Average for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 261          State Average for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 262                                   State Average for Lead Paint Indicator (% pre-1960s housing)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 263                                 State Average for Superfund Proximity (site count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 264                                   State Average for RMP Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 265                       State Average for Hazardous Waste Proximity (facility count/km distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 266                                    State Average for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 267    State Average for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 268                                                State Average for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 344                                                                       Distance to Closest Site</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 345                                                        Distance to Closest Site for Avg Person</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 346                                                                   Number of Sites Nearby (max)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 347                                                          Number of Sites Nearby (total unique)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 348                                                                   Number of Sites Nearby (avg)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 365                                           US type of raw score for Particulate Matter EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 366                                                        US type of raw score for Ozone EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 367                                       US type of raw score for Nitrogen Dioxide (NO2) EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 368                                    US type of raw score for Diesel Particulate Matter EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 369                                        US type of raw score for Toxic Releases to Air EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 370                                 US type of raw score for Traffic Proximity and Volume EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 371                                                   US type of raw score for Lead Paint EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 372                                          US type of raw score for Superfund Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 373                                                US type of raw score for RMP Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 374                                    US type of raw score for Hazardous Waste Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 375                                    US type of raw score for Underground Storage Tanks EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 376                                         US type of raw score for Wastewater Discharge EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 377                                US type of raw score for Drinking Water Non-Compliance EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 378                                        State type of raw score for Particulate Matter EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 379                                                     State type of raw score for Ozone EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 380                                    State type of raw score for Nitrogen Dioxide (NO2) EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 381                                 State type of raw score for Diesel Particulate Matter EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 382                                     State type of raw score for Toxic Releases to Air EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 383                              State type of raw score for Traffic Proximity and Volume EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 384                                                State type of raw score for Lead Paint EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 385                                       State type of raw score for Superfund Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 386                                             State type of raw score for RMP Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                 State type of raw score for Hazardous Waste Proximity EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 388                                 State type of raw score for Underground Storage Tanks EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 389                                      State type of raw score for Wastewater Discharge EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390                             State type of raw score for Drinking Water Non-Compliance EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 269                                              US percentile for EJ Index for Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 270                                                           US percentile for EJ Index for Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 271                                          US percentile for EJ Index for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 272                                       US percentile for EJ Index for Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 273                                           US percentile for EJ Index for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 274                                    US percentile for EJ Index for Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 275                                            US percentile for EJ Index for Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 276                                             US percentile for EJ Index for Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 277                                                   US percentile for EJ Index for RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 278                                       US percentile for EJ Index for Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 279                       US percentile for EJ Index for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 280                                  US percentile for EJ Index for Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 281                                   US percentile for EJ Index for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 295                                           State percentile for EJ Index for Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 296                                                        State percentile for EJ Index for Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 297                                       State percentile for EJ Index for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 298                                    State percentile for EJ Index for Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 299                                        State percentile for EJ Index for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 300                                 State percentile for EJ Index for Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 301                                         State percentile for EJ Index for Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 302                                          State percentile for EJ Index for Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 303                                                State percentile for EJ Index for RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 304                                    State percentile for EJ Index for Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 305                    State percentile for EJ Index for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 306                               State percentile for EJ Index for Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 307                                State percentile for EJ Index for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 391                              US type of raw score for Particulate Matter Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 392                                           US type of raw score for Ozone Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 393                          US type of raw score for Nitrogen Dioxide (NO2) Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 394                       US type of raw score for Diesel Particulate Matter Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 395                           US type of raw score for Toxic Releases to Air Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 396                    US type of raw score for Traffic Proximity and Volume Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 397                                      US type of raw score for Lead Paint Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 398                             US type of raw score for Superfund Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 399                                   US type of raw score for RMP Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 400                       US type of raw score for Hazardous Waste Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 401                       US type of raw score for Underground Storage Tanks Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 402                            US type of raw score for Wastewater Discharge Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 403                   US type of raw score for Drinking Water Non-Compliance Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 404                           State type of raw score for Particulate Matter Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 405                                        State type of raw score for Ozone Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 406                       State type of raw score for Nitrogen Dioxide (NO2) Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 407                    State type of raw score for Diesel Particulate Matter Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 408                        State type of raw score for Toxic Releases to Air Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 409                 State type of raw score for Traffic Proximity and Volume Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 410                                   State type of raw score for Lead Paint Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 411                          State type of raw score for Superfund Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 412                                State type of raw score for RMP Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 413                    State type of raw score for Hazardous Waste Proximity Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 414                    State type of raw score for Underground Storage Tanks Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 415                         State type of raw score for Wastewater Discharge Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 416                State type of raw score for Drinking Water Non-Compliance Supplemental EJ Index</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 282                                 US percentile for Supplemental EJ Index for Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 283                                              US percentile for Supplemental EJ Index for Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 284                             US percentile for Supplemental EJ Index for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 285                          US percentile for Supplemental EJ Index for Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 286                              US percentile for Supplemental EJ Index for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 287                       US percentile for Supplemental EJ Index for Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 288                               US percentile for Supplemental EJ Index for Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 289                                US percentile for Supplemental EJ Index for Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 290                                      US percentile for Supplemental EJ Index for RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 291                          US percentile for Supplemental EJ Index for Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 292          US percentile for Supplemental EJ Index for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 293                     US percentile for Supplemental EJ Index for Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 294                      US percentile for Supplemental EJ Index for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 308                              State percentile for Supplemental EJ Index for Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 309                                           State percentile for Supplemental EJ Index for Ozone</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 310                          State percentile for Supplemental EJ Index for Nitrogen Dioxide (NO2)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 311                       State percentile for Supplemental EJ Index for Diesel Particulate Matter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 312                           State percentile for Supplemental EJ Index for Toxic Releases to Air</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 313                    State percentile for Supplemental EJ Index for Traffic Proximity and Volume</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 314                            State percentile for Supplemental EJ Index for Lead Paint Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 315                             State percentile for Supplemental EJ Index for Superfund Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 316                                   State percentile for Supplemental EJ Index for RMP Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 317                       State percentile for Supplemental EJ Index for Hazardous Waste Proximity</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 318       State percentile for Supplemental EJ Index for Underground Storage Tanks (UST) indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319                  State percentile for Supplemental EJ Index for Wastewater Discharge Indicator</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 320                   State percentile for Supplemental EJ Index for Drinking Water Non-Compliance</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 120                                                                           Percent under age 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 121                                                                           Percent above age 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 350                                                                         Population Over Age 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 351                                                                        Population Under Age 18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 122                                                                         Occupied Housing Units</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 123                                                                                  Percent Males</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 124                                                                                Percent Females</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 125                                                                       Life Expectancy in Years</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 126                                                                              Per Capita Income</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 127                                                              Percent Owner Occupied households</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 352                                                                                Male Population</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 353                                                                              Female Population</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                                                        Longitude</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                                                                         Latitude</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                                                              State Abbreviation</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                                                      State Name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                                                                      EPA Region</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 342                                                                     Census blockgroups (count)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 343                                                                          Census blocks (count)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 349                                                                        Buffer distance (miles)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 79                                                                           Demographic Index USA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 80                                                              Supplemental Demographic Index USA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 87                                                                               % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 81                                                                                    % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 83                                                                                    % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 82                                                        % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 84                                                          % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 85                                                                                   % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 86                                                                                   % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 96                                                                         Demographic Index State</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 97                                                            Supplemental Demographic Index State</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15                                                               Ratio to US avg Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 16                   Ratio to US avg Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 23                                                               Ratio to US avg % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 17                                                                    Ratio to US avg % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                                                                    Ratio to US avg % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 18                                        Ratio to US avg % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20                                          Ratio to US avg % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 21                                                                   Ratio to US avg % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 22                                                                   Ratio to US avg % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47                                                            Ratio to State avg Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48                Ratio to State avg Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 55                                                            Ratio to State avg % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 49                                                                 Ratio to State avg % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 51                                                                 Ratio to State avg % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 50                                     Ratio to State avg % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 52                                       Ratio to State avg % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 53                                                                Ratio to State avg % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54                                                                Ratio to State avg % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 136                                                            US percentile for Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 137                US percentile for Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 144                                                            US percentile for % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 138                                                                 US percentile for % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 140                                                                 US percentile for % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 139                                     US percentile for % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 141                                       US percentile for % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 142                                                                US percentile for % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 143                                                                US percentile for % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 168                                                         State percentile for Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 169             State percentile for Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 176                                                         State percentile for % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 170                                                              State percentile for % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 172                                                              State percentile for % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 171                                  State percentile for % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173                                    State percentile for % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 174                                                             State percentile for % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 175                                                             State percentile for % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 200                                                               US Average for Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 201                   US Average for Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 208                                                               US Average for % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202                                                                    US Average for % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 204                                                                    US Average for % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 203                                        US Average for % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205                                          US Average for % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 206                                                                   US Average for % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 207                                                                   US Average for % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 232                                                            State Average for Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 233                State Average for Supplemental Summary Index for Supplemental Demographic Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 240                                                            State Average for % People of Color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 234                                                                 State Average for % Low Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 236                                                                 State Average for % Unemployed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 235                                     State Average for % in limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 237                                       State Average for % with Less Than High School Education</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 238                                                                State Average for % under Age 5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 239                                                                State Average for % over Age 64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 270                                                                 People of Color resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 264                                                                      Low income resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 266                                                                      Unemployed resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 265                                                            Limited English-speaking Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 267                                                 Less Than High School Education resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 268                                                                     Under Age 5 resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 269                                                                     Over Age 64 resident count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 365                                                       % White (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 359                                   % Black or African American (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 360                                                       % Asian (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 361                           % American Indian and Alaska Native (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 362                  % Native Hawaiian and Other Pacific Islander (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363                                                  % Other race (single race, includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364                                                        % Two or more races (includes Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 95                                                             % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 89                                         % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 90                                                             % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 88                                                                            % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 91                                 % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 92                        % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 93                                                        % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 94                                                              % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 31                                             Ratio to US avg % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 25                         Ratio to US avg % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26                                             Ratio to US avg % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 24                                                            Ratio to US avg % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 27                 Ratio to US avg % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 28        Ratio to US avg % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 29                                        Ratio to US avg % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 30                                              Ratio to US avg % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 63                                          Ratio to State avg % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 57                      Ratio to State avg % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 58                                          Ratio to State avg % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 56                                                         Ratio to State avg % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 59              Ratio to State avg % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 60     Ratio to State avg % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 61                                     Ratio to State avg % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 62                                           Ratio to State avg % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 152                                          US percentile for % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 146                      US percentile for % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 147                                          US percentile for % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 145                                                         US percentile for % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 148              US percentile for % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 149     US percentile for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 150                                     US percentile for % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 151                                           US percentile for % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 184                                       State percentile for % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 178                   State percentile for % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 179                                       State percentile for % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 177                                                      State percentile for % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 180           State percentile for % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 181  State percentile for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 182                                  State percentile for % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 183                                        State percentile for % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 216                                             US Average for % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 210                         US Average for % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 211                                             US Average for % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 209                                                            US Average for % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 212                 US Average for % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 213        US Average for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 214                                        US Average for % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 215                                              US Average for % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 248                                          State Average for % White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 242                      State Average for % Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 243                                          State Average for % Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 241                                                         State Average for % Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 244              State Average for % American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 245     State Average for % Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 246                                     State Average for % Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 247                                           State Average for % Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 278                                                     Count of White (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 272                                 Count of Black or African American (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 273                                                     Count of Asian (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 271                                                                    Count of Hispanic or Latino</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 274                         Count of American Indian and Alaska Native (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 275                Count of Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 276                                                Count of Other race (non-Hispanic, single race)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 277                                                      Count of Two or more races (non-Hispanic)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 107                                     Percent of population speaking Other Indo-European at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 108                      Percent of population speaking Asian and Pacific Island languages at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 109                         Percent of population speaking Other and Unspecified languages at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 111                                   Percent of population speaking Non English languages at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 110                                                 Percent of population speaking Spanish at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 292                                                              Speak Other Indo-European at Home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 293                                                    Speak Asian-Pacific Island language at Home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 294                                        Number speaking Other and Unspecified languages at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 291                                                            Number speaking non-English at home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 295                    Number of Persons for whom Language Ability is Determined--age 5 and above.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 296                                                           Persons who Speak English Not at All</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 297                                                                          Speak Spanish at Home</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 112                                  Percent Speaking Spanish (as % of limited English households)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 113            Percent Speaking Other Indo-European languages (as % of limited English households)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 114           Percent Speaking Asian-Pacific Island languages (as % of limited English households)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 115                          Percent Speaking Other languages (as % of limited English households)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 298                                                   Speak Spanish (in limited English household)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 299                                       Speak Other Indo-European (in limited English household)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 300                                      Speak Asian-Pacific Island (in limited English household)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 301                                                     Speak Other (in limited English household)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8                                                                                 Total Population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 280                                                                            Count of Households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 279                                                                  Count of Population Age 25 up</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 281                                           Universe for percent unemployed (denominator, count)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 282                                                          Count of Housing Units Built Pre 1960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 283                                   Built housing units count (denominator for percent pre 1960)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 284                                      Count of Population for whom Poverty Status is Determined</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 98                                                       Percent of Households below Poverty Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 285                                                          Count of Owner Occupied Housing Units</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 286                                                                 Households below Poverty Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 116                                                                            % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 117                                                                           %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 45                                                             Ratio to US avg % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 46                                                            Ratio to US avg %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 77                                                          Ratio to State avg % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 78                                                         Ratio to State avg %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 153                                                          US percentile for % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 154                                                         US percentile for %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 185                                                       State percentile for % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 217                                                             US Average for % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 218                                                            US Average for %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 249                                                          State Average for % with Disabilities</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 250                                                         State Average for %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 357                        Civilian noninstitutionalized population (denominator for % disability)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 358                                                               Count of Persons with Disability</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 186                                                      State percentile for %Low life expectancy</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 118                                                           Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 119                                                                                    Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 120                                                                         Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 121                                                              Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 122                                                                          Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 123                            Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 124                                                     Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 125                                                   Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 126                                                     RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 127                                         Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 128                                                      Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 129                      Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 130                                                                  Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 32                                                              Ratio to US avg Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 33                                                                           Ratio to US avg Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 34                                                          Ratio to US avg Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 35                                                       Ratio to US avg Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 36                                                           Ratio to US avg Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 37                                                    Ratio to US avg Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 38                                                            Ratio to US avg Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 39                                                             Ratio to US avg Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 40                                                                   Ratio to US avg RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 41                                                       Ratio to US avg Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 42                                             Ratio to US avg Underground Storage Tanks indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 43                                                  Ratio to US avg Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 44                                                   Ratio to US avg Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 64                                                           Ratio to State avg Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 65                                                                        Ratio to State avg Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 66                                                       Ratio to State avg Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 67                                                    Ratio to State avg Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 68                                                        Ratio to State avg Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 69                                                 Ratio to State avg Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 70                                                         Ratio to State avg Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 71                                                          Ratio to State avg Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 72                                                                Ratio to State avg RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 73                                                    Ratio to State avg Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 74                                          Ratio to State avg Underground Storage Tanks indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 75                                               Ratio to State avg Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 76                                                Ratio to State avg Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 155                                         US percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 156                                                                  US percentile for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 157                                                       US percentile for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 158                                            US percentile for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 159                                                        US percentile for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 160          US percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 161                                   US percentile for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 162                                 US percentile for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 163                                   US percentile for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 164                       US percentile for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 165                                    US percentile for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 166    US percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 167                                                US percentile for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 187                                      State percentile for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 188                                                               State percentile for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 189                                                    State percentile for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 190                                         State percentile for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 191                                                     State percentile for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 192       State percentile for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 193                                State percentile for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 194                              State percentile for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 195                                State percentile for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 196                    State percentile for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 197                                 State percentile for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 198 State percentile for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 199                                             State percentile for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 219                                            US Average for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 220                                                                     US Average for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 221                                                          US Average for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 222                                               US Average for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 223                                                           US Average for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 224             US Average for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 225                                      US Average for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 226                                    US Average for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 227                                      US Average for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 228                          US Average for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 229                                       US Average for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 230       US Average for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 231                                                   US Average for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 251                                         State Average for Particulate Matter (PM 2.5 in ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 252                                                                  State Average for Ozone (ppb)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 253                                                       State Average for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 254                                            State Average for Diesel Particulate Matter (ug/m3)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 255                                                        State Average for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 256          State Average for Traffic Proximity and Volume (daily traffic count/distance to road)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 257                                   State Average for Lead Paint Indicator (% pre-1960s housing)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 258                                 State Average for Superfund Proximity (site count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 259                                   State Average for RMP Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 260                       State Average for Hazardous Waste Proximity (facility count/km distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 261                                    State Average for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 262    State Average for Wastewater Discharge Indicator (toxicity-weighted concentration/distance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 263                                                State Average for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 132                                                          Number of Sites Nearby (total unique)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 135                                                        Distance to Closest Site for Avg Person</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 131                                                                   Number of Sites Nearby (max)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 133                                                                   Number of Sites Nearby (avg)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 134                                                                       Distance to Closest Site</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 366                                      US type of raw score for Particulate Matter Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 367                                                   US type of raw score for Ozone Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 368                                  US type of raw score for Nitrogen Dioxide (NO2) Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 369                               US type of raw score for Diesel Particulate Matter Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 370                                   US type of raw score for Toxic Releases to Air Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 371                            US type of raw score for Traffic Proximity and Volume Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 372                                              US type of raw score for Lead Paint Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 373                                     US type of raw score for Superfund Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 374                                           US type of raw score for RMP Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 375                               US type of raw score for Hazardous Waste Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 376                               US type of raw score for Underground Storage Tanks Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377                                    US type of raw score for Wastewater Discharge Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 378                           US type of raw score for Drinking Water Non-Compliance Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 379                                   State type of raw score for Particulate Matter Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 380                                                State type of raw score for Ozone Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 381                               State type of raw score for Nitrogen Dioxide (NO2) Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 382                            State type of raw score for Diesel Particulate Matter Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 383                                State type of raw score for Toxic Releases to Air Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 384                         State type of raw score for Traffic Proximity and Volume Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 385                                           State type of raw score for Lead Paint Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 386                                  State type of raw score for Superfund Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 387                                        State type of raw score for RMP Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 388                            State type of raw score for Hazardous Waste Proximity Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 389                            State type of raw score for Underground Storage Tanks Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390                                 State type of raw score for Wastewater Discharge Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 391                        State type of raw score for Drinking Water Non-Compliance Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 302                                         US percentile for Summary Index for Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 303                                                      US percentile for Summary Index for Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 304                                     US percentile for Summary Index for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 305                                  US percentile for Summary Index for Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 306                                      US percentile for Summary Index for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 307                               US percentile for Summary Index for Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 308                                       US percentile for Summary Index for Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 309                                        US percentile for Summary Index for Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 310                                              US percentile for Summary Index for RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 311                                  US percentile for Summary Index for Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 312                  US percentile for Summary Index for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 313                             US percentile for Summary Index for Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 314                              US percentile for Summary Index for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 328                                      State percentile for Summary Index for Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 329                                                   State percentile for Summary Index for Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 330                                  State percentile for Summary Index for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 331                               State percentile for Summary Index for Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 332                                   State percentile for Summary Index for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 333                            State percentile for Summary Index for Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 334                                    State percentile for Summary Index for Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 335                                     State percentile for Summary Index for Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 336                                           State percentile for Summary Index for RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 337                               State percentile for Summary Index for Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 338               State percentile for Summary Index for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 339                          State percentile for Summary Index for Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 340                           State percentile for Summary Index for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 392                         US type of raw score for Particulate Matter Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 393                                      US type of raw score for Ozone Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 394                     US type of raw score for Nitrogen Dioxide (NO2) Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 395                  US type of raw score for Diesel Particulate Matter Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 396                      US type of raw score for Toxic Releases to Air Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 397               US type of raw score for Traffic Proximity and Volume Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 398                                 US type of raw score for Lead Paint Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 399                        US type of raw score for Superfund Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 400                              US type of raw score for RMP Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 401                  US type of raw score for Hazardous Waste Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 402                  US type of raw score for Underground Storage Tanks Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 403                       US type of raw score for Wastewater Discharge Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 404              US type of raw score for Drinking Water Non-Compliance Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 405                      State type of raw score for Particulate Matter Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 406                                   State type of raw score for Ozone Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 407                  State type of raw score for Nitrogen Dioxide (NO2) Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 408               State type of raw score for Diesel Particulate Matter Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 409                   State type of raw score for Toxic Releases to Air Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 410            State type of raw score for Traffic Proximity and Volume Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 411                              State type of raw score for Lead Paint Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 412                     State type of raw score for Superfund Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 413                           State type of raw score for RMP Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 414               State type of raw score for Hazardous Waste Proximity Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 415               State type of raw score for Underground Storage Tanks Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 416                    State type of raw score for Wastewater Discharge Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 417           State type of raw score for Drinking Water Non-Compliance Supplemental Summary Index</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 315                            US percentile for Supplemental Summary Index for Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 316                                         US percentile for Supplemental Summary Index for Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 317                        US percentile for Supplemental Summary Index for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 318                     US percentile for Supplemental Summary Index for Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 319                         US percentile for Supplemental Summary Index for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 320                  US percentile for Supplemental Summary Index for Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 321                          US percentile for Supplemental Summary Index for Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 322                           US percentile for Supplemental Summary Index for Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 323                                 US percentile for Supplemental Summary Index for RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 324                     US percentile for Supplemental Summary Index for Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 325     US percentile for Supplemental Summary Index for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 326                US percentile for Supplemental Summary Index for Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 327                 US percentile for Supplemental Summary Index for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 341                         State percentile for Supplemental Summary Index for Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 342                                      State percentile for Supplemental Summary Index for Ozone</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 343                     State percentile for Supplemental Summary Index for Nitrogen Dioxide (NO2)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 344                  State percentile for Supplemental Summary Index for Diesel Particulate Matter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 345                      State percentile for Supplemental Summary Index for Toxic Releases to Air</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 346               State percentile for Supplemental Summary Index for Traffic Proximity and Volume</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 347                       State percentile for Supplemental Summary Index for Lead Paint Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 348                        State percentile for Supplemental Summary Index for Superfund Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 349                              State percentile for Supplemental Summary Index for RMP Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 350                  State percentile for Supplemental Summary Index for Hazardous Waste Proximity</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351  State percentile for Supplemental Summary Index for Underground Storage Tanks (UST) indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 352             State percentile for Supplemental Summary Index for Wastewater Discharge Indicator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 353              State percentile for Supplemental Summary Index for Drinking Water Non-Compliance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 105                                                                           Percent under age 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 106                                                                           Percent above age 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 289                                                                         Population Over Age 17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 290                                                                        Population Under Age 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 99                                                                          Occupied Housing Units</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 100                                                                                  Percent Males</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 101                                                                                Percent Females</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 102                                                                       Life Expectancy in Years</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 103                                                                              Per Capita Income</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 104                                                              Percent Owner Occupied households</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 287                                                                              Female Population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 288                                                                                Male Population</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9                                                                                        Longitude</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10                                                                                        Latitude</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 355                                                                          Census blocks (count)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 356                                                                        Buffer distance (miles)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11                                                                              State Abbreviation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                                                      State Name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14                                                                                      EPA Region</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 354                                                                     Census blockgroups (count)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                                                                  EJScreen Report</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2                                                                                     EJScreen Map</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                      ECHO report</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                                     ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                                            valid</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                      invalid_msg</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12                                                                              in_how_many_states</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                                                                       ACS Report</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4                                                                                      ECHO Report</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5                                                                                     ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6                                                                                            valid</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7                                                                                      invalid_msg</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13                                                                              in_how_many_states</span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -973,7 +976,7 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

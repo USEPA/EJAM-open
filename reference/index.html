@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -58,7 +59,7 @@
           <code><a href="EJAM.html">EJAM</a></code> <code><a href="EJAM.html">EJAM-package</a></code>
 
         </dt>
-        <dd>EJAM - Environmental Justice Analysis Multisite tool</dd>
+        <dd>EJAM - Environment and Residential Population Analysis Multisite tool</dd>
       </dl><dl><dt>
 
           <code><a href="run_app.html">run_app()</a></code>
@@ -70,7 +71,7 @@
           <code><a href="ejamit.html">ejamit()</a></code>
 
         </dt>
-        <dd>Get an EJ analysis (demographic and environmental indicators) in or near a list of locations</dd>
+        <dd>Get an EJ analysis (residential population and environmental indicators) in or near a list of locations</dd>
       </dl><dl><dt>
 
           <code><a href="ejamit_compare_distances.html">ejamit_compare_distances()</a></code>
@@ -123,7 +124,7 @@
           <code><a href="ejam2barplot.html">ejam2barplot()</a></code>
 
         </dt>
-        <dd>Barplot of ratios of demographic (or other) scores to averages - simpler syntax</dd>
+        <dd>Barplot of ratios of residential population (or other) scores to averages - simpler syntax</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2barplot_sites.html">ejam2barplot_sites()</a></code>
@@ -142,6 +143,24 @@
 
         </dt>
         <dd>Barplot comparing groups of sites on 1 indicator, for output of ejamit_compare_types_of_places() easy high-level function for getting a quick look at top few groups of sites</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2barplot_indicators.html">ejam2barplot_indicators()</a></code>
+
+        </dt>
+        <dd>Create facetted barplots of groups of indicators</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2boxplot_ratios.html">ejam2boxplot_ratios()</a></code>
+
+        </dt>
+        <dd>Make boxplot of ratios to US averages</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2histogram.html">ejam2histogram()</a></code>
+
+        </dt>
+        <dd>Histogram of single indicator from EJAM output</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2ratios.html">ejam2ratios()</a></code>
@@ -755,7 +774,7 @@
           <code><a href="counties_as_sites.html">counties_as_sites()</a></code>
 
         </dt>
-        <dd>FIPS - Analyze US Counties as if they were sites, to get EJ indicators summary for each county</dd>
+        <dd>FIPS - Analyze US Counties as if they were sites, to get summary indicators summary for each county</dd>
       </dl><dl><dt>
 
           <code><a href="fips_counties_from_statefips.html">fips_counties_from_statefips()</a></code>
@@ -820,7 +839,7 @@
           <code><a href="states_as_sites.html">states_as_sites()</a></code>
 
         </dt>
-        <dd>FIPS - Analyze US States as if they were sites, to get EJ indicators summary</dd>
+        <dd>FIPS - Analyze US States as if they were sites, to get summary indicators summary</dd>
       </dl><dl><dt>
 
           <code><a href="fips_state_from_state_abbrev.html">fips_state_from_state_abbrev()</a></code>
@@ -929,10 +948,40 @@
         <dd>utility - How many blocks and many other stats about blocks and sites</dd>
       </dl><dl><dt>
 
+          <code><a href="getpointsnearby.html">getpointsnearby()</a></code>
+
+        </dt>
+        <dd>Find IDs of and distances to all nearby points (e.g., schools, or EPA-regulated facilities, etc.)</dd>
+      </dl><dl><dt>
+
+          <code><a href="getfrsnearby.html">getfrsnearby()</a></code>
+
+        </dt>
+        <dd>Find all EPA-regulated facilities nearby each specified point and distances</dd>
+      </dl><dl><dt>
+
+          <code><a href="proxistat.html">proxistat()</a></code>
+
+        </dt>
+        <dd>Create a custom proximity score for some user-specified set of points, so that every US block group is assigned a proximity score counting those points</dd>
+      </dl><dl><dt>
+
           <code><a href="indexblocks.html">indexblocks()</a></code>
 
         </dt>
         <dd>Create localtree (a quadtree index of all US block centroids) in global environment</dd>
+      </dl><dl><dt>
+
+          <code><a href="indexpoints.html">indexpoints()</a></code>
+
+        </dt>
+        <dd>Utility to create efficient quadtree spatial index of any set of lat,lon</dd>
+      </dl><dl><dt>
+
+          <code><a href="indexfrs.html">indexfrs()</a></code>
+
+        </dt>
+        <dd>Utility to create an efficient quadtree spatial index of EPA-regulated facility locations</dd>
       </dl><dl><dt>
 
           <code><a href="convert_units.html">convert_units()</a></code>
@@ -961,7 +1010,7 @@
           <code><a href="doaggregate.html">doaggregate()</a></code>
 
         </dt>
-        <dd>Summarize environmental and demographic indicators at each location and overall</dd>
+        <dd>Summarize environmental and residential population indicators at each location and overall</dd>
       </dl><dl><dt>
 
           <code><a href="calc_ejam.html">calc_ejam()</a></code>
@@ -1008,13 +1057,13 @@
           <code><a href="blockgroupstats.html">blockgroupstats</a></code>
 
         </dt>
-        <dd>blockgroupstats (DATA) EJScreen demographic and environmental indicators for Census block groups</dd>
+        <dd>blockgroupstats (DATA) residential population and environmental indicators for Census block groups</dd>
       </dl><dl><dt>
 
           <code><a href="bgej.html">bgej</a></code>
 
         </dt>
-        <dd>bgej (DATA) EJScreen EJ Indexes for Census block groups</dd>
+        <dd>bgej (DATA) Summary Indexes for Census block groups</dd>
       </dl><dl><dt>
 
           <code><a href="bgpts.html">bgpts</a></code>
@@ -1050,7 +1099,7 @@
           <code><a href="usastats_means.html">usastats_means()</a></code>
 
         </dt>
-        <dd>usastats_means - convenient way to see US MEANS of ENVIRONMENTAL and DEMOGRAPHIC indicators</dd>
+        <dd>usastats_means - convenient way to see US MEANS of ENVIRONMENTAL and residential population indicators</dd>
       </dl><dl><dt>
 
           <code><a href="usastats_query.html">usastats_query()</a></code>
@@ -1062,7 +1111,7 @@
           <code><a href="usastats_queryd.html">usastats_queryd()</a></code>
 
         </dt>
-        <dd>usastats_queryd - convenient way to see US mean, pctiles of DEMOGRAPHIC indicators in lookup table</dd>
+        <dd>usastats_queryd - convenient way to see US mean, pctiles of residential population indicators in lookup table</dd>
       </dl><dl><dt>
 
           <code><a href="usastats_querye.html">usastats_querye()</a></code>
@@ -1092,7 +1141,7 @@
           <code><a href="statestats_means.html">statestats_means()</a></code>
 
         </dt>
-        <dd>statestats_means - convenient way to see STATE MEANS of ENVIRONMENTAL and DEMOGRAPHIC indicators</dd>
+        <dd>statestats_means - convenient way to see STATE MEANS of ENVIRONMENTAL and RESIDENTIAL POPULATION indicators</dd>
       </dl><dl><dt>
 
           <code><a href="statestats_query.html">statestats_query()</a></code>
@@ -1157,7 +1206,7 @@
           <code><a href="distance_cdf_by_group_plot.html">distance_cdf_by_group_plot()</a></code>
 
         </dt>
-        <dd>What percentage of this demographic group's population lives less than X miles from a site?</dd>
+        <dd>What percentage of this group's population lives less than X miles from a site?</dd>
       </dl><dl><dt>
 
           <code><a href="distance_mean_by_group.html">distance_mean_by_group()</a></code>
@@ -1198,7 +1247,7 @@
           <code><a href="count_sites_with_n_high_scores.html">count_sites_with_n_high_scores()</a></code>
 
         </dt>
-        <dd>Answers questions like how many sites have demog. indicators &gt;2x the state avg?</dd>
+        <dd>Answers questions like how many sites have certain indicators &gt;2x the state avg?</dd>
       </dl><dl><dt>
 
           <code><a href="colcounter_summary_all.html">colcounter_summary_all()</a></code>
@@ -1316,7 +1365,7 @@
           <code><a href="mapfastej_counties.html">mapfastej_counties()</a></code>
 
         </dt>
-        <dd>Map - County polygons / boundaries - Create leaflet or static map of EJ results</dd>
+        <dd>Map - County polygons / boundaries - Create leaflet or static map of results of analysis</dd>
       </dl><dl><dt>
 
           <code><a href="map_counties_in_state.html">map_counties_in_state()</a></code>
@@ -1386,7 +1435,7 @@
           <code><a href="ejam2barplot.html">ejam2barplot()</a></code>
 
         </dt>
-        <dd>Barplot of ratios of demographic (or other) scores to averages - simpler syntax</dd>
+        <dd>Barplot of ratios of residential population (or other) scores to averages - simpler syntax</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2barplot_sites.html">ejam2barplot_sites()</a></code>
@@ -1410,19 +1459,19 @@
           <code><a href="plot_barplot_ratios.html">plot_barplot_ratios()</a></code>
 
         </dt>
-        <dd>Barplot of ratios of demographic (or other) scores to averages (or other references)</dd>
+        <dd>Barplot of ratios of residential population percentages (or other scores) to averages (or other references)</dd>
       </dl><dl><dt>
 
           <code><a href="plot_ridgeline_ratios_ez.html">plot_ridgeline_ratios_ez()</a></code>
 
         </dt>
-        <dd>Make ridgeline plot of ratios of demographic score to its average</dd>
+        <dd>Make ridgeline plot of ratios of residential population percentage to its average</dd>
       </dl><dl><dt>
 
           <code><a href="plot_ridgeline_ratios.html">plot_ridgeline_ratios()</a></code>
 
         </dt>
-        <dd>Make ridgeline plot of ratios of demographic score to its average</dd>
+        <dd>Make ridgeline plot of ratios of residential population percentage to its average</dd>
       </dl><dl><dt>
 
           <code><a href="plot_boxplot_pctiles.html">plot_boxplot_pctiles()</a></code>
@@ -1434,7 +1483,7 @@
           <code><a href="boxplots_ratios.html">boxplots_ratios()</a></code>
 
         </dt>
-        <dd>boxplots of demographics across sites as ratios to US means</dd>
+        <dd>boxplots of Residential Population Percentages across sites as ratios to US means</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2barplot_sitegroups.html">ejam2barplot_sitegroups()</a></code>
@@ -1470,7 +1519,7 @@
           <code><a href="plot_distance_by_pctd.html">plot_distance_by_pctd()</a></code>
 
         </dt>
-        <dd>What percentage of this demographic group's population lives less than X miles from a site? — *** DRAFT - NEED TO RECHECK CALCULATIONS</dd>
+        <dd>What percentage of this group's population lives less than X miles from a site? — *** DRAFT - NEED TO RECHECK CALCULATIONS</dd>
       </dl><dl><dt>
 
           <code><a href="plot_distance_by_group.html">plot_distance_by_group()</a></code>
@@ -1660,13 +1709,13 @@
           <code><a href="testids_registry_id.html">testids_registry_id</a></code>
 
         </dt>
-        <dd>test data, vector of EPA FRS Registry ID numbers</dd>
+        <dd>test data, EPA Facility Registry ID numbers to try using</dd>
       </dl><dl><dt>
 
           <code><a href="testids_program_sys_id.html">testids_program_sys_id</a></code>
 
         </dt>
-        <dd>test data, string vector of EPA FRS Program System ID numbers</dd>
+        <dd>test data, EPA program names and program system ID numbers to try using</dd>
       </dl><dl><dt>
 
           <code><a href="default_points_shown_at_startup.html">default_points_shown_at_startup</a></code>
@@ -1930,7 +1979,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

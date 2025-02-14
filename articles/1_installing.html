@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -81,12 +82,12 @@
 
     
     
-<p>EJAM is not only a web app built in shiny R, it is also an R package,
-using the <a href="https://thinkr-open.github.io/golem/" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://thinkr-open.github.io/golem/">golem</a> framework.</p>
-<p>The package can be installed from a github repository. It can be
-installed locally as an R package, and the data or functions can be used
-outside of the shiny app interface, if you want to reuse data or code,
-or want to do customized analysis or explore the data in R.</p>
+<p>EJAM is not only a web app, it is also an R package.</p>
+<p>To use the R package, you first need to have <a href="https://posit.co/download/rstudio-desktop/" class="external-link">R and RStudio</a>.</p>
+<p>The EJAM package can be installed on your computer as an R package.
+This is useful if you want to use the full set of EJAM R functions
+outside of the web app interface, to do customized analysis, to explore
+the data in R, or to reuse data or code in other applications.</p>
 <div class="section level2">
 <h2 id="how-to-install">How to install<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h2>
@@ -94,116 +95,80 @@ or want to do customized analysis or explore the data in R.</p>
 <h3 id="try-this-first-if-you-just-want-to-use-the-package-not-clone-edit-source-code">Try this first (if you just want to use the package, not clone &amp;
 edit source code)<a class="anchor" aria-label="anchor" href="#try-this-first-if-you-just-want-to-use-the-package-not-clone-edit-source-code"></a>
 </h3>
+<p>If you just install the package without cloning the repository, you
+can use the EJAM package, but cannot edit the source code, for example.
+To just install it, try this:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>timeout <span class="op">=</span> <span class="fl">300</span><span class="op">)</span> <span class="co"># Just in case the download takes longer than 60 seconds</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"USEPA/EJAM-open"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://usepa.github.io/EJAM">EJAM</a></span><span class="op">)</span></span></code></pre></div>
-<p>You can also install it with source references and tests like
-this:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"USEPA/EJAM-open"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>          INSTALL_opts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"--with-keep.source"</span>, <span class="st">"--install-tests"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"USEPA/EJAM-open"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <p>If install_github does not work, you can try something like this:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32-EJAM-open.tar.gz"</span></span>
-<span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32-EJAM.tar.gz"</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_url</span><span class="op">(</span>url <span class="op">=</span> <span class="va">x</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span>, auth_token <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="loadattach-the-package">load/attach the package<a class="anchor" aria-label="anchor" href="#loadattach-the-package"></a>
+</h2>
+<p>To use EJAM in the RStudio console, start by loading / attaching the
+package:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://usepa.github.io/EJAM">EJAM</a></span><span class="op">)</span> <span class="co"># or  library(EJAM)</span></span></code></pre></div>
+<p><strong>That should be all you need to do.</strong></p>
 <hr>
 </div>
-<div class="section level3">
-<h3 id="if-you-need-the-full-source-code-or-want-to-buildinstall-in-rstudio-on-your-own">if you need the full source code or want to build/install in RStudio
-on your own<a class="anchor" aria-label="anchor" href="#if-you-need-the-full-source-code-or-want-to-buildinstall-in-rstudio-on-your-own"></a>
-</h3>
-<p>The EJAM package is available as one of the <a href="https://github.com/USEPA/EJAM-open" class="external-link uri" target="_blank" rel="noreferrer noopener" title="github.com/USEPA/EJAM-open">USEPA
-github</a> repositories (not on CRAN).</p>
-<p>Options for getting the source package:</p>
+<div class="section level2">
+<h2 id="cloning-if-you-need-the-full-source-code-or-want-to-buildinstall-in-rstudio-on-your-own">Cloning: if you need the full source code or want to build/install
+in RStudio on your own<a class="anchor" aria-label="anchor" href="#cloning-if-you-need-the-full-source-code-or-want-to-buildinstall-in-rstudio-on-your-own"></a>
+</h2>
+<p>You can use the package just by installing without cloning. However,
+if you want to explore and edit source code, etc., you may want to clone
+the github repository that has the EJAM source code. Note that to do so,
+you have to know how to use R/RStudio with git and github, create a
+project, build from source, etc.</p>
+<p>The EJAM package may be available at (or at a fork of) the <a href="https://github.com/USEPA/EJAM-open" class="external-link uri" target="_blank" rel="noreferrer noopener" title="github.com/USEPA/EJAM-open">USEPA/EJAM-open github repository</a>
+(not on CRAN).</p>
+<p>Options for getting the full source package:</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>One way to get the source package is that in RStudio you can
-click New Project, Version Control, Git, and enter the repository URL.
-It will download the full source package, which has additional files
-related to development that you do not need if you just want to use the
-package.</p></li>
-<li><p>Yet another way to get the full source package is to use a
-browser to go to the repository page, such as <a href="https://github.com/USEPA/EJAM-open" class="external-link uri" target="_blank" rel="noreferrer noopener" title="github.com/USEPA/EJAM-open">USEPA
-github</a> and then click the green “Code” button, and download and
-unzip the zip file that contains the package.</p></li>
-<li><p>A third way is to Clone or Fork the package via GitHub Desktop or
-from the GitHub site.</p></li>
+<li><p>One way to get the full source package is to use a browser to go
+to the repository page such as a fork of <a href="https://github.com/USEPA/EJAM-open" class="external-link uri" target="_blank" rel="noreferrer noopener" title="github.com/USEPA/EJAM-open">USEPA/EJAM-open github repo</a> and
+then click the green “Code” button, and download and unzip the zip file
+that contains the package.</p></li>
+<li><p>Another way to get the source package is that in RStudio you can
+click New Project, Version Control, Git, and enter the repository
+URL.</p></li>
+<li><p>A third way is to Clone or Fork the package via GitHub
+Desktop.</p></li>
 </ol>
 <p>Regardless of how you got the full source code, you would then need
 to build/install the package from source on your computer using RStudio
 (using the Build menu) or using the devtools package, for example.</p>
-</div>
-<div class="section level3">
-<h3 id="for-a-repository-that-is-non-public-internal-or-private-for-epa-only">for a repository that is non-public (internal or private, for EPA
-only)<a class="anchor" aria-label="anchor" href="#for-a-repository-that-is-non-public-internal-or-private-for-epa-only"></a>
-</h3>
-<p>If a USEPA github repository is not public, you need to be inside
-EPA’s network (e.g., via VPN) and also need to get a personal access
-token (PAT):</p>
-<ol style="list-style-type: decimal">
-<li>create a GitHub personal access token with at least ‘repo scope’
-which you can do at <a href="https://github.com/settings/tokens" class="external-link uri">https://github.com/settings/tokens</a>
-</li>
-</ol>
-<ul>
-<li><p>For background on this, see <a href="https://usethis.r-lib.org/articles/git-credentials.html#tldr-use-https-2fa-and-a-github-personal-access-token" class="external-link uri" target="_blank" rel="noreferrer noopener">https://usethis.r-lib.org/articles/git-credentials.html#tldr-use-https-2fa-and-a-github-personal-access-token</a></p></li>
-<li><p>Go to <a href="https://github.com/settings/tokens" class="external-link uri" target="_blank" rel="noreferrer noopener">https://github.com/settings/tokens</a> and
-select Tokens (classic) on the left-hand side. Then click ‘Generate New
-Token’ -&gt; Generate new token (classic).</p></li>
-<li><p>Give it a name and select all boxes under repo scope. Scroll down
-and click ‘Generate Token’.</p></li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li>save GitHub credentials via Rstudio</li>
-</ol>
-<ul>
-<li>one-time login: from the console, run
-<code>credentials::set_github_pat()</code>. Paste in your PAT to the
-login popup under ‘Token’. This will save the PAT in your GITHUB_PAT
-environmental variable, where <code>remotes::install_github()</code> or
-<code>devtools::install_github()</code> will by default look for
-it.</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li>Try to install the package using
-<code>devtools::install_github()</code>
-</li>
-</ol>
-<div class="section level4">
-<h4 id="cran-packages-needed-dependencies">CRAN packages needed (dependencies)<a class="anchor" aria-label="anchor" href="#cran-packages-needed-dependencies"></a>
-</h4>
-<p>EJAM needs a number of other packages to be installed that are
-available from CRAN. Trying to load and attach EJAM with require(EJAM)
-or library(EJAM) will alert you to those other packages you need to
-install if you don’t already have them. The list of CRAN packages needed
-is in the <code>DESCRIPTION</code> file in the R package source code
-root folder (as can be found in the code repository). Note some are in
-Suggests and you might want to install those as well – using
-dependencies=T in install_github() or install_url() will make sure of
-that.</p>
-</div>
-</div>
+<hr>
 </div>
 <div class="section level2">
-<h2 id="initialize-loadattach-package">Initialize: load/attach package<a class="anchor" aria-label="anchor" href="#initialize-loadattach-package"></a>
+<h2 id="technical-details">Technical details<a class="anchor" aria-label="anchor" href="#technical-details"></a>
 </h2>
-<p>Once the right R packages are installed, to use EJAM in the console
-you can start by loading and attaching the package, using library or
-require. It should automatically download some data and build an
-index.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="va"><a href="https://usepa.github.io/EJAM">EJAM</a></span><span class="op">)</span></span></code></pre></div>
-<p><strong>That should be all you need to do.</strong></p>
-<hr>
-<p>Just in case you need more details on how that works, the following
-describes the code used by the package to get the data and build an
-index.</p>
+<p>Just in case you need more details on how installing and attaching
+the package works, the following describes the package dependencies and
+code used by the package to get the data and build an index.</p>
+<div class="section level3">
+<h3 id="details-on-cran-packages-needed-dependencies">Details on CRAN packages needed (dependencies)<a class="anchor" aria-label="anchor" href="#details-on-cran-packages-needed-dependencies"></a>
+</h3>
+<p>You should not have to do anything other than the instructions above,
+to handle package dependencies. EJAM needs a number of other packages to
+be installed that are (almost all) available from CRAN. Installing the
+EJAM package as explained above will handle obtaining those other
+packages. Cloning and building/installing and then trying to load/attach
+EJAM will also alert you to those other packages you need to install if
+you don’t already have them. In case it is of interest, the list of CRAN
+packages needed is in the <code>DESCRIPTION</code> file in the R package
+source code root folder (as can be found in the code repository). Note
+some are in Suggests and you might want to install those as well – using
+dependencies=T in <code>remotes::install_github()</code> or
+<code>remotes::install_url()</code> will make sure of that.</p>
+</div>
 <div class="section level3">
 <h3 id="details-on-the-automatic-data-downloads">Details on the automatic data downloads<a class="anchor" aria-label="anchor" href="#details-on-the-automatic-data-downloads"></a>
 </h3>
@@ -211,21 +176,24 @@ index.</p>
 as part of the package. However, they already should be downloaded and
 loaded into memory automatically as soon as you use
 <code><a href="https://usepa.github.io/EJAM">require(EJAM)</a></code>.</p>
+<p>On first use, it should automatically download some data files. Each
+time it is attached, it will check for updates and also will build a
+spatial index of Census block points.</p>
 <p>Typically you would not need to download any datasets yourself,
 because EJAM just downloads these when the app starts (technically, when
 the R package is attached) (or only as needed in the case of certain
 datasets that are not always needed). Some datasets are installed along
-with the package, such as the [blockgroupstats] data. But large files
-like “[blockpoints]” are stored on a “pins board” server and EJAM
-downloads them from there. You might want your own local copies, though,
-for these reasons:</p>
+with the package, such as the <code>blockgroupstats</code> data. But
+large files like <code>blockpoints</code> are stored on a “pins board”
+server and EJAM downloads them from there. You might want your own local
+copies, though, for these reasons:</p>
 <p>Attaching the package actually checks for copies in memory first
 (e.g., <code>exists("quaddata", envir = globalenv())</code>), then local
-disk (using [dataload_from_local()] looking in the data folder of the
-(source or installed) package, as defined by
+disk (using <code><a href="../reference/dataload_from_local.html">dataload_from_local()</a></code> looking in the data
+folder of the (source or installed) package, as defined by
 <code>EJAM:::app_sys()</code> which is just a wrapper for
 <code><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file()</a></code>), then finally tries to download any still
-needed, using [dataload_from_pins()] for example.</p>
+needed, using internal functions.</p>
 </div>
 <div class="section level3">
 <h3 id="details-on-the-indexing-of-blocks">Details on the indexing of blocks<a class="anchor" aria-label="anchor" href="#details-on-the-indexing-of-blocks"></a>
@@ -233,13 +201,11 @@ needed, using [dataload_from_pins()] for example.</p>
 <p>EJAM also needs to build the index of about 8 million US block
 locations (one internal point for each block), which takes a few
 seconds. EJAM does this automatically when attached via
-<code><a href="https://usepa.github.io/EJAM">require(EJAM)</a></code> or <code><a href="https://usepa.github.io/EJAM">library(EJAM)</a></code>, by creating an
-object called <a href="../reference/localtree.html">localtree</a> based
-on the <a href="../reference/quaddata.html">quaddata</a> object obtained
-as mentioned above. Some functions check for it and try to build the
-index on the fly if it is missing. You can also (re)build it
-manually:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> or <code><a href="https://rdrr.io/r/base/library.html" class="external-link">require()</a></code> e.g., require(EJAM), by
+creating an object called <a href="../reference/localtree.html">localtree</a> based on the <a href="../reference/quaddata.html">quaddata</a> object obtained as
+mentioned above. Some functions check for it and try to build the index
+on the fly if it is missing. You can also (re)build it manually:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/indexblocks.html">indexblocks</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -254,7 +220,7 @@ manually:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -84,66 +85,64 @@ ejam_uniq_id, ST, statename, FIPS.ST, REGION, n</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="fu">state_from_sitetable</span><span class="op">(</span><span class="va">testpoints_10</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          lat        lon sitenumber ejam_uniq_id  valid invalid_msg     ST</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;      &lt;num&gt;      &lt;int&gt;        &lt;int&gt; &lt;lgcl&gt;      &lt;char&gt; &lt;char&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1: 30.97740  -83.36900          1            1   TRUE                 GA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2: 32.51581  -86.37732          2            2   TRUE                 AL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3: 42.23498  -88.30541          3            3   TRUE                 IL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: 33.87001 -118.37778          4            4   TRUE                 CA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: 34.01493 -118.20539          5            5   TRUE                 CA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6: 40.73110  -74.17307          6            6   TRUE                 NJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: 37.81144 -121.29348          7            7   TRUE                 CA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8: 44.85387  -93.04713          8            8   TRUE                 MN</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9: 41.18661 -111.94904          9            9   TRUE                 UT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10: 40.71239  -74.58470         10           10   TRUE                 NJ</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      statename FIPS.ST REGION     n</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         &lt;char&gt;  &lt;char&gt;  &lt;num&gt; &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  1:    Georgia      13      4     1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  2:    Alabama      01      4     2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3:   Illinois      17      5     3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4: California      06      9     4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  5: California      06      9     5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6: New Jersey      34      2     6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  7: California      06      9     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8:  Minnesota      27      5     8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  9:       Utah      49      8     9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10: New Jersey      34      2    10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         lat        lon sitenumber        sitename ejam_uniq_id ST</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  37.64122 -122.41065          1  Example Site 1            1 CA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  43.92249  -72.66370          2  Example Site 2            2 VT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  40.69351  -73.98002          3  Example Site 3            3 NY</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  45.29520  -92.98184          4  Example Site 4            4 MN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  39.43730  -74.72370          5  Example Site 5            5 NJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  45.67487  -94.81534          6  Example Site 6            6 MN</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  33.14865 -117.19895          7  Example Site 7            7 CA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  34.01176  -80.95414          8  Example Site 8            8 SC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  43.01026  -89.45952          9  Example Site 9            9 WI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 40.74625  -74.25955         10 Example Site 10           10 NJ</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         statename FIPS.ST REGION  n</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1      California      06      9  1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2         Vermont      50      1  2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3        New York      36      2  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       Minnesota      27      5  4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      New Jersey      34      2  5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       Minnesota      27      5  6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7      California      06      9  7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  South Carolina      45      4  8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9       Wisconsin      55      5  9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10     New Jersey      34      2 10</span>
 <span class="r-in"><span>  <span class="fu">state_from_sitetable</span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span><span class="op">$</span><span class="va">results_bysite</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">ejam_uniq_id</span>, <span class="va">ST</span>, <span class="va">pop</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ejam_uniq_id ST     pop</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1             1 GA  2136.6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             2 AL  4306.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3             3 IL  4277.3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4             4 CA 45013.8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5             5 CA 17725.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6             6 NJ 59689.2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7             7 CA 11765.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8             8 MN  7692.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9             9 UT 11096.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10           10 NJ  4083.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ejam_uniq_id ST      pop</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             1 CA  14025.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             2 VT   1584.6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             3 NY 137834.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             4 MN   1906.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             5 NJ   1519.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6             6 MN   3620.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7             7 CA  14810.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8             8 SC   3935.3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9             9 WI   4183.8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10           10 NJ  28896.7</span>
 <span class="r-in"><span>  <span class="fu">state_from_sitetable</span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span><span class="op">$</span><span class="va">results_bysite</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">ST</span>, <span class="va">pop</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ST     pop ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  GA  2136.6            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  AL  4306.0            2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  IL  4277.3            3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  CA 45013.8            4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  CA 17725.9            5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  NJ 59689.2            6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  CA 11765.0            7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  MN  7692.5            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  UT 11096.4            9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 NJ  4083.9           10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ST      pop ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  CA  14025.6            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  VT   1584.6            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  NY 137834.8            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  MN   1906.0            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  NJ   1519.5            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  MN   3620.3            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  CA  14810.4            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  SC   3935.3            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  WI   4183.8            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 NJ  28896.7           10</span>
 <span class="r-in"><span>  <span class="fu">state_from_sitetable</span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span><span class="op">$</span><span class="va">results_bysite</span><span class="op">[</span>, <span class="fu">.</span><span class="op">(</span><span class="va">ST</span>, <span class="va">lat</span>, <span class="va">lon</span>, <span class="va">pop</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ST      lat        lon     pop ejam_uniq_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  GA 30.97740  -83.36900  2136.6            1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  AL 32.51581  -86.37732  4306.0            2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  IL 42.23498  -88.30541  4277.3            3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  CA 33.87001 -118.37778 45013.8            4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  CA 34.01493 -118.20539 17725.9            5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  NJ 40.73110  -74.17307 59689.2            6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  CA 37.81144 -121.29348 11765.0            7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  MN 44.85387  -93.04713  7692.5            8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  UT 41.18661 -111.94904 11096.4            9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 NJ 40.71239  -74.58470  4083.9           10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    ST      lat        lon      pop ejam_uniq_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  CA 37.64122 -122.41065  14025.6            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  VT 43.92249  -72.66370   1584.6            2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  NY 40.69351  -73.98002 137834.8            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  MN 45.29520  -92.98184   1906.0            4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  NJ 39.43730  -74.72370   1519.5            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  MN 45.67487  -94.81534   3620.3            6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  CA 33.14865 -117.19895  14810.4            7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  SC 34.01176  -80.95414   3935.3            8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  WI 43.01026  -89.45952   4183.8            9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 NJ 40.74625  -74.25955  28896.7           10</span>
 <span class="r-in"><span>  </span></span>
 </code></pre></div>
     </div>
@@ -156,7 +155,7 @@ ejam_uniq_id, ST, statename, FIPS.ST, REGION, n</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>

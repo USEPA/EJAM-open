@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,6 +52,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -82,19 +83,19 @@
     
     
 <div class="section level2">
-<h2 id="epas-ejam-tool-and-the-ejscreen-multisite-tool">EPA’s EJAM tool and the EJScreen Multisite Tool<a class="anchor" aria-label="anchor" href="#epas-ejam-tool-and-the-ejscreen-multisite-tool"></a>
+<h2 id="the-environmental-and-residential-population-analysis-multisite-tool">The Environmental and Residential Population Analysis Multisite
+tool<a class="anchor" aria-label="anchor" href="#the-environmental-and-residential-population-analysis-multisite-tool"></a>
 </h2>
-<p>The Environmental Justice Analysis Multisite tool (EJAM) is a
-software toolkit developed by the United States Environmental Protection
-Agency (US EPA). EJAM is what powers the “EJScreen Multisite Tool” – a
-web application that is a part of <a href="https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen</a>. EJAM is also
-available as an open-source software package for developers and
-analysts.</p>
-<p>EJAM lets you easily and quickly see demographic and environmental
-information aggregated within and across hundreds or thousands of
-places, all at the same time.</p>
-<p>Using EJAM is like running an EJScreen report, but for hundreds or
+<p>The Environmental and Residential Population Analysis Multisite tool
+(multisite tool) is a software toolkit. EJAM is what powers the
+Multisite Tool web application. EJAM is also available as an open-source
+software package for developers and analysts.</p>
+<p>EJAM lets you easily and quickly see residential population and
+environmental information aggregated within and across hundreds or
 thousands of places, all at the same time.</p>
+<p>Using EJAM is like running a community environmental/census data
+report, but for hundreds or thousands of places, all at the same
+time.</p>
 <p>You can see a quick summary, explore interactive maps, tables, and
 plots, and download a summary report or detailed spreadsheet.</p>
 <p>Locations can be defined in a variety of ways, so EJAM can summarize
@@ -102,24 +103,21 @@ the following:</p>
 <ul>
 <li><p><strong>Conditions near any set of points</strong><br>
 (e.g., proximity analysis of residents near all the EPA-regulated
-facilities of a certain type). This can provide EJ-related information
-about people who live in communities potentially affected by any of the
-industrial facilities on a list, for example.</p></li>
+facilities of a certain type). This can provide information about people
+who live in communities potentially affected by any of the industrial
+facilities on a list, for example.</p></li>
 <li><p><strong>Conditions within any areas you have defined on a
 map</strong><br>
 (e.g., if you have a shapefile of polygons/ zones based on measured or
 modeled exposure or risk, or cities/neighborhoods, etc.).</p></li>
 </ul>
 <div class="section level3">
-<h3 id="ejscreen-data-methods">EJScreen Data &amp; Methods<a class="anchor" aria-label="anchor" href="#ejscreen-data-methods"></a>
+<h3 id="epa-data-methods">EPA Data &amp; Methods<a class="anchor" aria-label="anchor" href="#epa-data-methods"></a>
 </h3>
-<p>EJAM begins with EJScreen data and indicators. It uses the same
-methods but in a way that is optimized for working with many locations
-at once. The default demographic indicators are <a href="https://www.epa.gov/ejscreen/overview-demographic-indicators-ejscreen" title="https://www.epa.gov/ejscreen/overview-demographic-indicators-ejscreen" class="external-link">EJScreen
-basic demographic indicators</a>, with the race/ethnicity subgroups and
-many of the other selected demographic indicators that EJScreen
-provides. The environmental indicators and EJ Indexes are also the ones
-used in EJScreen.</p>
+<p>EJAM begins with residential population and environmental data and
+indicators. The default indicators are the ones used in EJScreen. It
+uses the same methods as EJScreen but in a way that is optimized for
+working with many locations at once.</p>
 <p>The tool runs either a polygon-based or proximity-based analysis at
 each location, just like EJScreen would provide a standard report for a
 single location, except EJAM does this for each of a large number of
@@ -129,20 +127,20 @@ locations very quickly.</p>
 <h3 id="new-unique-features">New &amp; Unique Features<a class="anchor" aria-label="anchor" href="#new-unique-features"></a>
 </h3>
 <p><strong>Summarizing Across Locations</strong></p>
-<p>Unlike what EJScreen was originally designed to be able to offer,
-EJAM can calculate an aggregated summary of overall environmental
-conditions and demographics for the average resident across all the
-populations and all of the locations.</p>
-<p>The summary report lets you quickly and easily see which demographic
-groups live near the selected facilities or within defined areas. It
-also provides new insights into which environmental stressors may affect
-certain demographic subgroups disproportionately, to varying degrees,
+<p>EJAM can calculate an aggregated summary of overall environmental
+conditions and residential population percentages for the average
+resident’s location, across all the populations and all of the
+locations.</p>
+<p>The summary report lets you quickly and easily see which residential
+population groups live near the selected facilities or within defined
+areas. It also provides new insights into which environmental stressors
+may affect specific residential population subgroups to varying degrees,
 near a regulated sector overall and at individual sites.</p>
-<p>This allows EJ analysis to move beyond looking at a small number of
-indicators for a few demographic groups, at one site in a single
-permitting decision, to a more complete picture of conditions near a
-whole set of facilities that is the focus of a risk analysis or a
-proposed action or initiative, for example.</p>
+<p>This allows easy geospatial analysis to move beyond looking at a
+small number of indicators for a few residential population groups, at
+one site in a single permitting decision, to a more complete picture of
+conditions near a whole set of facilities that is the focus of a risk
+analysis or a proposed action or initiative, for example.</p>
 <p><strong>Immediate Results (Speed)</strong></p>
 <p>Compared to related GIS tools this new tool provides a ready-to-use
 summary report, plus more flexibility, accuracy, and speed than other
@@ -199,15 +197,16 @@ one or all of the nearby facilities. This enables exploration of the
 complete picture of proximities, rather than using an arbitrary single
 distance defining near versus far. The distribution can be sliced later
 for the summary statistics at any distance, and can be summarized as a
-distribution of distances within each demographic group.</p>
+distribution of distances within each residential population group.</p>
 </div>
 <div class="section level3">
 <h3 id="data-updates">Data Updates<a class="anchor" aria-label="anchor" href="#data-updates"></a>
 </h3>
 <p>Annual data updates are synchronized with EJScreen data updates and
 main version numbers, so EJScreen 2.32 (the updated version released in
-August 2024) and EJAM 2.32 use the same data. Version 2.32 has ACS
-2018-2022 block group demographics and Census 2020 block weights.</p>
+August 2024) and EJAM 2.32 used the same data. Version 2.32 has ACS
+2018-2022 block group residential population data and Census 2020 block
+weights.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -221,7 +220,7 @@ August 2024) and EJAM 2.32 use the same data. Version 2.32 has ACS
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.0</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +28,7 @@
     <li><a class="dropdown-item" href="../articles/2_quickstart.html">Quick Start Guide</a></li>
     <li><a class="dropdown-item" href="../articles/3_analyzing.html">Using EJAM for Analysis in R</a></li>
     <li><a class="dropdown-item" href="../articles/4_advanced.html">Advanced Features</a></li>
+    <li><a class="dropdown-item" href="../articles/zipcodes.html">Zipcodes</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -96,9 +97,9 @@ it returns a blank if the old name is not found at all.</p>
 <li><p>"longname" (aka "long", for full explanatory headers to use on a table)</p></li>
 <li><p>"rname" (aka "r", the R variable names as used in the EJAM code)</p></li>
 <li><p>"apiname" (aka "api", as returned by EJScreen API)</p></li>
-<li><p>"csvname" (aka "csv", as found in the CSV files of just the key demographic and environmental indicators, found on the EJScreen FTP site)</p></li>
-<li><p>"acsname" (aka "acs", as found in a ACS data file internally used by EJScreen, containing all the extra demographic and other indicators not stored in the CSV files on the EJScreen FTP site)</p></li>
-<li><p>"DEJ" (whether the indicator is demographic, environmental, etc.)</p></li>
+<li><p>"csvname" (aka "csv", as found in the CSV files of just the key residential population and environmental indicators, found on the EJScreen FTP site)</p></li>
+<li><p>"acsname" (aka "acs", as found in a ACS data file internally used by EJScreen, containing all the extra residential population groups and other indicators not stored in the CSV files on the EJScreen FTP site)</p></li>
+<li><p>"DEJ" (whether the indicator is residential population, environmental, etc.)</p></li>
 <li><p>"varlist" (which group of names is this variable in, such as "names_d", "names_d_subgroups", "names_d_state_pctile", etc.)</p></li>
 <li><p>"calculation_type" (how it should be aggregated over block groups, such as "wtdmean", "sum of counts", etc.)</p></li>
 <li><p>"denominator" (the weight to use in aggregating as a wtdmean, normally a count variable that is the universe for a percentage, such as "pop", "hhlds", etc.)</p></li>
@@ -135,7 +136,7 @@ it returns a blank if the old name is not found at all.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CensusVersion </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        "2020" </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"date_saved_in_package")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2024-10-12"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-02-05"</span>
 <span class="r-in"><span> <span class="fu"><a href="namesbyvarlist.html">namesbyvarlist</a></span><span class="op">(</span><span class="st">'names_d'</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   varlist            rname</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 names_d      Demog.Index</span>
@@ -169,9 +170,9 @@ it returns a blank if the old name is not found at all.</p>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/stats/addmargins.html" class="external-link">addmargins</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">map_headernames</span><span class="op">$</span><span class="va">vartype</span>, <span class="va">map_headernames</span><span class="op">$</span><span class="va">DEJ</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               Demographic E other EJ Index Environmental geo Sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                         3       0        0             0   0   3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                         2       0        0             0   0   2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   geo                   0       0        0             0  18  18</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   raw                 136      18        2            14   7 177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   raw                 135      18        2            14   7 176</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   stateavg             41       4        0            13   0  58</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   statepctile          42       4       26            13   0  85</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   stateratio           35       0        0            13   0  48</span>
@@ -180,7 +181,7 @@ it returns a blank if the old name is not found at all.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   uspctile             41       4       26            13   0  84</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   usratio              35       0        0            13   0  48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   usraw                 0       0       28             0   0  28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum                 374      34      110            92  25 635</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Sum                 372      34      110            92  25 633</span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="co"># the columns "newsort" and "reportsort" provide useful sort orders</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">map_headernames</span><span class="op">$</span><span class="va">rname</span><span class="op">[</span><span class="va">map_headernames</span><span class="op">$</span><span class="va">varlist</span> <span class="op">==</span> <span class="st">"names_d"</span><span class="op">]</span></span></span>
@@ -215,7 +216,7 @@ it returns a blank if the old name is not found at all.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.0</p>
+  <p>EJAM Version 2.32.2</p>
 </div>
 
     </footer></div>
