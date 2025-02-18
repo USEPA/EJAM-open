@@ -1,6 +1,6 @@
 Package: EJAM
 Title: Environment and Population Analysis Multisite tool
-Version: 2.32.1
+Version: 2.32.2
 Author: Mark Corrales <corrales.mark@epa.gov>
 Maintainer: Mark Corrales <corrales.mark@epa.gov>
 License: MIT + file LICENSE.md

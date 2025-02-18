@@ -5,10 +5,10 @@ utils::bibentry(
   author = personList(
               as.person("Mark A. Corrales")
               ),
-  title = "Environmental Justice Analysis Multisite (EJAM) Tool",
+  title = "Environmental and Residential Population Analysis Multisite tool (EJAM)",
   address = "Washington, DC",
   institution = "United States Environmental Protection Agency (US EPA)",
-  year = 2024,
+  year = 2025,
   url = "https://usepa.github.io/EJAM/index.html",
-  textVersion = "Corrales MA (2024). Environmental Justice Analysis Multisite (EJAM) Tool. United States Environmental Protection Agency, Washington, DC. https://usepa.github.io/EJAM/index.html"
+  textVersion = "Corrales MA (2024). Environmental and Residential Population Analysis Multisite tool (EJAM). United States Environmental Protection Agency, Washington, DC. https://usepa.github.io/EJAM/index.html"
 )

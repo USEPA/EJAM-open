@@ -11,7 +11,7 @@ Environmental and Residential Population Analysis Multisite tool
 <!-- badges: end -->
 
 The Environmental and Residential Population Analysis Multisite tool
-lets you easily and quickly see demographic and environmental
+lets you easily and quickly see residential population and environmental
 information aggregated within and across hundreds or thousands of
 places, all at the same time.
 

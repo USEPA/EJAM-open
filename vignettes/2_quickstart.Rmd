@@ -153,11 +153,11 @@ ejam2report(out)
 y <- ejam2report(out, sitenumber = 1, analysis_title = "Site #1")
 ```
 
-![Summary table of environmental and demographic indicators as raw value, average and percentile (in State and in US overall)](images/image-report_top_example.png){width="100%"}
+![Summary table of environmental and residential population indicators as raw value, average and percentile (in State and in US overall)](images/image-report_top_example.png){width="100%"}
 
-![Summary table of EJ Indexes, race-ethnicity subgroups, sex, and language indicators](images/image-report_EJ_table_example.png){width="100%"} ![US map showing analyzed points](images/image-map_example.png){width="100%"}
+![Summary table of Summary Indexes, population subgroups, sex, and language indicators](images/image-report_EJ_table_example.png){width="100%"} ![US map showing analyzed points](images/image-map_example.png){width="100%"}
 
-![Barplot comparing demographic indicators as ratios to US average](images/image-barplot_example.png){width="100%"}
+![Barplot comparing residential population indicators as ratios to US average](images/image-barplot_example.png){width="100%"}
 
 ## Table of Results in RStudio console
 
@@ -185,7 +185,7 @@ ejam2barplot(out,
   main = "Envt & Demog Indicators at Selected Sites Compared to State Averages")
 
 
-# Demographics only
+# residential population data only
 
 # vs nationwide avg
 ejam2barplot(testoutput_ejamit_100pts_1miles)
@@ -193,7 +193,7 @@ ejam2barplot(testoutput_ejamit_100pts_1miles)
 # vs statewide avg
 ejam2barplot(testoutput_ejamit_1000pts_1miles,
   varnames = c(names_d_ratio_to_state_avg, names_d_subgroups_ratio_to_state_avg),
-  main = "Demographics at Selected Sites Compared to State Averages")
+  main = "Residential population group percentages at Selected Sites Compared to State Averages")
 
 
 # Environmental only

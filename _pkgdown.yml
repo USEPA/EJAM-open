@@ -24,8 +24,8 @@ development:
   destination: 
   version_label: warning
 home:
-  title: EJAM Environmental Justice Analysis Multisite
-  description: Webapp and tools summarizing demographic and environmental data for hundreds of places quickly and accurately
+  title: EJAM Environmental and Residential Population Analysis Multisite
+  description: Webapp and tools summarizing residential population and environmental data for hundreds of places quickly and accurately
   sidebar:
     structure: [dev, citation, license, community]
 articles:
@@ -64,6 +64,9 @@ reference:
   - ejam2barplot_sites
   - ejam2barplot_distances
   - ejam2barplot_sitegroups
+  - ejam2barplot_indicators
+  - ejam2boxplot_ratios
+  - ejam2histogram
   - ejam2ratios
   - ejam2means
   - ejam2tableviewer

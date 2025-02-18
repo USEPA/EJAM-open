@@ -29,8 +29,8 @@ ejam_app_version  <- desc$get("Version")
 ejam_app_version <- substr(ejam_app_version, start = 1, stop = gregexpr('\\.',ejam_app_version)[[1]][2] - 1)
 
 .app_title <-  ifelse(isTRUE(golem_opts$isPublic), 
-                      "EJScreen Multisite Tool", 
-                      "EJAM"
+                      "Environmental and Residential Population Analysis Multisite tool", 
+                      "Environmental and Residential Population Analysis Multisite tool"
 )
 .app_version_headertext <- paste0("  (Version ", ejam_app_version, ")")
 ## keep title and version separate so we can use a different font size for each
@@ -113,7 +113,7 @@ choices_for_type_of_site_upload <- if (isTRUE(golem_opts$isPublic)) {
 
 # top level header
 .community_report_title <- ifelse(isTRUE(golem_opts$isPublic), 
-                                  "EJScreen Multisite Report",
+                                  "EJAM Multisite Report",
                                   "EJAM Multisite Report"  # "Summary Report" might be appropriate for single site barplots version via build_barplot_report.R
 )
 

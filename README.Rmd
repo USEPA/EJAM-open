@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
 ```
 <!-- badges: end -->
 
-The Environmental and Residential Population Analysis Multisite tool lets you easily and quickly see demographic and environmental information aggregated within and across hundreds or thousands of places, all at the same time.
+The Environmental and Residential Population Analysis Multisite tool lets you easily and quickly see residential population and environmental information aggregated within and across hundreds or thousands of places, all at the same time.
 
 <!--    THIS SECTION WILL BE RESTORED / UNCOMMENTED ONCE THE URLS WORK/ PKGDOWN WEBSITE IS HOSTED AGAIN 
 

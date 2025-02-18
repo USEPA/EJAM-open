@@ -2,11 +2,11 @@
 
 ## Note on "EJAM" versus "EJAM-open" as the repository name
 
-Please note that as of January 2025, changes are still being made to exactly where the open source project will be shared, documented, and available for contributions (such as submitting Issues or Pull Requests on GitHub). In the short term, it is important to note that the "EJAM" package is shared at the "EJAM-open" repository even though the documentation website still refers to and tries to link to a different, nonpublic repository called "EJAM" which may cause some confusion. You can still clone and work with the EJAM-open repository and just avoid using any weblinks pointing to USEPA/EJAM rather than USEPA/EJAM-open. The open source EJAM package was initially made available via the [EJAM-open repository](https://github.com/USEPA/EJAM-open), but the [EJAM package documentation](https://usepa.github.io/EJAM/index.html) was initially published from a non-public development repository, so that documentation's links to source code did not work (because they required access to a separate, non-public repository).
+Please note that as of early 2025, changes are still being made to exactly where the open source project will be shared, documented, and available for contributions (such as submitting Issues or Pull Requests on GitHub). In the short term, it is important to note that the "EJAM" package is shared at the "EJAM-open" repository even though the documentation website may still refer to and try to link to a different, nonpublic repository called "EJAM" which may cause some confusion. You can still clone and work with the EJAM-open repository and just avoid using any weblinks pointing to USEPA/EJAM rather than USEPA/EJAM-open. The open source EJAM package was initially made available via the [EJAM-open repository](https://github.com/USEPA/EJAM-open), but the [EJAM package documentation](https://usepa.github.io/EJAM/index.html) was initially published from a non-public development repository, so that documentation's links to source code did not work (because they required access to a separate, non-public repository).
 
 ## Welcome!
 
-We’re so glad you’re thinking about contributing to an EPA open source project!
+We’re so glad you’re thinking about contributing to an open source project!
 If you’re unsure about anything, just ask — or submit your issue or pull request anyway.
 The worst that can happen is we’ll politely ask you to change something.
 We appreciate all friendly contributions.

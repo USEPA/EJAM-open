@@ -363,7 +363,7 @@ An outline of how to use key functions is provided below. After these examples
 is a discussion of background information and considerations in selecting
 radius.
 
-## DEMOGRAPHICS BY DISTANCE AT BLOCK GROUP RESOLUTION
+## RESIDENTIAL POPULATION GROUP PERCENTAGES BY DISTANCE AT BLOCK GROUP RESOLUTION
 
 It is easiest to analyze distance increments based on each blockgroup's average
 resident here. Block resolution is covered in a later section.
@@ -422,7 +422,7 @@ x = data.frame(sitenumber = 1:NROW(x), x)
 x
 ```
 
-Plot to compare sites, for just one demographic indicator
+Plot to compare sites, for just one residential population indicator
 
 This plot shows that % low income among residents at sites 5 and 6 is more than
 twice the relevant State average. It is near average at several other sites, and
@@ -460,7 +460,7 @@ x <- ejamit_compare_distances(pts, radii = radii, quiet = TRUE, plot = FALSE)
 
 See the plot
 
-```{r ejamit_compare_distances2plot, fig.cap="Example of using ejamit_compare_distances2plot()", fig.alt="Example of using ejamit_compare_distances2plot() with distance on x axis and ratio to state average on y axis, with one line for each demographic group such as ratio to state average percent Hispanic, showing the indicator that increases the most as you get closer to site is Ratio to State avg % Hispanic", eval=TRUE, echo=TRUE, fig.height=5, fig.width=7}
+```{r ejamit_compare_distances2plot, fig.cap="Example of using ejamit_compare_distances2plot()", fig.alt="Example of using ejamit_compare_distances2plot() with distance on x axis and ratio to state average on y axis, with one line for each residential population group such as ratio to state average percent Hispanic, showing the indicator that increases the most as you get closer to site is Ratio to State avg % Hispanic", eval=TRUE, echo=TRUE, fig.height=5, fig.width=7}
 # x <- ejamit_compare_distances(pts, radii = radii, quiet = TRUE) # in which default is plot=TRUE
 # or 
 ejamit_compare_distances2plot(x)
@@ -468,7 +468,7 @@ ejamit_compare_distances2plot(x)
 
 --------------------------------------------------------------------------------
 
-## DEMOGRAPHICS AT BLOCK GROUP RESOLUTION
+## RESIDENTIAL POPULATION GROUP DATA AT BLOCK GROUP RESOLUTION
 
 Most of the EJAM functions use distance to the average resident of a block
 group, which is calculated from the distance to each block's internal point and
@@ -483,7 +483,7 @@ the function plot_distance_by_pctd(). It uses the distance from the site to each
 block's internal point (like a centroid) rather than just the distance to the
 average resident in each block group.
 
-### How demographics at *ONE SITE* vary as *a continuous function of distance*
+### How residential population group percentages at *ONE SITE* vary as *a continuous function of distance*
 
 Example of area where %Black is very high within 1 mile but drops by 3 miles
 away
@@ -516,8 +516,8 @@ Examples of sites analyzed here show some conclusions are very sensitive to the
 radius used. The choice of radius in proximity analysis for some sites will lead
 to a very different conclusion depending on the radius analyzed, if only a
 single distance is checked or reported on. The relationship between distance X
-and percent demographics within X miles can be positive, negative, or roughly
-flat, etc., depending on the site and group. The percent demographics may be
+and percent by residential population group within X miles can be positive, negative, or roughly
+flat, etc., depending on the site and group. The residential population group percentage may be
 above or below the US average or the State average within a given distance of
 the site.
 
@@ -558,7 +558,7 @@ site.
 
 Out of all the residents within the area analyzed, see how some are mostly
 nearby and others are further away, as a CDF plot. This shows the share of each
-demographic group residing at various distances from sites, with distance from
+residential population group residing at various distances from sites, with distance from
 nearest site on the x axis and the cumulative share of each group on the y axis
 (of all residents within 10 miles, what percent have a site within X miles?). It
 compares everyone nearby to just those who are among the percent low income, and
@@ -577,20 +577,20 @@ distance_by_group_plot(
 
 --------------------------------------------------------------------------------
 
-## MEAN DISTANCE BY DEMOGRAPHIC GROUP
+## MEAN DISTANCE BY RESIDENTIAL POPULATION GROUP
 
-The analysis described above looks at demographics as a function of distance.
+The analysis described above looks at residential population group percentages as a function of distance.
 Another perspective is provided by looking at distance as a function of
-demographic group. This means looking at the average distance or the whole
+residential population group. This means looking at the average distance or the whole
 distribution of distances (or proximities) among all the residents within a
-single demographic group, one group at a time, and comparing these groups.
+single residential population group, one group at a time, and comparing these groups.
 
 ### Overall list of sites
 
 *Mean distance* of each group, at the *OVERALL LIST of sites* as a whole
 
-To see a table of demographic indicators, showing the mean distance for each
-group, compared to distance for those not in that demographic group:
+To see a table of residential population indicators, showing the mean distance for each
+group, compared to distance for those not in that residential population group:
 
 ```{r distance_mean_by_group_1, eval=TRUE}
 
@@ -652,22 +652,22 @@ Conclusions can be sensitive to the choice of radius, if only one radius is
 reported on, as shown in [Step through all the sites to see an indicator versus
 distance at each].
 
-### Demographics-by-distance or distance-by-demographic group?
+### Group's percentage at each distance versus distance for each population group
 
-Two basic ways to report demographics and risk are 1) showing demographics as a
-function or risk, and 2) showing risk as a function of demographics:
+Two basic ways to report residential population percentages and risk are 1) showing residential population percentage as a
+function or risk, and 2) showing risk as a function of residential population group:
 
-1.  Demographics as a function of risk (or proximity): Many proximity analyses
-    report percent demographics by distance or risk bin, such as % low income
-    within 3 miles of a point. This expresses demographics as a function of
+1.  Residential population group percentage as a function of risk (or proximity): Many proximity analyses
+    report percentage by distance or risk bin, such as % low income
+    within 3 miles of a point. This expresses residential population shares as a function of
     proximity or risk. Sometimes other distance or risk bins are used, such as
     areas with risk above some cutoff. And sometimes instead of a continuous
-    measure of % demographics, the demographic data are used to categorize
+    measure of percentage, the residential population data are used to categorize
     places in bins, such as areas in the top quartile of poverty rates.
 
-2.  Risk (or proximity) as a function of demographics: A different way to
+2.  Risk (or proximity) as a function of residential population group: A different way to
     present this information is to report distance or risk as a function of
-    demographic group -- this expresses distance within each demographic group,
+    residential population group -- this expresses distance within each residential population group,
     such as the average distance by group or the full distribution of risk
     within each group.
 
@@ -694,7 +694,7 @@ This is a tricky issue in proximity analysis: There is a subtle but vital
 difference between proximity analysis using a single radius (binary distance)
 and analysis using continuous distance. One way to think of this is that there
 are two aspects of or degrees of proximity to consider when analyzing
-demographic groups within a certain fixed distance (radius) from a single
+residential population groups within a certain fixed distance (radius) from a single
 facility point (or a whole set of facilities). These two ways of summarizing
 proximity are complementary:
 
@@ -718,7 +718,7 @@ Some functions like distance_mean_by_group() or distance_by_group_by_site() do
 the second of these two types of analysis. They report, only among those
 anywhere inside the radius, which groups are closer to the site.
 
-In a specific location, for example, one demographic group could be
+In a specific location, for example, one residential population group could be
 underrepresented within 3 miles, but those few who are in the group still might
 live right next to the facility in which case their average distance would be
 higher than that of any other group because this function only counts those
@@ -733,7 +733,7 @@ average is greater (or their proximity score is lower) than other groups within
 The question of whether to compare to Statewide or Nationwide or urban/rural or
 other reference averages or percentiles is related to this question of how to
 look at distances, or exposures or risk, just like it relates to how to look at
-demographic percentages. One could look at % demographics within 1 mile, 2
+residential population group percentages. One could look at percentage rate within 1 mile, 2
 miles, etc. all the way out until one was looking at the county overall, the
 state overall, and eventually the nation overall. Selecting a single radius or
 selecting a single reference area should be done with a recognition of what
@@ -741,15 +741,15 @@ questions one is actually trying to answer, and an understanding of how impacts
 vary with distance from a particular type of facility or source of potential
 risk.
 
-If one is comparing demographic groups in terms of distance (or risk level), or
-if one is comparing % demographics at each distance (or risk level), the
+If one is comparing residential population groups in terms of distance (or risk level), or
+if one is comparing % at each distance (or risk level), the
 implicit assumption is that there is some "expected" rate, and/or some
 "equitable" or "proportionate" % or ratio or risk.
 
 ## CHOICE OF RADIUS AND UNCERTAINTY DUE TO A SMALL RADIUS WHERE BLOCKS ARE LARGE
 
 Choosing a radius (or polygon) that is small relative to local Census blocks can
-lead to significant uncertainty in EJAM/EJScreen estimates, so it is important
+lead to significant uncertainty in EJAM estimates, so it is important
 to understand the details if one wants to use a small radius especially in rural
 (low population density) areas.
 
@@ -821,8 +821,8 @@ uncertainty where blocks are large:
 
 These considerations are explained further in the discussion below.
 
-Demographic counts and percentages or environmental indicators are calculated
-from block group demographic and environmental indicators and an estimate of
+Residential population group counts and percentages or environmental indicators are calculated
+from block group residential population data and environmental indicators and an estimate of
 what fraction of each block group is inside each site. For proximity analysis
 that means a circle is drawn around a point using a radius, and for shapefiles a
 similar approach is used. In either case, the fraction of the block group
@@ -1016,7 +1016,7 @@ mapthis <- cbind(
   NOTE = ifelse(few, "< 30 blocks here", "")
   )
 
-# Show in red the sites with very few blocks nearby, suggesting more uncertainty in demographic counts
+# Show in red the sites with very few blocks nearby, suggesting more uncertainty in residential population group counts
 
 mm <- mapfast(mapthis, radius = radius, color = 'navy')
 mm |> leaflet::addCircles(

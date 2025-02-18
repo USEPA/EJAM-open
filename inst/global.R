@@ -439,10 +439,10 @@ default_ok2plot <- TRUE # the plots to put in excel tabs via table_xls_from_ejam
 ## ------------------------ Short report options ####
 
 
-default_standard_analysis_title <-  'Summary of EJ Analysis' # Default title to show on each short report
+default_standard_analysis_title <-  'Summary of Analysis' # Default title to show on each short report
 default_plotkind_1pager <- "bar"  #    Bar = "bar", Box = "box", Ridgeline = "ridgeline"
 
-# default_extratable_title <- 'EJScreen environmental and socioeconomic indicators data' # not implemented
+# default_extratable_title <- 'Additional Indicators' # not implemented
 
 # default_show_ratios_in_report <- FALSE # and see default_calculate_ratios, calculate_ratios
 # if (!default_calculate_ratios) {default_show_ratios_in_report <- FALSE}  # or let it show NA values
@@ -513,10 +513,10 @@ escape_html <- function(text) {
 intro_text <- tagList(
   # tags$p("For more information about EJAM:"),
   h2( a(href = "https://usepa.github.io/EJAM/articles/0_whatis.html",
-        "What is EJScreen's EJAM tool?", 
+        "What is EJAM?", 
         target = "_blank", rel = "noreferrer noopener") ),
-  p("EJScreen's multisite tool (EJAM) is a tool developed by the United States Environmental Protection Agency (US EPA) that makes it easy to see demographic and environmental information summarized in and across any list of places in the nation. Using this tool is like getting a typical EJScreen report, but for hundreds or thousands of places, all at the same time."),
-  p("This provides interactive results and a formatted, ready-to-share report with tables, graphics, and a map. The report can provide EJ-related information about people who live in communities near any of the industrial facilities on a list, for example."),
+  p("The Environmental and Residential Population Analysis Multisite tool (EJAM) is a tool developed by the United States Environmental Protection Agency (US EPA) that makes it easy to see residential population and environmental information summarized in and across any list of places in the nation. Using this tool is like getting reports for hundreds or thousands of places, all at the same time."),
+  p("This provides interactive results and a formatted, ready-to-share report with tables, graphics, and a map. The report can provide information about communities near any of the industrial facilities on a list, for example."),
   br(),
   br()
 )
@@ -684,7 +684,7 @@ html_header_fmt <- tagList(
   
   #################################################################################################################### #
   # WHERE TO FIND THIS template  #
-  # browseURL("https://github.com/USEPA/webcms/blob/main/utilities/r/OneEPA_template.R")
+  #  USEPA/webcms/blob/main/utilities/r/OneEPA_template.R 
   # but also see
   # https://www.epa.gov/themes/epa_theme/pattern-lab/patterns/pages-standalone-template/pages-standalone-template.rendered.html
   # START OF ONEEPA SHINY APP WEB UI TEMPLATE to insert within your fluid page
@@ -696,13 +696,15 @@ html_header_fmt <- tagList(
   
   tags$head(
     HTML(
-      "<!-- Google Tag Manager -->
+      "<!-- Google Tag Manager
+      
   		  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   		})(window,document,'script','dataLayer','GTM-L8ZB');</script>
-  		<!-- End Google Tag Manager -->"
+  		
+      End Google Tag Manager -->"
     ),
     tags$meta(charset="utf-8"),
     tags$meta(property="og:site_name", content="US EPA"),
@@ -820,15 +822,21 @@ html_header_fmt <- tagList(
           margin-bottom: 0px; margin-top: 0px; margin-left: 0px; margin-right: 0px; 
           padding-bottom: 0px; padding-top: 0px; padding-left: 0px; padding-right: 0px">
 
-          <img id="titleLogo" src="https://ejscreen.epa.gov/mapper/images/epa_logo_horizBlue.png" 
-            style="margin: 0px; padding-bottom: 4px; padding-top: 4px; padding-left: 4px; padding-right: 4px" alt="EPA" title="EPA">
+<!--  hide EPA logo, use ejam favicon instead:
+
+        <img id="titleLogo" src="www/epa_logo_horizBlue.png" 
+              style="margin: 0px; padding-bottom: 4px; padding-top: 4px; padding-left: 4px; padding-right: 4px" alt="EPA" title="EPA">
+-->              
+        <img id="titleLogo" src="www/favicon.png" 
+              style="height: 20%; margin: 0px; padding-bottom: 4px; padding-top: 4px; padding-left: 38px; padding-right: 15px" alt="logo" title="logo">
+              
         </td>
 
         <td valign="bottom" style="line-height:34px; padding: 0px; 
-        border-bottom-color: #ffffff; border-top-color: #ffffff; border-left-color: #ffffff; border-right-color: #ffffff";
-        vertical-align: bottom;>
+          border-bottom-color: #ffffff; border-top-color: #ffffff; border-left-color: #ffffff; border-right-color: #ffffff";
+          vertical-align: bottom;>
         
-                <span style="font-size: 17pt; font-weight:700; font-family:Arial";>',   # large font for app title
+                <span style="font-size: 15pt; font-weight:700; font-family:Arial";>',   # larger font for app title
                 
                 .app_title,   # see manage-public-private.R
                 
@@ -840,26 +848,20 @@ html_header_fmt <- tagList(
                 
                 '</span>',
                 '
-                                                        
-<!-- 
-<span style="font-size: 10pt; font-weight:700;";>
-
-&nbsp;&nbsp;EJ Analysis Multisite Tool (version 2.3)
-
-</span>
---> 
-        </td>', 
+        </td>',
+                
       ### > links ####         
       # could adjust which of the links here get shown in the header, depending on  isTRUE(golem_opts$isPublic)           
 ' 
         <td valign="bottom" align="right";  style="line-height:34px; padding: 0px;
                 border-bottom-color: #ffffff; border-top-color: #ffffff; border-left-color: #ffffff; border-right-color: #ffffff";>
           <span id="homelinks">
-            <a href="https://www.epa.gov/ejscreen" alt="Go to EJScreen home page" title="Go to EJScreen home page" target="_blank">EJScreen Website</a> | 
-            <a href="https://ejscreen.epa.gov/mapper/" alt="Go to EJScreen mapper"    title="Go to EJScreen mapper" target="_blank">EJScreen Mapper</a> | 
-            <a href="https://www.epa.gov/ejscreen/overview-socioeconomic-indicators-ejscreen" alt="Go to EJScreen glossary page" title="Go to EJScreen glossary page" target="_blank">Glossary</a> | 
+          
+  <!--           <a href="https://www.epa.gov/ejscreen" alt="Go to EJScreen home page" title="Go to EJScreen home page" target="_blank">EJScreen Website</a> |   --> 
+  <!--           <a href="https://ejscreen.epa.gov/mapper/" alt="Go to EJScreen mapper"    title="Go to EJScreen mapper" target="_blank">EJScreen Mapper</a> |   --> 
+              <a href="https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/overview-socioeconomic-indicators-ejscreen" alt="Go to EJScreen glossary page" title="Go to EJScreen glossary page" target="_blank">Glossary</a> |    
             <a href="www/ejscreen-multisite-help-2025-01.pdf" alt="Go to help document" title="Go to help document" target="_blank">Help</a> | 
-            <a href="mailto:ENVIROMAIL_GROUP@epa.gov?subject=EJScreen%20Multisite%20Tool%20Question" id="emailLink" alt="Contact Us" title="Contact Us">Contact Us</a>
+  <!--           <a href="mailto:ENVIROMAIL_GROUP@epa.gov?subject=EJAM%20Multisite%20Tool%20Question" id="emailLink" alt="Contact Us" title="Contact Us">Contact Us</a>   --> 
           </span>&nbsp;&nbsp;
         </td>
  ',

@@ -92,11 +92,11 @@ require(EJAM) # or  library(EJAM)
 
 You can use the package just by installing without cloning. However, if you want to explore and edit source code, etc., you may want to clone the github repository that has the EJAM source code. Note that to do so, you have to know how to use R/RStudio with git and github, create a project, build from source, etc.
 
-The EJAM package is available at the [USEPA/EJAM-open github repository](https://github.com/USEPA/EJAM-open "github.com/USEPA/EJAM-open"){.uri target="_blank" rel="noreferrer noopener"} (not on CRAN).
+The EJAM package may be available at (or at a fork of) the [USEPA/EJAM-open github repository](https://github.com/USEPA/EJAM-open "github.com/USEPA/EJAM-open"){.uri target="_blank" rel="noreferrer noopener"} (not on CRAN).
 
 Options for getting the full source package:
 
-a.  One way to get the full source package is to use a browser to go to the repository page, [USEPA/EJAM-open github repo](https://github.com/USEPA/EJAM-open "github.com/USEPA/EJAM-open"){.uri target="_blank" rel="noreferrer noopener"} and then click the green "Code" button, and download and unzip the zip file that contains the package.
+a.  One way to get the full source package is to use a browser to go to the repository page such as a fork of [USEPA/EJAM-open github repo](https://github.com/USEPA/EJAM-open "github.com/USEPA/EJAM-open"){.uri target="_blank" rel="noreferrer noopener"} and then click the green "Code" button, and download and unzip the zip file that contains the package.
 
 b.  Another way to get the source package is that in RStudio you can click New Project, Version Control, Git, and enter the repository URL.
 
