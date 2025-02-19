@@ -38,12 +38,12 @@ jobs:
 
       - name: System Libraries
         run: |
-          if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
+          if [ "${{ matrix.os }}" = "ubuntu-latest" ]; then
             sudo apt-get update
             sudo apt-get install -y libfontconfig1-dev libudunits2-dev libcairo2-dev libcurl4-openssl-dev \
                                     libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev \
                                     libjpeg-dev libgdal-dev libgeos-dev libproj-dev
-          elif [ "${{ matrix.os }}" == "macOS-latest" ]; then
+          elif [ "${{ matrix.os }}" = "macOS-latest" ]; then
             brew install freetype udunits cairo harfbuzz fribidi libpng libtiff jpeg gdal pkg-config
           fi
 
