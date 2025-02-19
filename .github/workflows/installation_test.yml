@@ -2,17 +2,17 @@ name: EJAM Installation
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "test" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "test" ]
 
 permissions:
   contents: read
 
 jobs:
   install_ejam:
-    if: github.repository == 'USEPA/EJAM-open' # Only trigger for this repo
-    runs-on: ubuntu-latest
+    if: ${{ !github.event.repository.private }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
@@ -28,14 +28,14 @@ jobs:
         uses: r-lib/actions/setup-r@v2
         with:
           r-version: ${{ matrix.r-version }}
-        
+
       - name: Restore R package cache
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}
           key: ${{ runner.os }}-R-${{ matrix.r-version }}-${{ hashFiles('**/DESCRIPTION') }}
           restore-keys: ${{ runner.os }}-R-${{ matrix.r-version }}-
-          
+
       - name: System Libraries
         run: |
           if [ "${{ matrix.os }}" == "ubuntu-latest" ]; then
@@ -46,7 +46,7 @@ jobs:
           elif [ "${{ matrix.os }}" == "macOS-latest" ]; then
             brew install freetype udunits cairo harfbuzz fribidi libpng libtiff jpeg gdal pkg-config
           fi
-          
+
       - name: Install EJAM (method- ${{ matrix.install-method }})
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -54,17 +54,28 @@ jobs:
           install.packages("remotes")
           if("${{ matrix.install-method }}" == "github") {
             remotes::install_github(
-              "USEPA/EJAM-open", 
-              dependencies=TRUE, 
-              force=TRUE, 
+              "${{ github.repository }}", # what owner/repo has the pkg to try to install
+              dependencies=TRUE,
+              force=TRUE,
               INSTALL_opts = c("--with-keep.source", "--install-tests")
             )
           } else {
+
+          # figure out the URL of the most recent release
+          install.packages("gh")
+          url_latest_release = function(owner_repo) {
+            x = gh::gh(paste0("/repos/",owner_repo,"/releases"))
+            dates = sapply(x, function(z) z$published_at)
+            latest_url = x[[which.max(as.Date(dates))]]$html_url
+            return(latest_url)
+          }
             remotes::install_url(
-              url = "https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32-EJAM.tar.gz",
-              dependencies = TRUE, 
+              url = url_latest_release(owner_repo = "${{ github.repository }}"),
+              #url = "https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32.1.tar.gz",
+              dependencies = TRUE,
               auth_token = ""
             )
+
           }
         shell: Rscript {0}
 
