@@ -70,7 +70,7 @@ jobs:
             )
           } else {
             remotes::install_url(
-              url = "${{ TAR_URL }}",
+              url = Sys.getenv("TAR_URL"),
               dependencies = TRUE,
               auth_token = ""
             )
