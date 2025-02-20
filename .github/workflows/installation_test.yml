@@ -67,7 +67,7 @@ jobs:
           url_latest_release = function(owner_repo) {
             x = gh::gh(paste0("/repos/",owner_repo,"/releases"))
             dates = sapply(x, function(z) z$published_at)
-            latest_url = x[[which.max(as.Date(dates))]]$html_url
+            latest_url = x[[which.max(as.Date(dates))]]$tarball_url
             return(latest_url)
           }
             remotes::install_url(
