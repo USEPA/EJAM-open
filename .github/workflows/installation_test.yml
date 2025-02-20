@@ -68,12 +68,10 @@ jobs:
             )
           } else {
             remotes::install_url(
-              url = ${{ TAR_URL }},
-              #url = "https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32.1.tar.gz",
+              url = Sys.getenv("TAR_URL"),
               dependencies = TRUE,
               auth_token = ""
             )
-
           }
         shell: Rscript {0}
 
