@@ -48,6 +48,12 @@ jobs:
             brew install freetype udunits cairo harfbuzz fribidi libpng libtiff jpeg gdal pkg-config
           fi
 
+      - name: Get latest tar.gz URL
+        if: matrix.install-method == 'url'
+        run: |
+          TAR_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tarball_url')
+          echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
+    
       - name: Install EJAM (method- ${{ matrix.install-method }})
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -61,17 +67,8 @@ jobs:
               INSTALL_opts = c("--with-keep.source", "--install-tests")
             )
           } else {
-
-          # figure out the URL of the most recent release
-          install.packages("gh")
-          url_latest_release = function(owner_repo) {
-            x = gh::gh(paste0("/repos/",owner_repo,"/releases"))
-            dates = sapply(x, function(z) z$published_at)
-            latest_url = x[[which.max(as.Date(dates))]]$tarball_url
-            return(latest_url)
-          }
             remotes::install_url(
-              url = url_latest_release(owner_repo = "${{ github.repository }}"),
+              url = ${{ TAR_URL }},
               #url = "https://github.com/USEPA/EJAM-open/archive/refs/tags/v2.32.1.tar.gz",
               dependencies = TRUE,
               auth_token = ""
