@@ -76,12 +76,12 @@ jobs:
           echo 'export CPPFLAGS="-I/opt/homebrew/opt/jpeg/include"' >> $GITHUB_ENV
           echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/jpeg/lib/pkgconfig"' >> $GITHUB_ENV
 
-      - name: Get latest tar.gz URL
-        if: matrix.install-method == 'url'
+      - name: Get Latest Release Tarball URL (gh CLI)
+        id: get_release_url_gh
         run: |
-          LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
-          TAR_URL="https://github.com/${{ github.repository }}/archive/refs/tags/${LATEST_TAG}.tar.gz"
-          echo "TAR_URL=$TAR_URL" >> "$GITHUB_ENV"
+          TAR_URL=$(gh release view --repo "${github.repository}" --json tarball_url --jq .tarball_url --latest)
+          echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
+        shell: bash
     
       - name: Install EJAM (method- ${{ matrix.install-method }})
         env:
