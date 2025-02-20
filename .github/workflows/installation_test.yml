@@ -115,5 +115,5 @@ jobs:
       - name: Test Installation
         run: |
           library(EJAM)
-          print("Package loaded successfully")'
+          print("Package loaded successfully")
         shell: Rscript {0}
