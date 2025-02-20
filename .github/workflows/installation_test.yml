@@ -52,7 +52,8 @@ jobs:
         if: matrix.install-method == 'url'
         shell: bash
         run: |
-          TAR_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tarball_url')
+          LATEST_TAG=$(curl -s "https://api.github.com/repos/${{ github.repository }}/releases/latest" | jq -r '.tag_name')
+          TAR_URL="https://github.com/${{ github.repository }}/archive/refs/tags/${LATEST_TAG}.tar.gz"
           echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
     
       - name: Install EJAM (method- ${{ matrix.install-method }})
@@ -69,7 +70,7 @@ jobs:
             )
           } else {
             remotes::install_url(
-              url = Sys.getenv("TAR_URL"),
+              url = "${{ TAR_URL }}",
               dependencies = TRUE,
               auth_token = ""
             )
