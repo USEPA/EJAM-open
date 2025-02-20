@@ -50,6 +50,7 @@ jobs:
 
       - name: Get latest tar.gz URL
         if: matrix.install-method == 'url'
+        shell: bash
         run: |
           TAR_URL=$(curl -s https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r '.tarball_url')
           echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
