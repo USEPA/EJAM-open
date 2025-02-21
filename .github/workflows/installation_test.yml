@@ -82,7 +82,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           LATEST_TAG=$(gh release list --repo "${{ github.repository }}" --limit 1 --json tagName --jq '.[0].tagName')
-          TAR_URL=$(gh release view $LATEST_TAG --repo "${{ github.repository }}" --json tarballUrl --jq .tarballUrl)
+          TAR_URL="https://github.com/USEPA/EJAM-open/archive/refs/tags/$LATEST_TAG.tar.gz"
           echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
         shell: bash
 
