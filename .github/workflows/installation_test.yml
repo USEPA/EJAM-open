@@ -79,7 +79,7 @@ jobs:
       - name: Get Latest Release Tarball URL (gh CLI)
         id: get_release_url_gh
         run: |
-          TAR_URL=$(gh release view --repo "${github.repository}" --json tarball_url --jq .tarball_url --latest)
+          TAR_URL=$(gh release view --repo "${{ github.repository }}" --json tarball_url --jq .tarball_url --latest)
           echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
         shell: bash
     
