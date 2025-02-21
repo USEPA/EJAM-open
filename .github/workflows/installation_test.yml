@@ -79,9 +79,11 @@ jobs:
       - name: Get Latest Release Tarball URL (gh CLI)
         id: get_release_url_gh
         run: |
-          TAR_URL=$(gh release view --repo "${{ github.repository }}" --json tarball_url --jq .tarball_url --latest)
+          LATEST_TAG=$(gh release list --repo "${{ github.repository }}" --limit 1 --json tagName --jq '.[0].tagName')
+          TAR_URL=$(gh release view $LATEST_TAG --repo "${{ github.repository }}" --json tarballUrl --jq .tarballUrl)
           echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
         shell: bash
+
     
       - name: Install EJAM (method- ${{ matrix.install-method }})
         env:
