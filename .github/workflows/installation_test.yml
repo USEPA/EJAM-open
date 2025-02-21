@@ -78,6 +78,8 @@ jobs:
 
       - name: Get Latest Release Tarball URL (gh CLI)
         id: get_release_url_gh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           LATEST_TAG=$(gh release list --repo "${{ github.repository }}" --limit 1 --json tagName --jq '.[0].tagName')
           TAR_URL=$(gh release view $LATEST_TAG --repo "${{ github.repository }}" --json tarballUrl --jq .tarballUrl)
