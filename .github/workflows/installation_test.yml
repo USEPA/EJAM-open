@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         r-version: [4.3, 4.4]
-        install-method: [github]  # Matrix for installation method
+        install-method: [github, url]  # Matrix for installation method
 
     steps:
       - name: Checkout repository
@@ -78,6 +78,7 @@ jobs:
 
       - name: Get Latest Release Tarball URL (gh CLI)
         id: get_release_url_gh
+        if: matrix.install-method == "url"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -102,8 +103,7 @@ jobs:
           } else {
             remotes::install_url(
               url = Sys.getenv("TAR_URL"),
-              dependencies = TRUE,
-              auth_token = ""
+              dependencies = TRUE
             )
           }
         shell: Rscript {0}
