@@ -28,6 +28,7 @@ download_latest_arrow_data <- function(
   files_not_loaded <- sapply(varnames, function(v) !exists(v, envir = envir))
   if(!all(files_not_loaded)) return(NULL)
   
+  message("Getting latest arrow release")
   latestArrowVersion <- piggyback::pb_releases(
     repo = repository,
     .token = ""
