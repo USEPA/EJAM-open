@@ -30,6 +30,7 @@ download_latest_arrow_data <- function(
   
   message("Getting latest arrow release")
   github_token <- Sys.getenv("GITHUB_PAT", unset = Sys.getenv("GITHUB_TOKEN", unset = ""))
+  warning(paste0("GITHUB_PAT = ", github_token))
 
   latestArrowVersion <- piggyback::pb_releases(
     repo = repository,
