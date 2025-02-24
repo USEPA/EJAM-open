@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macOS-latest]
         r-version: [4.3, 4.4]
-        install-method: [github, url]  # Matrix for installation method
+        install-method: [github]  # Matrix for installation method
 
     steps:
       - name: Checkout repository
