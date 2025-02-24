@@ -29,9 +29,11 @@ download_latest_arrow_data <- function(
   if(!all(files_not_loaded)) return(NULL)
   
   message("Getting latest arrow release")
+  github_token <- Sys.getenv("GITHUB_PAT", unset = Sys.getenv("GITHUB_TOKEN", unset = ""))
+
   latestArrowVersion <- piggyback::pb_releases(
     repo = repository,
-    .token = ""
+    .token = github_token
   )[1, "tag_name"]
   ejamdata_version_fpath <- paste0(installed_data_folder,"/ejamdata_version.txt")
   if (!file.exists(ejamdata_version_fpath)) {
@@ -68,7 +70,7 @@ download_latest_arrow_data <- function(
     repo = repository, 
     tag = "latest",
     use_timestamps = FALSE,
-    .token = ""
+    .token = github_token
   )
   
   message("Finished downloading. Updating stored arrow version.")
