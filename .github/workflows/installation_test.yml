@@ -78,7 +78,7 @@ jobs:
 
       - name: Get Latest Release Tarball URL (gh CLI)
         id: get_release_url_gh
-        if: matrix.install-method == "url"
+        if: matrix.install-method == 'url'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
