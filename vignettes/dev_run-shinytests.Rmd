@@ -1,0 +1,179 @@
+---
+title: "Testing EJAM App with Shinytests"
+description: "How to run {shinytest2} suite for app-based functionality testing."
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Testing EJAM App with Shinytests}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+This document outlines the general development process for updating EJAM, including the surrounding GitHub infrastructure.
+
+## Dev Environment
+
+If you are successfully running the app, you should have all the necessary packages. If you don't, those packages should live in the `DESCRIPTION` file. However, there are some dev-related packages you may not have:
+
+-   **Shinytest2**
+-   **Diffviewer**
+-   **PhantomJS** – Needed for downloads (install with `webshot::install_phantomjs()`)
+-   **Pandoc** – May come with RStudio; different ways to install
+
+## How Shinytest2 Works
+
+Shinytest2 (henceforth "shinytest") automates app functionality testing, so we can determine if code updates break or unexpectedly modify parts of an application.
+
+It runs the installed version of the app in a headless Chromium browser, simulating user interactions and taking snapshots. These snapshots are stored as JSON files with accompanying PNG images. If differences arise from code updates, the test fails, indicating which files changed.
+
+### Key Features:
+
+-   Compares `.json`, `.html`, `.xlsx` files to a baseline
+-   Snapshots include inputs, outputs, and exported values
+-   `.png` files provide visual confirmation (but do not cause test failures)
+-   Developers can update snapshots to set a new baseline
+
+## EJAM's Shinytest Folder Structure
+
+``` plaintext
+tests/
+  ├── testthat.R (modified for shinytest2)
+  ├── app-functionality.R
+  └── testthat/
+      ├── setup-shinytest2.R
+      ├── test-[DATA TYPE]-functionality.R (e.g. test-FIPS-functionality.R)
+      └── _snaps/
+          ├── [OS, e.g. linux]-[R Version, e.g. 4.4]/
+          │   ├── FIPS-shiny-functionality/
+          │   │   ├── .json, .png, .xlsx, .html files
+          │   ├── shapefile-shiny-functionality/
+          │   │   ├── .json, .png, .xlsx, .html files
+          │   ├── latlon-shiny-functionality/
+          │   │   ├── .json, .png, .xlsx, .html files
+          │   ├── NAICS-shiny-functionality/
+          │   │   ├── .json, .png, .xlsx, .html files
+          │   └── FRS-shiny-functionality/
+          │   │   ├── .json, .png, .xlsx, .html files
+```
+
+### File Descriptions
+
+-   **`testthat.R`** – Calls `shinytest2::test_app()` to run all tests. Can filter specific tests using `filter="test-name"`.
+-   **`_snaps/`** – Stores snapshots categorized by OS, R version, and data type.
+-   **`setup-shinytest2.R`** – Loads defaults/etc. and app scripts into the testing environment.
+-   **`app-functionality.R`** – Contains generic function, `main_shinytest()`, that defines app interactions for testing, running tests for multiple data types (FIPS, shapefile, latlon, NAICS, etc.).
+-   **`test-[DATA TYPE]-functionality.R`** – Simple call to the main app functionality function, specifying the data type to test with.
+-   **`.json` files** – Capture app snapshots.
+-   **`.png` files** – Screenshots (do not trigger failures).
+-   **`.xlsx` & `.html` files** – Download files. Compared via content hashing to prevent false failures.
+
+## Updating Tests
+
+You may wish to modify the shinytest scripts, either to add new interactions with the application or to modify existing ones, such as in the case of an app component that can no longer be interacted with. Here are some methods and tips for updating the shinytest script accordingly.
+
+### Direct Updates
+
+Modify `app-functionality.R` to add new interactions with the app for the shinytest to test.
+
+### Using `shinytest2::record_test()` to generate testing code
+
+If you're not sure how to code interactions directly, run this commad to test the app interactively and record your actions, which can then be copied into test scripts.
+
+### Using `exportTestValues(name = value)`
+
+Throughout the app code, this can be used to store values from reactive expressions or other items that are not inputs or outputs and therefore may not be included in the standard snapshots. Then, in the shinytests, you can specify `export=[name]` to include in the snapshot the export named "name" that you specified in the code, or `export=TRUE` to include all exports.
+
+## Running Tests Locally
+
+The primary method for running the shinytests is:
+
+``` r
+shinytest2::test_app(".", filter="-functionality")
+```
+
+However, it is strongly recommended during development to run the entire `testthat.R` which runs `remotes::install_local()` to ensure your development code is the one tested. This is because shinytest automatically references the installed version of a package.
+
+## GitHub Actions Integration
+
+Using GitHub Actions (GHA) we can have GitHub run our shinytests prior to merging a Pull Request, to give us peace of mind that the app will still work with the merged code.
+
+### Workflow
+
+-   PRs to `development`, `main`, or `deploy-posit` trigger GHA workflows.
+-   GHA sets up R, installs dependencies, runs tests, and compares snapshots.
+-   The workflow is stored in `.github/workflows/run-test.yaml`.
+
+### Speed Optimization
+
+-   If GHA takes too long, cache dependencies by temporarily disabling steps after setup.
+-   If snapshots fail, merge the base branch into the feature branch before updating snapshots.
+
+## Reviewing & Updating Snapshots
+
+### Reviewing
+
+``` r
+testthat::snapshot_review()
+```
+
+Optionally, can filter to review specific files or folders of snapshots.
+
+### Accepting New Snapshots
+
+``` r
+testthat::snapshot_accept()
+```
+
+Optionally, can accept them interactively when reviewing
+
+## Debugging Tests & GitHub Actions
+
+### Debugging Shinytest2
+
+-   Use `save_log()` to inspect logs.
+-   Add `print()`, `message()`, or `warning()` statements in `app-functionality.R`.
+-   Run, line-by line or in chunks, the main shinytest code in `app-functionality.R` beginning with:
+
+```{r, eval = FALSE}
+  test_category <- "NAICS-functionality"
+  test_snap_dir <- glue::glue("{normalizePath(testthat::test_path())}/_snaps/{platform_variant()}/{test_category}-functionality/")
+
+  outputs_to_remove <- c('an_leaf_map')
+    
+  app <- AppDriver$new(
+    variant = platform_variant(),
+    name = test_category, 
+    seed=12345, 
+    load_timeout=2e+06,
+    width = 1920,
+    screenshot_args = FALSE,
+    expect_values_screenshot_args = FALSE,
+    height = 1080,
+    options = list(
+      shiny.reactlog = TRUE, 
+      shiny.trace = TRUE
+    )
+  )
+```
+
+Then, after running lines or chunks, run `app$get_log()` to view the log.
+
+### Debugging GHA
+
+Generally, if you test locally and update snapshots accordingly, GHA should pass. However, the tests do sometimes fail due to OS differences, R version differences, or even package differences. Here are some tips for debugging these issues:
+
+-   Inspect the log in the GitHub repo, under the Actions tab or the Checks tab of the PR.
+-   Inspect artifacts (zipped test outputs) after a failed run and compare snapshots in a diff viewer to identify discrepancies.
+
+## Current State of Tests
+
+-   As of 4/2/2025, the shinytests may be failing, as snapshots have not been updated locally and pushed after recent changes.
+-   The current version of R used for testing is 4.4.1 and should reflect the version used in your development environment, to ensure consistency as much as possible.
+
+## Resources
+
+[RStudio Shinytest2 Documentation](https://rstudio.github.io/shinytest2/reference/AppDriver.html#method-AppDriver-expect_download)

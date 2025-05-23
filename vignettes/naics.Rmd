@@ -1,0 +1,222 @@
+---
+title: "NAICS (Industries)"
+description: "NAICS (Industries)"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{NAICS (Industries)}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo=FALSE, include=FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height = 6, fig.width = 7,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+```{r libraryEJAM, eval=TRUE, echo=FALSE, include=FALSE}
+# rm(list = ls()); golem::detach_all_attached(); devtools::load_all()
+ 
+if (!exists("blockgroupstats")) {library(EJAM)} # use installed version only if pkg not yet attached
+
+dataload_dynamic('all') # varnames = all  currently means all defined by .arrow_ds_names
+
+indexblocks()
+```
+
+# USING NAICS AND SIC CODES TO LOCATE FACILITIES BY INDUSTRY
+
+EJAM helps select regulated sites based on industrial classification, using
+NAICS or SIC code. Finding the right NAICS and finding all the right sites by
+NAICS is complicated. Doing so requires understanding the NAICS system and the
+FRS dataset, and the functions in EJAM that help find or use NAICS codes.
+
+NAICS/SIC categories can be explored in a few ways:
+
+-   [Key EJAM functions for using
+    NAICS/SIC](reference/index.html#naics-sic-datasets)
+-   [NAICS.com website](https://www.naics.com) with extensive information [about
+    NAICS](https://www.naics.com/everything-naics/) and
+    [SIC](https://www.naics.com/everything-sic/)
+-   EPA [FRS Facility Industrial Classification Search
+    tool](https://www.epa.gov/frs/frs-query#industrial) where you can find
+    facilities based on NAICS or SIC.
+-   EPA APIs exist that can be used for similar queries.
+
+Some key functions include `regid_from_naics()`, `latlon_from_naics()`,
+`frs_from_naics()`, `naics_findwebscrape()`, and `naics_categories()`. These
+functions can help find EPA FRS sites based on naics codes or titles. They rely
+on `frs_by_naics` (a data.table), and `naics_from_any()` for querying by code or
+title of category.
+
+Files and dataset examples related to NAICS:
+
+```{r}
+topic = "naics"
+cbind(data.in.package  = sort(grep(topic, EJAM:::datapack()$Item, value = T)))
+cbind(files.in.package = sort(basename(testdata(topic, quiet = T))))
+
+```
+
+**Important points:**
+
+-   Note that a very large fraction of all FRS sites (as obtained for use in
+    EJAM) lack NAICS code!
+
+-   Note that EJAM may query FRS sites differently than the FRS search tool or
+    other query tools would.
+
+-   Note that (NAICS.com) reports many more businesses for a given 6-digit
+    category than the FRS shows, which might be due to FRS only including
+    EPA-regulated sites but also due to data gaps.
+
+-   Note the difference between `children = TRUE` and `children = FALSE` in EJAM
+    functions like `latlon_from_naics()`
+
+-   Note that searching on a 6-digit code misses parent categories you may want.
+    The FRS data on NAICS by site is inconsistent in how many digits are
+    reported for the NAICS (explained below).
+
+A given site might be listed in the FRS as being under one or more NAICS codes
+of various lengths, such as only a parent code (large grouping), only a detailed
+code (6-digit), or some combination of codes and their subcategories.
+
+And the same title, like "Petroleum Refineries," may be assigned by the NAICS
+system to the category but also a subcategory, as with codes 32411 and 324110.
+The function `naics_from_any()` shows what codes and title exist in the NAICS
+system.
+
+Also, certain terms appear in the online description of a NAICS but not in the
+title of the NAICS -- the function `naics_findwebscrape()` helps with those
+cases, e.g., compare these:
+
+```{r webscrape_vs, eval=FALSE}
+naics_findwebscrape("cement")
+
+naics_from_any("cement")
+```
+
+Compare also these:
+
+```{r webscrape_vs2, eval=FALSE}
+naics_findwebscrape("refiner")
+# reports "324110" (Petroleum Refineries) and other related industries, but not the 5-digit "32411" (also Petroleum
+Refineries).
+
+naics_from_any("refiner")
+# reports "324110" and "32411" but not other related industries.
+```
+
+Using `naics_findwebscrape()` finds only the 6-digit codes that match on title
+or description, so it would find some codes not found by `naics_from_any()`
+which does not query description, but could lead to missing some facilities in
+the sense that the 6-digit code does not cover the sites listed in FRS under
+only the 5-digit code for Petroleum Refineries (not the 6-digit).
+
+It is important to note that searching on a 6-digit code misses parent
+categories that may include sites you expect to find:
+
+`frs_from_naics()` used as `frs_from_naics("324110", children = F)[,1:5]` finds a few hundred sites, but it
+fails to find some sites you would find using
+`frs_from_naics()` used as `frs_from_naics("32411", children = F)[,1:5]`
+
+The code example below shows that the FRS dataset has some facilities listed
+under the 5-digit "32411" code only, some with the 6-digit "324110" code only,
+and some with both codes:
+
+```{r 5vs6digitNAICS_SHOWNOTDO, eval=FALSE, include=TRUE}
+hasboth = intersect(
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID
+)
+hasonly6digit = setdiff(
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID
+)
+hasonly5digit = setdiff(
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID
+)
+```
+
+```{r 5vs6digitNAICS_DONOTSHOW, eval=TRUE, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+## include=F etc. avoids showing frs_arrow is loading from...
+
+hasboth = intersect(
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID
+)
+hasonly6digit = setdiff(
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID
+)
+hasonly5digit = setdiff(
+frs_from_naics("324110", children = F)[,1:5]$REGISTRY_ID,
+frs_from_naics("32411",  children = F)[,1:5]$REGISTRY_ID
+)
+```
+
+
+```{r 5vs6digitNAICS_results, eval=TRUE, message=FALSE}
+
+length(hasonly5digit)  # Most of the FRS sites here
+length(hasonly6digit)
+length(hasboth)
+```
+
+## Examples of some NAICS/SIC functions
+
+```{r naics_examples, eval=FALSE}
+naics_from_any(naics_categories(3))[order(name),.(name,code)][1:10,]
+naics_from_any(naics_categories(3))[order(code),.(code,name)][1:10,]
+
+naics_from_code(211)
+naicstable[code==211,]
+naics_subcodes_from_code(211)
+naics_from_code(211,  children = TRUE)
+naicstable[n3==211,]
+NAICS[211][1:3] # wrong
+NAICS[NAICS == 211]
+NAICS["211 - Oil and Gas Extraction"]
+
+naics_from_any("plastics and rubber")[,.(name,code)]
+naics_from_any(326)
+naics_from_any(326, children = T)[,.(code,name)]
+naics_from_any("plastics", children=T)[,unique(n3)]
+naics_from_any("pig")
+naics_from_any("pig ") # space after g
+
+# naics_from_any("copper smelting")
+# naics_from_any("copper smelting", website_scrape=TRUE)
+# browseURL(naics_from_any("copper smelting", website_url=TRUE) )
+
+a = naics_from_any("plastics")
+b = naics_from_any("rubber")
+fintersect(a,b)[,.(name,code)] #  a AND b
+funion(a,b)[,.(name,code)]     #  a OR  b
+naics_subcodes_from_code(funion(a,b)[,code])[,.(name,code)]   #  plus children
+naics_from_any(funion(a,b)[,code], children=T)[,.(name,code)] #  same
+
+NROW(naics_from_any(325))
+#[1] 1
+NROW(naics_from_any(325, children = T))
+#[1] 54
+NROW(naics_from_any("chem"))
+#[1] 20
+NROW(naics_from_any("chem", children = T))
+# [1] 104
+```

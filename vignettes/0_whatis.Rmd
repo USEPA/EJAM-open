@@ -1,0 +1,97 @@
+---
+title: "What is EJAM?"
+description: "What is EJAM?"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{What is EJAM?}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo= FALSE, include = FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+# The Environmental and Residential Population Analysis Multisite tool
+
+## EJAM is a web app but also a toolkit
+
+The Environmental and Residential Population Analysis Multisite tool is both a web app and a software toolkit:
+
+- [EJAM can be used as a web app](0_webapp.html), providing a simple user interface that lets anyone quickly see the results of a basic analysis. EJAM is what powered the EJScreen Multisite Tool web application.
+
+- EJAM is also an open-source software package (and local web app) for developers and analysts. It is an R Package written in the [R programming language](https://www.r-project.org/), with source code on GitHub. It provides functions to help analysts work with block group data, points, and polygons, to very quickly aggregate and compare large numbers of locations.
+
+## What does it do?
+
+EJAM lets you easily and quickly see residential population and environmental information aggregated within and across hundreds or thousands of places, all at the same time.
+
+Using EJAM is like running a community environmental/census data report, but for hundreds or thousands of places, all at the same time.
+
+You can see a quick summary, explore interactive maps, tables, and plots, and download a summary report or detailed spreadsheet.
+
+Locations can be defined in a variety of ways, so EJAM can summarize the following:
+
+-   **Conditions near any set of points** \
+    (e.g., proximity analysis of residents near all the EPA-regulated facilities of a certain type). This can provide information about people who live in communities potentially affected by any of the industrial facilities on a list, for example.
+
+-   **Conditions within any areas you have defined on a map** \
+    (e.g., if you have a shapefile of polygons/ zones based on measured or modeled exposure or risk, or cities/neighborhoods, etc.).
+
+## EPA Data & Methods
+
+EJAM begins with residential population and environmental data and indicators. The default indicators are the ones used in EJScreen. It uses the same methods as EJScreen but in a way that is optimized for working with many locations at once. 
+```{r eval=FALSE, include=FALSE}
+# [basic residential population indicators](https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/overview-demographic-indicators-ejscreen "residential population data explained")
+```
+
+The tool runs either a polygon-based or proximity-based analysis at each location, just like EJScreen would provide a standard report for a single location, except EJAM does this for each of a large number of locations very quickly.
+
+## New & Unique Features
+
+**Summarizing Across Locations**
+
+EJAM can calculate an aggregated summary of overall environmental conditions and residential population percentages for the average resident's location, across all the populations and all of the locations.
+
+The summary report lets you quickly and easily see which residential population groups live near the selected facilities or within defined areas. It also provides new insights into which environmental stressors may affect specific residential population subgroups to varying degrees, near a regulated sector overall and at individual sites.
+
+This allows easy geospatial analysis to move beyond looking at a small number of indicators for a few residential population groups, at one site in a single permitting decision, to a more complete picture of conditions near a whole set of facilities that is the focus of a risk analysis or a proposed action or initiative, for example.
+
+**Immediate Results (Speed)**
+
+Compared to related GIS tools this new tool provides a ready-to-use summary report, plus more flexibility, accuracy, and speed than other tools have in the past. The website quickly provides results on the fly -- The software was optimized to be extremely fast (allowing realtime exploratory work), while still using the same block-population calculation EJScreen has been using, making it more consistent with how EJScreen has always worked and more accurate than other approaches (e.g., using "areal apportionment" of tracts or block groups, like some other tools have used).
+
+**Easy Ways to Specify the Places to Analyze**
+
+The new tool also lets one pick locations through several different approaches, such as - specifying facility points by industry categories of various types (NAICS, SIC, EPA program, etc.) - providing a table of point locations given as latitudes and longitudes - using shapefiles with polygons (e.g., from the results of air quality modeling work) - selecting Census units to compare, such as Counties.
+
+**Open Source Well-Documented Extensible Software**
+
+Also, the data and software are shared as reusable, well-documented functions in an R package, to allow software developers or analysts to take advantage of these resources in running their own analyses or building or supplementing their own tools, websites, or mobile apps.
+
+**Accuracy and Spatial Resolution**
+
+EJAM and EJScreen use the same approach to characterizing populations at each site, to maintain consistency and avoid any confusion. Compared to other often-used approaches, EJScreen/EJAM use high-resolution buffering to provide more accurate information about which populations live inside a buffer, which is important in rural areas where a single blockgroup can cover a very large area. For circular buffers, the internal points of Census 2020 blocks are used, not areal apportionment of block groups, to estimate where residents live within each block group. This avoids the simplistic assumption that people are evenly spread out within each block group. Instead, it uses blocks to get information about which part of a block group is where residents actually live. There are several million blocks in the US, as compared with fewer than a quarter million block groups. The only more accurate approaches are 1) to use areal apportionment of blocks (not block groups), but that is very slow, or 2) to use something like the 30x30 meter grid EPA developed using dasymetric estimates of where people live at even higher resolution than a block, but that requires large amounts of storage and computer time.
+
+EJAM calculations also take note of which residences are near which sites, to avoid double-counting people in the summary statistics but still allow a user to view results for one site at a time. This is something other tools and analyses often cannot provide - when they aggregate across sites they typically do not retain the statistics on individual sites, and rarely if ever keep track of which communities are near multiple facilities. Keeping track of this would also allow an analyst to explore how many people are near multiple sites, or ask which sites in communities that already have multiple sites nearby.
+
+EJAM was designed so that it can provide an essentially continuous distribution of distances, as distributed across blocks or people for one or all of the nearby facilities. This enables exploration of the complete picture of proximities, rather than using an arbitrary single distance defining near versus far. The distribution can be sliced later for the summary statistics at any distance, and can be summarized as a distribution of distances within each residential population group.
+
+## Data Updates
+
+Annual data updates were synchronized with EJScreen data updates and main version numbers, so EJScreen 2.32 (the updated version released in August 2024) and EJAM 2.32 used the same data. Version 2.32 has ACS 2018-2022 block group residential population data and Census 2020 block weights.

@@ -1,0 +1,14 @@
+utils::citHeader("To cite EJAM, please use:")
+
+utils::bibentry(
+  bibtype = "Manual",
+  author = personList(
+              as.person("Mark A. Corrales")
+              ),
+  title = "Environmental and Residential Population Analysis Multisite tool (EJAM)",
+  address = "Washington, DC",
+  institution = "United States Environmental Protection Agency (US EPA)",
+  year = 2025,
+  url = "https://usepa.github.io/EJAM-open/index.html",
+  textVersion = "Corrales MA (2025). Environmental and Residential Population Analysis Multisite tool (EJAM). United States Environmental Protection Agency, Washington, DC. https://usepa.github.io/EJAM-open/index.html"
+)

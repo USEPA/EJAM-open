@@ -1,0 +1,92 @@
+---
+title: "Updating the Package as a New Release"
+description: "Steps for incrementing package version and GitHub releases"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Updating the Package as a New Release}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+This document outlines the general development process for updating EJAM (for a new release of the package) or relocating it to a different repository, including the surrounding GitHub infrastructure. Also see the separate vignettes on [updating datasets]('dev_update-datasets') and [updating documentation]('dev_update-documentation').
+
+## Update owners and names of repositories if relevant
+
+If the package were renamed, or a new name were used for the repository, or the owner of the repository changed, several files would need to be updated for everything to work correctly. 
+
+- The name of the github repository storing the package code should be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package.
+
+- The name of the repo where webpages of package documentation are published also should be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. The website providing documentation of the R package is created via code in `EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R`, relying on the R package `pkgdown` and hosted on github pages.
+
+- The name of the repo where datasets are stored should be recorded as the ejam_data_repo parameter in the DESCRIPTION file in the root folder of the source package.
+
+## Update the package release
+
+-   Update EJAM version number in DESCRIPTION in development branch (e.g. to 2.4.1) (& tying it to EJScreen version numbers if relevant)
+
+-   Update `NEWS.md` in development branch
+
+-   Merge development into main branch
+
+-   Update the EJAM release using the `NEWS.md` for the changelog, tagging to the main branch. Increment using the numbering x.y.z (same numbering as was put in DESCRIPTION)
+
+## Make updates public if an internal repo was used
+
+```{r, echo=FALSE, eval=TRUE, include=FALSE}
+# helper to get the owner and name of the code repo and the documentation repo as specified in the DESCRIPTION file
+
+owner_repo <- EJAM:::repo_from_desc()      # had been "USEPA/EJAM-open"
+repo <- gsub(".*/", "", owner_repo)        # had been       "EJAM-open"
+
+```
+
+If the EJAM repo being used is internal or private, not public, then to make the EJAM package installable, the updates need to be pushed to a public repo such as the `r repo` repo. These are the steps:
+
+1. If not already done, add `r owner_repo` (or the appropriate public repo) as a remote for the internal repo main branch:
+
+`    git remote add `r repo` git@github.com:`r owner_repo`.git`
+
+2.  Push to the main branch of that repo:
+
+`    git push `r repo` main:main`
+
+3.  If you want to squash commits
+
+    a.  If you want to add a new squashed commit, starting in main in internal EJAM:
+
+`    git checkout -b squash-temp`
+`    git reset --soft #SHA OF PREVIOUS MAIN COMMIT`
+`    git commit -m "Your squashed commit message"`
+`    git push --force `r repo` squash-temp:main`
+
+    b.  If you just want `r repo` to end with a single squash commit, starting in main in internal EJAM:
+
+`    git checkout –orphan squash-temp`
+`    git add .`
+`    git commit -m "Publishing EJAM"`
+`    git push --force `r repo` squash-temp:main`
+`    git -M main`
+
+4.  Update `r repo` release using a similar process as updating an internal EJAM release.
+
+## Test the Installation Process
+
+To ensure that, after changes are made, EJAM can still be installed by users with various operating systems and versions of R, a workflow file, `.github/workflows/installation_test.yaml`, is triggered by any pushes to `r repo`'s main branch. This file tests installation with the following matrix of options:
+
+1.  **OS**: Latest Ubuntu, Windows, macOS
+
+2.  **R version**: 4.3 and 4.4
+
+3.  **Install Method**: `remotes::install_url()` and `remotes::install_github()`
+
+### Update the Test Installation Script
+
+You may want to update this test script in the future for a couple reasons:
+
+-   Remove older versions of R to test on
+-   Add new system libraries required by newly added packages

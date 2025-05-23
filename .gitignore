@@ -1,0 +1,63 @@
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files and any .rda file accidentally saved in the root folder
+.RData
+/*.rda
+
+# User-specific files
+.Ruserdata
+
+# Example code in package build process
+*-Ex.R
+
+# Output files from R CMD build
+/*.tar.gz
+
+# Output files from R CMD check
+/*.Rcheck/
+
+# RStudio files
+.Rproj.user/
+/.Rproj.user
+*.pper
+
+# produced vignettes - but be sure these actually should be ignored ****
+vignettes/*.html
+vignettes/*.pdf
+
+# OAuth2 token, see https://github.com/hadley/httr/releases/tag/v0.3
+.httr-oauth
+
+# knitr and R markdown default cache directories
+*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
+# R Environment Variables
+.Renviron
+*.Rproj
+inst/doc
+packrat/lib*/
+*.dcf
+# such as EJAM/rsconnect/rstudio-connect.dmap-stage.aws.epa.gov/..../ejam.dcf  configuration file for deplying to RStudio Connect server
+
+/doc/
+/Meta/
+
+# large datasets stored as .arrow
+/data/*.arrow
+
+# pkgdown folders are here. I think if publishing from docs folder
+# we do not want to ignore changes in it, despite default in what 
+# use_pkgdown(): creates a pkgdown config file and adds relevant files or directories to .Rbuildignore and .gitignore
+
+# docs
+
+
+/shiny_bookmarks
+tests/testthat/_snaps/**/*.png

@@ -1,0 +1,111 @@
+Package: EJAM
+Title: Environment and Population Analysis Multisite tool
+Version: 2.32.3
+EJScreenVersion: 2.32
+EJScreenReleaseDate: 2024-08-12
+ACSVersion: 2018-2022
+ACSReleaseDate: 2023-12-07
+CensusVersion: 2020
+ejam_data_repo: USEPA/ejamdata
+URL: https://usepa.github.io/EJAM-open, https://github.com/USEPA/EJAM-open
+Author: Mark Corrales <ENVIROMAIL_GROUP@epa.gov>
+Maintainer: Mark Corrales <ENVIROMAIL_GROUP@epa.gov>
+License: MIT + file LICENSE.md
+Description: Web app and R tools to easily summarize
+    residential population and environmental indicators
+    for residents in or near a large number of areas or specific sites.
+    Sites can be specified in a variety of ways - coordinates, facility IDs,
+    type of facility, shapefile, or Census areas.
+    Very fast identification of nearby blocks and distances, and 
+    aggregation of indicators within each distance by site and overall.
+Depends: 
+    R (>= 3.5)
+Imports:
+    arrow,
+    collapse,
+    colorspace,
+    config (>= 0.3.1),
+    curl,
+    data.table,
+    digest,
+    dplyr,
+    DT,
+    fs,
+    geojsonio,
+    ggplot2,  
+    gh,
+    glue,
+    golem (>= 0.3.3),
+    gt,
+    httr,
+    httr2,
+    leaflet,
+    leaflet.extras2,
+    magrittr,
+    methods,
+    openxlsx,
+    pdist,
+    pins,
+    piggyback,
+    pkgdown,
+    plotly,
+    purrr,
+    readr,
+    readxl,
+    rlang,
+    rmarkdown,
+    rstudioapi,
+    scales,
+    SearchTrees,
+    sf,
+    shinydisconnect,
+    shiny (>= 1.7.2),
+    shinycssloaders,
+    shinyjs,
+    stringr,
+    tibble,
+    tidycensus,
+    tidyr,
+    webshot,
+    writexl,
+    XML
+Suggests: 
+    AOI,
+    beepr,
+    datasets,
+    desc,
+    devtools,
+    doSNOW,
+    fipio,
+    foreach,
+    gglorenz,
+    ggridges,
+    htmlwidgets, 
+    jsonlite,
+    knitr,
+    leaflet.extras,
+    miniUI,
+    mapview,
+    remotes,
+    rhandsontable,
+    rnaturalearth,
+    rvest,
+    shinytest2,
+    spelling,
+    terra,
+    testthat (>= 3.0.0),
+    tidygeocoder,
+    tigris,
+    units,
+    usethis
+Remotes:
+    mikejohnson51/AOI
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+LazyDataCompression: gzip
+Language: en-US
+VignetteBuilder: knitr, rmarkdown
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Config/testthat/parallel: false

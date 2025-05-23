@@ -1,0 +1,2773 @@
+---
+title: "Analysis of residential population and environmental conditions in selected locations"
+#author:
+#  name: `r params$authorname1`
+#  email: `r params$authoremail1`
+date: "`r format(Sys.Date(), "%B %d, %Y")`"
+output:
+  bookdown::word_document2:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+    fig_caption: yes
+    reference_docx: 'default'
+  bookdown::html_document2:
+    toc: true
+    toc_depth: '3'
+    df_print: paged
+    fig_caption: yes
+editor_options:
+  markdown:
+    wrap: 72
+linenumbers: true
+abstract: "Abstract - The United States Environmental Protection
+  Agency (US EPA) analyzed baseline residential populations and environmental conditions in communities
+  living `r params$where` `r params$facilities_studied`. The analysis used EPA's EJAM
+  tool version `r params$ejscreen_version` with residential population data based
+  on the Census Bureau’s `r params$acs_version` American Community Survey (ACS). The
+  analysis found that PLACEHOLDER."
+params:
+  testmode: TRUE
+  analysis_title: Analysis of residential population and environmental conditions in selected locations
+  zonetype: NA
+  where: NA
+  distance: NA
+  sectorname_short: NA
+  in_the_x_zone: NA
+  facilities_studied: these sites
+  within_x_miles_of: NA
+  in_areas_where: NA
+  risks_are_x: NA
+  source_of_latlons: NA
+  results_overall: testoutput_ejamit_10pts_1miles$results_overall
+  results_bysite: testoutput_ejamit_10pts_1miles$results_bysite
+  results_longnames: testoutput_ejamit_10pts_1miles$longnames
+  results_formatted: testoutput_ejamit_10pts_1miles$formatted
+  sitecount: NA
+  total_pop: NA
+  map: NA
+  map_placeholder_png: map_placeholder.png
+  envt_table: NA
+  envt_table_placeholder_png: envt_table_placeholder.png
+  envt_table_placeholder_rda: envt_table_placeholder.rda
+  demog_table: NA
+  demog_table_placeholder_png: demog_table_placeholder.png
+  demog_table_placeholder_rda: demog_table_placeholder.rda
+  demog_boxplot: NA
+  envt_boxplot: NA
+  demog_ridgeline: NA
+  envt_ridgeline: NA
+  demog_resident_barplot: NA
+  boxplot_placeholder_png: boxplot_placeholder.png
+  demog_barplot: NA
+  envt_barplot: NA
+  barplot_placeholder_png: barplot_placeholder.png
+  demog_how_elevated: NA
+  envt_how_elevated: NA
+  demog_high_at_what_share_of_sites: NA
+  envt_high_at_what_share_of_sites: NA
+  authorname1: The US EPA
+  authoremail1: ''
+  coauthor_names: NA
+  coauthor_emails: NA
+  fundingsource: NA
+  acs_version: NA
+  ejscreen_version: NA
+  bibliography: report_references.bib
+---
+
+```{r, echo=FALSE}
+#  MAKE SURE all parameter names are used (identical names, & all are there) in these 4 places: 
+#  1. input$ ids in app_ui.R, from user, to customize the long report
+#  2. params$ list passed by app_server.R to render the Rmd doc
+#  3. params: accepted in  .Rmd yaml info header 
+#  4. params$  as used within body of  .Rmd text inline and in r code blocks.
+
+# see these resources: 
+#
+# https://quarto.org/docs/output-formats/ms-word.html
+
+# https://www.r-bloggers.com/2023/04/11-tricks-to-level-up-your-rmarkdown-documents/
+# https://bookdown.org/yihui/rmarkdown/parameterized-reports.html
+# https://bookdown.org/yihui/rmarkdown/
+# https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
+# https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html 
+
+```
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r load-libraries, echo=FALSE, warning=FALSE, message=FALSE, results='hide'}
+# necessary libraries for report
+
+# library(EJAM) # Note during development this would use the installed version not latest source code ***
+if (!exists("blockgroupstats")) {library(EJAM)} # to use installed version only if not already attached
+
+library(dplyr)
+library(bookdown)
+library(tidyr)
+library(data.table)
+```
+
+```{r default_params, message=FALSE, include=FALSE, results='hide'}
+# Default parameters / examples for testing so it can render something even when no parameters have been specified
+# can we define params defaults using R code and data from package?
+# results_overall: testoutput_ejamit_10pts_1miles$results_overall 
+# results_bysite: testoutput_ejamit_10pts_1miles$results_bysite
+# results_longnames: testoutput_ejamit_10pts_1miles$longnames
+# results_formatted: testoutput_ejamit_10pts_1miles$formatted
+if (is.na(params$sitecount)) {params$sitecount <- NROW(params$results_bysite)}
+if (is.na(params$total_pop)) {params$total_pop <- params$results_overall$pop}
+# map: NA
+if (is.na(params$acs_version)) {
+  params$acs_version <- EJAM:::description_file$get("ACSVersion")
+}
+if (is.na(params$ejscreen_version)) {
+  # acs_version_global      <- EJAM:::description_file$get("ACSVersion")
+  # ejscreen_version_global <- EJAM:::description_file$get("EJScreenVersion")
+  version <- EJAM:::description_file$get("EJScreenVersion")
+  params$ejscreen_version <- substr(version, start = 1, stop = gregexpr('\\.',version)[[1]][2] - 1)
+  rm(version)
+}
+
+```
+
+
+```{r in-places-analyzed, echo=FALSE}
+
+in_the_places_analyzed <- {
+  switch(
+    params$zonetype,
+    zone_is_named_x = params$in_the_x_zone, 
+    zone_is_nearby = paste0(params$within_x_miles_of, params$facilities_studied),
+    zone_is_risk_x = paste0(params$in_areas_where, params$risks_are_x)
+  )}
+
+
+tot_pop <- sum(params$results_bysite$pop) # extract total population
+
+# Distributional Analysis for the ___ Proposed Rule
+# 
+# Demographic and Environmental Conditions…
+# Demographic and Environmental Indicators…
+# Summary of Demographic and Environmental Conditions/Indicators…
+# 
+#  …
+#  …in locations…
+#  …in residential locations…
+#  …among populations who live…
+#  …among residents…
+#  …where people live… 
+# 
+# …at…
+# …Surrounding…
+# …Near…
+# …Close to…
+# …Within 1 mile of any…
+# …in close proximity to…
+# 
+# …___ Facilities [e.g., Vibranium Smelting Facilities/ name of category]
+# …Facilities in the ___ sector/source category
+# …EPA-regulated facilities in the ___ sector/source category
+# 
+
+```
+
+```{r text-formatting-function, echo=FALSE}
+
+format_text <- function(text, start=FALSE) {
+  
+  text <- gsub("avg", "average", text)
+  text <- gsub("to State", "to state", text)
+  text <- gsub(" % ", " of percent ", text)
+  text <- gsub("Suppl Demog", "Supplementary Demographic", text)
+  
+  if (start == FALSE) {
+    text <- gsub("Ratio", "ratio", text)
+  }
+  
+  # People of Color -> people of color / People of Color (POC)
+  
+  return (text)
+}
+
+```
+
+\newpage
+
+# Executive Summary
+
+EPA has conducted an analysis to characterize baseline environmental
+conditions faced by communities living near `r params$sectorname_short`.
+or 
+The United States Environmental Protection Agency (US EPA) analyzed
+baseline residential population and environmental conditions in communities living
+`r params$within_x_miles_of` selected sites.
+
+The analysis used EPA's EJAM tool version `r params$ejscreen_version` with
+demographic data based on the Census Bureau's `r params$acs_version`
+American Community Survey (ACS).
+
+## Summary of Findings
+
+```{r summary-of-findings, echo=FALSE, message=FALSE, results='hide'}
+#SEE notes on summarizer draft function 
+#and examples of using count_sites_with_n_high_scores()
+
+# SUMMMARY 1 - list of indicators with ratio greater than 1.5
+
+if (params$testmode) {
+  summary1 <- "[LIST OF INDICATORS W RATIO > 1.5 HERE]"
+} else {
+  summary1 <- 
+    params$results_overall %>% 
+    select(contains("ratio.to.state.avg")) %>% 
+    pivot_longer(everything()) %>% 
+    filter(value > 1.5) %>% 
+    pivot_wider() 
+  
+  summary1_list <- 
+    format_text(fixcolnames(colnames(summary1), "r", "longname")) }
+
+# SUMMARY 2 - list % of facilities with ratios greater than 2, 3, 5, and 10
+
+summary2 <- list()
+# 
+if (params$testmode) {
+  
+  summary2$ratio_greater_than_2 <- "[INSERT %FACILITIES RATIO >2]"
+  summary2$ratio_greater_than_3 <- "[INSERT %FACILITIES RATIO >3]"
+  summary2$ratio_greater_than_5 <- "[INSERT %FACILITIES RATIO >5]"
+  summary2$ratio_greater_than_10 <- "[INSERT %FACILITIES RATIO >10]"
+  
+} else { # test this - from example of count_sites_with_n_high_scores
+  
+  ratio_data <- params$results_bysite[, ..names_d_ratio_to_state_avg]
+  
+  # list demographic ratios greater than 2x state avg
+  ratio_2_count <- count_sites_with_n_high_scores(
+    ratio_data, c(2, 2), # bug with count_sites_with_n_high_scores
+    # where 2 numbers in vector are necessary
+    text_indicatortype = "state ratio indicators")
+  
+  # see most striking stat only
+  summary2$ratio_greater_than_2 <- tail(ratio_2_count$text[ratio_2_count$text != ""], 1)
+  # could also do head() instead of tail()
+  # tail(ratio_2_count[ratio_2_count != ""], 1)
+  
+  # list demographic ratios greater than 3x state avg
+  ratio_3_count <- count_sites_with_n_high_scores(
+    ratio_data, c(3, 3),
+    text_indicatortype = "state ratio indicators")
+  
+  #   see most striking stat only
+  summary2$ratio_greater_than_3 <- tail(ratio_3_count$text[ratio_3_count$text != ""], 1)
+  # tail(ratio_3_count[ratio_3_count != ""], 1)
+  
+  # list demographic ratios greater than 3x state avg
+  ratio_5_count <- count_sites_with_n_high_scores(
+    ratio_data, c(5, 5),
+    text_indicatortype = "state ratio indicators")
+  
+  #   see most striking stat only
+  summary2$ratio_greater_than_5 <- tail(ratio_5_count$text[ratio_5_count$text != ""], 1)
+  # tail(ratio_5_count[ratio_5_count != ""], 1)
+  
+  # list demographic ratios greater than 3x state avg
+  ratio_10_count <- count_sites_with_n_high_scores(
+    ratio_data, c(10, 10),
+    text_indicatortype = "state ratio indicators")
+  
+  #   see most striking stat only
+  summary2$ratio_greater_than_10 <- tail(ratio_10_count$text[ratio_10_count$text != ""], 1)
+  # tail(ratio_10_count[ratio_10_count != ""], 1)
+}
+
+# SUMMARY 3 - Identify the demographic and environmental indicator with highest state ratio
+
+summary3 <- list()
+
+if(params$testmode) {
+  
+  summary3$demo_name <- "[INSERT DEMO NAME HERE]"
+  summary3$demo_value <- "[INSERT DEMO VALUE HERE]"
+  summary3$env_name <- "[INSERT ENV NAME HERE]"
+  summary3$env_value <- "[INSERT ENV VALUE HERE]"
+  
+} else {
+  
+  # identify maximum ratio to state average for demographic indicator
+  id_max_d <-
+    params$results_overall %>%
+    select(all_of(names_d_ratio_to_state_avg))
+  
+  longnames_d <-
+    format_text(fixcolnames(c(names(id_max_d)), "r", "longname"))
+  
+  id_max_d_2 <-
+    id_max_d %>%
+    setNames(longnames_d) %>%
+    tidyr::pivot_longer(everything())
+  
+  summary3$demo_name <- id_max_d_2[which.max(id_max_d_2$value), ]$name
+  summary3$demo_value <- round(id_max_d_2[which.max(id_max_d_2$value), ]$value,3)
+  
+  # identify maximum ratio to state average for environmental indicator
+  id_max_e <-
+    params$results_overall %>%
+    select(all_of(names_e_ratio_to_state_avg))
+  
+  longnames_e <-
+    format_text(fixcolnames(c(names(id_max_e)), "r", "longname"))
+  
+  id_max_e_2 <-
+    id_max_e %>%
+    setNames(longnames_e) %>%
+    tidyr::pivot_longer(everything())
+  
+  summary3$env_name <- id_max_e_2[which.max(id_max_e_2$value), ]$name
+  summary3$env_value <- round(id_max_e_2[which.max(id_max_e_2$value), ]$value,3)
+  
+}
+
+# SUMMARY 4 - percent of places that account for share of population
+# 
+summary4 <- list()
+
+if(params$testmode) { 
+  
+  summary4$sent1 <- "[1% of places account for PERCENT of the total population HERE]"
+  summary4$sent1_num_fac <- "[INSERT number of facilities here]"
+  summary4$sent2 <- "[5% of places account for PERCENT of the total population HERE]"
+  summary4$sent2_num_fac <- "[INSERT number of facilities here]"
+  summary4$sent3 <- "[10% of places account for PERCENT of the total population HERE]"
+  summary4$sent3_num_fac <- "[INSERT number of facilities here]"
+  
+} else { 
+  
+  summary4$sent1 <- popshare_at_top_x_pct(params$results_bysite$pop, 
+                                          x = 0.01,
+                                          astext = TRUE)
+  
+  summary4$sent1_num_fac <- round(params$sitecount * 0.01, 0)
+  
+  summary4$sent2 <- popshare_at_top_x_pct(params$results_bysite$pop,
+                                          x = 0.05,
+                                          astext = TRUE)
+  
+  summary4$sent2_num_fac <- round(params$sitecount * 0.05, 0)
+  
+  summary4$sent3 <- popshare_at_top_x_pct(params$results_bysite$pop,
+                                          x = 0.10,
+                                          astext = TRUE)
+  
+  summary4$sent3_num_fac <- round(params$sitecount * 0.10, 0)
+}
+
+
+```
+
+-   Overall, `r summary1_list` are more than 1.5 times the state
+average, for the population within `r params$distance`.
+
+-   `r summary2$ratio_greater_than_2` `r summary2$ratio_greater_than_3`
+`r summary2$ratio_greater_than_5` `r summary2$ratio_greater_than_10`
+
+-   Weighted by population across all facilities, `r summary3$demo_name`
+has the highest ratio to state average across all demographic
+indicators at a value of `r summary3$demo_value` and
+`r summary3$env_name` has the highest ratio to state average across
+all environmental indicators at a value of `r summary3$env_value`.
+
+-   `r summary4$sent1` (`r summary4$sent1_num_fac`). `r summary4$sent2`
+(`r   summary4$sent2_num_fac`). `r summary4$sent3`
+(`r summary4$sent3_num_fac`).
+
+# Introduction
+
+
+
+
+
+# Methods
+
+## Selection of sites analyzed
+
+This analysis focused on locations categorized under `r params$sectorname_short`. The latitude
+and longitude of a point representing each site was obtained from
+`r params$source_of_latlons`. A total of `r params$sitecount` sites had
+location information and were analyzed.
+
+## Map of Analyzed Sites
+
+Figure \@ref(fig:map-sites) shows a map of the sites analyzed.
+
+```{r map-sites, fig.cap = "\\label{map-sites}Map of Analyzed Sites", echo=FALSE,  out.height='280px', out.width='600px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$map_placeholder_png)
+} else {
+  # params$map
+  knitr::include_graphics(rel_path = TRUE, path = params$map)
+}
+
+```
+
+## Estimating locations and residential population counts
+
+The Environmental and Residential Population Analysis Multisite tool was used to
+develop this analysis. The [multisite
+tool](https://usepa.github.io/EJAM/index.html "Environmental and Residential Population Analysis Multisite tool")
+is a user-friendly web app that can summarize residential population and
+environmental conditions for any list of places in the nation.
+
+### Spatial resolution of data
+
+The analysis used EPA's EJAM tool version
+`r params$ejscreen_version` with residential population data based on the Census
+Bureau's `r params$acs_version` American Community Survey (ACS) 5-year
+summary file, and the corresponding version of Decennial Census
+information on geographic boundaries and FIPS codes for blocks, block
+groups, tracts, counties, and states. Residential population and environmental
+indicators were at block group resolution. Locations of
+residential populations were at block resolution (the highest resolution
+available from the Census Bureau) and then summarized by block group. Once
+site locations are input to EJAM, the residential populations are
+then analyzed by location, and then summarized as percentiles and averages
+across all sites input to EJAM. 
+
+See [EJScreen
+methodology](https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/technical-information-and-data-downloads)
+for details.
+
+### Analytic method for buffering, and tools used to implement that method
+
+The basic methodology and data used for this analysis are the same as
+those used in EPA's EJScreen tool, with a few exceptions described
+below, and are described in detail in EJScreen's documentation, at
+[EJScreen](https://epa.gov/ejscreen "EPA EJScreen homepage"){.uri
+target="_blank" rel="noreferrer noopener"} and with more technical
+details available at [EJScreen technical documentation
+page](https://web.archive.org/web/20250118072723/https://www.epa.gov/ejscreen/technical-information-and-data-downloads "EPA EJScreen technical information"){.uri
+target="_blank" rel="noreferrer noopener"}.
+
+EJAM identifies residents near a given site by finding
+which Census block points are nearby and counts the full block
+population if that point is nearby. The percentage of each block
+group's population that is estimated as inside a buffer is based on
+which Census block internal points are included in the buffer and
+using a block weight. The block weight is the Census 2020 block population as a
+fraction of the parent block group's Census 2020 population (which is
+not quite the same as the ACS population count). That block weight is a
+fraction of the parent block group and is used to estimate how many of
+the block groups residents are nearby or in the buffer.
+
+The only notable differences between the EJScreen and EJAM calculations
+of proximity and indicators are the following:
+
+-   EJAM may include additional residential population or environmental indicators.
+-   For a proximity analysis (to characterize everyone living within a
+certain certain distance from a point such as a facility), EJAM
+identifies which residents live nearby using a slight variation on
+how the distance to each Census block is measured. While EJScreen
+uses ESRI's ArcGIS calculations, EJAM calculates the distance using
+formulas implemented in the R language for statistical computing
+[@R-base]. These measurements provide almost identical results for
+estimated distance from the average person in a block to a given
+site point.
+-   EJAM aggregates indicator values within and across locations,
+converts them to percentiles, and performs other summary calculations
+using the same formulas as EJScreen to the greatest extent possible, but in R
+rather than within EJScreen itself. There may be slight differences
+between raw scores and percentiles in EJScreen and EJAM in some
+cases.
+
+## Demographic and environmental indicators
+
+The residential population indicators included in EJAM are the same as those in EJScreen.
+People of Color (POC) are defined as all other than those
+self-identifying in ACS survey data as white, single race, not Hispanic
+or Latino - i.e., non-Hispanic white alone ("NHWA"). The subgroups include
+Hispanic or Latino ("hispanic"), several groups that are not Hispanic
+but of only single race (e.g., Asian, or more specifically non-Hispanic
+Asian alone), non-Hispanic other single race, and non-Hispanic
+multiracial.
+
+The environmental indicators included in EJAM are the same as those in EJScreen. 
+
+See [EJScreen
+methodology](https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen/technical-information-and-data-downloads)
+for details.
+
+# Findings
+
+## Summary of results
+
+Table \@ref(tab:summary-table) shows a few summary characteristics of
+the locations analyzed. Out of `r params$site_count` sites analyzed,
+`r tot_pop` residents are
+accounted for `r params$within_x_miles_of` the site geolocation.
+“Percent population accounted for at 10% of facilities” represents the
+share of population of all sites that is represented by the 10% of sites
+that have the highest population. The “Population living within radius
+of at least 2 facilities” is the number of people that live within the
+radius of at least 2 facilities.
+
+
+```{r summary-table-create, echo=FALSE, results='hide'}
+
+# create table of summary points about data 
+
+if (params$testmode) { 
+  
+  summary_table <- cbind(
+    
+    x = c("Site count",
+          "States with facilities",
+          "Facilties missing data",
+          "Total population",
+          "Percent population accounted for at 10% of facilities",
+          "Population living within radius for at least 2 facilities"),
+    
+    value = "test value")
+  
+} else {
+  
+  summary_table <- cbind(
+    
+    x = c("Site count",
+          "States with facilities",
+          "Facilties missing data",
+          "Total population",
+          "Percent population accounted for at 10% of facilities",
+          "Population living within radius for at least 2 facilities"),
+    
+    value = c(params$sitecount,
+              n_distinct(unique(params$results_bysite$ST)),
+              sum(is.na(params$results_bysite$pop)),
+              format(round(params$total_pop,0), big.mark = ",", scientific = FALSE),
+              round((popshare_at_top_x_pct(params$results_bysite$pop, x = 0.1))*100, 2),
+              sum(params$results_bysite$pop) - params$total_pop))
+  
+}
+```
+
+```{r, summary-table, tab.cap = "Summary characteristics of facilities analyzed."}
+
+knitr::kable(summary_table, 
+             col.names = c("Summary characteristic", "Value"))
+
+```
+
+## Residential population indicator results
+
+In EJAM, values are compared to state or national average and presented as a
+ratio. This ratio is used as an indicator to detect any overrepresented
+populations living within the radius of sites.
+
+```{r}
+## List for Demographic Indicators 
+demog_ind <- list()
+
+# comparison values for ratios
+ratio_benchmarks <- c("1.01", "2")
+
+# outputs from dataframe
+# state ratios
+demog_ind$ratio_st_overall  <- params$results_overall[, ..names_d_ratio_to_state_avg]
+demog_ind$ratio_st_bysite   <- cbind(pop = params$results_bysite$pop,
+                                     state = params$results_bysite$ST,
+                                     params$results_bysite[, ..names_d_ratio_to_state_avg])
+# national ratios
+demog_ind$ratio_us_overall  <- params$results_overall[, ..names_d_ratio_to_avg]
+demog_ind$ratio_us_bysite   <- cbind(pop = params$results_bysite$pop,
+                                     state = params$results_bysite$ST,
+                                     params$results_bysite[, ..names_d_ratio_to_avg])
+
+# state percentiles
+demog_ind$pctile_st_overall <- params$results_overall[, ..names_d_state_pctile]
+demog_ind$pctile_st_bysite  <- params$results_bysite[, ..names_d_state_pctile]
+
+# national percentiles
+demog_ind$pctile_us_overall <- params$results_overall[, ..names_d_pctile]
+demog_ind$pctile_us_bysite  <- params$results_bysite[, ..names_d_pctile]
+```
+
+*Comparison to State Average*
+
+```{r demog-ratio-st, include = FALSE, echo=FALSE, message=FALSE}
+
+# test mode
+if (params$testmode) {
+  
+  # max overall demographic indicator value
+  demog_ind$max_overall_st      <- "[PLACEHOLDER NAME MAX DEM IND RATIO TO ST AVG]"
+  demog_ind$max_overall_val_st  <- "[PLACEHOLDER VALUE MAX DEM IND RATIO TO ST AVG]"
+  
+  # max count of indicators above state/US average for any one facility
+  demog_ind$max_count_2_st      <- "[PLACEHOLDER MAX COUNT OF DEM IND >2 STATE AVG]"
+  demog_ind$max_count_1.01_st   <- "[PLACEHOLDER MAX COUNT OF DEM IND >1.01 STATE AVG]"
+  
+  # count of indicators above state average 
+  demog_ind$count_2_st          <- "[PLACEHOLDER COUNT OF DEM IND >2 STATE AVG]"
+  demog_ind$count_1.01_st       <- "[PLACEHOLDER COUNT OF DEM IND >1.01 STATE AVG]"
+  
+  # percent of facilities above state/US average
+  demog_ind$pct_fac_2_st        <- "[PLACEHOLDER SENTENCE % 1 DEM IND >2 STATE AVG]"
+  demog_ind$pct_fac_1.01_st     <- "[PLACEHOLDER SENTENCE % 1 DEM IND >1.01 STATE AVG]"
+  
+  # names of indicators above a ratio threshold
+  demog_ind$ind_names2_st       <- "[PLACEHOLDER NAMES OF DEM IND >2 STATE AVG]"
+  demog_ind$ind_names3_st       <- "[PLACEHOLDER NAMES OF DEM IND >3 STATE AVG]"
+  demog_ind$ind_names5_st       <- "[PLACEHOLDER NAMES OF DEM IND >5 STATE AVG]"
+  
+  demog_ind$ind_names2_text_st  <- "[PLACEHOLDER SENTENCE DEM IND >2 STATE AVG]"
+  demog_ind$ind_names35_text_st <- "[PLACEHOLDER SENTENCE DEM IND >3 & >5 STATE AVG]"
+  
+  demog_ind$poppct_ind_abv2_st  <- "[PLACEHOLDER PERCENT]"
+  demog_ind$poppct_ind_abv3_st  <- "[PLACEHOLDER PERCENT]"
+  
+  
+  # not test mode
+} else {
+  
+  # output for function: count_sites_with_n_high_scores
+  demog_ind$findings_st    <- data.frame(count_sites_with_n_high_scores(
+    demog_ind$ratio_st_bysite,
+    ratio_benchmarks))
+  
+  demog_ind$max_overall_st <-  demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  demog_ind$max_overall_val_st <- round(max(demog_ind$ratio_st_overall), 3)
+  
+  # calculate maximum by facility
+  demog_ind$max_count_2_st    <- demog_ind$findings_st$stats.2.count[2]
+  demog_ind$max_count_1.01_st <- demog_ind$findings_st$stats.1.01.count[2]
+  
+  # use function text
+  demog_ind$pct_fac_1.01_st <- demog_ind$findings_st$text.1[2]
+  demog_ind$pct_fac_2_st    <- demog_ind$findings_st$text.2[2]
+  
+  # calculate overall count
+  demog_ind$count_1.01_st <- demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 1.01) %>%
+    nrow()
+  
+  demog_ind$count_2_st    <- demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>%
+    nrow()
+  
+  # names of indicators
+  demog_ind$ind_names2_st <- demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  demog_ind$ind_names3_st <- demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 3) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  demog_ind$ind_names5_st <- demog_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 5) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  if (demog_ind$ind_names2_st != "") {
+    
+    demog_ind$ind_names2_text_st <- 
+      paste0("The demographic indicators above the two times threshold are as follows: ",
+             demog_ind$ind_names2_st, ".")
+    
+  } else {
+    
+    demog_ind$ind_names2_text_st <- 
+      "There are no demographic indicators above the two times the state average."
+    
+  }
+  if (demog_ind$ind_names3_st != "" & demog_ind$ind_names5_st == "") {
+    
+    demog_ind$ind_names35_text_st <- 
+      paste0("When compared to the state average, ",
+             "demographic indicators above 3 times threshold are ",
+             demog_ind$ind_names3_st,
+             ", and there are no demographic indicators above the 5 times threshold.")
+    
+  } else if (demog_ind$ind_names3_st != "" & demog_ind$ind_names5_st != "") {
+    
+    demog_ind$ind_names35_text_st <- 
+      paste0("When compared to the state average, ",
+             "demographic indicators above 3 times threshold are ",
+             demog_ind$ind_names3_st,", and ",
+             demog_ind$ind_names5_st, 
+             " are demographic indicators above the 5 times threshold.")
+    
+  } else {
+    
+    demog_ind$ind_names35_text_st <- 
+      "There are no demographic indicators above the 3 times threshold or 5 times threshold when compared to the state average."
+  }
+  
+  ## population percent
+  
+  # table of sites with at least 1 ratio above 2
+  demog_ind$fac_ind_abv2_st <- demog_ind$ratio_st_bysite %>%
+    filter(if_any(contains("ratio.to.state.avg"), ~ .>2)) %>%
+    select(pop, grep("ratio.to.state.avg", 
+                     colnames(demog_ind$ratio_st_bysite), 
+                     value=TRUE))
+  # population percentage
+  demog_ind$pop_ind_abv2_st    <- sum(demog_ind$fac_ind_abv2_st$pop)
+  demog_ind$poppct_ind_abv2_st <- round((demog_ind$pop_ind_abv2_st / tot_pop)*100, 1)
+  
+  # table of sites with at least 1 ratio above 3  
+  demog_ind$fac_ind_abv3_st <- demog_ind$ratio_st_bysite %>%
+    filter(if_any(contains("ratio.to.state.avg"), ~ .>3)) %>%
+    select(pop, grep("ratio.to.state.avg", 
+                     colnames(demog_ind$ratio_st_bysite), 
+                     value=TRUE))
+  # population percentage
+  demog_ind$pop_ind_abv3_st    <- sum(demog_ind$fac_ind_abv3_st$pop)
+  demog_ind$poppct_ind_abv3_st <- round((demog_ind$pop_ind_abv3_st / tot_pop)*100, 1)
+  
+}
+
+```
+
+To detect increased potential impact, demographic population percentages
+locally are compared to state and national averages. The ratio
+between the local and state averages and the ratio between local and
+national averages are used as a reference to detect potential disparity.
+Out of the demographic indicators and sites analyzed, the greatest ratio compared to the
+state average is `r demog_ind$max_overall_st` with a rato value of
+`r demog_ind$max_overall_val_st`.
+
+An above average percentage for any demographic indicator is any ratio
+greater than one. For the facilities analyzed,
+`r demog_ind$count_1.01_st` demographic indicators were calculated on
+average to be greater than 1.01 times the state average for each
+indicator. `r demog_ind$pct_fac_1.01_st` The maximum demographic
+indicators above 1.01 times the state average for any one facility is
+`r demog_ind$max_count_1.01_st`.
+
+For more highly overrepresented populations, the ratio will be much greater
+than the average, such as more than two times or more than three times.
+For the facilities analyzed, `r demog_ind$count_2_st` residential population
+indicators were calculated on average to be greater than two times the
+state average for each indicator. `r demog_ind$ind_names2_text_st`
+`r demog_ind$pct_fac_2_st` The maximum residential population indicators above 2
+times the state average for any one facility is
+`r demog_ind$max_count_2_st`. `r demog_ind$ind_names35_text_st`
+
+Additionally, facilities can have increased exposure on certain
+residential populations based on the population contained within the
+`r params$distance`. `r demog_ind$poppct_ind_abv2_st`% of the population
+analyzed live near facilities above the two times threshold, and
+`r demog_ind$poppct_ind_abv3_st`% of the population `r params$where` a
+facility three times above the state average.
+
+*Comparison to U.S. Average*
+
+```{r demog-ratio-us, include=FALSE, echo=FALSE, message=FALSE}
+# U.S. dem indicators
+
+if (params$testmode) {
+  
+  # max overall demographic indicator value
+  demog_ind$max_overall_st      <- "[PLACEHOLDER NAME MAX DEM IND RATIO TO US AVG]"
+  demog_ind$max_overall_val_st  <- "[PLACEHOLDER VALUE MAX DEM IND RATIO TO US AVG]"
+  
+  # max count of indicators above state/US average for any one facility
+  demog_ind$max_count_2_st      <- "[PLACEHOLDER MAX COUNT OF DEM IND >2 US AVG]"
+  demog_ind$max_count_1.01_st   <- "[PLACEHOLDER MAX COUNT OF DEM IND >1.01 STATE AVG]"
+  
+  # count of indicators above state average 
+  demog_ind$count_2_st          <- "[PLACEHOLDER COUNT OF DEM IND >2 US AVG]"
+  demog_ind$count_1.01_st       <- "[PLACEHOLDER COUNT OF DEM IND >1.01 US AVG]"
+  
+  # percent of facilities above state/US average
+  demog_ind$pct_fac_2_st        <- "[PLACEHOLDER SENTENCE % 1 DEM IND >2 US AVG]"
+  demog_ind$pct_fac_1.01_st     <- "[PLACEHOLDER SENTENCE % 1 DEM IND >1.01 US AVG]"
+  
+  # names of indicators above a ratio threshold
+  demog_ind$ind_names2_st       <- "[PLACEHOLDER NAMES OF DEM IND >2 US AVG]"
+  demog_ind$ind_names3_st       <- "[PLACEHOLDER NAMES OF DEM IND >3 US AVG]"
+  demog_ind$ind_names5_st       <- "[PLACEHOLDER NAMES OF DEM IND >5 US AVG]"
+  
+  demog_ind$ind_names2_text_st  <- "[PLACEHOLDER SENTENCE DEM IND >2 US AVG]"
+  demog_ind$ind_names35_text_st <- "[PLACEHOLDER SENTENCE DEM IND >3 & >5 US AVG]"
+  
+  demog_ind$poppct_ind_abv2_st  <- "[PLACEHOLDER PERCENT]"
+  demog_ind$poppct_ind_abv3_st  <- "[PLACEHOLDER PERCENT]"
+  
+  
+} else {
+  
+  # output for function: count_sites_with_n_high_scores
+  demog_ind$findings_us    <- data.frame(count_sites_with_n_high_scores(
+    demog_ind$ratio_us_bysite,
+    ratio_benchmarks))
+  
+  demog_ind$max_overall_us <-  demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  demog_ind$max_overall_val_us <- round(max(demog_ind$ratio_us_overall), 3)
+  
+  # calculate maximum by facility
+  demog_ind$max_count_2_us    <- demog_ind$findings_us$stats.2.count[2]
+  demog_ind$max_count_1.01_us <- demog_ind$findings_us$stats.1.01.count[2]
+  
+  # use function text
+  demog_ind$pct_fac_1.01_us <- demog_ind$findings_us$text.1[2]
+  demog_ind$pct_fac_2_us    <- demog_ind$findings_us$text.2[2]
+  
+  # calculate overall count
+  demog_ind$count_1.01_us <- demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 1.01) %>%
+    nrow()
+  
+  demog_ind$count_2_us    <- demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>%
+    nrow()
+  
+  # names of indicators
+  demog_ind$ind_names2_us <- demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  demog_ind$ind_names3_us <- demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 3) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  demog_ind$ind_names5_us <- demog_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 5) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  if (demog_ind$ind_names2_us != "") {
+    
+    demog_ind$ind_names2_text_us <- 
+      paste0("The demographic indicators above the two times threshold are as follows: ",
+             demog_ind$ind_names2_us, ".")
+    
+  } else {
+    
+    demog_ind$ind_names2_text_us <- 
+      "There are no demographic indicators above the two times the national average."
+    
+  }
+  if (demog_ind$ind_names3_us != "" & demog_ind$ind_names5_us == "") {
+    
+    demog_ind$ind_names35_text_us <- 
+      paste0("When compared to the national average, ",
+             "demographic indicators above 3 times threshold are ",
+             demog_ind$ind_names3_us,
+             ", and there are no demographic indicators above the 5 times threshold.")
+    
+  } else if (demog_ind$ind_names3_us != "" & demog_ind$ind_names5_us != "") {
+    
+    demog_ind$ind_names35_text_us <- 
+      paste0("When compared to the national average, ",
+             "demographic indicators above 3 times threshold are ",
+             demog_ind$ind_names3_us,", and ",
+             demog_ind$ind_names5_us, 
+             " are demographic indicators above the 5 times threshold.")
+    
+  } else {
+    
+    demog_ind$ind_names35_text_us <- 
+      "There are no demographic indicators above the 3 times threshold or 5 times threshold when compared to the national average."
+  }
+  
+  # table of sites with at least 1 ratio above 2
+  demog_ind$fac_ind_abv2_us <- demog_ind$ratio_us_bysite %>%
+    filter(if_any(contains("ratio.to.avg"), ~ .>2)) %>%
+    select(pop, grep("ratio.to.avg", 
+                     colnames(demog_ind$ratio_us_bysite), 
+                     value=TRUE))
+  # population percentage
+  demog_ind$pop_ind_abv2_us    <- sum(demog_ind$fac_ind_abv2_us$pop)
+  demog_ind$poppct_ind_abv2_us <- round((demog_ind$pop_ind_abv2_us / tot_pop)*100, 1)
+  
+  # table of sites with at least 1 ratio above 3  
+  demog_ind$fac_ind_abv3_us <- demog_ind$ratio_us_bysite %>%
+    filter(if_any(contains("ratio.to.avg"), ~ .>3)) %>%
+    select(pop, grep("ratio.to.avg", 
+                     colnames(demog_ind$ratio_us_bysite), 
+                     value=TRUE))
+  # population percentage
+  demog_ind$pop_ind_abv3_us    <- sum(demog_ind$fac_ind_abv3_us$pop)
+  demog_ind$poppct_ind_abv3_us <- round((demog_ind$pop_ind_abv3_us / tot_pop)*100, 1)
+  
+}
+
+```
+
+Similar to state average comparisons, the comparison to national
+averages provides additional insights on population characteristics.
+When compared to the national average, the demographic indicator with
+the greatest ratio is `r demog_ind$max_overall_us` with a value of
+`r demog_ind$max_overall_val_us`.
+
+For the facilities analyzed, `r demog_ind$count_1.01_us` demographic
+indicators were calculated to be greater than 1.01 times the national
+average for each indicator. `r demog_ind$pct_fac_1.01_us` The maximum
+demographic indicators above 1.01 times the state average for any one
+facility is `r demog_ind$max_count_1.01_us`.
+
+`r demog_ind$count_2_us` demographic indicators were calculated to be
+greater than two times the national average for each indicator.
+`r demog_ind$ind_names2_text_us` `r demog_ind$pct_fac_2_us` The maximum
+demographic indicators above 2 times the state average for any one
+facility is `r demog_ind$max_count_2_us`.
+
+`r demog_ind$ind_names35_text_us`
+
+`r demog_ind$poppct_ind_abv2_us`% of the population analyzed live near
+facilities above the two times threshold, and
+`r demog_ind$poppct_ind_abv3_us`% of the population `r params$where` a
+facility three times above the national average.
+
+### Data Table. Demographic Indicators
+
+Table \@ref(tab:demog-table) shows key results for the analysis of
+demographics in these locations. The table shows each demographic
+group's share of the residential population in these locations and
+compares that to their shares of statewide and nationwide population.
+
+<caption>(\#tab:demog-table) Demographic Indicators Table</caption>
+
+```{r demog-table, echo=FALSE, out.width='600px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$demog_table_placeholder_png)
+} else {
+  # knitr::kable(params$demog_table)
+  demog_table
+}
+
+```
+
+### Data Visualization. Barplot of demographic indicators.
+
+Figure \@ref(fig:demog-barplot) shows the distribution for demographic
+indicators for the facilities analyzed.
+
+<caption>(\#fig:demog-barplot) Demographic Indicators Barplot</caption>
+
+```{r demog-barplot, echo=FALSE,  out.height='500px', out.width='800px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$barplot_placeholder_png)
+} else {
+  params$demog_barplot
+}
+
+```
+
+### Key demographic groups based on magnitude of disparities across facilities analyzed
+
+```{r demog-key-groups}
+if (params$testmode) {
+  
+  demog_ind$ind_fac_2_name     <- "[PLACEHOLDER DEM IND NAME FOR >2 RATIO]"
+  demog_ind$ind_fac_2_count    <- "[PLACEHOLDER COUNT >2 RATIO DEM IND]"
+  demog_ind$ind_fac_2_pct      <- "[PLACEHOLDER % POP >2 RATIO DEM IND]"
+  
+  demog_ind$ind_fac_3_name     <- "[PLACEHOLDER DEM IND NAME FOR >3 RATIO]"
+  demog_ind$ind_fac_3_count    <- "[PLACEHOLDER COUNT >3 RATIO DEM IND]"
+  demog_ind$ind_fac_3_pct      <- "[PLACEHOLDER % POP >3 RATIO DEM IND]"
+  
+  demog_ind$ind_fac_5_name     <- "[PLACEHOLDER DEM IND NAME FOR >5 RATIO]"
+  demog_ind$ind_fac_5_count    <- "[PLACEHOLDER COUNT >5 RATIO DEM IND]"
+  demog_ind$ind_fac_5_pct      <- "[PLACEHOLDER % POP >5 RATIO DEM IND]"
+  
+  demog_ind$rel_disp_name      <- "[PLACEHOLDER DEM IND NAME FOR MAX REL DISP]"
+  demog_ind$rel_disp$value     <- "[PLACEHOLDER DEM IND VALUE FOR MAX REL DISP]"
+  demog_ind$rel_disp_st$value  <- "[PLACEHOLDER DEM IND FOR ST VALUE]"
+  demog_ind$rel_disp_qualifier <- "[GREATER THAN/LESS THAN]"
+  demog_ind$rel_disp_us$value  <- "[PLACEHOLDER DEM IND FOR US VALUE]"
+  
+  
+  demog_ind$ind_pctile_90_st_text <- "[PLACEHOLDER SENTENCE]"
+  demog_ind$ind_pctile_90_us_text <- "[PLACEHOLDER SENTENCE]"
+  demog_ind$ind_pctile_80_st_text <- "[PLACEHOLDER SENTENCE]"
+  demog_ind$ind_pctile_80_us_text <- "[PLACEHOLDER SENTENCE]"
+  
+  demog_ind$ind_pctile_st_name <- "[PLACEHOLDER NAME]"
+  demog_ind$ind_pctile_st_val  <- "[PLACEHOLDER VALUE]"
+  demog_ind$ind_pctile_us_name <- "[PLACEHOLDER NAME]"
+  demog_ind$ind_pctile_us_val  <- "[PLACEHOLDER VALUE]"
+  
+} else {
+  
+  ## percentage of facilities with over 2
+  demog_ind$ind_fac_2  <- demog_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"), 
+                     ~sum(. > 2), 
+                     .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  demog_ind$ind_fac_2_name <- demog_ind$ind_fac_2 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  demog_ind$ind_fac_2_count <- demog_ind$ind_fac_2$value
+  
+  demog_ind$ind_fac_2_pct <- demog_ind$ratio_st_bysite %>%
+    select(pop, demog_ind$ind_fac_2$name) %>%
+    summarize(ind_fac_2_pct = sum(pop[!!sym(demog_ind$ind_fac_2$name) > 2])
+              / sum(pop)) %>%
+    mutate(ind_fac_2_pct = round(ind_fac_2_pct*100, 1))
+  
+  
+  ## percentage of facilities with over 3
+  demog_ind$ind_fac_3  <- demog_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"),
+                     ~sum(. > 3), 
+                     .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  demog_ind$ind_fac_3_name <- demog_ind$ind_fac_3 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text(start=TRUE)
+  
+  demog_ind$ind_fac_3_count <- demog_ind$ind_fac_3$value
+  
+  demog_ind$ind_fac_3_pct <- demog_ind$ratio_st_bysite %>%
+    select(pop, demog_ind$ind_fac_3$name) %>%
+    summarize(ind_fac_3_pct = sum(pop[!!sym(demog_ind$ind_fac_3$name) > 3]) / sum(pop)) %>%
+    mutate(ind_fac_3_pct = round(ind_fac_3_pct*100, 1))
+  
+  ## percentage of facilities with over 5 
+  demog_ind$ind_fac_5  <- demog_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"),
+                     ~sum(. > 5), 
+                     .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  demog_ind$ind_fac_5_name <- demog_ind$ind_fac_5 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text(start=TRUE)
+  
+  demog_ind$ind_fac_5_count <- demog_ind$ind_fac_5$value
+  
+  demog_ind$ind_fac_5_pct <- demog_ind$ratio_st_bysite %>%
+    select(pop, demog_ind$ind_fac_5$name) %>%
+    summarize(ind_fac_5_pct = sum(pop[!!sym(demog_ind$ind_fac_5$name) > 5]) / sum(pop)) %>%
+    mutate(ind_fac_5_pct = round(ind_fac_5_pct*100, 1))
+  
+  ## relative disparity
+  demog_ind$rel_disp <- (demog_ind$pctile_st_overall - demog_ind$pctile_us_overall) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    mutate(value = round(value, 3))
+  
+  demog_ind$rel_disp_name <- gsub("State ", "", 
+                                  demog_ind$rel_disp$name %>%
+                                    fixcolnames(oldtype="r", newtype="longname")) %>%
+    format_text()
+  
+  if (demog_ind$rel_disp$value > 0) {
+    
+    demog_ind$rel_disp_qualifier <- "greater than"
+    
+  } else {
+    demog_ind$rel_disp_qualifier <- "less than"
+  }
+  
+  demog_ind$rel_disp_st <- demog_ind$pctile_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(name == demog_ind$rel_disp$name) %>%
+    mutate(value = round(value, 3))
+  
+  demog_ind$rel_disp_us <- demog_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(name == gsub("state.", "",
+                        demog_ind$rel_disp$name)) %>%
+    mutate(value = round(value, 3))
+  
+  ## max indicator for state percentile
+  demog_ind$ind_pctile_st <- demog_ind$pctile_st_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  demog_ind$ind_pctile_st_val <- round(demog_ind$ind_pctile_st$value, 3)
+  
+  demog_ind$ind_pctile_st_name <- demog_ind$ind_pctile_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ## max indicator for us percentile
+  demog_ind$ind_pctile_us <- demog_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE))
+  
+  demog_ind$ind_pctile_us_val <- round(demog_ind$ind_pctile_us$value, 3)
+  
+  demog_ind$ind_pctile_us_name <- demog_ind$ind_pctile_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ## indicators above 80 st percentile
+  demog_ind$ind_pctile_80_st <-  demog_ind$pctile_st_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value >= 80)
+  
+  demog_ind$ind_pctile_80_st_name <- demog_ind$ind_pctile_80_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 80 us percentile
+  demog_ind$ind_pctile_80_us <-  demog_ind$pctile_us_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value >= 80)
+  
+  demog_ind$ind_pctile_80_us_name <- demog_ind$ind_pctile_80_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 90 st percentile
+  demog_ind$ind_pctile_90_st <- demog_ind$pctile_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value >= 90)
+  
+  demog_ind$ind_pctile_90_st_name <- demog_ind$ind_pctile_90_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 90 us percentile
+  demog_ind$ind_pctile_90_us <- demog_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value >= 90)
+  
+  demog_ind$ind_pctile_90_us_name <- demog_ind$ind_pctile_90_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## if statements for writing sentences
+  if (demog_ind$ind_pctile_90_st_name == "") {
+    
+    demog_ind$ind_pctile_90_st_text <- 
+      "There are no indicators greater than the 90th percentile at the state level."
+    
+  } else { 
+    
+    demog_ind$ind_pctile_90_st_text <- paste0(
+      "The indicators greater than the 90th percentile at the state level are as follows: ",
+      demog_ind$ind_pctile_90_st_name, ".")
+    
+  }
+  
+  if (demog_ind$ind_pctile_90_us_name == "") {
+    
+    demog_ind$ind_pctile_90_us_text <- 
+      "There are no indicators greater than the 90th percentile at the national level."
+    
+  } else { 
+    
+    demog_ind$ind_pctile_90_us_text <- paste0(
+      "The indicators greater than the 90th percentile at the national level are as follows: ", demog_ind$ind_pctile_90_us_name, ".")
+    
+  }
+  
+  ## if statements for writing sentences
+  if (demog_ind$ind_pctile_80_st_name == "") {
+    
+    demog_ind$ind_pctile_80_st_text <- 
+      "There are no indicators greater than the 90th percentile at the state level."
+    
+  } else { 
+    
+    demog_ind$ind_pctile_80_st_text <- paste0(
+      "The indicators greater than the 80th percentile at the state level are as follows: ",
+      demog_ind$ind_pctile_80_st_name, ".")
+    
+  }
+  
+  if (demog_ind$ind_pctile_80_us_name == "") {
+    
+    demog_ind$ind_pctile_80_us_text <- 
+      "There are no indicators greater than the 90th percentile at the national level."
+    
+  } else { 
+    
+    demog_ind$ind_pctile_80_us_text <- paste0(
+      "The indicators greater than the 80th percentile at the national level are as follows: ", demog_ind$ind_pctile_80_us_name, ".")
+    
+  }
+  
+}
+```
+
+Based on the analysis, `r demog_ind$ind_fac_2_name` has the most
+facilities with values two times greater than the state average
+(`r demog_ind$ind_fac_2_count`). `r demog_ind$ind_fac_2_pct`% of the
+population is included in this estimate.
+
+`r demog_ind$ind_fac_3_name` has the most facilities with values three
+times greater than the state average (`r demog_ind$ind_fac_3_count`).
+`r demog_ind$ind_fac_3_pct`% of the population is included in this
+estimate.
+
+`r demog_ind$ind_fac_5_name` has the most facilities with values five
+times greater than the state average (`r demog_ind$ind_fac_5_count`).
+`r demog_ind$ind_fac_5_pct`% of the population is included in this
+estimate.
+
+The largest disparity for a group/indicator indicates
+over-representation of that group. For relative disparity,
+`r demog_ind$rel_disp_name` has the largest difference of local
+percentage compared to U.S. percentage. The state level
+(`r demog_ind$rel_disp_st$value`) is `r demog_ind$rel_disp_qualifier`
+the national level (`r demog_ind$rel_disp_us$value`) by
+`r demog_ind$rel_disp$value`.
+
+`r demog_ind$ind_pctile_90_st_text` `r demog_ind$ind_pctile_90_us_text`
+`r demog_ind$ind_pctile_80_st_text` `r demog_ind$ind_pctile_80_us_text`
+
+`r demog_ind$ind_pctile_st_name` had the largest max mean percentile
+with a value of `r demog_ind$ind_pctile_st_val` at the state level.
+`r demog_ind$ind_pctile_us_name` had the largest max mean percentile
+with a value of `r demog_ind$ind_pctile_us_val` at the national level.
+
+`r demog_ind$max_overall_us` had the largest ratio to the U.S. average,
+and `r demog_ind$max_overall_st` had the largest ratio when compared to
+the state average. The values for these ratios are
+`r demog_ind$max_overall_val_us` and `r demog_ind$max_overall_val_st`
+respectively.
+
+### Demographics at key sites
+
+```{r demog-key-sites}
+
+if (params$testmode) {
+  
+  demog_ind$max_ratio_st_val     <- "[PLACEHOLDER RATIO]"
+  demog_ind$max_ratio_st_name    <- "[PLACEHOLDER RATIO NAME]"
+  demog_ind$max_ratio_st_pop_pct <- "[PLACEHOLDER RATIO FACILITY PERCENT OF POP]"
+  
+  demog_ind$max_ratio_us_val     <- "[PLACEHOLDER RATIO]"
+  demog_ind$max_ratio_us_name    <- "[PLACEHOLDER RATIO NAME]"
+  demog_ind$max_ratio_us_pop_pct <- "[PLACEHOLDER RATIO FACILITY PERCENT OF POP]"
+  
+  demog_ind$max_pctile           <- "[PLACEHOLDER PCTILE]"
+  demog_ind$max_pctile_pop_pct   <- "[PLACEHOLDER PCTILE FACILITY PERCENT OF POP]"
+  
+  demog_ind$key_sites_count      <- "[PLACEHOLDER COUNT OF KEYSITES]"
+  demog_ind$key_sites_pop_pct    <- "[PLACEHOLDER PCTILE FACILITY PERCENT OF POP]"
+  
+  demog_ind$key_sites_sent       <- "[PLACEHOLDER SENTENCE FOR STATES WITH KEY FAC]"
+  
+  
+} else {
+  
+  
+  # max ratio at state level
+  demog_ind$max_ratio_st_val <- round(max(demog_ind$ratio_st_bysite[,-c(1,2)], 
+                                          na.rm=TRUE),3)
+  demog_ind$max_ratio_st_name <- names(demog_ind$ratio_st_bysite)[which.max(apply(demog_ind$ratio_st_bysite[,-c(1,2)], 2, max, na.rm = TRUE))] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  # percent of population from max ratio
+  demog_ind$st_bysite_pop <- demog_ind$ratio_us_bysite %>%
+    summarize(sum(pop))
+  demog_ind$max_ratio_st_pop <- demog_ind$ratio_st_bysite[which.max(demog_ind$max_ratio_st_val),] %>%
+    select(pop)
+  demog_ind$max_ratio_st_pop_pct <- round((demog_ind$max_ratio_st_pop / tot_pop)*100, 1)
+  
+  
+  # max ratio at national level
+  demog_ind$max_ratio_us_val <- round(max(demog_ind$ratio_us_bysite[,-c(1,2)], na.rm=TRUE),3)
+  demog_ind$max_ratio_us_name <- names(demog_ind$ratio_us_bysite)[which.max(apply(demog_ind$ratio_us_bysite[,-c(1,2)], 2, max, na.rm = TRUE))] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  # percent of population from max ratio
+  demog_ind$max_ratio_us_pop <- demog_ind$ratio_us_bysite[which.max(demog_ind$max_ratio_us_val),] %>%
+    select(pop)
+  demog_ind$max_ratio_us_pop_pct <- round((demog_ind$max_ratio_us_pop / tot_pop)*100, 1)
+  
+  # dataframe of key sites
+  demog_ind$key_sites <- demog_ind$ratio_us_bysite %>%
+    mutate(key_site_flag = apply(demog_ind$ratio_us_bysite[,-1], 1, function(row) sum(sum(row > 2) > 5))) 
+  
+  demog_ind$key_sites_count <- demog_ind$key_sites %>%
+    filter(key_site_flag > 0) %>%
+    summarise(sum(key_site_flag))
+  
+  demog_ind$key_sites_pop <- demog_ind$key_sites %>%
+    filter(key_site_flag > 0) %>%
+    summarise(sum(pop))
+  
+  demog_ind$key_sites_pop_pct <- round((demog_ind$key_sites_pop / tot_pop)*100, 1)
+  
+  
+  # arrange and group by states
+  demog_ind$key_sites_states <- demog_ind$key_sites %>%
+    group_by(state) %>%
+    filter(key_site_flag > 0) %>%
+    summarise(count = sum(key_site_flag)) %>%
+    arrange(desc(count))
+  
+  if (nrow(demog_ind$key_sites_states) == 1) {
+    demog_ind$key_sites_1_name <- demog_ind$key_sites_states$state[1] %>% format_text()
+    demog_ind$key_sites_1_count <- demog_ind$key_sites_states$count[1]
+    
+    demog_ind$key_sites_sent <- paste0("The state with the most key sites is ", demog_ind$key_sites_1_name,
+                                       " (", demog_ind$key_sites_1_count, ").")
+  } else if (nrow(demog_ind$key_sites_states) == 2) {
+    
+    demog_ind$key_sites_1_name <- demog_ind$key_sites_states$state[1] %>% format_text()
+    demog_ind$key_sites_1_count <- demog_ind$key_sites_states$count[1]
+    
+    demog_ind$key_sites_2_name <- demog_ind$key_sites_states$state[2] %>% format_text()
+    demog_ind$key_sites_2_count <- demog_ind$key_sites_states$count[2]
+    
+    demog_ind$key_sites_sent <- paste0("The state with the most key sites is ", demog_ind$key_sites_1_name,
+                                       " (", demog_ind$key_sites_1_count, "), and with the second most is ",
+                                       demog_ind$key_sites_2_name, " (", demog_ind$key_sites_2_count, ").")
+    
+  } else if (nrow(demog_ind$key_sites_states) >= 3) {
+    
+    demog_ind$key_sites_1_name <- demog_ind$key_sites_states$state[1] %>% format_text()
+    demog_ind$key_sites_1_count <- demog_ind$key_sites_states$count[1]
+    
+    demog_ind$key_sites_2_name <- demog_ind$key_sites_states$state[2] %>% format_text()
+    demog_ind$key_sites_2_count <- demog_ind$key_sites_states$count[2]
+    
+    demog_ind$key_sites_3_name <- demog_ind$key_sites_states$state[3] %>% format_text()
+    demog_ind$key_sites_3_count <- demog_ind$key_sites_states$count[3]
+    
+    demog_ind$key_sites_sent <- paste0("The state with the most key sites is ", demog_ind$key_sites_1_name,
+                                       " (", demog_ind$key_sites_1_count, "), with ",
+                                       demog_ind$key_sites_2_name, " the next most (", demog_ind$key_sites_2_count, ") and ",
+                                       demog_ind$key_sites_3_name, " the third most (", demog_ind$key_sites_3_count, ").")
+    
+  } else {
+    
+    demog_ind$key_sites_sent <- "There are no key sites in the data analyzed."
+  }
+  
+  
+  
+}
+
+```
+
+The largest single ratio compared to state average out of all facilities
+was for `r demog_ind$max_ratio_st_name` with the value
+`r demog_ind$max_ratio_st_val`. This facility impacts
+`r demog_ind$max_ratio_st_pop_pct`% of the total population.
+
+The largest single ratio compared to national average out of all
+facilities was for `r demog_ind$max_ratio_us_name` with the value
+`r demog_ind$max_ratio_us_val`. This facility impacts
+`r demog_ind$max_ratio_us_pop_pct`% of the total population.
+
+`r demog_ind$key_sites_count` key sites have over half of demographic
+indicators more than 2x the US average. There are 10 demographic
+indicators included in EJAM, and therefore, over half represents over 5
+indicators. These key sites represent `r demog_ind$key_sites_pop_pct`%
+of the total population.
+
+`r demog_ind$key_sites_sent`
+
+### Data Visualization. Plots of demographic indicators.
+
+Figure \@ref(fig:demog-ridgeline) displays the ratio of demographic
+indicators compared to the U.S. average across all of the facility
+sites.
+
+<caption>(\#fig:demog-ridgeline) Demographic Indicators Ridgeline
+Plot</caption>
+
+```{r demog-ridgeline, echo=FALSE,  out.height='500px', out.width='800px'}
+if(params$testmode) {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$boxplot_placeholder_png)
+  
+} else {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$demog_ridgeline)
+}
+
+
+```
+
+<caption>(\#fig:demog-resident) Demographic Indicators Resident
+Barplot</caption>
+
+```{r demog-resident, echo=FALSE,  out.height='500px', out.width='800px'}
+if(params$testmode) {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$barplot_placeholder_png)
+  
+} else {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$demog_resident_barplot)
+}
+
+
+```
+
+## Environmental indicator results
+
+```{r}
+
+## List for Environmental Indicators 
+envt_ind <- list()
+
+# comparison for ratios
+ratio_benchmarks <- c("1.01", "2")
+
+# outputs from dataframe
+# ratios
+envt_ind$ratio_st_overall <- params$results_overall[, ..names_e_ratio_to_state_avg]
+envt_ind$ratio_st_bysite <- cbind(pop = params$results_bysite$pop,
+                                  state = params$results_bysite$ST,
+                                  params$results_bysite[, ..names_e_ratio_to_state_avg])
+
+envt_ind$ratio_us_overall <- params$results_overall[, ..names_e_ratio_to_avg]
+envt_ind$ratio_us_bysite <- cbind(pop = params$results_bysite$pop,
+                                  state = params$results_bysite$ST,
+                                  params$results_bysite[, ..names_e_ratio_to_avg])
+
+# percentiles
+envt_ind$pctile_st_overall <- params$results_overall[, ..names_e_state_pctile]
+envt_ind$pctile_st_bysite <- params$results_bysite[, ..names_e_state_pctile]
+
+envt_ind$pctile_us_overall <- params$results_overall[, ..names_e_pctile]
+envt_ind$pctile_us_bysite <- params$results_bysite[, ..names_e_pctile]
+
+```
+
+*Comparison to State Average*
+
+```{r envt-ratio-st, include = FALSE, echo=FALSE, message=FALSE}
+
+# test mode
+if (params$testmode) {
+  
+  # max overall demographic indicator value
+  envt_ind$max_overall_st <- "[PLACEHOLDER FOR NAME OF MAX ENV INDICATOR RATIO TO ST AVG]"
+  envt_ind$max_overall_val_st <- "[PLACEHOLDER FOR MAX ENV INDICATOR RATIO TO ST AVG]"
+  
+  # max count of indicators above state/US average for any one facility
+  envt_ind$max_count_2_st <- "[PLACEHOLDER FOR MAX COUNT OF ENV IND >2 STATE AVG]"
+  envt_ind$max_count_1.01_st <- "[PLACEHOLDER FOR MAX COUNT OF ENV IND >1.01 STATE AVG]"
+  
+  # count of indicators above state average 
+  envt_ind$count_2_st <- "[PLACEHOLDER FOR COUNT OF ENV IND >2 STATE AVG]"
+  envt_ind$count_1.01_st <- "[PLACEHOLDER FOR COUNT OF ENV IND >1.01 STATE AVG]"
+  
+  # percent of facilities above state/US average
+  envt_ind$pct_fac_2_st <- "[PLACEHOLDER SENTENCE FOR PERCENT OF FACILITIES WITH AT LEAST 1 ENV IND >2 STATE AVG]"
+  envt_ind$pct_fac_1.01_st <- "[PLACEHOLDER SENTENCE FOR PERCENT OF FACILITIES WITH AT LEAST 1 ENV IND >1.01 STATE AVG]"
+  
+  # names of indicators above a ratio threshold
+  envt_ind$ind_names2_st <- "[PLACEHOLDER NAMES OF ENV IND >2 STATE AVG]"
+  envt_ind$ind_names3_st <- "[PLACEHOLDER NAMES OF ENV IND >3 STATE AVG]"
+  envt_ind$ind_names5_st <- "[PLACEHOLDER NAMES OF ENV IND >5 STATE AVG]"
+  
+  envt_ind$ind_names2_text_st <- "[PLACEHOLDER SENTENCE OF ENV IND >2 STATE AVG]"
+  envt_ind$ind_names35_text_st <- "[PLACEHOLDER SENTENCE OF ENV IND >3 AND >5 STATE AVG]"
+  
+  envt_ind$poppct_ind_abv2_st <- "[PLACEHOLDER PERCENT]"
+  envt_ind$poppct_ind_abv3_st <- "[PLACEHOLDER PERCENT]"
+  
+  
+  # not test mode
+} else {
+  
+  # output for function: count_sites_with_n_high_scores
+  envt_ind$findings_st <- data.frame(count_sites_with_n_high_scores(envt_ind$ratio_st_bysite, 
+                                                                    ratio_benchmarks))
+  
+  envt_ind$max_overall_st <-  envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  envt_ind$max_overall_val_st <-  round(max(envt_ind$ratio_st_overall), 3)
+  
+  # calculate maximum by facility
+  envt_ind$max_count_2_st <- envt_ind$findings_st$stats.2.count[2]
+  envt_ind$max_count_1.01_st <- envt_ind$findings_st$stats.1.01.count[2]
+  
+  # use function text
+  envt_ind$pct_fac_1.01_st <- envt_ind$findings_st$text.1[2]
+  envt_ind$pct_fac_2_st <- envt_ind$findings_st$text.2[2]
+  
+  # calculate overall count
+  envt_ind$count_1.01_st <- envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 1.01) %>%
+    nrow()
+  
+  envt_ind$count_2_st <- envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>%
+    nrow()
+  
+  # names of indicators
+  envt_ind$ind_names2_st <- 
+    
+    envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  envt_ind$ind_names3_st <- 
+    envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 3) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  envt_ind$ind_names5_st <- 
+    envt_ind$ratio_st_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 5) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  if (envt_ind$ind_names2_st != "") {
+    
+    envt_ind$ind_names2_text_st <- paste0("The environmental indicators above the two times threshold are as follows: ",
+                                          envt_ind$ind_names2_st, ".")
+  } else {
+    
+    envt_ind$ind_names2_text_st <- "There are no environmental indicators above the two times the state average."
+    
+  }
+  
+  if (envt_ind$ind_names3_st != "" & envt_ind$ind_names5_st == "") {
+    
+    envt_ind$ind_names35_text_st <- paste0("When compared to the state average, ",
+                                           "environmental indicators above 3 times threshold are ",
+                                           envt_ind$ind_names3_st,", and there are no environmental indicators above the 5 times threshold.")
+    
+  } else if (envt_ind$ind_names3_st != "" & envt_ind$ind_names5_st != "") {
+    
+    envt_ind$ind_names35_text_st <- paste0("When compared to the state average, ",
+                                           "environmental indicators above 3 times threshold are ",
+                                           envt_ind$ind_names3_st,", and ",
+                                           envt_ind$ind_names5_st, 
+                                           " are environmental indicators above the 5 times threshold.")
+    
+  } else {
+    
+    envt_ind$ind_names35_text_st <- 
+      "There are no environmental indicators above the 3 times threshold or 5 times threshold when compared to the state average."
+  }
+  
+  ## population percent
+  
+  tot_pop <- sum(params$results_bysite$pop)
+  
+  # table of sites with at least 1 ratio above 2
+  envt_ind$fac_ind_abv2_st <- envt_ind$ratio_st_bysite %>%
+    filter(if_any(contains("ratio.to.state.avg"), ~ . > 2)) %>%
+    select(pop,grep("ratio.to.state.avg", colnames(envt_ind$ratio_st_bysite), value=TRUE))
+  
+  # population percentage
+  envt_ind$pop_ind_abv2_st <- sum(envt_ind$fac_ind_abv2_st$pop)
+  envt_ind$poppct_ind_abv2_st <- round((envt_ind$pop_ind_abv2_st / tot_pop)*100, 1)
+  
+  # table of sites with at least 1 ratio above 3  
+  envt_ind$fac_ind_abv3_st <- envt_ind$ratio_st_bysite %>%
+    filter(if_any(contains("ratio.to.state.avg"), ~ . > 3)) %>%
+    select(pop,grep("ratio.to.state.avg", colnames(envt_ind$ratio_st_bysite), value=TRUE))
+  
+  # population percentage
+  envt_ind$pop_ind_abv3_st <- sum(envt_ind$fac_ind_abv3_st$pop)
+  envt_ind$poppct_ind_abv3_st <- round((envt_ind$pop_ind_abv3_st / tot_pop)*100, 1)
+  
+}
+
+```
+
+Overall, the greatest ratio compared to the state average is
+`r envt_ind$max_overall_st` with a value of
+`r envt_ind$max_overall_val_st`.
+
+For the facilities analyzed, `r envt_ind$count_1.01_st` environmental
+indicators were calculated on average to be greater than 1.01 times the
+state average for each indicator. `r envt_ind$pct_fac_1.01_st` The
+maximum environmental indicators above 1.01 times the state average for
+any one facility is `r envt_ind$max_count_1.01_st`.
+
+For the facilities analyzed, `r envt_ind$count_2_st` environmental
+indicators were calculated on average to be greater than two times the
+state average for each indicator. `r envt_ind$ind_names2_text_st`
+`r envt_ind$pct_fac_2_st` The maximum environmental indicators above 2
+times the state average for any one facility is
+`r envt_ind$max_count_2_st`.
+
+`r envt_ind$ind_names35_text_st`
+
+`r envt_ind$poppct_ind_abv2_st`% of the population analyzed live near
+facilities above the two times threshold, and
+`r envt_ind$poppct_ind_abv3_st`% of the population `r params$where` a
+facility three times above the state average.
+
+*Comparison to U.S. Average*
+
+```{r envt-ratio-us, include=FALSE, echo=FALSE, message=FALSE}
+
+# U.S. envt indicators
+if (params$testmode) {
+  
+  # max overall indicator value
+  envt_ind$max_overall_us <- "[PLACEHOLDER FOR NAME OF MAX ENV INDICATOR RATIO TO US AVG]"
+  envt_ind$max_overall_val_us <- "[PLACEHOLDER FOR MAX ENV INDICATOR RATIO TO US AVG]"
+  
+  # max count of indicators above state/US average for any one facility
+  envt_ind$max_count_2_us <- "[PLACEHOLDER FOR MAX COUNT OF ENV IND >2 US AVG]"
+  envt_ind$max_count_1.01_us <- "[PLACEHOLDER FOR MAX COUNT OF ENV IND >1.01 US AVG]"
+  
+  # count of indicators above state average 
+  envt_ind$count_2_us <- "[PLACEHOLDER FOR COUNT OF ENV IND >2 US AVG]"
+  envt_ind$count_1.01_us <- "[PLACEHOLDER FOR COUNT OF ENV IND >1.01 US AVG]"
+  
+  envt_ind$pct_fac_2_us <- "[PLACEHOLDER SENTENCE FOR PERCENT OF FACILITIES WITH AT LEAST 1 ENV IND >2 US AVG]"
+  envt_ind$pct_fac_1.01_us <- "[PLACEHOLDER SENTENCE FOR PERCENT OF FACILITIES WITH AT LEAST 1 ENV IND >1.01 US AVG]"
+  
+  # names of indicators above a ratio threshold
+  envt_ind$ind_names2_us <- "[PLACEHOLDER NAMES OF ENV IND >2 US AVG]"
+  envt_ind$ind_names3_us <- "[PLACEHOLDER NAMES OF ENV IND >3 US AVG]"
+  envt_ind$ind_names5_us <- "[PLACEHOLDER NAMES OF ENV IND >5 US AVG]"
+  
+  envt_ind$ind_names35_text_us <- "[PLACEHOLDER SENTENCE OF ENV IND >3 AND >5 US AVG]"
+  
+  envt_ind$poppct_ind_abv2_us <- "[PLACEHOLDER PERCENT]"
+  envt_ind$poppct_ind_abv3_us <- "[PLACEHOLDER PERCENT]"
+  
+  
+} else {
+  
+  
+  envt_ind$findings_us <- data.frame(count_sites_with_n_high_scores(envt_ind$ratio_us_bysite, 
+                                                                    ratio_benchmarks, 
+                                                                    xwide = "nationwide"))
+  
+  envt_ind$max_overall_us <-  envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  envt_ind$max_overall_val_us <- round(max(envt_ind$ratio_us_overall),3)
+  
+  envt_ind$max_count_2_us <- envt_ind$findings_us$stats.2.count[2]
+  envt_ind$max_count_1.01_us <- envt_ind$findings_us$stats.1.01.count[2]
+  
+  envt_ind$pct_fac_1.01_us <- envt_ind$findings_us$text.1[2]
+  envt_ind$pct_fac_2_us <- envt_ind$findings_us$text.2[2]
+  
+  envt_ind$count_1.01_us <- envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 1.01) %>%
+    nrow()
+  
+  envt_ind$count_2_us <- envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>%
+    nrow()
+  
+  # names of indicators
+  envt_ind$ind_names2_us <- 
+    envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 2) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  envt_ind$ind_names3_us <- 
+    envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 3) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  envt_ind$ind_names5_us <- 
+    envt_ind$ratio_us_overall %>%
+    pivot_longer(everything()) %>% 
+    filter(value > 5) %>% 
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  if (envt_ind$ind_names2_us != "") {
+    
+    envt_ind$ind_names2_text_us <- paste0("The environmental indicators above the two times threshold are as follows: ",
+                                          envt_ind$ind_names2_us, ".")
+  } else {
+    
+    envt_ind$ind_names2_text_us <- "There are no environmental indicators above the two times the national average."
+    
+  }
+  
+  if (envt_ind$ind_names3_us != "" & envt_ind$ind_names5_us == "") {
+    
+    envt_ind$ind_names35_text_us <- paste0("When compared to the national average, ",
+                                           "environmental indicators above 3 times threshold are ",
+                                           envt_ind$ind_names3_us,", and there are no environmental indicators above the 5 times threshold.")
+    
+  } else if (envt_ind$ind_names3_us != "" & length(envt_ind$ind_names5_us) != "") {
+    
+    envt_ind$ind_names35_text_us <- paste0("When compared to the national average, ",
+                                           "environmental indicators above 3 times threshold are ",
+                                           envt_ind$ind_names3_us,", and ",
+                                           envt_ind$ind_names5_us, 
+                                           " are environmental indicators above the 5 times threshold.")
+    
+  } else {
+    
+    envt_ind$ind_names35_text_us <- 
+      "There are no environmental indicators above the 3 times threshold or 5 times threshold when compared to the national average."
+  }
+  
+  ## population percent
+  
+  # table of sites with at least 1 ratio above 2
+  envt_ind$fac_ind_abv2_us <- envt_ind$ratio_us_bysite %>%
+    filter(if_any(contains("ratio.to.avg"), ~ .>2)) %>%
+    select(pop,grep("ratio.to.avg", colnames(envt_ind$ratio_us_bysite), value=TRUE))
+  
+  # population percentage
+  envt_ind$pop_ind_abv2_us <- sum(envt_ind$fac_ind_abv2_us$pop)
+  envt_ind$poppct_ind_abv2_us <- round((envt_ind$pop_ind_abv2_us / tot_pop)*100, 1)
+  
+  # table of sites with at least 1 ratio above 3  
+  envt_ind$fac_ind_abv3_us <- envt_ind$ratio_us_bysite %>%
+    filter(if_any(contains("ratio.to.avg"), ~ .>3)) %>%
+    select(pop,grep("ratio.to.avg", colnames(envt_ind$ratio_us_bysite), value=TRUE))
+  
+  # population percentage
+  envt_ind$pop_ind_abv3_us <- sum(envt_ind$fac_ind_abv3_us$pop)
+  envt_ind$poppct_ind_abv3_us <- round((envt_ind$pop_ind_abv3_us / tot_pop)*100, 1)
+  
+  
+}
+
+```
+
+Overall, the greatest ratio compared to the national average is
+`r envt_ind$max_overall_us` with a value of
+`r envt_ind$max_overall_val_us`.
+
+For the facilities analyzed, `r envt_ind$count_1.01_us` environmental
+indicators were calculated to be greater than 1.01 times the national
+average for each indicator. `r envt_ind$pct_fac_1.01_us` The maximum
+environmental indicators above 1.01 times the state average for any one
+facility is `r envt_ind$max_count_1.01_us`.
+
+For the facilities analyzed, `r envt_ind$count_2_us` environmental
+indicators were calculated to be greater than two times the national
+average for each indicator. `r envt_ind$ind_names2_text_us`
+`r envt_ind$pct_fac_2_us` The maximum environmental indicators above 2
+times the state average for any one facility is
+`r envt_ind$max_count_2_us`.
+
+`r envt_ind$ind_names35_text_us`
+
+`r envt_ind$poppct_ind_abv2_us`% of the population analyzed live near
+facilities above the two times threshold, and
+`r envt_ind$poppct_ind_abv3_us`% of the population `r params$where` a
+facility three times above the national average.
+
+### Data Table. Summary of Environmental Indicators
+
+Table \@ref(tab:envt-table) shows key results for the analysis of
+environmental metrics in these locations. The table shows each
+environmental indicators' share of the residential population in these
+locations and compares that to their shares of statewide and nationwide
+population.
+
+<caption>(\#tab:envt-table) Environmental Indicators Table</caption>
+
+```{r envt-table, echo=FALSE, out.width='900px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$envt_table_placeholder_png)
+} else {
+  params$envt_table
+}
+
+```
+
+### Data Visualization. Barplot of environmental indicators.
+
+Figure \@ref(fig:envt-barplot) shows the distribution for environmental
+indicators for the facilities analyzed.
+
+<caption>(\#fig:envt-barplot) Environmental Indicators Barplot</caption>
+
+```{r envt-barplot, echo=FALSE,  out.height='500px', out.width='800px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$barplot_placeholder_png)
+} else {
+  params$envt_barplot
+}
+
+```
+
+### Key environmental indicators distribution across the residents and sites
+
+```{r envt-key-groups}
+if (params$testmode) {
+  
+  envt_ind$ind_fac_2_name <- "[PLACEHOLDER ENV IND NAME FOR >2 RATIO]"
+  envt_ind$ind_fac_2_count <- "[PLACEHOLDER COUNT OF FAC WITH >2 RATIO ENV IND]"
+  envt_ind$ind_fac_2_pct <- "[PLACEHOLDER PERCENT OF POP OF FAC WITH >2 RATIO ENV IND]"
+  
+  envt_ind$ind_fac_3_name <- "[PLACEHOLDER ENV IND NAME FOR >3 RATIO]"
+  envt_ind$ind_fac_3_count <- "[PLACEHOLDER COUNT OF FAC WITH >3 RATIO ENV IND]"
+  envt_ind$ind_fac_3_pct <- "[PLACEHOLDER PERCENT OF POP OF FAC WITH >3 RATIO ENV IND]"
+  
+  envt_ind$ind_fac_5_name <- "[PLACEHOLDER ENV IND NAME FOR >5 RATIO]"
+  envt_ind$ind_fac_5_count <- "[PLACEHOLDER COUNT OF FAC WITH >5 RATIO ENV IND]"
+  envt_ind$ind_fac_5_pct <- "[PLACEHOLDER PERCENT OF POP OF FAC WITH >5 RATIO ENV IND]"
+  
+  envt_ind$rel_disp_name <- "[PLACEHOLDER ENV IND NAME FOR MAX REL DISP]"
+  envt_ind$rel_disp$value < -"[PLACEHOLDER ENV IND VALUE FOR MAX REL DISP]"
+  envt_ind$rel_disp_st$value <- "[PLACEHOLDER ENV IND FOR ST VALUE]"
+  envt_ind$rel_disp_qualifier <- "[GREATER THAN/LESS THAN]"
+  envt_ind$rel_disp_us$value <- "[PLACEHOLDER ENV IND FOR US VALUE]"
+  
+  envt_ind$ind_pctile_90_st_text <- "[PLACEHOLDER SENTENCE]"
+  envt_ind$ind_pctile_90_us_text <- "[PLACEHOLDER SENTENCE]"
+  envt_ind$ind_pctile_80_st_text <- "[PLACEHOLDER SENTENCE]"
+  envt_ind$ind_pctile_80_us_text <- "[PLACEHOLDER SENTENCE]"
+  
+  envt_ind$ind_pctile_st_name <- "[PLACEHOLDER NAME]"
+  envt_ind$ind_pctile_st_val <- "[PLACEHOLDER VALUE]"
+  envt_ind$ind_pctile_us_name <- "[PLACEHOLDER NAME]"
+  envt_ind$ind_pctile_us_val <- "[PLACEHOLDER VALUE]"
+  
+} else {
+  
+  ## percentage of facilities with over 2
+  envt_ind$ind_fac_2  <- envt_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"), ~sum(. > 2), .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  envt_ind$ind_fac_2_name <- envt_ind$ind_fac_2 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") 
+  
+  envt_ind$ind_fac_2_count <- envt_ind$ind_fac_2$value
+  
+  envt_ind$ind_fac_2_pct <- envt_ind$ratio_st_bysite %>%
+    select(pop, envt_ind$ind_fac_2$name) %>%
+    summarize(ind_fac_2_pct = sum(pop[!!sym(envt_ind$ind_fac_2$name) > 2]) / sum(pop)) %>%
+    mutate(ind_fac_2_pct = round(ind_fac_2_pct*100, 1))
+  
+  
+  ## percentage of facilities with over 3
+  envt_ind$ind_fac_3  <- envt_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"), ~sum(. > 3), .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  envt_ind$ind_fac_3_name <- envt_ind$ind_fac_3 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text(start=TRUE)
+  
+  envt_ind$ind_fac_3_count <- envt_ind$ind_fac_3$value
+  
+  envt_ind$ind_fac_3_pct <- envt_ind$ratio_st_bysite %>%
+    select(pop, envt_ind$ind_fac_3$name) %>%
+    summarize(ind_fac_3_pct = sum(pop[!!sym(envt_ind$ind_fac_3$name) > 3]) / sum(pop)) %>%
+    mutate(ind_fac_3_pct = round(ind_fac_3_pct*100, 1))
+  
+  ## percentage of facilities with over 5 
+  envt_ind$ind_fac_5  <- envt_ind$ratio_st_bysite %>%
+    summarize(across(contains("ratio.to.state.avg"), ~sum(. > 5), .names = "{.col}")) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  envt_ind$ind_fac_5_name <- envt_ind$ind_fac_5 %>%
+    pivot_wider() %>%
+    colnames() %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text(start = TRUE)
+  
+  envt_ind$ind_fac_5_count <- envt_ind$ind_fac_5$value
+  
+  envt_ind$ind_fac_5_pct <- envt_ind$ratio_st_bysite %>%
+    select(pop, envt_ind$ind_fac_5$name) %>%
+    summarize(ind_fac_5_pct = sum(pop[!!sym(envt_ind$ind_fac_5$name) > 5]) / sum(pop)) %>%
+    mutate(ind_fac_5_pct = round(ind_fac_5_pct*100, 1))
+  
+  ## relative disparity
+  envt_ind$rel_disp <- (envt_ind$pctile_st_overall - envt_ind$pctile_us_overall) %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value)) %>%
+    mutate(value = round(value, 3))
+  
+  envt_ind$rel_disp_name <- gsub("State ", "", 
+                                 envt_ind$rel_disp$name %>%
+                                   fixcolnames(oldtype="r", newtype="longname")) %>%
+    format_text()
+  
+  if (envt_ind$rel_disp$value > 0) {
+    
+    envt_ind$rel_disp_qualifier <- "greater than"
+    
+  } else {
+    envt_ind$rel_disp_qualifier <- "less than"
+  }
+  
+  envt_ind$rel_disp_st <- envt_ind$pctile_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(name == envt_ind$rel_disp$name) %>%
+    mutate(value = round(value, 3))
+  
+  envt_ind$rel_disp_us <- envt_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(name == gsub("state.", "",envt_ind$rel_disp$name)) %>%
+    mutate(value = round(value,3))
+  
+  ## max indicator for state percentile
+  envt_ind$ind_pctile_st <- envt_ind$pctile_st_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE)) 
+  
+  envt_ind$ind_pctile_st_val <- round(envt_ind$ind_pctile_st$value, 3)
+  
+  envt_ind$ind_pctile_st_name <- envt_ind$ind_pctile_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ## max indicator for us percentile
+  envt_ind$ind_pctile_us <- envt_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value == max(value, na.rm=TRUE))
+  
+  envt_ind$ind_pctile_us_val <- round(envt_ind$ind_pctile_us$value, 3)
+  
+  envt_ind$ind_pctile_us_name <- envt_ind$ind_pctile_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ## indicators above 80 st percentile
+  envt_ind$ind_pctile_80_st <-  envt_ind$pctile_st_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value >= 80)
+  
+  envt_ind$ind_pctile_80_st_name <- envt_ind$ind_pctile_80_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 80 us percentile
+  envt_ind$ind_pctile_80_us <-  envt_ind$pctile_us_overall %>% 
+    pivot_longer(everything()) %>%
+    filter(value >= 80)
+  
+  envt_ind$ind_pctile_80_us_name <- envt_ind$ind_pctile_80_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 90 st percentile
+  envt_ind$ind_pctile_90_st <- envt_ind$pctile_st_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value >= 90)
+  
+  envt_ind$ind_pctile_90_st_name <- envt_ind$ind_pctile_90_st$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## indicators above 90 us percentile
+  envt_ind$ind_pctile_90_us <- envt_ind$pctile_us_overall %>%
+    pivot_longer(everything()) %>%
+    filter(value >= 90)
+  
+  envt_ind$ind_pctile_90_us_name <- envt_ind$ind_pctile_90_us$name %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    paste(collapse=", ") %>%
+    format_text()
+  
+  ## if statements for writing sentences
+  if (envt_ind$ind_pctile_90_st_name == "") {
+    
+    envt_ind$ind_pctile_90_st_text <- "There are no indicators greater than the 90th percentile at the state level."
+  } else { 
+    
+    envt_ind$ind_pctile_90_st_text <- paste0("The indicators greater than the 90th percentile at state level are as follows: ", envt_ind$ind_pctile_90_st_name, ".")
+  }
+  
+  if (envt_ind$ind_pctile_90_us_name == "") {
+    
+    envt_ind$ind_pctile_90_us_text <- "There are no indicators greater than the 90th percentile at the national level."
+  } else { 
+    
+    envt_ind$ind_pctile_90_us_text <- paste0("The indicators greater than the 90th percentile at national level are as follows: ", envt_ind$ind_pctile_90_us_name, ".")
+  }
+  
+  ## if statements for writing sentences
+  if (envt_ind$ind_pctile_80_st_name == "") {
+    
+    envt_ind$ind_pctile_80_st_text <- "There are no indicators greater than the 80th percentile at the state level."
+  } else { 
+    
+    envt_ind$ind_pctile_80_st_text <- paste0("The indicators greater than the 80th percentile at state level are as follows: ", envt_ind$ind_pctile_80_st_name, ".")
+  }
+  
+  if (envt_ind$ind_pctile_80_us_name == "") {
+    
+    envt_ind$ind_pctile_80_us_text <- "There are no indicators greater than the 80th percentile at the national level."
+  } else { 
+    
+    envt_ind$ind_pctile_80_us_text <- paste0("The indicators greater than the 80th percentile at national level are as follows: ", envt_ind$ind_pctile_80_us_name, ".")
+  }
+  
+}
+```
+
+Based on the analysis, `r envt_ind$ind_fac_2_name` has the most
+facilities with values two times greater than the state average
+(`r envt_ind$ind_fac_2_count`). `r envt_ind$ind_fac_2_pct`% of the
+population is included in this estimate.
+
+`r envt_ind$ind_fac_3_name` has the most facilities with values three
+times greater than the state average (`r envt_ind$ind_fac_3_count`).
+`r envt_ind$ind_fac_3_pct`% of the population is included in this
+estimate.
+
+`r envt_ind$ind_fac_5_name` has the most facilities with values five
+times greater than the state average (`r envt_ind$ind_fac_5_count`).
+`r envt_ind$ind_fac_5_pct`% of the population is included in this
+estimate.
+
+The largest disparity for a indicator indicates over-representation of
+that indicator. For relative disparity, `r envt_ind$rel_disp_name` has
+the largest difference of local percentage compared to U.S. percentage.
+The state level (`r envt_ind$rel_disp_st$value`) is
+`r envt_ind$rel_disp_qualifier` the national level
+(`r envt_ind$rel_disp_us$value`) by `r envt_ind$rel_disp$value`.
+
+`r envt_ind$ind_pctile_90_st_text`
+
+`r envt_ind$ind_pctile_90_us_text`
+
+`r envt_ind$ind_pctile_80_st_text`
+
+`r envt_ind$ind_pctile_80_us_text`
+
+`r envt_ind$ind_pctile_st_name` had the largest max mean percentile with
+a value of `r envt_ind$ind_pctile_st_val` at the state level.
+`r envt_ind$ind_pctile_us_name` had the largest max mean percentile with
+a value of `r envt_ind$ind_pctile_us_val` at the national level.
+
+Overall, `r envt_ind$max_overall_us` had the largest ratio to the U.S.
+average, and `r envt_ind$max_overall_st` had the largest ratio when
+compared to the state average. The values for these ratios are
+`r envt_ind$max_overall_val_us` and `r envt_ind$max_overall_val_st`
+respectively.
+
+### Environmental indicators at key sites
+
+```{r envt-key-sites}
+
+if (params$testmode) {
+  
+  envt_ind$max_ratio_st_val <- "[PLACEHOLDER RATIO]"
+  envt_ind$max_ratio_st_name <- "[PLACEHOLDER RATIO NAME]"
+  envt_ind$max_ratio_st_pop_pct <- "[PLACEHOLDER RATIO FACILITY PERCENT OF POP]"
+  
+  envt_ind$max_ratio_us_val <- "[PLACEHOLDER RATIO]"
+  envt_ind$max_ratio_us_name <- "[PLACEHOLDER RATIO NAME]"
+  envt_ind$max_ratio_us_pop_pct <- "[PLACEHOLDER RATIO FACILITY PERCENT OF POP]"
+  
+  envt_ind$max_pctile <- "[PLACEHOLDER PCTILE]"
+  envt_ind$max_pctile_pop_pct <- "[PLACEHOLDER PCTILE FACILITY PERCENT OF POP]"
+  
+  envt_ind$key_sites_count <- "[PLACEHOLDER COUNT OF KEYSITES]"
+  envt_ind$key_sites_pop_pct <- "[PLACEHOLDER PCTILE FACILITY PERCENT OF POP]"
+  
+  envt_ind$key_sites_sent <- "[PLACEHOLDER SENTENCE FOR STATES WITH KEY FACILITIES]"
+  
+  
+} else {
+  
+  
+  # max ratio at state level
+  envt_ind$max_ratio_st_val <- round(max(envt_ind$ratio_st_bysite[,-c(1,2)], na.rm=TRUE), 3)
+  envt_ind$max_ratio_st_name <- names(envt_ind$ratio_st_bysite)[which.max(apply(envt_ind$ratio_st_bysite[,-c(1,2)], 2, max, na.rm = TRUE))] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  # percent of population from max ratio
+  envt_ind$st_bysite_pop <- envt_ind$ratio_us_bysite %>%
+    summarize(sum(pop))
+  envt_ind$max_ratio_st_pop <- envt_ind$ratio_st_bysite[which.max(envt_ind$max_ratio_st_val),] %>%
+    select(pop)
+  
+  envt_ind$max_ratio_st_pop_pct <- round((envt_ind$max_ratio_st_pop / tot_pop)*100, 1)
+  
+  
+  # max ratio at national level
+  envt_ind$max_ratio_us_val <- round(max(envt_ind$ratio_us_bysite[,-c(1,2)], na.rm=TRUE), 3)
+  envt_ind$max_ratio_us_name <- names(envt_ind$ratio_us_bysite)[which.max(apply(envt_ind$ratio_us_bysite[,-c(1,2)], 2, max, na.rm = TRUE))] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  # percent of population from max ratio
+  envt_ind$max_ratio_us_pop <- envt_ind$ratio_us_bysite[which.max(envt_ind$max_ratio_us_val),] %>%
+    select(pop)
+  envt_ind$max_ratio_us_pop_pct <- round((envt_ind$max_ratio_us_pop / tot_pop)*100, 1)
+  
+  # dataframe of key sites
+  envt_ind$key_sites <- envt_ind$ratio_us_bysite %>%
+    mutate(key_site_flag = apply(envt_ind$ratio_us_bysite[,-1], 1, function(row) sum(sum(row > 2) > 5))) 
+  
+  envt_ind$key_sites_count <- envt_ind$key_sites %>%
+    filter(key_site_flag > 0) %>%
+    summarise(sum(key_site_flag))
+  
+  envt_ind$key_sites_pop <- envt_ind$key_sites %>%
+    filter(key_site_flag > 0) %>%
+    summarise(sum(pop))
+  
+  envt_ind$key_sites_pop_pct <- round((envt_ind$key_sites_pop / tot_pop)*100, 1)
+  
+  # arrange and group by states
+  envt_ind$key_sites_states <- envt_ind$key_sites %>%
+    group_by(state) %>%
+    filter(key_site_flag > 0) %>%
+    summarise(count = sum(key_site_flag)) %>%
+    arrange(desc(count))
+  
+  # what if values are tied for amount of key sites in states?
+  if (nrow(envt_ind$key_sites_states) == 1) {
+    envt_ind$key_sites_1_name <- envt_ind$key_sites_states$state[1]
+    envt_ind$key_sites_1_count <- envt_ind$key_sites_states$count[1]
+    
+    envt_ind$key_sites_sent <- paste0("The state with the most key sites is ", envt_ind$key_sites_1_name,
+                                      " (", envt_ind$key_sites_1_count, ").")
+  } else if (nrow(envt_ind$key_sites_states) == 2) {
+    
+    envt_ind$key_sites_1_name <- envt_ind$key_sites_states$state[1]
+    envt_ind$key_sites_1_count <- envt_ind$key_sites_states$count[1]
+    
+    envt_ind$key_sites_2_name <- envt_ind$key_sites_states$state[2]
+    envt_ind$key_sites_2_count <- envt_ind$key_sites_states$count[2]
+    
+    envt_ind$key_sites_sent <- paste0("The state with the most key sites is ", envt_ind$key_sites_1_name,
+                                      " (", envt_ind$key_sites_1_count, "), and with the second most is ",
+                                      envt_ind$key_sites_2_name, " (", envt_ind$key_sites_2_count, ").")
+    
+  } else if (nrow(envt_ind$key_sites_states) >= 3) {
+    
+    envt_ind$key_sites_1_name <- envt_ind$key_sites_states$state[1] 
+    envt_ind$key_sites_1_count <- envt_ind$key_sites_states$count[1]
+    
+    envt_ind$key_sites_2_name <- envt_ind$key_sites_states$state[2]
+    envt_ind$key_sites_2_count <- envt_ind$key_sites_states$count[2]
+    
+    envt_ind$key_sites_3_name <- envt_ind$key_sites_states$state[3]
+    envt_ind$key_sites_3_count <- envt_ind$key_sites_states$count[3]
+    
+    envt_ind$key_sites_sent <- paste0("The state with the most key sites is ", envt_ind$key_sites_1_name,
+                                      " (", envt_ind$key_sites_1_count, "), with ",
+                                      envt_ind$key_sites_2_name, " the next most (", envt_ind$key_sites_2_count, ") and ",
+                                      envt_ind$key_sites_3_name, " the third most (", envt_ind$key_sites_3_count, ").")
+  } else {
+    
+    envt_ind$key_sites_sent <- "There are no key sites in the data analyzed."
+    
+  }
+  
+}
+
+```
+
+The largest single ratio compared to state average out of all facilities
+was for `r envt_ind$max_ratio_st_name` with the value
+`r envt_ind$max_ratio_st_val`. This facility impacts
+`r envt_ind$max_ratio_st_pop_pct`% of the total population.
+
+The largest single ratio compared to national average out of all
+facilities was for `r envt_ind$max_ratio_us_name` with the value
+`r envt_ind$max_ratio_us_val`. This facility impacts
+`r envt_ind$max_ratio_us_pop_pct`% of the total population.
+
+`r envt_ind$key_sites_count` key sites have over half of environmental
+indicators more than 2x the US average. There are 10 environmental
+indicators included in EJAM, and therefore, over half represents over 5
+indicators. These key sites represent `r envt_ind$key_sites_pop_pct`% of
+the total population.
+
+`r envt_ind$key_sites_sent`
+
+### Data Visualization. Plot of environmental indicators.
+
+Figure \@ref(fig:envt-ridgeline) displays the ratio of environmental
+indicators compared to the U.S. average across all of the facility
+sites.
+
+<caption>(\#fig:envt-ridgeline) Environmental Indicators Ridgeline
+Plot</caption>
+
+```{r envt-ridgeline, echo=FALSE,  out.height='500px', out.width='800px'}
+if(params$testmode) {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$boxplot_placeholder_png)
+  
+} else {
+  
+  knitr::include_graphics(rel_path = TRUE, path = params$envt_ridgeline)
+}
+
+
+```
+
+## Combination of residential population and environmental conditions in these locations
+
+```{r ej_indices, echo=FALSE}
+
+ej_ind <- list()
+
+# we want to check if the EJAM run included summary indices, and output some summaries if so. 
+# what were the highest summary indexes? 
+check_ej_index_flag <-
+  any(grepl("EJ.DISPARITY", colnames(params$results_overall)))
+
+if (params$testmode | check_ej_index_flag == FALSE) {
+  
+} else {
+  
+  ej_ind$st_pctile <- params$results_overall %>%
+    select(starts_with("state.pctile.EJ.DISPARITY")) %>%
+    pivot_longer(everything()) %>%
+    arrange(desc(value))
+  
+  ej_ind$us_pctile <- params$results_overall %>%
+    select(starts_with("pctile.EJ.DISPARITY")) %>%
+    pivot_longer(everything()) %>%
+    arrange(desc(value))
+  
+  ej_ind$st_score <- params$results_overall %>%
+    select(starts_with("state.EJ.DISPARITY")) %>%
+    pivot_longer(everything()) %>%
+    arrange(desc(value))
+  
+  ej_ind$us_score <- params$results_overall %>%
+    select(starts_with("EJ.DISPARITY")) %>%
+    pivot_longer(everything()) %>%
+    arrange(desc(value))
+  
+  
+  ej_ind$st_pctile_1_name <- ej_ind$st_pctile$name[1] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$st_pctile_1_val <- round(ej_ind$st_pctile$value[1], 0)
+  
+  ej_ind$st_pctile_2_name <- ej_ind$st_pctile$name[2] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$st_pctile_2_val <- round(ej_ind$st_pctile$value[2], 0)
+  
+  ej_ind$st_pctile_3_name <- ej_ind$st_pctile$name[3] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$st_pctile_3_val <- round(ej_ind$st_pctile$value[3], 0)
+  
+  ej_ind$us_pctile_1_name <- ej_ind$st_pctile$name[1] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$us_pctile_1_val <- round(ej_ind$us_pctile$value[1], 0)
+  
+  ej_ind$us_pctile_2_name <- ej_ind$us_pctile$name[2] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$us_pctile_2_val <- round(ej_ind$us_pctile$value[2], 0)
+  
+  ej_ind$us_pctile_3_name <- ej_ind$us_pctile$name[3] %>%
+    fixcolnames(oldtype="r", newtype="longname") %>%
+    format_text()
+  
+  ej_ind$us_pctile_3_val <- round(ej_ind$us_pctile$value[3], 0)
+  
+  
+} # create summary index  . List highest 3 in a sentence - "EJ1 (value), EJ2 (value), and EJ3 (value) have the highest disparities." Maybe one more sentence (if possible) about indicators. Facilities that have the highest values?
+
+```
+
+A summary index here is a metric for the combination of
+environmental and residential population characteristics. Out of 13 summary indicators,
+the largest 3 state percentiles for EJ are as follows:
+
+-    `r ej_ind$st_pctile_1_name` (`r ej_ind$st_pctile_1_val`)
+
+-   `r ej_ind$st_pctile_2_name` (`r ej_ind$st_pctile_2_val`)
+
+-    `r ej_ind$st_pctile_3_name` (`r ej_ind$st_pctile_3_val`)
+
+The largest 3 national percentiles for EJ are as follows:
+
+-   `r ej_ind$us_pctile_1_name` (`r ej_ind$us_pctile_1_val`)
+
+-   `r ej_ind$us_pctile_2_name` (`r ej_ind$us_pctile_2_val`)
+
+-   `r ej_ind$us_pctile_3_name` (`r ej_ind$us_pctile_3_val`)
+
+\newpage
+
+# Appendices
+
+## Appendix 1 - Statistics overall / for all sites in aggregate
+
+```{r appendix_1}
+params$results_formatted 
+```
+
+## Appendix 2 - Detailed tables of statistics for each site
+
+e.g. how many of 12 are \>x? does it have any high scores for any E? any
+D? etc.
+
+## Appendix 3 - Detailed tables of statistics for each indicator
+
+### \*\*What is Score of people/sites at key thresholds: What is the X (useful) percentile
+
+value, for this indicator (as %ile of people nearby or of sites)?\*\*
+
+-   min
+-   min other than zero?
+-   mean
+-   25^th^ %ile of these sites or people (25% have lower than this, and
+75% have higher than this -- those are same if no ties with this
+value, but can differ if multiple places have this same exact
+indicator score)
+-   median (half of these sites or people have a score that is \>= this,
+and half have \<= this)
+-   75^th^ %ile of these sites or people (if a tied value, would want
+both \>75 and \<25%)
+-   max
+
+### **How many people/sites have score \> key thresholds:  What % & what \# of sites & people have this indicator score (raw or percentile) \>= x (useful threshold)?**
+
+-   **For percentiles**
+-   \% of sites w data where \>=80
+
+-   \% of sites w data where \>=90
+
+-   \% of sites w data where \>=95
+
+-   \# of sites where \>=95
+
+<!-- -->
+
+-   **For ratios to State or USA average overall % of sites w data where
+\>1 not=1**
+
+-   \% of sites w data where ratio is \>=2
+-   \% of sites w data where \>=3
+-   \% of sites w data where \>=5
+-   \% of sites w data where \>=10
+-   \# of sites w data where \>=10
+
+-   **for 12 summary indexes, how many of the indexes are above a given
+threshold?**
+
+-   \# of sites w data where \>=1
+
+-   \# of sites w data where \>1 not =1
+
+-   \# of sites w data where \>=4
+
+## Appendix 4 - notes on how to describe places generically/ in parameters
+
+HOW TO REFER TO THE PLACES STUDIED (near these facilities vs more
+general language)
+
+Note: this could be a "proximity analysis" in cases where it relies on
+circular buffers around facility points to define buffers that include
+residents within a fixed distance from one or more facilities/sites. But
+it more generally could be an EJ analysis that describes environmental
+and demographic conditions among residents in any specified places, such
+as all the places where air quality modeling suggests risk is currently
+above 1 in 1 million, for example. So the language should be flexible
+and refer to something like this:
+
+FOR NON-PROXIMITY ANALYSIS, GENERALLY ANY KIND OF BUFFERS/PLACES
+ANALYZED:
+
+The demographics of residents in ...
+
+The demographic / environmental indicators in ...
+
+Percent low income among residents in ...
+
+The environmental conditions in ...
+
+The environmental indicators for the average resident in ...
+
+The PM2.5 levels in ...
+
+Residents in ...
+
+... these locations
+
+... these places
+
+... these areas
+
+... the analyzed locations
+
+FOR PROXIMITY ANALYSIS SPECIFICALLY, EASIER TO SAY one of these:
+
+Residents / conditions ...
+
+... within x miles of these sites...
+
+... within x miles of any of these sites...
+
+... nearby
+
+... near these sites
+
+... near any of these sites
+
+## Appendix 5 - List of Abbreviations
+
+-   AAAS American Association for the Advancement of Science
+-   ACS American Community Survey, Census Bureau
+-   AFO Animal Feeding Operation
+-   AirToxScreen The Air Toxics Screening Assessment, EPA screening tool
+-   ANPR/ ANPRM Advance Notice of Proposed Rule/Rulemaking
+-   AO Office of the Administrator, USEPA
+-   API American Petroleum Institute
+-   API Application Programming Interface; or American Petroleum
+Institute
+-   AQI Air Quality Index
+-   ARP / ARPA American Rescue Plan Act
+-   BACT Best Available Control Technology
+-   Benmap (EPA criteria pollutants risk and benefit modeling tool)
+-   bg Census Block Group
+-   BR Biennial Report (under RCRA)
+-   CAA Clean Air Act
+-   CAFOs Concentrated Animal Feeding Operations
+-   CAMD Clean Air Markets Division, USEPA
+-   CARB California Air Resources Board
+-   CBG Census Block Group
+-   CDR Chemical Data Reporting (TSCA)
+-   CEQ Council on Environmental Quality, Executive Office of the
+President
+-   CERCLA Comprehensive Environmental Response, Compensation, and
+Liability Act / Superfund
+-   CFC Chlorofluorocarbon(s)
+-   CO Carbon Monoxide
+-   CPSC Consumer Product Safety Commission
+-   CRA Congressional Review Act
+-   CWA Clean Water Act
+-   DHS Department of Homeland Security
+-   DMR Discharge Monitoring Report (under CWA)
+-   DoD Department of Defense
+-   DOE Department of Energy
+-   DOT Department of Transportation
+-   dpm diesel particulate matter
+-   ECHO Enforcement and Compliance History Online, USEPA OECA
+-   EDGAR Electronic Data Gathering, Analysis, and Retrieval database
+(SEC)
+-   EGU electricity generating unit in a power plant
+-   ELG effluent limitation guideline
+-   EO Executive Order
+-   EP313 EPCRA Section 313 (established TRI)
+-   EPA United States Environmental Protection Agency
+-   EPCRA Emergency Planning and Community Right-to-Know Act
+-   ERNS Emergency Response Notification System
+-   ESA Endangered Species Act
+-   FAA Federal Aviation Administration
+-   FAQ Frequently Asked Questions
+-   FDA Food and Drug Administration
+-   FESOP Federally Enforceable State Operating Permit (CAA program)
+-   FIFRA Federal Insecticide, Fungicide, and Rodenticide Act
+-   FIP Federal Implementation Plan (CAA program)
+-   FIPS Codes Federal Information Processing Standards codes for
+geographic locations such as Census block groups
+-   FR, FRN Federal Register, FR Notice (but sometimes FR refers to a
+Final Rule)
+-   FRS Facility Registry Service
+-   GACT Generally Available Control Technology
+-   GAO Government Accountability Office
+-   GHG greenhouse gas
+-   HAP hazardous air pollutant (air toxic)
+-   HHS / DHHS Department of Health and Human Services
+-   HI Hazard Index, for HAPs
+-   HPV High Priority Violation (under CAA; also see SNC)
+-   ICIS Integrated Compliance Information System
+-   ICR information collection request
+-   ID Identifier or Identification Number
+-   IRA Inflation Reduction Act
+-   IRIS Integrated Risk Information System
+-   LOEL lowest observable effect level
+-   LQG Large Quantity Generator (RCRA Hazardous Waste)
+-   MACT Maximum Achievable Control Technology (CAA program)
+-   MIR maximum individual risk
+-   NAAQS National Ambient Air Quality Standards (for criteria air
+pollutants, CAA program)
+-   NAICS North American Industry Classification System
+-   NCEE National Center for Environmental Economics, USEPA
+-   NDZ no discharge zone
+-   NESHAP National Emission Standards for Hazardous Air Pollutants (CAA
+program)
+-   NEXUS analytic tool, USEPA/OAR
+-   NGO nongovernmental organization
+-   NHTSA National Highway Traffic Safety Administration
+-   NOAA National Oceanic and Atmospheric Administration
+-   NOEL no observable effect level
+-   NOV Notice of Violation
+-   NOx Nitrogen Oxides
+-   NPDES National Pollutant Discharge Elimination System (CWA permit
+program)
+-   NPL National Priority List (related to Superfund)
+-   NRPM Notice of Proposed Rulemaking, or proposed rule or proposal
+-   NSPS New Source Performance Standards (CAA program)
+-   NSR New Source Review (CAA program)
+-   O3 ozone
+-   OA Office of the Administrator, USEPA
+-   OAR Office of Air and Radiation, USEPA
+-   OCHP Office of Children's Health Protection, USEPA
+-   OCIR Office of Congressional and Intergovernmental Relations, USEPA
+-   OCSPP Office of Chemical Safety and Pollution Prevention, USEPA
+-   OECA Office of Enforcement and Compliance Assurance, USEPA
+-   OEI Office of Environmental Information, USEPA
+-   OGC Office of General Counsel, USEPA
+-   OGWDW Office of Ground Water and Drinking Water, USEPA
+-   OIG / IG Office of Inspector General / Inspector General, USEPA
+-   OIRA Office of Information and Regulatory Affairs, OMB
+-   OITA Office of International and Tribal Affairs, USEPA
+-   OLEM Office of Land and Emergency Management, USEPA
+-   OMB Office of Management and Budget
+-   OMS Office of Mission Services, USEPA
+-   OMS Office of Mission Support, USEPA
+-   OP Office of Policy, or the Policy Office, USEPA
+-   ORD Office of Research and Development, USEPA
+-   ORPM Office of Regulatory Policy and Management, USEPA
+-   OSA Office of Science Advisor, USEPA
+-   OSHA Occupational Safety and Health Administration
+-   OTAQ Office of Transportation Air Quality, USEPA
+-   OW Office of Water, USEPA
+-   OWOW Office of Wetlands, Oceans and Watersheds, USEPA
+-   Pb lead
+-   PCE Partial Compliance Evaluation
+-   PEL Permissible Exposure Limits
+-   PFAS, e.g., PFOS, PFOA Per- and polyfloroalkyl substances (PFOS and
+PFOA are the 8-carbon PFAS)
+-   PM, PM2.5, PM10 Particulate Matter
+-   POC people of color
+-   POTWs Publicly Owned Treatment Works
+-   PRA Paperwork Reduction Act
+-   PSD Prevention of Significant Deterioration (CAA program)
+-   QNCR Quarterly Noncompliance Report (under CWA)
+-   RCRA Resource Conservation and Recovery Act
+-   RCRAInfo Resource Conservation and Recovery Act Information System
+-   RE Risk Evaluation
+-   REL Reference Exposure Level
+-   RFA reg. Flex analysis or request for applications
+-   RfC reference concentration (toxicology)
+-   RfD reference dose (toxicology)
+-   RFF Resources for the Future
+-   RFG reformulated gasoline
+-   RFS renewable fuel standards
+-   RMP Risk Management Plan
+-   RNC Reportable Noncompliance (under CWA)
+-   RSEI risk estimation tool based on TRI
+-   RTP Research Triangle Park, NC, USEPA
+-   SaRA analytic tool, USEPA/OAR
+-   SARA Superfund Amendments and Reauthorization Act
+-   SDWA Safe Drinking Water Act
+-   SDWIS Safe Drinking Water Information System
+-   SEC U.S. Securities and Exchange Commission
+-   SES socio-economic status
+-   SIC Standard Industrial Classification
+-   SIP State Implementation Plan (under CAA)
+-   SNC Significant Noncompliance (or Noncomplier) (also see HPV)
+-   SOx Sulfur Oxides
+-   SOx oxides of sulfur
+-   SQG Small Quantity Generator (RCRA Hazardous Waste)
+-   TOSHI Target-Organ-Specific Hazard Index, for HAPs
+-   TRC Technical Review Criteria (under CWA)
+-   TRI Toxic Release Inventory (EPCRA)
+-   TRIS Toxics Release Inventory System
+-   TSCA Toxic Substances Control Act
+-   TSD technical support document
+-   TSDF Treatment, Storage, and Disposal Facility (RCRA Hazardous
+Waste)
+-   UIC Underground Injection Control
+-   USCG United States Coast Guard
+-   USDA United States Department of Agriculture
+-   USEPA United States Environmental Protection Agency
+-   UST underground storage tank
+-   VOC Volatile Organic Compound
+-   VSQG Very Small Quantity Generator (RCRA Hazardous Waste)
+-   WOTUS Waters of the United States
+
+# Author contributions
+
+`r params$authorname1` was responsible for planning this analysis and
+defining the locations to be analyzed. `r params$authorname1` was
+responsible for completing the manuscript. All authors evaluated the
+literature on previous relevant analyses. All authors contributed to the
+writing and reviewing of the manuscript and agree on its contents.
+
+# Acknowledgements
+
+We thank \_\_\_\_ for helpful research assistance and \_\_\_ for
+suggesting useful background literature.
+
+\newpage
+
+# References
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+# <!-- -- References can come from report_bibliography.bib file -->
+# 
+## Notes on formatting for a manuscript
+
+This manuscript will follow the guidelines in the Guide for Authors of
+the relevant journal. For detailed instructions on the elsevier
+article class, see
+<https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions>
+  
+  ## Bibliography styles
+  
+  Here are two sample references: [@Feynman1963118; @Dirac1953888]. 
+
+By default, natbib will be used with the `authoryear` style, set in the 
+`classoption` variable in a YAML. 
+You can set  extra options with 
+`natbiboptions` variable in a YAML header:
+  #``` yaml
+  #natbiboptions: longnamesfirst,angle,semicolon
+  #```
+  
+  There are various more specific bibliography styles available at
+<https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files>.
+To use one of these, add it in the header using, for example,
+`biblio-style: model1-num-names`.
+
+If `citation_package` is set to `default` in `elsevier_article()`, then
+pandoc is used for citations instead of `natbib`.
+
+
+
+# <!-- see citation()  and in Visual mode of  .Rmd editor in RStudio, see Insert Citation -->
+
+
+# <!-- Depends:  -->
+# <!--     check latest version of DESCRIPTION file  -->
+
+
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# Developer notes on creating this document
+
+#### Developer notes on EJAM Tool Parameter Values
+library(tidyverse)
+ind=NA;values=NA # (just to prevent RStudio warning these are not in scope)
+param_table <- aggregate(values~ind, stack(params), toString) %>% 
+  dplyr::rename(Parameter = ind, 'Current Value' = values)
+#knitr::kable(param_table)
+param_table
+```

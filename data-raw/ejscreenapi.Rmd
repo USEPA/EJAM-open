@@ -1,0 +1,269 @@
+---
+title: "Using the EJScreen API via EJAM"
+description: "Using the EJScreen API via EJAM"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the EJScreen API via EJAM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r developernote, eval=FALSE, echo= FALSE, include = FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+
+
+# THIS ARTICLE IN PARTICULAR IS NOT UPDATED FOR VERSION 2.32 
+# AND NOT REVISED SINCE MOVING MOST CONTENT TO EJAM PACKAGE
+# AND NOT CHECKED WITH MODULE OR EJAM AT ALL
+# SO IT IS NOT READY TO BE USED
+
+```
+
+```{r SETUP-default-eval-or-not, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+```{r libraryEJAM, eval = TRUE, echo= FALSE, include= FALSE}
+# rm(list = ls()); golem::detach_all_attached(); devtools::load_all()
+ 
+if (!exists("blockgroupstats")) {library(EJAM)} # use installed version only if pkg not yet attached
+
+dataload_dynamic('all') # varnames = all  currently means all defined by .arrow_ds_names
+
+indexblocks()
+```
+
+
+## **NOTE: These features are not be available as of mid-2025 since the EJScreen API was taken down in early 2025.**
+
+
+EJAM includes the EJAMejscreen package, a set of functions and data that facilitate access to EJScreen data and reports, using the API provided by EJScreen. It does a few things:
+
+-   **API wrapper:** Makes it easier to use the EJScreen API from R
+-   **Batch processor:** Includes a function that lets you obtain a batch of EJScreen results via API, assembled in a table.
+-   **Web App:** Provides a shiny R web app interface that helps you use the batch tool. This provides access to the EJScreen API in a loop or batch mode. It uses EJScreen to run reports on multiple places one at a time, so it is somewhat slow for more than a handful of places, but exactly replicates EJScreen results.
+-   **Web Module:** EJAM will include a shiny module within EJAM's web app UI, that provides access to both in one place.
+
+### Get one EJScreen report in your web browser
+
+This works best for one site at a time, and does not provide results in a table, just a formatted web page EJScreen Community Report directly from EJScreen.
+
+```{r browseURL, eval=FALSE}
+
+# Browser opens to view one site report
+browseURL(
+  url_ejscreen_report(
+    lon = -92.380556, 
+    lat = 31.316944, 
+    radius = 3
+  )
+)
+
+# Get the URL for each site report
+url_ejscreen_report(
+  lon = testpoints_10$lon, 
+  lat = testpoints_10$lat, 
+  radius = 3
+)
+
+# Open each webpage in a browser
+for (i in 1:2) {
+  browseURL(url_ejscreen_report(
+    lon = testpoints_10$lon[1:2], 
+    lat = testpoints_10$lat[1:2], 
+    radius = 3)[i])
+}
+```
+
+### Get EJScreen results tables in RStudio (in tables, for a list of sites)
+
+In RStudio, you can use EJAM's EJScreen API code like this:
+
+```{r ejscreenit-interactive, eval = FALSE}
+
+# To interactively pick your own spreadsheet file from your local drive, 
+# that has lat and lon as two column headings and then one row per site:
+
+x <- ejscreenit(radius = 1) # will prompt you for excel file with lat lon in it
+```
+
+```{r ejscreenit-2points, eval = FALSE}
+x <- ejscreenit(data.frame(lon = c(-111,-113), lat = c(41,43)), radius = 2)
+names(x)
+x$map
+x$table
+# ejscreenit_see_table(x) 
+```
+
+### Get EJScreen results tables in a local web app \*\*\*not tested
+
+```{r app_run_EJAMejscreenapi, eval = FALSE}
+### *** NOT TESTED - MAY NO LONGER WORK AS SHIFT TO USING MODULE VERSION and update to v2.32
+
+EJAM::app_run_EJAMejscreenapi()
+
+```
+
+### Get EJScreen results tables in a local web app module \*\*\*not tested
+
+```{r api_module, eval = FALSE}
+
+default_calculate_ratios <- TRUE
+use_ejscreenit_tf <- FALSE
+######################### #
+TEST_UI <- function(request) {
+  shiny::fluidPage(
+    tabsetPanel(
+      tabPanel(
+        title = "api app",
+        shiny::h2('EJScreen API batch tool packaged with EJAM'), 
+        # EJAM:::mod_ejscreenapi_ui("TESTID", simpleradius_default_for_ui = 2),
+        mod_ejscreenapi_ui("TESTID", simpleradius_default_for_ui = 2),
+        br()
+      )))
+}
+######################### #
+TEST_SERVER <- function(input, output, session) {
+  #x <- EJAM:::mod_ejscreenapi_server(
+  x <-     mod_ejscreenapi_server(
+    "TESTID", 
+    default_points_shown_at_startup_react = reactive(testpoints_5[1:2,]),
+    use_ejscreenit = use_ejscreenit_tf
+  )
+  output$testinfo2 <- renderText(
+    cat("x names:  ", paste0(names(x()), collapse = ", "), "\n")
+  )
+  output$results <- DT::renderDT({x()}, 
+                                        options = list(
+                                          selection = 'multiple',
+                                          dom = 'rtip', # specify 4 DOM elements: 
+                                          # processing, table, info, pagination 
+                                          # per https://datatables.net/examples/basic_init/dom.html
+                                          scrollX = TRUE, 
+                                          searchPanes = TRUE  # does this work?
+                                        ),
+                                        escape = FALSE 
+  )
+  # *** CAUTION ***
+  # escape= TRUE is better for security reasons (XSS attacks).
+  # escape= FALSE lets ejscreen URL links work, 
+  #   but not links from ECHO table download.
+}
+######################### #
+
+shinyApp(ui = TEST_UI, server = TEST_SERVER) # Try module in mini/test app
+```
+
+# Compare numbers provided by EJAM and EJScreen API (comparing estimated population, indicator scores, etc.)
+
+```{r ejamit-testpoints_1000, eval = FALSE}
+
+################# # 
+# Run (potentially long) analysis in EJScreen, 
+# Pick sample of randomly selected EPA-regulated facilities in the FRS:
+# n <- 30 # or 1,000 sites, e.g.
+# pts <- testpoints_n(n, weighting = 'frs')
+# radius <- 3
+# (approx 40 minutes for 1,000 points, maybe )
+# and also in EJAM
+## vs <- ejscreen_vs_ejam(pts, radius = radius, include_ejindexes = TRUE)
+################# # 
+# or to save time, look at just 500 sites and 
+# just 1 mile radius, already run in ejscreenit()
+# About 10-15 seconds in EJAM:
+testoutput_ejamit_500_1miles <- ejamit(testpoints_500, radius = 1, 
+                                         include_ejindexes = TRUE)
+# setdiff(1:500, testoutput_ejamit_500_1miles$results_bysite$ejam_uniq_id )
+# all.equal(1:500, testoutput_ejscreenit_500$table$sitenumber )
+vs <- EJAM:::ejscreen_vs_ejam_alreadyrun(
+  apisite = testoutput_ejscreenit_500$table, 
+  ejamsite = testoutput_ejamit_500_1miles$results_bysite
+)
+################# # 
+
+# See summary stats on the comparison
+
+sum_vs <- ejscreen_vs_ejam_summary(vs)
+q <- ejscreen_vs_ejam_summary_quantiles(
+  vs, mystat = 'ratio', 
+  myvars = c('pop',  "blockcount_near_site", names_these), digits = 2)
+q[order(q[, "95%"], decreasing = F), c("50%", "95%")]
+
+## examine one site closely
+ejscreen_vs_ejam_see1(
+  vs, mysite = 1, 
+  myvars = c('pop', "blockcount_near_site"))
+ejscreen_vs_ejam_see1(vs, mysite = 1, 
+                      myvars = c('lowlifex', "Demog.Index.Supp"))
+ejscreen_vs_ejam_see1map(vs, 1)
+
+
+# or to see some related info:
+out1 = testoutput_ejscreenit_500$table
+out1 = out1[!is.na(out1$pm), ]
+out1$id = 1:NROW(out1)
+ejamsite = ejamit(
+  sitepoints = out1[ , c("lat", "lon")], radius = 1)$results_bysite
+ejamsite$id <- ejamsite$ejam_uniq_id
+missingdatarows <- setdiff(1:NROW(out1), ejamsite$ejam_uniq_id)
+out1 <- out1[!(1:NROW(out1) %in% missingdatarows), ]
+
+```
+
+# Compare Speeds for EJAM and EJScreen API
+
+EJAM is designed to provide results for large numbers of sites very quickly, so it can analyze well over 100,000 sites per hour, and can analyze 1,000 sites in something like 10 to 20 seconds (assuming it has already been initialized with loaded data and indexing, which needs to be done once up front and can take a minute). Using the EJScreen API by contrast as of mid 2024 took well over 100 times as long.
+
+There are some (internal / not necessarily all exported) EJAM functions that are relevant:
+
+-   speedreport
+
+-   speedmessage
+
+-   speedtest
+
+-   speedtest_plot
+
+-   speedtable_summarize
+
+-   speedtable_expand
+
+```{r ejscreenit_speedtest, eval=FALSE, echo=TRUE}
+began = Sys.time()
+x = ejscreenit(testpoints_10, radius = 3.1)
+ended = Sys.time()
+speedreport(start = began, end = ended, n = 10)
+# ...... 
+# Rate of 768 buffers per hour: 10 lat/long pairs took 47 seconds
+## Sometimes 330 per hour.
+```
+
+```{r speedtest, eval = FALSE, echo = TRUE, fig.height=3, fig.width=5}
+# speeds <- EJAM:::speedtest(n = 100, radii = c(1,3,5,6.2,10), honk_when_ready = FALSE)
+# speeds[order(speeds$points, speeds$miles), ]
+## Rate of > 100,000 buffers per hour for radius < 10 miles
+## EJAM's ejamit() can be 100x to >300x times as fast as ejscreenit()
+```
+
+![Plot of speed (time required for analysis) as function of radius size (distance from each point)](plot_speed_vs_radius.png){width="6in"}
+
+```{r speedreport1000, eval = FALSE}
+## ejamit() just combines getblocksnearby() and doaggregate()
+sitepoints <- testpoints_1000
+radius <- 1
+# elapsed <- system.time({
+# began = Sys.time()
+out2 <- ejamit(
+  sitepoints =  sitepoints,
+  radius = radius
+)
+# EJAM:::speedreport(began, Sys.time(), n = NROW(sitepoints))
+# })
+# print(elapsed)
+```

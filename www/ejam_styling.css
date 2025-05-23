@@ -1,0 +1,85 @@
+
+ #all_tabs > li[class=active] > a {
+    background-color: #005ea2;
+     color: #FFF;
+    font-weight: bold;
+ }
+
+#results_tabs > li[class=active] > a {
+  background-color: #005ea2;
+   color: #FFF;
+  font-weight: bold;
+  border-radius: 20% 20% 0% 0%;
+  padding: 15px 20px 20px 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+          
+#all_tabs > li > a {
+background-color: white;  
+color: #005ea2;
+}
+          
+  #results_tabs > li > a {
+    background-color: white;  
+    color: #005ea2;
+    border-color: #005ea2;
+    border-radius: 20% 20% 0% 0%;
+    padding: 5px 15px 10px 15px;
+    margin-top: 20px;
+    margin-bottom: 0px; 
+ 
+}
+        
+.selectize-dropdown-content { 
+  max-height: 400px; 
+  overflow-y: auto; 
+}
+        
+.navbar1 .navbar{ background-color: transparent;
+
+}
+  
+.navbar1 .nav-tabs > li {
+ float:none;
+ display:inline-block;
+*display:inline;
+ zoom:1;
+}
+
+.navbar1 .nav-tabs {
+    text-align:center;
+}
+.navbar1 .navbar-default .navbar-brand{ color: white; 
+text-align: center;
+}
+.navbar.navbar-default {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    align-items: center;
+}
+
+.navbar.navbar-default .navbar-collapse {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.navbar1 .tab-panel{ background-color: #005ea2;}
+.navbar1 .navbar-nav > li > a {background-color: #005ea2; color: white;
+}
+
+.navbar1 .navbar-nav li a:hover, .navbar1 .navbar-nav > .active > a {
+color: #fff !important;
+background-color: #1a4480 !important;
+}
+        
+        .navbar.center .navbar-inner {
+    text-align: center;
+}
+
+.navbar.center .navbar-inner .nav {
+    display:inline-block;
+    float: none;
+    vertical-align: top;
+}

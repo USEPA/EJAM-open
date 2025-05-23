@@ -1,0 +1,18 @@
+default:
+  golem_name: EJAM
+  golem_version: 2.32.3
+  app_prod: yes
+  testingnow: no
+  testingnow_text: no
+
+# You can set the active configuration globally via Renviron.site or Rprofile.site
+# If did  Sys.setenv(R_CONFIG_ACTIVE = "production")  then the config settings will be the ones below)
+production:
+  app_prod: yes
+  testingnow: no
+
+## if did  Sys.setenv(R_CONFIG_ACTIVE = "dev" then the config settings will be the ones below)
+dev:
+  app_prod: no
+  golem_wd: !expr here::here()
+  testingnow: yes

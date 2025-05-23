@@ -1,0 +1,61 @@
+---
+title: "Accessing the Web App"
+description: "Accessing the Web App"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Accessing the Web App}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo= FALSE, include = FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+# Web app for the public
+
+EJAM's toolkit can be used to host a web application. The web app provides public access to batches of reports, with rapid multisite analysis, by leveraging the EJAM toolkit. The version designed for use by the general public was specifically configured for non-expert users, so it does not include some less-frequently-used, complex features. More features are available in the web app version that was invoked using "isPublic=FALSE." Those needing even more tools -- the full set of complex analytic features -- can find them in the open source R package described below.
+
+# Web app for expert users
+
+Expert users can launch and use the so-called "internal" version of the web app. It is specifically configured just for use by expert users. This is the same as the version any developer can run locally using the public code repository described below.
+
+# Web app for analysts or developers using R/RStudio
+
+The EJAM software and data are available as open source resources, so that anyone using [R/RStudio](https://posit.co/download/rstudio-desktop/){.uri target="_blank" rel="noreferrer noopener"} can use EJAM on their own computer.
+
+Analysts or developers using R/RStudio have the option of running a local copy of the EJAM web app on their own computer. This may be even faster than relying on a hosted web app, does not time out after inactivity, and could be customized by a developer. You can also launch it with customized options or use bookmarked settings (and/or use EJAM functions and data directly without the web app, for more complex work).
+
+You can install the EJAM R package and datasets as explained in [Installing the EJAM R package](1_installing.html). There is also a [Quick Start guide](2_quickstart.html) and extensive [documentation of EJAM functions/tools/data](../reference/index.html).
+
+Once EJAM is installed, you can launch the local web app from RStudio as follows:
+
+```{r run_app1, eval = FALSE, include = TRUE}
+
+require(EJAM) # or  library(EJAM)
+
+options(shiny.launch.browser = TRUE) # so the web app uses a browser (not the RStudio viewer)
+
+run_app()
+```
+
+The Multisite Tool configuration is available via `run_app(isPublic=T)` and the version for expert use is available via `run_app(isPublic=F)`
+
+See documentation of optional parameters via `?run_app()`
+
+Note this is different than running a simple shiny app that is not also a package via the golem package. You should use the EJAM package function `run_app()` not `shiny::runApp()`.

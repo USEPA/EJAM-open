@@ -1,0 +1,124 @@
+name: EJAM Installation
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  install_ejam:
+    if: ${{ !github.event.repository.private }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+        r-version: [4.3, 4.4, release]
+        install-method: [github, url]  # Matrix for installation method
+    
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      GH_TOKEN: ${{ secrets.GH_TOKEN_REPO }}
+      GITHUB_PAT: ${{ secrets.GH_TOKEN_REPO }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.r-version }}
+
+      - name: Restore R package cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}
+          key: ${{ runner.os }}-R-${{ matrix.r-version }}-${{ hashFiles('**/DESCRIPTION') }}
+          restore-keys: ${{ runner.os }}-R-${{ matrix.r-version }}-
+
+      - name: System Libraries (Ubuntu)
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libfontconfig1-dev \
+            libudunits2-dev \
+            libcairo2-dev \
+            libcurl4-openssl-dev \
+            libharfbuzz-dev \
+            libfribidi-dev \
+            libfreetype6-dev \
+            libpng-dev \
+            libtiff5-dev \
+            libjpeg-dev \
+            libgdal-dev \
+            libgeos-dev \
+            libproj-dev
+
+      - name: System Libraries (macOS)
+        if: matrix.os == 'macOS-latest'
+        run: |
+          brew update
+          # Install dependencies one by one with retry mechanism
+          for pkg in freetype udunits cairo harfbuzz fribidi libpng libtiff jpeg gdal pkg-config; do
+            for i in {1..3}; do
+              if brew install $pkg; then
+                break
+              fi
+              echo "Attempt $i to install $pkg failed. Retrying..."
+              sleep 5
+            done
+          done
+          
+          # Set up environment variables for jpeg
+          echo 'export PATH="/opt/homebrew/opt/jpeg/bin:$PATH"' >> $GITHUB_ENV
+          echo 'export LDFLAGS="-L/opt/homebrew/opt/jpeg/lib"' >> $GITHUB_ENV
+          echo 'export CPPFLAGS="-I/opt/homebrew/opt/jpeg/include"' >> $GITHUB_ENV
+          echo 'export PKG_CONFIG_PATH="/opt/homebrew/opt/jpeg/lib/pkgconfig"' >> $GITHUB_ENV
+
+      - name: Get Latest Release Tarball URL (gh CLI)
+        id: get_release_url_gh
+        if: matrix.install-method == 'url'
+        run: |
+          LATEST_TAG=$(gh release list --repo "${{ github.repository }}" --limit 1 --json tagName --jq '.[0].tagName')
+          TAR_URL="https://github.com/${{ github.repository }}/archive/refs/tags/$LATEST_TAG.tar.gz"
+          echo "TAR_URL=$TAR_URL" >> $GITHUB_ENV
+        shell: bash
+
+    
+      - name: Install EJAM (method- ${{ matrix.install-method }})
+        if: "!(matrix.install-method == 'url' && matrix.r-version == '4.3' && matrix.os == 'macOS')"
+        run: |
+          install.packages("remotes")
+          if("${{ matrix.install-method }}" == "github") {
+            remotes::install_github(
+              "${{ github.repository }}", # what owner/repo has the pkg to try to install
+              dependencies=TRUE,
+              force=TRUE,
+              INSTALL_opts = c("--with-keep.source", "--install-tests")
+            )
+          } else {
+            remotes::install_url(
+              url = Sys.getenv("TAR_URL"),
+              dependencies = TRUE
+            )
+          }
+        shell: Rscript {0}
+
+      - name: Restore R package cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}
+          key: ${{ runner.os }}-R-${{ matrix.r-version }}-${{ hashFiles('**/DESCRIPTION') }}
+          restore-keys: ${{ runner.os }}-R-${{ matrix.r-version }}-
+
+      - name: Test Installation
+        run: |
+          library(EJAM)
+          print("Package loaded successfully")
+        shell: Rscript {0}

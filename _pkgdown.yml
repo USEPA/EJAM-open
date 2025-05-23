@@ -1,0 +1,642 @@
+url: https://usepa.github.io/EJAM-open/
+template:
+  bootstrap: 5
+  params:
+  noindex: true
+deploy:
+  install_metadata: true
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [search]
+news:
+  cran_dates: false
+footer:
+  structure:
+    left: [draftmsg]
+    right: [package, versionmsg]
+  components:
+    draftmsg: 2025
+    versionmsg: Version 2.32.3
+development:
+  mode: release
+  destination:
+  version_label: warning
+home:
+  title: EJAM Environmental and Residential Population Analysis Multisite
+  description: Webapp and tools summarizing residential population and environmental data for hundreds of places quickly and accurately
+  sidebar:
+    structure: [dev, citation, license, community]
+articles:
+- title: The EJAM Web App
+  desc: Overview for EJAM Users
+  navbar: Overview for EJAM Users
+  contents:
+  - '`0_whatis`'
+  - '`0_webapp`'
+- title: The EJAM R Package
+  desc: For analysts using R
+  navbar: For analysts using R
+  contents:
+  - '`1_installing`'
+  - '`2_quickstart`'
+  - '`3_analyzing`'
+  - '`testdata`'
+  - '`distances`'
+  - '`naics`'
+  - '`zipcodes`'
+- title: Developing & Hosting
+  desc: For package/app developers
+  navbar: For package/app developers
+  contents:
+  - dev_deploy-app
+  - dev_run-shinytests
+  - dev_run-unit-tests
+  - dev_update-datasets
+  - dev_update_documentation
+  - dev_update-package
+  - dev_future_plans
+reference:
+- title: "Key Functions for Starting an Analysis"
+  desc: "Starting the Analysis"
+  contents:
+  - EJAM
+  - run_app
+  - ejamit
+  - ejamit_compare_distances
+  - ejamit_compare_types_of_places
+  - ejscreenit_for_ejam
+- title: "Key Functions for Viewing Results"
+  desc: "Viewing the Results"
+  contents:
+  - ejam2excel
+  - ejam2report
+  - ejam2map
+  - ejam2barplot
+  - ejam2barplot_indicators
+  - ejam2boxplot_ratios
+  - ejam2barplot_sites
+  - ejam2barplot_sitegroups
+  - ejam2barplot_distances
+  - ejam2histogram
+  - ejam2ratios
+  - ejam2means
+  - ejam2tableviewer
+  - ejam2table_tall
+  - ejam2shapefile
+- title: "Specify Points by Lat/Lon"
+  desc: "Utilities for working with latitude/ longitude or address"
+  contents:
+  - testpoints_n
+  - sitepoints_from_any
+  - latlon_from_anything
+  - latlon_from_address_table
+  - latlon_from_address
+  - address_from_table
+  - latlon_is.valid
+  - lat_alias
+  - lon_alias
+  - islandareas
+- title: "Specify Facilities by ID"
+  contents:
+  - latlon_from_regid
+  - frs_from_regid
+  - latlon_from_programid
+  - frs_from_programid
+  - frs_from_sitename
+  - frs
+  - frs_by_programid
+- title: "Specify Facility Type"
+  desc: "NAICS, SIC, MACT, or EPA Program"
+- subtitle: "Choosing NAICS/SIC Industry Codes"
+  contents:
+  - naics_from_any
+  - sic_from_any
+  - naics_is.valid
+  - naics_categories
+  - sic_categories
+  - naics_url_of_code
+  - naics_findwebscrape
+  - naics_subcodes_from_code
+  - sic_subcodes_from_code
+  - naics2children
+  - sic_from_name
+  - sic_from_code
+- subtitle: "Using NAICS/SIC Industry Codes"
+  contents:
+  - latlon_from_naics
+  - latlon_from_sic
+  - regid_from_naics
+  - regid_from_sic
+  - frs_from_naics
+  - frs_from_sic
+- subtitle: "NAICS/SIC datasets"
+  contents:
+  - testinput_naics
+  - naics_counts
+  - NAICS
+  - SIC
+  - naicstable
+  - sictable
+  - frs_by_naics
+  - frs_by_sic
+- subtitle: "EPA Programs"
+  contents:
+  - testinput_program_name
+  - testinput_program_sys_id
+  - epa_programs
+  - epa_programs_defined
+  - latlon_from_program
+  - frsprogramcodes
+  - frs_from_program
+- subtitle: "MACT Categories"
+  contents:
+  - testinput_mact
+  - mact_table
+  - latlon_from_mactsubpart
+  - frs_by_mact
+- title: "Specify Places by Shapefile"
+  contents:
+  - testshapes_2
+  - shapefile_from_any
+  - shapefile_from_folder
+  - shapefile_from_filepaths
+  - shapefile_from_zip
+  - shapefile_from_gdb
+  - shapefile_from_gdbzip
+  - shapefile_filepaths_from_folder
+  - shapefile_filepaths_valid
+  - shapefile_clean
+  - shapefile_from_sitepoints
+  - shape_buffered_from_shapefile
+  - shape_buffered_from_shapefile_points
+  - shapefile2blockpoints
+  - shapefile2latlon
+  - shapes_from_fips
+  - shapes_counties_from_countyfips
+  - shapes_blockgroups_from_bgfips
+  - shape2zip
+  - ejam2shapefile
+- title: "Specify Counties etc."
+  desc: >
+    Tools to work with Census units and FIPS codes
+    - block groups, tracts, counties, states,
+    and EPA Regions
+- subtitle: "FIPS tools"
+  contents:
+  - name2fips
+  - fips2name
+  - fipstype
+  - fips_valid
+  - fips_lead_zero
+  - fips2pop
+  - fips_bgs_in_fips
+  - fips_from_table
+  - fips_place_from_placename
+  - censusplaces
+- subtitle: "Counties"
+  contents:
+  - counties_as_sites
+  - fips_counties_from_statefips
+  - fips_counties_from_state_abbrev
+  - fips_counties_from_statename
+  - fips2countyname
+  - shapes_counties_from_countyfips
+  - acs_bycounty
+  - plot_bycounty
+- subtitle: "States"
+  contents:
+  - states_shapefile
+  - states_as_sites
+  - fips_state_from_state_abbrev
+  - fips_state_from_statename
+  - fips_states_in_eparegion
+  - fips2statename
+  - fips2state_abbrev
+  - fips2state_fips
+  - state_from_sitetable
+  - state_from_fips_bybg
+  - state_from_latlon
+- subtitle: "Regions"
+  contents:
+  - fips_st2eparegion
+- title: "Finding Blocks, Distances, and Residents"
+  desc: >
+    GIS tools calculating which blocks (and residents)
+    are in or near each place (within given radius of point
+    or in FIPS or polygon), and their distances
+  contents:
+  - getblocksnearby
+  - getblocksnearby_from_fips
+  - get_blockpoints_in_shape
+  - getblocks_diagnostics
+  - getpointsnearby
+  - getfrsnearby
+  - proxistat
+  - indexblocks
+  - indexpoints
+  - indexfrs
+  - convert_units
+  - fips2pop
+- title: "Calculating and Aggregating"
+  desc: >
+    Tools that Calculate and Aggregate Indicators
+    at each Place and Overall, and Report Percentiles
+  contents:
+  - doaggregate
+  - calc_ejam
+  - calc_byformula
+  - pctile_from_raw_lookup
+  - lookup_pctile
+  - high_pctiles_tied_with_min
+- subtitle: "Datasets with Indicators, etc."
+  contents:
+  - blockgroupstats
+  - bgej
+  - bgpts
+  - bg_cenpop2020
+  - acs_bybg
+  - avg.in.us
+  - usastats
+  - usastats_means
+  - usastats_query
+  - usastats_queryd
+  - usastats_querye
+  - stateinfo
+  - stateinfo2
+  - statestats
+  - statestats_means
+  - statestats_query
+  - statestats_queryd
+  - statestats_querye
+  - modelDoaggregate
+  - modelEjamit
+- subtitle: "Comparing Distances / Multiple Radius Values"
+  contents:
+  - ejamit_compare_distances
+  - ejamit_compare_distances_fulloutput
+  - ejam2barplot_distances
+  - distance_by_group_by_site
+  - distance_by_group_plot
+  - distance_cdf_by_group_plot
+  - distance_mean_by_group
+  - distance_by_group
+  - distance_trends
+- subtitle: "Calculating Summary Stats, etc."
+  contents:
+  - batch.summarize
+  - count_sites_with_n_high_scores
+  - colcounter_summary_all
+  - popshare_at_top_n
+  - popshare_at_top_x_pct
+  - popshare_p_lives_at_what_n
+  - popshare_p_lives_at_what_pct
+  - distance_trends
+- title: "Viewing Results"
+- subtitle: "Maps of Points"
+  contents:
+  - ejam2map
+  - ejam2shapefile
+  - mapfast
+  - mapfastej
+  - map2browser
+  - map_google
+  - mapfast_gg
+  - plotblocksnearby
+- subtitle: "Maps of Shapes (Polygons)"
+  contents:
+  - mapfastej_counties
+  - map_counties_in_state
+  - map_shapes_leaflet
+  - map_shapes_mapview
+  - map_shapes_plot
+  - map_blockgroups_over_blocks
+  - shapes_blockgroups_from_bgfips
+- subtitle: "Map Popups"
+  contents:
+  - popup_from_any
+- subtitle: "Plots: Mean of each indicator (comparing populations/groups, comparing environmental factors, etc.)"
+  contents:
+  - ejam2barplot
+  - ejam2barplot_indicators
+- subtitle: "Plots: Mean of one indicator at each site or type of site (comparing sites or categories of sites)"
+  contents:
+  - ejam2barplot_sites
+  - plot_barplot_sites
+  - plot_lorenz_popcount_by_site
+  - ejam2barplot_sitegroups
+  - plot_barplot_sitegroups
+- subtitle: "Plots: Mean of each indicator as ratio to average (comparing populations/groups, comparing environmental factors, etc.)"
+  contents:
+  - ejam2barplot
+  - plot_barplot_ratios_ez
+  - plot_barplot_ratios
+- subtitle: "Plots: Distribution of one indicator across residents or sites (comparing populations/groups, comparing environmental factors, etc.)"
+  contents:
+  - ejam2histogram
+  - ejam2boxplot_ratios
+  - plot_boxplot_ratios
+  - plot_boxplot_pctiles
+  - plot_ridgeline_ratios_ez
+  - plot_ridgeline_ratios
+- subtitle: "Plots: Distance(s) for each population/group"
+  contents:
+  - ejam2barplot_distances
+- subtitle: "Plots: Indicator as a function of distance (comparing distances and indicators)"
+  contents:
+  - ejam2barplot_distances
+  - plot_distance_by_pctd
+  - plot_distance_by_group
+  - plot_distance_mean_by_group
+  - plot_distance_cdf_by_group
+  - plot_demogshare_by_distance
+  - plot_lorenz_distance_by_dcount
+- subtitle: "Tables"
+  contents:
+  - ejam2report
+  - ejam2excel
+  - ejam2ratios
+  - ejam2means
+  - ejam2tableviewer
+  - ejam2table_tall
+  - ejscreenit_see_table
+  - table_ratios_from_ejamit
+  - table_gt_from_ejamit
+  - table_gt_from_ejamit_1site
+  - table_gt_from_ejamit_overall
+- title: "Test Data"
+- subtitle: "Finding Examples of Inputs/Outputs"
+  contents:
+  - testdata
+  - testdatafolder
+  - datapack
+- subtitle: "Examples of Inputs (polygons/ shapefiles)"
+  contents:
+  - testshapes_2
+- subtitle: "Examples of Inputs (Census units by FIPS)"
+  contents:
+  - testinput_fips_states
+  - testinput_fips_counties
+  - testinput_fips_cities
+  - testinput_fips_tracts
+  - testinput_fips_blockgroups
+- subtitle: "Examples of Inputs (Points by lat/lon or address)"
+  contents:
+  - testpoints_n
+  - testpoints_5
+  - testpoints_10
+  - testpoints_50
+  - testpoints_100
+  - testpoints_500
+  - testpoints_1000
+  - testpoints_10000
+  - testinput_address_table
+  - testinput_address_2
+- subtitle: "Examples of Inputs (Points by regulated facility)"
+  contents:
+  - testinput_registry_id
+  - testinput_program_sys_id
+  - testinput_program_name
+  - testinput_naics
+  - testinput_sic
+  - testinput_mact
+- subtitle: "Examples of Outputs"
+  contents:
+  - testoutput_ejamit_10pts_1miles
+  - testoutput_ejamit_100pts_1miles
+  - testoutput_ejamit_1000pts_1miles
+  - testoutput_getblocksnearby_10pts_1miles
+  - testoutput_getblocksnearby_100pts_1miles
+  - testoutput_getblocksnearby_1000pts_1miles
+  - testoutput_doaggregate_10pts_1miles
+  - testoutput_doaggregate_100pts_1miles
+  - testoutput_doaggregate_1000pts_1miles
+  - testoutput_ejscreenit_5
+  - testoutput_ejscreenit_50
+  - testoutput_ejscreenit_500
+- title: "Utilities for finding URL or API info"
+  contents:
+  - url_countyhealthrankings
+  - url_echo_facility_webpage
+  - url_ejscreenmap
+  - url_ejscreen_report
+  - url_enviromapper
+  - url_frs_report
+  - url_naics.com
+- title: "Utilities handling variable names"
+  desc: "Utilities to handle variable names, indicator metadata, formulas, etc."
+  contents:
+  - fixcolnames
+  - names_d
+  - names_e
+  - map_headernames
+- title: "EJScreen API"
+  desc: "EJAM-EJScreen and using the EJScreen API"
+  contents:
+  - ejscreenit_for_ejam
+  - ejscreenit
+- title: internal
+  contents:
+  - acsendyear
+  - app_run_EJAMejscreenapi
+  - app_run_EJAM
+  - app_server
+  - app_ui
+  - bgid2fips
+  - blockid2fips
+  - blockpoints
+  - blockwts
+  - quaddata
+  - metadata4pins
+  - dataload_from_local
+  - dataload_dynamic
+  - download_latest_arrow_data
+  - default_points_shown_at_startup
+  - getpointsnearbyviaQuadTree
+  - proxistat_via_getblocks
+  - colcounter
+  - plot_st_v_us
+  - plot_vs_us
+  - ejscreen_vs
+  - ejscreen_vs_ejam_1var
+  - ejscreen_vs_ejam
+  - ejscreenapi2ejam_format
+  - ejscreenRESTbroker2table_na_filler
+  - frs_get
+  - frs_download
+  - frs_drop_inactive
+  - frs_clean_sic
+  - frs_inactive_ids
+  - frs_make_mact_lookup
+  - frs_make_naics_lookup
+  - frs_make_programid_lookup
+  - frs_make_sic_lookup
+  - frs_read
+  - frs_unzip
+  - frs_update_datasets
+  - frs_active_ids
+  - frs_clean
+  - latlon_any_format
+  - distances.all
+  - out_bydistance2results_bydistance
+  - out_bydistance2results_bydistance_bysite
+  - out_bydistance2results_bysite_bydistance
+  - meters_per_mile
+  - format_ejamit_columns
+  - table_order_variables
+  - custom_ejamit
+  - custom_doaggregate
+  - custom
+  - formula_varname
+  - formulas_all
+  - formulas_d
+  - batch.clean
+  - rowMaxs2
+  - colMins2
+  - colMaxs2
+  - change.fieldnames
+  - rmost
+  - map_shapes_leaflet_proxy
+  - map_facilities_proxy
+  - popup_from_df
+  - is.island
+  - radius_inferred
+  - proximity.score.in.miles
+  - fips_counties_from_countyname
+  - fips_place_from_placename
+  - shapefile_filepaths_validize
+  - shapefile_from_json
+  - state_from_s2b_bysite
+  - state_from_blockid_table
+  - state_from_blockid
+  - table_round
+  - table_rounding_info
+  - table_tall_from_overall
+  - tablefixed
+  - table_validated_ejamit_row
+  - table_xls_from_ejam
+  - table4gt_from_scorevectors
+  - table_gt_format_step1
+  - table_gt_format_step2
+  - x_anyother
+  - url_getacs_epaquery_chunked
+  - url_get_eparest_chunked_by_id
+  - url_get_via_url
+  - urls_clusters_and_sort_cols
+  - create_filename
+  - fixnames_aliases
+  - fixcolnames_infer
+  - varname2color_ejam
+  - varname2varcategory_ejam
+  - varname2vartype_ejam
+  - vartype_cat2color_ejam
+  - sitepoints_from_anything
+  - ejampackages
+  - testpoints_bad
+  - testpoints_overlap3
+  - testinput_regid
+  - testinput_address_parts
+  - testinput_address_2
+  - testinput_address_9
+  - testinput_address_table_9
+  - testinput_address_table_goodnames
+  - testinput_address_table_withfull
+  - testoutput_ejscreenapi_1pts_1miles
+  - testoutput_ejscreenRESTbroker_1pts_1miles
+  - testpoints_100_dt
+  - testinput_xtrac
+  - testoutput_ejscreenapi_plus_5
+  - namez
+  - names_age
+  - names_age_count
+  - names_all
+  - names_all_r
+  - names_climate
+  - names_climate_avg
+  - names_climate_pctile
+  - names_climate_state_avg
+  - names_climate_state_pctile
+  - names_community
+  - names_community_count
+  - names_countabove
+  - names_criticalservice
+  - names_criticalservice_avg
+  - names_criticalservice_pctile
+  - names_criticalservice_state_avg
+  - names_criticalservice_state_pctile
+  - names_d_avg
+  - names_d_count
+  - names_d_demogindexstate
+  - names_d_extra
+  - names_d_extra_count
+  - names_d_language
+  - names_d_language_count
+  - names_d_languageli
+  - names_d_languageli_count
+  - names_d_other_count
+  - names_d_pctile
+  - names_d_ratio_to_avg
+  - names_d_ratio_to_state_avg
+  - names_d_state_avg
+  - names_d_state_pctile
+  - names_d_subgroups
+  - names_d_subgroups_alone
+  - names_d_subgroups_alone_avg
+  - names_d_subgroups_alone_count
+  - names_d_subgroups_alone_pctile
+  - names_d_subgroups_alone_ratio_to_avg
+  - names_d_subgroups_alone_ratio_to_state_avg
+  - names_d_subgroups_alone_state_avg
+  - names_d_subgroups_alone_state_pctile
+  - names_d_subgroups_avg
+  - names_d_subgroups_count
+  - names_d_subgroups_nh
+  - names_d_subgroups_nh_avg
+  - names_d_subgroups_nh_count
+  - names_d_subgroups_nh_pctile
+  - names_d_subgroups_nh_ratio_to_avg
+  - names_d_subgroups_nh_ratio_to_state_avg
+  - names_d_subgroups_nh_state_avg
+  - names_d_subgroups_nh_state_pctile
+  - names_d_subgroups_pctile
+  - names_d_subgroups_ratio_to_avg
+  - names_d_subgroups_ratio_to_state_avg
+  - names_d_subgroups_state_avg
+  - names_d_subgroups_state_pctile
+  - names_e_avg
+  - names_e_other
+  - names_e_pctile
+  - names_e_ratio_to_avg
+  - names_e_ratio_to_state_avg
+  - names_e_state_avg
+  - names_e_state_pctile
+  - names_ej
+  - names_ej_pctile
+  - names_ej_state
+  - names_ej_state_pctile
+  - names_ej_supp
+  - names_ej_supp_pctile
+  - names_ej_supp_state
+  - names_ej_supp_state_pctile
+  - names_featuresinarea
+  - names_flag
+  - names_geo
+  - names_health
+  - names_health_avg
+  - names_health_count
+  - names_health_pctile
+  - names_health_ratio_to_avg
+  - names_health_ratio_to_state_avg
+  - names_health_state_avg
+  - names_health_state_pctile
+  - names_misc
+  - names_pct_as_fraction_blockgroupstats
+  - names_pct_as_fraction_ejamit
+  - names_pct_as_fraction_ejscreenit
+  - names_sitesinarea
+  - names_these
+  - names_these_avg
+  - names_these_ratio_to_avg
+  - names_these_ratio_to_state_avg
+  - names_these_state_avg
+  - names_wts

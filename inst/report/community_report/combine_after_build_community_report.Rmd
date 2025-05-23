@@ -1,0 +1,24 @@
+---
+title: "&#32;"
+output:
+  html_document:
+    css: ["communityreport.css"]
+params:
+  community_html: NA
+  map: NA
+  plot: NA
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+```{r report_html, results='asis'}
+shiny::HTML(params$community_html)
+```
+```{r map_section, echo=FALSE}
+params$map
+```
+
+```{r plot, fig.align='center', out.width='100%'}
+params$plot
+```

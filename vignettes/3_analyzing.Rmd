@@ -1,0 +1,633 @@
+---
+title: "Using EJAM for Analysis in R"
+description: "3. Using EJAM for Analysis in R"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Using EJAM for Analysis in R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo=FALSE, include=FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+# **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE, warning = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+```{r libraryEJAM, eval = TRUE, echo=FALSE, include=FALSE, warning=FALSE, message=FALSE}
+# rm(list = ls()); golem::detach_all_attached(); devtools::load_all()
+ 
+if (!exists("blockgroupstats")) {library(EJAM)} # use installed version only if pkg not yet attached
+
+dataload_dynamic('all') # varnames = all  currently means all defined by .arrow_ds_names
+
+indexblocks()
+```
+
+This article provides examples of how to use EJAM in RStudio, especially how to
+use more specialized functions to find specific places to analyze, such as
+EPA-regulated facilities defined in various ways, and how to explore the results
+in more detail than the web app can provide.
+
+# Running a Basic Analysis
+
+-   **`run_app()`** launches the web app locally (to run in RStudio on a single
+    computer rather than on a server)
+
+-   **`ejamit()`** provides most results in just one function (if you already
+    have a list of places to analyze), as shown in the [Quick Start
+    Guide](2_quickstart.html)
+
+# Tools for Exploring Results
+
+For a standard analysis, the basic tools like `ejam2report()`, `ejam2excel()`,
+`ejam2map()`, etc. let you explore results, as shown in the [Quick Start
+Guide](2_quickstart.html).
+
+If you want more ways to visualize and dig into results, examples are provided
+below in the sections on [EXPLORING RESULTS] and [VISUALIZATION OF FINDINGS
+(PLOTS)](#visualization-of-findings-plots). For example, you can check which
+groups or which facilities have notable findings.
+
+# Tools for Selecting Locations to Analyze
+
+EJAM offers a variety of ways to specify the places to be analyzed and compared.
+The web app helps you select locations in several ways.
+
+If you are working in RStudio, and you already have identified the points or
+areas to analyze, the [ejamit()] function will accept 1) point coordinates, 2) a
+shapefile, or 3) a list of FIPS codes.
+
+However, if you first need to get the points (lat, lon values), or you need a
+more in-depth, custom approach to finding facilities or Census places to
+analyze, there are several groups of functions to help with that, as shown in
+all the examples below. They are also shown in the [EJAM package reference
+manual](../reference/index.html), by category.
+
+You can specify locations for analysis in a variety of ways:
+
+**Near each point:** Analyze residents & the area [NEAR EACH POINT (PROXIMITY
+ANALYSIS)](#near-each-point-proximity-analysis)
+
+-   [**Latitude and Longitude**]
+
+-   [**Facilities by ID**] can be defined
+
+    -   [by Facility, using EPA Registry ID] or
+
+    -   [by Facility, using EPA Program System ID]
+
+-   [**Facilities by Type**] can be defined
+
+    -   [by Industry (NAICS)](#by-industry-naics) or
+
+    -   [by EPA Regulatory Program] or
+
+    -   [by MACT Subpart (hazardous air pollutant source
+        category)](#by-mact-subpart-hazardous-air-pollutant-source-category)
+
+**Within each polygon:** Specify areas of any size and shape to analyze
+residents within each polygon/zone/area (based on shapefiles or Census FIPS
+codes)
+
+-   **within areas or zones** on a map if you have GIS data in [SHAPEFILES] -
+    Polygons (from shapefiles) could for example define redlining zones, higher
+    risk areas based on modeling, etc.
+
+-   **within Census units like cities or Counties** defined using [FIPS CODES] -
+    Census Units such as Counties or other types of Census Units are defined by
+    FIPS code (e.g., Counties in one State).
+
+# NEAR EACH POINT (PROXIMITY ANALYSIS) {#near-each-point-proximity-analysis}
+
+## Latitude and Longitude
+
+You can define locations as all residents within X miles of any one or more of
+the specified points, and you can define those points in a few ways. One way is
+to upload a table of coordinates -- latitude and longitude for each point, one
+row per site, with columns called lat and lon (or some synonyms that work).
+There are also [more detailed functions for working with latlon
+coordinates.](../reference/index.html#specify-points-by-lat-lon)
+
+The simplest way to do that in the RStudio console is something like
+`x <- ejamit()`, which prompts you to upload a spreadsheet with lat lon columns,
+and asks you for the radius.
+
+As explained below, you can get the latitudes and longitudes of EPA-regulated
+facilities if you want to specify a set of facilities by uploading their
+Registry ID numbers in a table, or using other identifiers. For example, there
+is a function `latlon_from_programid()` in the examples below.
+
+You can also get coordinates in a few other ways, such as by NAICS (or SIC)
+industry names or codes, EPA program covering the set of facilities (e.g., all
+greenhouse gas reporters), or a Clean Air Act MACT subpart.
+
+## Facilities by ID
+
+EPA-regulated facilities can be found in the Facility Registry Services by
+identification number.
+
+### by Facility, using EPA Registry ID
+
+```{r frs_from_regid1, eval = FALSE}
+# note frs_from_regid() and latlon_from_regid() require the frs dataset, which they try to load on demand.
+
+frs_from_regid(c(110071293460, 110000333826))
+frs_from_regid(testinput_regid)
+
+## upload file with table of REGISTRY_ID values
+testdata("regi", quiet = T) # to see sample files available with package
+x1 <- latlon_from_regid(
+  read_csv_or_xl(testdata("testinput_registry_id_8.xlsx", quiet = TRUE))$REGISTRY_ID
+  )
+
+## interactively upload your own file with table of REGISTRY_ID values
+## (must specify the right column name)
+x2 <- latlon_from_regid(read_csv_or_xl()$REGISTRY_ID)
+
+## and run regids through EJAM
+y <- ejamit(x1, radius = 1)
+```
+
+### by Facility, using EPA Program System ID
+
+```{r tryload_frs_by_programid, include=FALSE}
+dataload_dynamic("frs_by_programid") # redundant given the setup steps
+```
+
+```{r latlon_from_programid, eval = TRUE}
+# latlon_from_programid() requires access to the frs_by_programid dataset, which it tries to load on demand if necessary.
+
+if (exists("frs_by_programid")) {
+  latlon_from_programid(c("XJW000012435", "00768SRTRSROAD1"))
+}
+```
+
+## Facilities by Type
+
+### by Industry (NAICS) {#by-industry-naics data-link="by Industry (NAICS)"}
+
+You can specify sites by NAICS, but it is important to note the FRS lacks NAICS
+info for many regulated facilities!
+
+```{r naics_from_any, eval = TRUE}
+naics_from_any("paint and coating", children = T) 
+## note latlon_from_naics() requires the frs_by_naics dataset, which it tries to load on demand. 
+# head(latlon_from_naics(325510)) 
+# has about 1,000 facilities  
+#
+# All sectors with this phrase in their NAICS title
+# 
+#  x <- ejamit(frs_from_naics("paint and coating"), 1)}
+```
+
+See many more examples of [Working with NAICS Codes (Industry
+Codes)](#working-with-naics-codes-industry-codes), in a section below.
+
+### by EPA Regulatory Program
+
+```{r tryload_frs_AND_frs_by_programid, include=FALSE}
+dataload_dynamic("frs_by_programid")
+dataload_dynamic("frs")
+```
+
+```{r latlon_from_program, eval = TRUE, message=FALSE}
+# note latlon_from_programid() requires the frs and frs_by_programid datasets, which it tries to load on demand.
+if (exists("frs_by_programid") && exists("frs")) {
+  
+  ## Map of over 10,000 facilities in FRS identified as in the E-Grid power plant database
+  
+  pts <- latlon_from_program("EGRID")[, 1:4]
+  mapfast(pts)
+  
+  ## In just 1 State
+  pts[, ST := state_from_latlon(lat = lat, lon = lon)$ST]
+  mapfast(pts[ST == "TX", ], radius = 1)
+  
+  ## Largest lists
+  
+  epa_programs_counts <- frs_by_programid[, .N, by = "program"][order(N), ]
+  epa_programs_counts[order(-N), ][1:25, ]
+}
+```
+
+### by MACT Subpart (hazardous air pollutant source category) {#by-mact-subpart-hazardous-air-pollutant-source-category}
+
+```{r tryload_frs_by_mact, include=FALSE}
+dataload_dynamic("frs_by_mact")
+```
+
+```{r latlon_from_mactsubpart, eval = TRUE, message=FALSE}
+# note latlon_from_mactsubpart() requires the frs_by_mact dataset, which it tries to load on demand
+if (exists("frs_by_mact")) {
+  
+  # Search by name of category
+  mact_table[grepl("ethylene", mact_table$title, ignore.case = T), ]
+  eto <- rbind(
+    latlon_from_mactsubpart("O" ), 
+    latlon_from_mactsubpart("WWWWW")
+  )
+  #  Map the category
+  mapfast(eto)
+  
+  
+  # Browse the full list of categories
+  # mact_table[ , c("N", "subpart", "title")]
+  
+  # The 10 largest categories
+  tail(mact_table[order(mact_table$N), c("N", "subpart", "title")], 10)
+  
+  # Many facilities lack latitude longitude information in this database
+  nrow(latlon_from_mactsubpart("A", include_if_no_latlon = TRUE))
+  nrow(latlon_from_mactsubpart("A", include_if_no_latlon = FALSE))
+  
+  head(latlon_from_mactsubpart("OOOO"), 2)
+}
+```
+
+## Working with NAICS Codes (Industry Codes) {#working-with-naics-codes-industry-codes}
+
+### NAICS Codes to Map or Analyze Facilities in one Industrial Sector
+
+Overview of NAICS / industry categories, at n-digit level
+
+```{r naics_more}
+# see NAICS categories at the top (2-digit) level
+
+naics_categories()
+
+# see NAICS categories at the 3-digit level
+
+# sorted alphabetical
+naics_from_any(naics_categories(3))[order(name),.(name,code)][1:10,]
+# sorted by code
+naics_from_any(naics_categories(3))[order(code),.(code,name)][1:10,]
+
+```
+
+Find NAICS codes, from the name of an industry
+
+```{r naics_code_from_name}
+naics_from_any('paint')
+```
+
+Find industry names, from the NAICS codes
+
+```{r naics_namefromcode}
+# get name from one code
+naics_from_code(336)$name
+
+# get the name from each code
+naics_from_code(mycode)$name
+```
+
+Count facilities by NAICS code
+
+```{r naics_counts_by_code}
+mycode = c(33611, 336111, 336112)
+
+# see counts of facilities by code (parent) and subcategories (children)
+naics_counts[NAICS %in% mycode, ]
+
+# see parent codes that contain each code
+naicstable[code %in% mycode, ]
+```
+
+Find facilities, by name of industry
+
+```{r pulpindustry, eval = TRUE}
+
+# See a data table of facilities in one industry
+dataload_dynamic("frs")
+# if (exists("frs")) {
+  industryword <- "pulp"
+  
+  head( frs_from_naics(naics_from_any(industryword)$code)[,1:4] )
+# }
+```
+
+Quick map of EPA-regulated facilities in one industrial category, which you can
+click on to see popup windows about sites.
+
+```{r mapfast(frs_from_naics), eval = TRUE, fig.height=5, fig.width=5}
+# note frs_from_naics() requires the frs dataset
+# frs_from_naics() is slow the 1st time if it has not yet loaded the frs dataset
+if (!exists("frs_arrow")) { # a more efficient format
+  dataload_dynamic("frs", return_data_table = FALSE, silent = TRUE)
+}
+
+mapfast(frs_from_naics("smelt"))
+```
+
+(but note that this FRS dataset lacks NAICS for most facilities!)
+
+Table of facilities in an industry, plus links to each facility in ECHO and
+EJScreen
+
+```{r frs_from_naics-chemicalmanuf, eval = FALSE}
+industryword <- "chemical manuf"
+#  industryword <- "smelt"
+# if (exists("frs") && exists("frs_by_naics")) {
+  mysites <- frs_from_naics(industryword, children = FALSE)[,1:5]
+  
+  regids <- mysites$REGISTRY_ID
+  link1 <- url_echo_facility_webpage(regids, as_html = T)
+  link2 <- url_ejscreen_report(lat = mysites$lat, lon = mysites$lon, radius = 3, as_html = T)
+  link3 <- url_ejscreenmap(lat = mysites$lat, lon = mysites$lon,  as_html = T)
+  # # same:
+  # my_industry <- naics_from_any("chemical manuf",children = F)[,.(code,name)]
+  # mysites <- frs_from_naics(my_industry$code)[,1:5]
+  mysites <- cbind(`ECHO report` = link1, 
+                   `EJScreen Report` = link2, `EJScreen Map` = link3,
+                   mysites)
+  caption = paste0(nrow(mysites), ' sites have NAICS matching "', industryword, '"')
+  if (nrow(mysites) > 1500) {mysites <- mysites[1:1500, ]} # >2k rows is too much for client-side DataTables
+  cat(caption,'\n')
+  
+  print(
+    DT::datatable(
+      mysites[1:5, ],
+      escape = FALSE,     rownames = FALSE,
+      caption = caption,
+      filter = "top"
+    )
+  )
+# }
+```
+
+Map of facilities in an industry, plus popups with links to each facility in
+ECHO and EJScreen
+
+```{r map2, eval = FALSE, fig.height=5, fig.width=5}
+mapfast(mysites)
+```
+
+Facilities searches using industry codes or text in industry names
+
+```{r plastics-and-rubber, eval = TRUE}
+naics_from_any("plastics and rubber") 
+
+naics_from_any(326)
+
+head(naics_from_any(326, children = T)[,.(code,name)])
+
+naics_from_any("pig") 
+naics_from_any("pig ") # space after g
+
+# a OR b,  a AND b,  etc.
+a = naics_from_any("plastics")
+
+b = naics_from_any("rubber")
+
+library(data.table)
+data.table::fintersect(a,b)[,.(name,code)] #  a AND b
+
+head(data.table::funion(a,b)[,.(name,code)])     #  a OR  b
+
+# naics_subcodes_from_code(funion(a,b)[,code])[,.(name,code)]   #  plus children
+
+head(naics_from_any(funion(a,b)[,code], children = T)[,.(name,code)] ) #  same
+```
+
+A NAICS code can have many "children" or subcategories under it
+
+```{r frs_from_naics-details, eval = TRUE}
+dataload_dynamic(c("frs", "frs_by_naics"))
+if (exists("frs") & exists("frs_from_naics")) {
+  
+  NROW(naics_from_any("chem"))
+  # about 20
+  NROW(naics_from_any("chem", children = T))
+  # >100
+  NROW(frs_from_naics(naics_from_any("chem")$code))
+  # a few thousand
+  NROW(frs_from_naics(naics_from_any("chem", children = T)$code))
+  # >10,000
+}
+```
+
+# SHAPEFILES
+
+### Polygons in shapefiles as the places to compare
+
+You can upload polygons in a shapefile, and use EJAM to analyze them. See the
+Shiny app.
+
+See shapefile_from_any() and related functions:
+
+```{r notrun_shapefile_functionlist, eval=FALSE, echo=TRUE}
+shapefile_from_any()
+
+shapefile_from_sitepoints()
+shape_buffered_from_shapefile()
+shape_buffered_from_shapefile_points()
+
+shp1 <- shapefile_from_gdbzip(system.file("testdata/shapes/portland.gdb.zip", package = "EJAM"))
+
+```
+
+# FIPS CODES
+
+### Counties as the places to compare
+
+You can compare places defined by FIPS code, such as a group of US Counties.
+
+Compare all Counties in a State, using EJAM indicators
+
+```{r eval=FALSE, echo=FALSE, include=FALSE}
+# NOTE THE EXAMPLES BELOW ARE VERY SLOW TO LOAD/RUN ! 
+```
+
+```{r counties_fips, eval = FALSE}
+
+# Get FIPS of each county in Delaware
+mystate <- "Delaware"
+cfips <- fips_counties_from_statename(mystate)
+
+## You could launch a web browser tab for each of the counties,
+##  to see each of the County reports from EJScreen, like this:
+#
+# sapply(url_ejscreen_report(areaid = cfips), browseURL)
+
+## Analyze EJ stats for each county in the State
+
+x <- ejamit(fips = cfips) # radius not used
+DT::datatable(x$results_bysite, escape = F)
+
+ejam2table_tall(x)
+
+t(x$results_bysite[ , c(
+  'ejam_uniq_id', 'pop', names_d_subgroups_ratio_to_state_avg), with = F])
+
+mapfastej_counties(x$results_bysite)
+
+cnames <- fips2countyname(x$results_bysite$ejam_uniq_id)
+#cnames <- c("Kent County", "New Castle County", "Sussex County")
+#cnames <- gsub(" County", "", cnames)
+
+barplot(x$results_bysite$pctlowinc, names.arg = cnames,
+        main = paste0('% Low Income by County in ', mystate))
+
+# Another example
+mystate <- "Maryland"
+vname <- "% low income"
+xmd <- ejamit(fips = fips_counties_from_statename(mystate))
+ggblanket::gg_col(data = xmd$results_bysite,
+                  y = pctlowinc,
+                  x = ejam_uniq_id,
+                  title = paste0(vname, ' by County in ', mystate),
+                  y_title = vname
+)
+
+mapfastej_counties(xmd$results_bysite, 'state.pctile.pctlowinc')
+
+```
+
+# EXPLORING RESULTS
+
+### The most striking findings (e.g., which group is most overrepresented?)
+
+See examples above using ejam2report() but also you can check some key findings
+like this:
+
+```{r count_sites_with_n_high, eval=TRUE, echo = TRUE}
+x <- testoutput_ejamit_1000pts_1miles 
+out <- x$results_bysite
+out <- setDF(copy(out))
+ratio_benchmarks <- c(1.01, 1.50, 2, 3, 5, 10)
+ratiodata <- out[, names_d_ratio_to_state_avg]
+
+findings <- count_sites_with_n_high_scores(ratiodata, quiet = TRUE)  # long output to console !
+
+tail(findings$text[findings$text != ""], 1) # the most extreme finding!
+
+```
+
+### The key facilities (e.g., which has the max of -- or has multiple elevated -- Summary Indexes?)
+
+```{r topsites}
+out2 <- ejamit(
+  sitepoints =  testpoints_100,
+  radius = 3.1
+)
+x <- out2$results_summarized$cols
+x <- x[order(x[,1], decreasing = T), ]
+head(x, 3)
+cat("\n")
+x <- x[order(x[,2], decreasing = T), ]
+head(x, 3)
+```
+
+### More summary findings
+
+```{r count_sites_etc_more, eval = TRUE, echo = TRUE}
+dimnames(findings)
+findings$text[2]
+head(findings$stats[ , , 1], 15)
+head(findings$stats[ , 1, ], 21)
+x = findings$stats[ , 1, ] 
+x[x[, "cum_pct"] >= 50 & x[, "cum_pct"] <= 80, ]
+findings$stats[ 1, , ]
+```
+
+## Site by site detailed results in datatable format in RStudio viewer:
+
+```{r datatable30}
+out2 <- testoutput_ejamit_100pts_1miles
+DT::datatable(out2$results_bysite[1:5,   ], escape = FALSE, rownames = FALSE)
+
+# To see all 1,000 sites in table:
+#DT::datatable(out2$results_bysite[1:1000, ], escape = FALSE, rownames = FALSE)
+```
+
+### Overall results for a few key indicators, as raw output in console:
+
+```{r cbind-overall, eval = TRUE, paged.print= TRUE}
+out2 <- testoutput_ejamit_100pts_1miles
+
+names(out2)
+cbind(overall = as.list( out2$results_overall[ , ..names_d]))
+cbind(overall = as.list( out2$results_overall[ , ..names_d_subgroups]))
+```
+
+### Overall results for the very long list of all indicators, as raw output in console:
+
+```{r}
+out2 <- testoutput_ejamit_100pts_1miles
+
+head(
+  ejam2table_tall(out2)
+  , 20)
+# head(
+#   cbind(as.list(out2$results_overall))
+#   , 12)
+```
+
+## Just one site, all the indicators
+
+```{r ejam2table_tall_1}
+head(
+  ejam2table_tall(out2, sitenumber = 1)
+  , 20)
+```
+
+#### See indicators aggregated over all people across all sites
+
+```{r cbindagain, eval = TRUE}
+## view output of batch run aggregation ####
+out <- testoutput_ejamit_1000pts_1miles
+head(cbind(overall = as.list( out$results_overall)))
+
+## To see just some subset of indicators, like Environmental only:
+cbind(overall = as.list( out$results_overall[ , ..names_e])); cat("\n")
+cbind(overall = as.list( out$results_overall[ , ..names_d])); cat("\n")
+cbind(overall = as.list( out$results_overall[ , ..names_d_subgroups])); cat("\n")
+cbind(overall = as.list( out$results_overall[ , ..names_e_pctile])); cat("\n")
+cbind(overall = as.list( out$results_overall[ , ..names_d_pctile])); cat("\n")
+# cbind(overall = as.list( out$results_overall[ , ..names_ej_pctile])); cat("\n")
+```
+
+# VISUALIZATION OF FINDINGS (PLOTS) {#visualization-of-findings-plots}
+
+## Indicators
+
+### Barplot showing which indicator is most elevated overall
+
+```{r barplot_d, eval=TRUE, fig.width=8.6}
+#| fig-alt: Barplot of ratios of residential population indicators at selected sites to State averages.  It is a series of bars where some are above a ratio of 1, and one is more than 2 times the State average of supplemental demog. index.
+out <- testoutput_ejamit_1000pts_1miles
+
+ejam2barplot(out,
+             varnames = c(names_d_ratio_to_state_avg, names_d_subgroups_ratio_to_state_avg),
+             main = "Residential population group percentages at Selected Sites Compared to State Averages")
+```
+
+### Histogram of indicators distribution over all people across all sites
+
+```{r histo, eval = TRUE}
+#| fig.alt: >
+#|   Histogram of distribution of scores nearby, in ten decile bins, as percentiles versus a
+#|   flat line representing the US overall, an expected count of 100 sites per decile,
+#|   out of 1,000 sites total. 
+#|   Bars in the first three deciles (low traffic scores) are above the expected 100 line,
+#|   meaning these sites have an overrepresentation of sites with low traffic scores
+#|   compared to the US overall.
+hist(out$results_bysite$pctile.traffic.score, 10, xlab = "Local traffic scores (expressed as a percentile)", 
+     ylab = "count of sites in each bin, out of 1,000 sites", freq = TRUE, 
+     main = "Actual distribution of scores nearby, as percentiles, 
+     vs flat line = USA overall")
+abline(h = nrow(out$results_bysite)/10)
+```

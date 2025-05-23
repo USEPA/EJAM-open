@@ -1,0 +1,44 @@
+---
+title: "Deploying the Web App"
+description: "Updating and deploying/hosting the shiny app"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Deploying the Web App}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+While the EPA servers hosting the EJAM web application are no longer up and running as of mid-2025, this document outlines the application deployment process that had been used. The process involved 1) development work on an internal/private repo called EJAM that had been used to deploy an internal/expert version of the web app for staff, and 2) a public repo called EJAM-open that had been used to share the latest version and publish it to host a public version of the web app for use in EJScreen (until early 2025).
+
+## Update EJAM Application
+
+After updating the main branch in the public EJAM code repository (see `dev_update-package` vignette) so that the public repo had the latest version...
+
+1.  Sourced `rsconnect_manifest_update.R`, using the public repo as the repo specified in the `remotes::install_github()` command.
+
+    a.  In this way, we were updating the `manifest.json` file in the repo from which the web app was deployed, but with reference to the repo that was public (since those were not the same repo).
+    b.  It was important to use the public repo as this ensured the Posit Connect server for the hosted site could install the EJAM package as a dependency. (It did not necessarily have access to the private EJAM repo)
+
+2.  Updated Staging + Production servers
+
+    a.  Merged EJAM's main branch into the PUBLIC-EJSCREEN branch (in the repo to be deployed from)
+    b.  Ensured `isPublic` parameter was set to TRUE in the call to the `run_app()` function in `app.R`
+        i.  The `isPublic` flag determined whether to show the public or internal/expert version of the web application.
+    c.  The branch PUBLIC-EJSCREEN was automatically connected to the public site, so changes to this branch were automatically pulled into the site.
+
+3.  Updated Deploy Posit server
+
+    a.  Merged EJAM's main branch into the deploy-posit branch (in the repo to be deployed from)
+    b.  Ensured `isPublic` parameter was set to FALSE
+    c.  deploy-posit was automatically connected to the development/internal/expert version of the web app, so changes to this branch were automatically pulled into the site.
+
+4.  Merged main back into development so that development would have the updated `manifest.json` file. This ensured all branches were consistent.
+
+## Potential Improvements
+
+One way to improve this process would be to modify the `isPublic` toggle to be an environment variable. This would allow us to set the value once in each application server, and not have to change it each time we push updates. Moreover, it would make testing the public and internal versions of the app easier to handle in the GitHub actions (see shinytests vignette).

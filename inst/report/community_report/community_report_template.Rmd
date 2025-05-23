@@ -1,0 +1,94 @@
+---
+title: "&#32;"
+output: 
+  html_document:
+    css: ["communityreport.css"]
+params:
+  output_df: NA
+  analysis_title: NA
+  totalpop: NA
+  locationstr: NA
+  include_ejindexes: TRUE
+  show_ratios_in_report: NA
+  extratable_show_ratios_in_report: NA
+  extratable_title: NA
+  extratable_title_top_row: NA
+  extratable_list_of_sections: NA
+  extratable_hide_missing_rows_for: NA
+  in_shiny: FALSE
+  filename: NULL
+  map: NA
+  summary_plot: NA
+---
+
+```{r, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# remember params can be defined using r code too: https://r4ds.had.co.nz/r-markdown.html#parameters
+## like, 
+## params:
+##    rundate: !r  lubridate::ymd_hms("2015-01-01 12:30:00")
+```
+
+```{r build_community_report}
+
+#library(EJAM) # note this overrides developer having just done load_all() !
+
+build_community_report(
+  output_df = params$output_df,
+  analysis_title = params$analysis_title,
+  totalpop = params$totalpop,
+  locationstr = params$locationstr,
+  include_ejindexes = params$include_ejindexes,
+  
+  show_ratios_in_report = params$show_ratios_in_report,
+  extratable_show_ratios_in_report = params$extratable_show_ratios_in_report,
+  extratable_title         = params$extratable_title,
+  extratable_title_top_row = params$extratable_title_top_row,
+  extratable_list_of_sections = params$extratable_list_of_sections, # just use default
+  extratable_hide_missing_rows_for = params$extratable_hide_missing_rows_for, # just use default
+  
+  in_shiny = params$in_shiny,
+  filename = params$filename
+)
+```
+
+```{r map, fig.align='center'}
+
+params$map
+
+```
+
+```{r summary_plot, out.width='90%', fig.align='center'}
+
+params$summary_plot
+```
+
+
+
+```{r footer_with_version_and_date}
+
+library(desc)
+library(golem)
+
+desc <- tryCatch(desc::desc(package = 'EJAM'), error = function(e) {e})
+if (inherits(desc, 'try-error')) {
+  desc <- tryCatch(desc::desc(file = app_sys('DESCRIPTION')), error = function(e) {e})
+  if (inherits(desc, 'try-error')) {stop('cannot find DESCRIPTION file for EJAM package')}
+}
+version <- ifelse('error' %in% class(desc), '', desc$get("Version"))
+## trim version number shown in report to Major.Minor
+version <- substr(version, start = 1, stop = gregexpr('\\.',version)[[1]][2] - 1)
+
+current_date <- ifelse(
+  isTRUE(getOption("shiny.testmode")),
+  "[SHINYTEST DATE]",
+  format(Sys.Date(), "%B %d, %Y"))
+
+HTML('
+  <div style="background-color: #edeff0; color: black; width: 100%; padding: 10px 20px; text-align: right; margin: 10px 0;">
+    <p style="margin-bottom: 0;">Version ', version, '| Report created on ', current_date, '</p>
+  </div>
+  ')
+```
+

@@ -1,0 +1,24 @@
+pandoc: '3.2'
+pkgdown: 2.1.1
+pkgdown_sha: ~
+articles:
+  0_webapp: 0_webapp.html
+  0_whatis: 0_whatis.html
+  1_installing: 1_installing.html
+  2_quickstart: 2_quickstart.html
+  3_analyzing: 3_analyzing.html
+  dev_deploy-app: dev_deploy-app.html
+  dev_future_plans: dev_future_plans.html
+  dev_run-shinytests: dev_run-shinytests.html
+  dev_run-unit-tests: dev_run-unit-tests.html
+  dev_update-datasets: dev_update-datasets.html
+  dev_update-package: dev_update-package.html
+  dev_update_documentation: dev_update_documentation.html
+  distances: distances.html
+  naics: naics.html
+  testdata: testdata.html
+  zipcodes: zipcodes.html
+last_built: 2025-05-13T22:45Z
+urls:
+  reference: https://usepa.github.io/EJAM-open/reference
+  article: https://usepa.github.io/EJAM-open/articles

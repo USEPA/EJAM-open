@@ -1,0 +1,122 @@
+---
+title: "Installing the EJAM R package"
+description: "1. Installing the EJAM R package"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Installing the EJAM R package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo= FALSE, include = FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+```{r libraryEJAM, eval = FALSE, echo= FALSE, include= FALSE}
+# rm(list = ls()); golem::detach_all_attached(); devtools::load_all()
+ 
+if (!exists("blockgroupstats")) {library(EJAM)} # use installed version only if pkg not yet attached
+
+dataload_dynamic('all') # varnames = all  currently means all defined by .arrow_ds_names
+
+indexblocks()
+```
+
+```{r, eval=TRUE, include=FALSE}
+owner_repo <- EJAM:::repo_from_desc()      # had been "USEPA/EJAM-open"
+repo <- gsub(".*/", "", owner_repo)        # had been       "EJAM-open"
+quoted_owner_repo <- paste0("'", owner_repo, "'")
+```
+
+EJAM is not only a web app, it is also an R package.
+
+To use the R package, you first need to have [R and RStudio](https://posit.co/download/rstudio-desktop/).
+
+The EJAM package can be installed on your computer as an R package. This is useful if you want to use the full set of EJAM R functions outside of the web app interface, to do customized analysis, to explore the data in R, or to reuse data or code in other applications.
+
+## How to install
+
+### Try this first (if you just want to use the package, not clone & edit source code)
+
+If you just install the package without cloning the repository, you can use the EJAM package, but cannot edit the source code, for example. To just install it, try this:
+
+```{r install_github_main, eval=FALSE, include=TRUE}
+options(timeout = 300) # Just in case the download takes longer than 60 seconds
+if (!require(remotes)) {install.packages("remotes")}
+```
+`remotes::install_github(repo = `r quoted_owner_repo`, dependencies = TRUE)`
+
+
+
+If that does not work, check the github repository for the latest release and use the URL to install the package with `remotes::install_url()`
+
+## load/attach the package
+
+To use EJAM in the RStudio console, start by loading / attaching the package:
+```{r libraryejam, eval=FALSE}
+require(EJAM) # or  library(EJAM)
+```
+
+**That should be all you need to do.**
+
+------------------------------------------------------------------------
+
+## Cloning: if you need the full source code or want to build/install in RStudio on your own
+
+You can use the package just by installing without cloning. However, if you want to explore and edit source code, etc., you may want to clone the github repository that has the EJAM source code. Note that to do so, you have to know how to use R/RStudio with git and github, create a project, build from source, etc.
+
+The EJAM package is not on CRAN.
+
+Options for getting the full source package:
+
+a.  One way to get the full source package is to use a browser to go to the EJAM repository page (or a fork of the repository) at [`r owner_repo`](https://github.com/`r owner_repo` `r paste0("'github.com/", owner_repo, "'")`){.uri target="_blank" rel="noreferrer noopener"} and then click the green "Code" button, and download and unzip the zip file that contains the package.
+
+b.  Another way to get the source package is that in RStudio you can click New Project, Version Control, Git, and enter the repository URL.
+
+c.  A third way is to Clone or Fork the package via GitHub Desktop.
+
+Regardless of how you got the full source code, you would then need to build/install the package from source on your computer using RStudio (using the Build menu) or using the devtools package, for example.
+
+
+------------------------------------------------------------------------
+
+## Technical details
+
+Just in case you need more details on how installing and attaching the package works, the following describes the package dependencies and code used by the package to get the data and build an index.
+
+### Details on CRAN packages needed (dependencies)
+
+You should not have to do anything other than the instructions above, to handle package dependencies. EJAM needs a number of other packages to be installed that are (almost all) available from CRAN. Installing the EJAM package as explained above will handle obtaining those other packages. Cloning and building/installing and then trying to load/attach EJAM will also alert you to those other packages you need to install if you don't already have them. In case it is of interest, the list of CRAN packages needed is in the `DESCRIPTION` file in the R package source code root folder (as can be found in the code repository). Note some are in Suggests and you might want to install those as well -- using dependencies=T in `remotes::install_github()` or `remotes::install_url()` will make sure of that.
+
+### Details on the automatic data downloads
+
+To work in the RStudio console, EJAM needs some datasets not stored as part of the package. However, they already should be downloaded and loaded into memory automatically as soon as you use `require(EJAM)`. 
+
+On first use, it should automatically download some data files. Each time it is attached, it will check for updates and also will build a spatial index of Census block points.
+
+Typically you would not need to download any datasets yourself, because EJAM just downloads these when the app starts (technically, when the R package is attached) (or only as needed in the case of certain datasets that are not always needed). Some datasets are installed along with the package, such as the `blockgroupstats` data. But large files like `blockpoints` are stored on a "pins board" server and EJAM downloads them from there. You might want your own local copies, though, for these reasons:
+ 
+Attaching the package actually checks for copies in memory first (e.g., `exists("quaddata", envir = globalenv())`), then local disk (using `dataload_from_local()` looking in the data folder of the (source or installed) package, as defined by `app_sys()` which is just a wrapper for `system.file()`), then finally tries to download any still needed, using internal functions.
+
+### Details on the indexing of blocks
+
+EJAM also needs to build the index of about 8 million US block locations (one internal point for each block), which takes a few seconds. EJAM does this automatically when attached via `library()` or `require()` e.g., require(EJAM), by creating an object called [localtree](../reference/localtree.html) based on the [quaddata](../reference/quaddata.html) object obtained as mentioned above. Some functions check for it and try to build the index on the fly if it is missing. You can also (re)build it manually:
+
+```{r indexblocks, eval=FALSE}
+indexblocks()
+```

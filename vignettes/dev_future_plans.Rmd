@@ -1,0 +1,71 @@
+---
+title: "Future Plans and Ideas for EJAM"
+description: "Future Plans and Ideas for EJAM"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Future Plans and Ideas for EJAM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo= FALSE, include = FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Status and Future Directions as of 2024-2025
+
+Regarding status of the repository and plans for web app hosting and open source package development, etc., see the README file in the main EJAM code repository.
+
+
+## Possible future enhancements
+
+EPA is no longer actively developing EJAM as of mid-2025, but had previously considered what worked and what was still needed in a multisite tool such as EJAM, including some of the ideas listed below.
+
+### API
+
+To provide further flexibility and help avoid duplication of effort, an EJAM API is needed. This would allow links within the EJAM tables and map popups to link to a report on each site, for example, which was available via the EJScreen API until it was taken offline. An API also could provide access to services such as fast identification of nearby blocks or other points, summarization (aggregation over blocks or block groups), or data. See draft work in the plumber folder of the EJAM source package.
+
+### Counts of nearby points of interest
+
+Features were drafted that will be able to report on the number of user-specified points of interest (e.g., schools) at each location. For example, it could report on how many parks or elementary schools are at each analyzed location. This would report on counts in an analysis of circular buffers (e.g., \# of schools near each facility analyzed), but also for FIPS Census units (e.g., \# of schools in each County) or polygons/shapefiles (e.g., \# of schools in each high-risk zone). See `countpoints_nearby()`, and related early draft work in EJAM/R/PROXIMITY_FUNCTIONS.R 
+
+### Facility Density Scores for all EPA-regulated Facilities
+
+A facility density indicator may be explored and pre-calculated, that would summarize the proximity of all types of EPA-regulated facilities, or certain subcategories, for every community in the US or within one State of interest. This would be similar to the existing proximity indicators such as the RMP score in EJScreen, but cover a larger range of facilities. See early draft work in `EJAM/R/PROXIMITY_FUNCTIONS.R` 
+
+### Proximity Scores for User-Specified Sites
+
+A feature is planned that will be able to quickly calculate a new proximity indicator for every block group in the US, to represent counts of and distances to user-specified points such as facilities. This would be similar to the existing proximity indicators such as the RMP score in EJScreen, but would be calculated on the fly for any user-specified set of points. See early draft work in `EJAM/R/PROXIMITY_FUNCTIONS.R` 
+
+### User-specified Indicators
+
+EJAM in the future will also be able to analyze, aggregate, and report on other residential population indicators (e.g., other Census ACS variables), to include user-selected EPA-hosted layers, or even user-provided data. In other words, an analysis would be able to include other layers on risks or concentrations (at block group resolution), or user-provided scores for each block group. See `acs_bybg()` examples, `calctype()`, `doaggregate()` parameters like wtdmeancols, and early drafts of possible approaches in`calc_ejam()`, `custom_doaggregate()`, `doaggregate_newscores()`, etc.
+
+### Written Long Report
+
+EJAM is designed in a way that will allow a future update to provide a default, standard written report (e.g., such as a 10-page report). EJAM will provide a written report with text, graphics, and maps, ready for a user to print, download, share, and use. Because the report is a Word document, one can further edit it offline as needed. Users also can choose to use just selected tables or graphics or data files (such as for individual sites and summary statistics). See early draft work in `system.file("report/written_report", package = "EJAM")` and in R/app_ui.R and R/app_server.R.
+
+### Methods for Identifying and Focusing on Key Findings
+
+Communicating key findings is challenging when such a large number of metrics are available across multiple locations with multiple residential population groups. Some simple tools may be able to help with initial filtering of results, to suggest what might be highlighted. These will be explored for the written report, particularly for ways to provide an Executive Summary. See early draft work in functions such as `count_sites_with_n_high_scores()` and the report/written_report folder.
+
+### Visualization Tools
+
+A variety of plots and maps will be explored as ways to communicate the rich data results calculated by EJAM. For example, EJAM R functions can calculate and display detailed estimates of the range of residential distances to facilities within each residential population subgroup - this type of visualization could be incorporated into the web app if there appears to be interest in it. Another possibility is that plots, maps, and tables could be made to interact in sync with each other, where that supports useful data exploration. See examples of plots in the vignettes, for example, and the many plot_xyz functions.
+
+### Spatial Resolution
+
+EJAM is designed with growth in mind, assuming that the specific indicators of interest will expand or change over time. It is even possible that multiple resolutions of data will need to be analyzed, such as block, block group, and tract data for different indicators. A subsequent refinement might even use a high-resolution raster grid of population estimates rather than the Census Block counts currently used for buffering and weighting block group scores for partially included block groups.

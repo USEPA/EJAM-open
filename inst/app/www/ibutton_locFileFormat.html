@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>  <script type="application/shiny-singletons"></script>  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.11.3];shiny[0.13.2];selectize[0.11.2];bootstrap[3.3.5]</script><script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>NAICS text input</title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <style type="text/css">.infolink::before
+{
+    content: '?';
+    font-size: 50%;
+    font-family: sans-serif;
+    vertical-align: middle;
+    font-weight: bold;
+    text-align: center;
+    line-height:1;
+    display: inline-block;
+    width: 1.8ex;
+    height: 1.8ex;
+    border-radius: 1ex;
+    color: blue;
+    background: white;
+    border: thin solid blue;
+}
+
+.infolink:hover::before
+{
+    color: white;
+    background: blue;
+    border-color: white;
+}</style>
+    <h2>Location File Upload</h2>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="well">
+          <div id="selectFrom1" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+            <label class="control-label" for="selectFrom1">
+              <h5>You may upload a list of location coordinates (latitudes and longitudes). The file should contain 3 columns: ID, LAT, LONG. The ID column should be unique (no duplicates), and each record should be separated by a carriage return. </h5> 
+              <h5>The file should be formatted as follows: </h5> 
+            </label>
+		<br>
+		ID,LAT,LONG<br>
+		1,36.26333,-98.48083<br>
+		2,41.01778,-80.36194<br>
+		3,43.43772,-91.90365<br>
+		4,29.69083,-91.34333<br>
+		5,40.11389,-75.34806<br>
+		6,35.97889,-78.88056<br>
+		7,32.82556,-89.53472<br>
+		8,30.11275,-83.59778<br>
+		9,30.11667,-83.58333<br>
+		10,38.06861,-88.75361<br><br>
+	  <div>
+          <input type="button" value="Close this window" onclick="self.close()">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

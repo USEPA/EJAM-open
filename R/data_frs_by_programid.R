@@ -1,0 +1,35 @@
+#' @name frs_by_programid
+#' @title frs_by_programid (DATA) data.table of Program System ID code(s) for each EPA-regulated site in 
+#'   the Facility Registry Service
+#' @seealso [frs] [frs_by_naics]  
+#' @details 
+#'   This file is not stored in the package, but is obtained via [dataload_dynamic()].
+#'  
+#'  Created by frs_make_programid_lookup()
+#'  
+#'    This is the format with one row per site-programid pair, 
+#'    so multiple rows for one site if it is in multiple programs.
+#'    
+#'  ```
+#'  > dim(frs_by_programid)
+#'  [1] 3479560       6   as of 02/2025
+#'
+#' nn=sample(1:nrow(frs_by_programid), 1); frs_by_programid[REGISTRY_ID == frs_by_programid$REGISTRY_ID[nn],]
+#' 
+#' Key: <pgm_sys_id, program, REGISTRY_ID>
+#'           lat       lon  REGISTRY_ID  PGM_SYS_ACRNMS program pgm_sys_id
+#'         <num>     <num>       <char>          <char>  <char>     <char>
+#'   1: 42.01282 -78.54799 110010618705 ICIS:1400013175    ICIS 1400013175
+#'   2: 42.01282 -78.54799 110010618705 ICIS:1400013176    ICIS 1400013176       
+#' 
+#' nn=sample(1:nrow(frs_by_programid), 1); frs_by_programid[REGISTRY_ID == frs_by_programid$REGISTRY_ID[nn],]
+#'  
+#' Key: <pgm_sys_id, program, REGISTRY_ID>
+#'         lat       lon  REGISTRY_ID           PGM_SYS_ACRNMS program          pgm_sys_id
+#'       <num>     <num>       <char>                   <char>  <char>              <char>
+#' 1: 34.95563 -81.91435 110011516840  NCDB:C04#TSCAIV-98-LD11    NCDB  C04#TSCAIV-98-LD11
+#' 2: 34.95563 -81.91435 110011516840 NCDB:C04#TSCAIV-98-LD11A    NCDB C04#TSCAIV-98-LD11A
+#' 3: 34.95563 -81.91435 110011516840 NCDB:I04#19980603N4005 2    NCDB I04#19980603N4005 2
+#'  ```
+#'  
+NULL

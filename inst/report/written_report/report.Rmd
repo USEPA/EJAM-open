@@ -1,0 +1,987 @@
+---
+title: Analysis of demographic and environmental conditions near selected facilities
+date: "`r Sys.Date()`"
+params:
+  testmode: TRUE
+  # #------------- WHERE was analyzed? (where/ what sector/zones/types of places)
+  analysis_title: "Analysis of demographic and environmental conditions near selected facilities"
+  zonetype: NA
+  where: NA
+  distance: 1
+  sectorname_short: "selected facilities"
+  in_the_x_zone: NA
+  facilities_studied: "these sites"
+  within_x_miles_of: NA
+  in_areas_where: NA
+  risks_are_x: NA
+  source_of_latlons: NA
+  sitecount: 10
+  # #------------- RESULTS (tables - map - plots)
+  total_pop: NA
+  results: !r EJAM::testoutput_ejamit_10pts_1miles
+  results_formatted: NA
+  map: NA
+  map_placeholder_png:                 "map_placeholder.png"
+  envt_table: NA
+  envt_table_placeholder_png:   "envt_table_placeholder.png"
+  envt_table_placeholder_rda:   "envt_table_placeholder.rda"
+  demog_table: NA
+  demog_table_placeholder_png: "demog_table_placeholder.png"
+  demog_table_placeholder_rda: "demog_table_placeholder.rda"
+  boxplot: NA
+  boxplot_placeholder_png:         "boxplot_placeholder.png"
+  barplot: NA
+  barplot_placeholder_png:         "barplot_placeholder.png"
+#------------- TEXT PHRASES, DESCRIBING AND INTERPRETING RESULT 
+  demog_how_elevated: NA
+  envt_how_elevated: NA
+  demog_high_at_what_share_of_sites: NA
+  envt_high_at_what_share_of_sites: NA
+  conclusion1: NA
+  conclusion2: NA
+  conclusion3: NA
+# ------------- METHODS, AUTHORS, ETC.
+  authorname1: "The US EPA"
+  authoremail1: ""
+  coauthor_names: NA
+  coauthor_emails: NA
+  fundingsource: NA
+  acs_version: !r as.vector(EJAM:::metadata_mapping$default[['acs_version']])
+  ejscreen_version: !r as.vector(EJAM:::metadata_mapping$default[['ejam_package_version']])
+  author:
+   # name: params$authorname1
+   # email: `params$authoremail1
+editor_options:
+  markdown:
+    wrap: 72
+linenumbers: true
+abstract: The United States Environmental Protection Agency (US EPA) analyzed baseline residential population and environmental conditions in communities living `r params$where` `r params$facilities_studied`. The analysis used EPA's EJAM tool, EPA environmental indicators, and residential population data based on the Census Bureau’s `r params$acs_version` American Community Survey (ACS). The analysis found that PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE PLACEHOLDER EXAMPLE
+output: 
+  word_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+bibliography: report_references.bib
+---
+
+```{r, echo=FALSE}
+      #  MAKE SURE all parameter names are used (identical names, & all are there) in these 4 places: 
+      #  1. input$ ids in app_ui.R, from user, to customize the long report
+      #  2. params$ list passed by app_server.R to render the Rmd doc
+      #  3. params: accepted in  .Rmd yaml info header 
+      #  4. params$  as used within body of  .Rmd text inline and in r code blocks.
+ 
+# see these resources: 
+#
+#   https://quarto.org/docs/output-formats/ms-word.html
+
+# https://www.r-bloggers.com/2023/04/11-tricks-to-level-up-your-rmarkdown-documents/
+# https://bookdown.org/yihui/rmarkdown/parameterized-reports.html
+# https://bookdown.org/yihui/rmarkdown/
+# https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf
+# https://bookdown.org/yihui/rmarkdown-cookbook/word-template.html 
+
+```
+
+```{r, echo=FALSE}
+
+in_the_places_analyzed <- {
+    switch(
+      params$zonetype,
+    zone_is_named_x = params$in_the_x_zone, 
+    zone_is_nearby = paste0(params$within_x_miles_of, params$facilities_studied),
+    zone_is_risk_x = paste0(params$in_areas_where, params$risks_are_x)
+    )}
+# 
+# Distributional Analysis for the ___ Proposed Rule
+# 
+# Demographic and Environmental Conditions…
+# Demographic and Environmental Indicators…
+# Summary of Demographic and Environmental Conditions/Indicators…
+# 
+#  …
+#  …in locations…
+#  …in residential locations…
+#  …among populations who live…
+#  …among residents…
+#  …where people live… 
+# 
+# …at…
+# …Surrounding…
+# …Near…
+# …Close to…
+# …Within 1 mile of any…
+# …in close proximity to…
+# 
+# …___ Facilities [e.g., Vibranium Smelting Facilities/ name of category]
+# …Facilities in the ___ sector/source category
+# …EPA-regulated facilities in the ___ sector/source category
+# 
+
+```
+
+\newpage
+
+# Executive Summary
+
+EPA has conducted an analysis to characterize baseline environmental
+conditions faced by communities living near `r params$sectorname_short`.
+  or 
+The United States Environmental Protection Agency (US EPA) analyzed
+baseline residential population and environmental conditions in communities living
+`r params$where`. The analysis used EPA's EJAM tool and EJScreen version
+`r params$ejscreen_version` with demographic data based on the Census
+Bureau's `r params$acs_version` American Community Survey (ACS).
+
+## Broad overview of findings
+
+PLACEHOLDER EXAMPLE The environmental indicators -- especially proximity
+scores -- are more notable than the residential population indicators at these
+sites. Residential population percentage indicators for analyzed groups are moderately above average overall.
+
+
+
+## Summary of Findings
+
+```{r, eval=FALSE, echo=FALSE, include=FALSE}
+SEE notes on summarizer draft function 
+and examples of using count_sites_with_n_high_scores()
+```
+
+-   PLACEHOLDER EXAMPLE Overall, % limited English
+    proficiency, and the Demographic Indicator are more than 1.5x the
+    State rate, for the population within 1 mile.
+
+-   PLACEHOLDER EXAMPLE About a third of these sites are above the 80th
+    percentile in State for the Demographic Indicator. The same is true
+    for % low income and % with less than high school.
+
+-   PLACEHOLDER EXAMPLE About half of these 57 sites are in just 4
+    states: FL, NY, PA, or MA. Most of the people here live near just 8
+    sites (15% of sites). Most of the sites with the higher demographic
+    indicators are owned by Covanta or Wheelabrator.
+
+-   PLACEHOLDER EXAMPLE Many of the sites with the highest demographic
+    indicators also have proximity scores that are 5 to 10 times the
+    State average.
+
+    -   PLACEHOLDER EXAMPLE The average person's RMP score is more than
+        3x their State's average.
+    -   PLACEHOLDER EXAMPLE The average person's NPL and TSDF scores are
+        about 2.5x State averages.
+    -   PLACEHOLDER EXAMPLE Most of these sites are \>=80th in State for
+        Air Toxics. Same for RMP.
+
+-   PLACEHOLDER EXAMPLE
+
+-   PLACEHOLDER EXAMPLE
+
+-   PLACEHOLDER EXAMPLE
+
+# Introduction
+
+
+
+
+
+# Methods
+
+## Selection of sites analyzed
+
+This analysis focused on locations `r params$sectorname_short`, which
+are the sites that may be affected by the proposal rule. The latitude
+and longitude of a point representing each site was obtained from
+`r params$source_of_latlons`. A total of `r params$sitecount` sites had
+location information and were analyzed.
+
+Figure \ref{fig1} shows a map of the sites analyzed.
+
+## Figure \ref{fig1} Map of Analyzed Sites
+
+```{r fig1, fig.cap = "\\label{fig1}Map of Analyzed Sites", echo=FALSE,  out.height='280px', out.width='600px'}
+# save(params, file="temp params.rda")
+# print(params)
+#  
+print(params$testmode) 
+# if (file.exists(params$map_placeholder_png)) {
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$map_placeholder_png)
+} else {
+  params$map
+  #print( params$map )
+}
+
+# # did not work, not sure why:
+# if (!("map" %in% names(params))  ) {
+#   (knitr::include_graphics(rel_path = TRUE, path = params$map_placeholder_png))
+# } else {
+#  
+#   if (is.na(params$map) | "NA" == (params$map)) {
+#    (knitr::include_graphics(rel_path = TRUE, path = params$map_placeholder_png))
+# } else {
+#   print( params$map )
+# }
+# }
+
+```
+
+## Estimating locations and residential population counts
+
+The Environmental and Residential Population Analysis Multisite tool (EJAM) was used to develop this analysis. This tool is a user-friendly web app that can summarize residential population and environmental conditions for any list of places in the nation.
+
+### Spatial resolution of data
+
+The analysis used the multisite tool version
+`r params$ejscreen_version` with residential population data based on the Census
+Bureau's `r params$acs_version` American Community Survey (ACS) 5-year
+summary file, and the corresponding version of Decennial Census
+information on geographic boundaries and FIPS codes for blocks, block
+groups, tracts, counties, and States. Demographic and environmental
+indicators were at block group resolution, while locations of
+residential populations was at block resolution (the highest resolution
+available from the Census Bureau) and then summarized by block group,
+then by location analyzed, and finally overall across the locations as a
+whole.
+
+See EJAM package documentation for methodology details.
+
+### Analytic method for buffering, and tools used to implement that method
+
+The basic methodology and data used for this analysis are the same as
+those originally developed for EPA's EJScreen tool, with a few exceptions described
+below. These are described in detail in EJScreen's documentation, at
+[EJScreen]https://web.archive.org/web/20250118193121/https://epa.gov/ejscreen "EPA EJScreen homepage"){.uri
+target="_blank" rel="noreferrer noopener"} and with more technical
+details available at [EJScreen technical documentation
+page](https://web.archive.org/web/20250118072723/https://www.epa.gov/ejscreen/technical-information-and-data-downloads "EPA EJScreen technical information"){.uri
+target="_blank" rel="noreferrer noopener"}.
+
+EJAM identifies residents near a given site by finding
+which Census block points are nearby, and counting the full block
+population as nearby if that point is nearby. The percent of each block
+group's population that is estimated as inside a buffer is based on
+which Census block internal points are included in the buffer, and then
+using a block weight that is the Census 2020 block population as a
+fraction of the parent block group's Census 2020 population (which is
+not quite the same as the ACS population count). That block weight is a
+fraction of the parent block group, and is used to estimate how many of
+the block groups residents are nearby or in the buffer.
+
+The only notable differences between the EJScreen and EJAM calculations
+of proximity and indicators are the following:
+
+-   EJAM may include additional demographic or environmental indicators, and 
+not all of the extra indicators in EJScreen are included in EJAM.
+-   For a proximity analysis (to characterize everyone living within a
+certain certain distance from a point such as a facility), EJAM identifies which
+residents live nearby using a slight variation on how the distance to each
+Census block is measured. While EJScreen uses ESRI's ArcGIS calculations, EJAM
+calculates the distance using formulas implemented in the R language for
+statistical computing [@R-base]. These measurements provide almost identical
+results for estimated distance from the average person in a block to a given
+site point. PLACEHOLDER MORE INFO
+-   EJAM aggregates indicator values within and across locations,
+converts them to percentiles, and does other summary calculations using the same
+formulas to the greatest extent possible, but in R rather than using ArcGIS/ESRI/Python code. There may be slight differences between raw scores and percentiles in
+EJScreen and EJAM in some cases.
+
+## Residential population and environmental indicators
+
+The residential population statistics included here are those in EJScreen and also
+race/ethnicity subgroups that comprise the total count of people of
+color. POC are defined as all other than those self-identifying in ACS
+survey data as white, single race, not Hispanic or Latino - i.e.,
+non-hispanic white alone (NHWA). The subgroups include Hispanic or
+Latino ("hispanic"), several groups that are not hispanic but of only
+single race (e.g., Asian, or more specifically non-hispanic asian
+alone), non-hispanic other single race, and non-hispanic multiracial.
+
+# Findings
+
+## Text on Findings
+
+### Results -- Basic information about the locations analyzed and number of people nearby
+
+• Explain whether the sites are to be analyzed as a whole or in some
+type of subgroups, such as 2 different source categories, or large vs
+small facilities, or some other categories we will use to compare all
+these stats?
+
+• Count of locations
+
+• Locations missing data There were several sites where EJScreen did not
+return any stats, typically (or always) because of low population
+density nearby (within 1 mile in this case). • Where are the sites
+(regions, states, cities?, urban/rural?)
+
+• Clustering (are they near each other? How close? Which ones are in
+clusters, maybe?)
+
+• Total population near any of the sites (count of unique residents) and
+some summary of site-specific Population sizes and population density
+nearby (what % of all people are at x% of the sites? etc.). Make clear to what
+extent some people in the overall summary stats are near more than a
+single one of these sites. See text in Advanced vignette section on density.
+```{r popshare, echo=FALSE, paged.print=TRUE}
+testparams = list(results = EJAM::testoutput_ejamit_10pts_1miles,
+                  total_pop = EJAM::testoutput_ejamit_10pts_1miles$results_overall$pop,
+                  sitecount = NROW(EJAM::testoutput_ejamit_10pts_1miles$results_bysite))
+  notes <- c(
+    # 'Analysis Title' = analysis_title,
+    
+    'Number of Locations Analyzed' = testparams$sitecount,
+    # 'Number of Locations Analyzed' = params$sitecount,
+    
+    # 'Locations analyzed' = buffer_desc,
+    # "Distance in miles" = radius_or_buffer_in_miles, 
+    # "Distance type" = radius_or_buffer_description,
+    
+    "Population at x% of the sites" =  EJAM::popshare_p_lives_at_what_pct(
+      testparams$results$results_bysite$pop, 
+      # params$results$results_bysite$pop, 
+      p = 0.50, astext = TRUE),
+    "Population at N sites" = EJAM::popshare_at_top_n(
+      testparams$results$results_bysite$pop, 
+      # params$results$results_bysite$pop, 
+      c(1, 5, 10), astext = TRUE),
+    
+    "Population across all sites" = round(testparams$total_pop, 0),
+    "Maximum at any site" =  round(max(testparams$results$results_bysite$pop), 0),
+    "Population at median site" = round(median(testparams$results$results_bysite$pop), 0),
+    "Minimum at any site" =  round(min(testparams$results$results_bysite$pop), 0),
+
+    "Max. number of sites that at least some residents are at or have nearby" = max(
+      testparams$results$results_bysite$sitecount_max),
+    
+    "Number of States" = length(unique(testparams$results$results_bysite$ST))
+  )
+  notes = data.frame(notes)
+  notes = data.frame("Summary" = rownames(notes), notes)
+  names(notes) = c("Summary", "Population Distribution Across Sites")
+   gt::gt(notes)
+```
+
+### Demographics overall
+
+Overall summary statement of some kind - e.g., a " very large" number of
+all the envt (or D) indicators were " very high" at a " very
+large" share of the sites or preferably for a " very large share of the
+people"? Or, how many of 13 indicators were "high" for the average
+person and/or site overall? Somehow put that in context ?? vs other
+rules, usA, other sites, etc.???
+
+Table 1 shows key results for the analysis of demographics in these
+locations. The table shows each demographic group's share of the
+residential population in these locations and conpares that to their
+shares of statewide and nationwide population.
+
+## Data Table 1. Demographic Indicators
+
+```{r demog_table, echo=FALSE, out.width='900px'}
+
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$demog_table_placeholder_png)
+} else {
+   params$demog_table
+}
+# 
+# if (any(is.na(params$demog_table)) | "NA" != (params$demog_table)) {
+# params$demog_table
+# } else {
+#   knitr::include_graphics(rel_path = TRUE, path = params$demog_table_placeholder_png)
+#   # not sure how to do this here:
+#   #  print(gt::render_gt(params$demog_table_placeholder_rda))
+# }
+```
+
+Almost all the EJ-relevant groups (low-income, people of color, etc.)
+are at least somewhat over-represented near these sites overall (at the
+collection of sites as a whole).
+
+Most notably, % with limited English, % low income, and % with less than
+high school education near these sites are about 1.5 to 1.7 times the US
+overall rates.
+
+The people living near these sites are 40% more likely to be in
+Limited-English Households than the average US resident.
+
+The % with limited English is driven by high scores at only a few very
+highly population sites -- it is high enough that the rate overall is in
+the top quintile nationally (83 percentile), but other demographics do
+not reach the top quintile for the entire population across all sites as
+a whole.
+
+Near most of these 72 sites, % low income is at least 1.3x the rate in
+the US overall, and near 1 in 4 it is at least 1.5x the US rate.
+
+discussion of plot goes here
+
+discussion of plot goes here
+
+discussion of plot goes here
+
+discussion of plot goes here
+
+## Data Viz 2-- Barplot
+
+```{r barplot, echo=FALSE,  out.height='500px', out.width='800px'}
+if (params$testmode) {
+  knitr::include_graphics(rel_path = TRUE, path = params$barplot_placeholder_png)
+} else {
+  params$barplot
+#print( params$barplot  )
+}
+
+# if ("NA" == (params$barplot)) {
+#  knitr::include_graphics(rel_path = TRUE, path = params$barplot_placeholder_png)
+# } else {
+#   params$barplot  
+# }
+```
+
+### Key D group(s) based on policy or default / Key D group(s) based on observed magnitude of disparities here
+
+Largest disparity in presence of any group -- which group was most
+over-represented here?
+
+-   Relative disparity vs US: Which group(s) had the largest ratio of
+    local % (for the overall set of sites) to US % overall?
+
+-   Absolute disparity vs US: which group(s) had
+
+"Large" disparities: which groups were "very" over-represented here?
+
+-   Which indicator has max mean percentile? And how high is that?
+
+-   Which indicator has largest ratio to US? To state? And how large is
+    that?
+
+### Demographics at key sites
+
+Overall summary statement of some kind - e.g., a "\_\_\_very large"
+number of all the envt (or D) indicators were "\_\_\_very high" at
+a "\_\_\_very large" share of the sites or preferably for a "\_\_\_very
+large share of the people"? Or, how many of 13 indicators were "high"
+for the average person and/or site overall? Somehow put that in context
+?? vs other rules, usA, other sites, etc.???
+
+Demographic stats on the distribution across sites/people
+
+• What % or count of people/sites have score \> key thresholds?
+
+• What is mean or median or 95th pctile score of people/sites ?
+
+• NOTABLE "WORST" SITES NAMES?
+
+There are a handful of sites each with at least one very high
+demographic stat within 1 mile, however this may be within the normal
+range of what one would expect across the range of US residential areas
+-- there does not appear to be a pattern of an unusually large share of
+these 72 sites having any given demographic stat in the top 5%, for
+example.
+
+Seven key sites have at least some demographic percentages more than 2x
+the US average: Crawford in Chicago IL (densely populated location), Bay
+Shore in Ohio, Watts Bar Fossil Plant in Spring City TN (but has almost
+no nearby residents), Arkwright in Macon GA, Venice in IL, Lake Shore in
+Cleveland, and Fair Station in Muscatine IA.
+
+At two sites, percent people of color and percent low income are both
+more than twice the US averages (Venice and Lake Shore).
+
+A few sites have over triple the US average unemployment rate (two of
+which are in the top 5% nationwide for their rate of unemployment, Bay
+Shore and Watts Bar).
+
+## Data Viz 3 -- Boxplots
+
+```{r boxplot, echo=FALSE,  out.height='500px', out.width='800px'}
+#if (params$testmode) {
+   knitr::include_graphics(rel_path = TRUE, path = params$boxplot_placeholder_png)
+#} else {
+#     params$boxplot +
+#   ggplot2::scale_x_discrete(labels = function(x) stringr::str_wrap(x, 10)) +
+#   ggplot2::theme(plot.title = ggplot2::element_text(hjust=0.5, size=12),
+#         plot.subtitle = ggplot2::element_text(hjust=0.5, size=11),
+#         axis.title.y = ggplot2::element_text(size=10),
+#         axis.text = ggplot2::element_text(size=9)
+#         )
+# }
+# if ("NA" == (params$boxplot)) {
+# 
+# } else {
+
+# }
+```
+
+### Environment overall
+
+The people living near these sites as a whole are facing relatively
+high exposure to indicators of RMP proximity and possible lead paint due
+to older buildings. Overall the average person nearby has RMP proximity
+more than 3 times the US average. Lead paint and traffic are also
+notable, at more than 2x the US average. The average person near any of
+these sites lives in a blockgroup that is at the 80th percentile (worst
+quintile) of the US for RMP and lead paint -- that is unusual because it
+is a pattern for these populations as a whole not just at one site. The
+same is almost true for traffic and UST -- the average person nearby has
+those indicators in the worst quartile of the US. (Wastewater and
+Superfund also tend to be very high at an unusually large share of these
+sites but not necessarily at the ones in highly populated areas).
+
+• Overall summary statement of some kind. e.g., a "\_\_\_very large"
+number of all the envt (or D) indicators were "\_\_\_very high" at
+a "\_\_\_very large" share of the sites or preferably for a "\_\_\_very
+large share of the people"? Or, how many of 13 indicators were "high"
+for the average person and/or site overall? Somehow put that in context
+?? vs other rules, usA, other sites, etc.???
+
+• Which indicator has max mean percentile? And how high is that?
+
+• Which indicator has largest ratio to US? To state? And how large is
+that?
+
+discussion of table here
+
+discussion of table here
+
+discussion of table here
+
+discussion of table here
+
+discussion of table here
+
+## Data Table 2. Environmental Indicators
+
+```{r envt_table, echo=FALSE, out.width='900px'}
+if (params$testmode) {
+   knitr::include_graphics(rel_path = TRUE, path = params$envt_table_placeholder_png)
+} else {
+  params$envt_table
+}
+# 
+# if ("NA" !=  (params$envt_table)) {
+# params$envt_table
+# } else {
+#   knitr::include_graphics(rel_path = TRUE, path = params$envt_table_placeholder_png)
+#   # not sure how to do this here:
+#   #  print(gt::render_gt(params$envt_table_placeholder_rda))
+# }
+```
+
+### Environmental indicators distribution across the residents and sites
+
+• What % or count of people/sites have score \> key thresholds?
+
+• What is mean or median or 95th pctile score of people/sites ?
+
+• NOTABLE "WORST" SITES NAMES?
+
+### Environment at key sites
+
+There are an unusually large number of sites with very high
+environmental stats within 1 mile. Surprisingly, 27 of these 72 sites
+have at least one above the 95th percentile. One might expect 5% of
+these sites (i.e., 3.6 sites) to have a given score in the top 5%
+nationwide, but there are 8 sites (2x what one might expect) with RMP
+proximity scores in the top 5%, and the same is true for Superfund NPL
+proximity scores (there are 8 sites \>=95th %ile instead of the expected
+3.6). For the wastewater discharge indicator, there are 11 such sites,
+over 3x as many as one might expect. Most sites have at least one
+environmental indicator \>80th percentile.
+
+### Cumulative impacts at key sites
+
+Multiple environmental stressors are also an issue in some cases - At
+two of the sites, there are five environmental indicators that are all
+more than twice the US average (Valley and Crawford).
+
+discussion of map
+
+discussion of map
+
+discussion of map
+
+discussion of map
+
+discussion of map
+
+### Combination of demographic and environmental conditions in these locations
+
+Summary of Envt and Demog across all indicators? In other words, a
+single score like the combination of 13 summary indexes as a threshold
+approach summary? e.g. the average person had 5 or more of the 13 summary
+indexes at least at the 95th percentile nationwide?
+
+• Individual summary indicator of 13 that generally had highest overall
+percentiles? On average highest vs the one where at least a few sites
+had a very high number? Other?
+
+• User specified summary index(es)?
+
+\newpage
+
+# Appendices
+
+### Appendix 1 - Statistics overall / for all sites in aggregate
+
+```{r results_formatted, echo=FALSE}
+if (!is.na(params$results_formatted)) {
+  print(params$results_formatted)
+}
+```
+
+### Appendix 2 - Detailed tables of statistics for each site
+
+e.g. how many of 13 are \>x? does it have any high scores for any E? any
+D? etc.
+
+### Appendix 3 - Detailed tables of statistics for each indicator
+
+#### \*\*What is Score of people/sites at key thresholds: What is the X (useful) percentile
+
+value, for this indicator (as %ile of people nearby or of sites)?\*\*
+
+-   min
+-   min other than zero?
+-   mean
+-   25^th^ %ile of these sites or people (25% have lower than this, and
+    75% have higher than this -- those are same if no ties with this
+    value, but can differ if multiple places have this same exact
+    indicator score)
+-   median (half of these sites or people have a score that is \>= this,
+    and half have \<= this)
+-   75^th^ %ile of these sites or people (if a tied value, would want
+    both \>75 and \<25%)
+-   max
+
+#### **How many people/sites have score \> key thresholds:  What % & what \# of sites & people have this indicator score (raw or percentile) \>= x (useful threshold)?**
+
+-   **For percentiles**
+    -   \% of sites w data where \>=80
+
+    -   \% of sites w data where \>=90
+
+    -   \% of sites w data where \>=95
+
+    -   \# of sites where \>=95
+
+<!-- -->
+
+-   **For ratios to State or USA average overall % of sites w data where
+    \>1 not=1**
+
+    -   \% of sites w data where ratio is \>=2
+    -   \% of sites w data where \>=3
+    -   \% of sites w data where \>=5
+    -   \% of sites w data where \>=10
+    -   \# of sites w data where \>=10
+
+-   **for 13 summary indexes, how many of the indexes are above a given
+    threshold?**
+
+    -   \# of sites w data where \>=1
+
+    -   \# of sites w data where \>1 not =1
+
+    -   \# of sites w data where \>=4
+
+### Appendix 4 - notes on how to describe places generically/ in parameters
+
+HOW TO REFER TO THE PLACES STUDIED (near these facilities vs more
+general language)
+
+Note: this could be a "proximity analysis" in cases where it relies on
+circular buffers around facility points to define buffers that include
+residents within a fixed distance from one or more facilities/sites. But
+it more generally could be an EJ analysis that describes environmental
+and demographic conditions among residents in any specified places, such
+as all the places where air quality modeling suggests risk is currently
+above 1 in 1 million, for example. So the language should be flexible
+and refer to something like this:
+
+FOR NON-PROXIMITY ANALYSIS, GENERALLY ANY KIND OF BUFFERS/PLACES
+ANALYZED:
+
+The demographics of residents in ...
+
+The demographic / environmental indicators in ...
+
+Percent low income among residents in ...
+
+The environmental conditions in ...
+
+The environmental indicators for the average resident in ...
+
+The PM2.5 levels in ...
+
+Residents in ...
+
+... these locations
+
+... these places
+
+... these areas
+
+... the analyzed locations
+
+FOR PROXIMITY ANALYSIS SPECIFICALLY, EASIER TO SAY one of these:
+
+Residents / conditions ...
+
+... within x miles of these sites...
+
+... within x miles of any of these sites...
+
+... nearby
+
+... near these sites
+
+... near any of these sites
+
+### Appendix 5 - List of Abbreviations
+
+-   AAAS American Association for the Advancement of Science
+-   ACS American Community Survey, Census Bureau
+-   AFO Animal Feeding Operation
+-   AirToxScreen The Air Toxics Screening Assessment, EPA screening tool
+-   ANPR/ ANPRM Advance Notice of Proposed Rule/Rulemaking
+-   AO Office of the Administrator, USEPA
+-   API American Petroleum Institute
+-   API Application Programming Interface; or American Petroleum
+    Institute
+-   AQI Air Quality Index
+-   ARP / ARPA American Rescue Plan Act
+-   BACT Best Available Control Technology
+-   Benmap (EPA criteria pollutants risk and benefit modeling tool)
+-   bg Census Block Group
+-   BR Biennial Report (under RCRA)
+-   CAA Clean Air Act
+-   CAFOs Concentrated Animal Feeding Operations
+-   CAMD Clean Air Markets Division, USEPA
+-   CARB California Air Resources Board
+-   CBG Census Block Group
+-   CDR Chemical Data Reporting (TSCA)
+-   CEQ Council on Environmental Quality, Executive Office of the
+    President
+-   CERCLA Comprehensive Environmental Response, Compensation, and
+    Liability Act / Superfund
+-   CFC Chlorofluorocarbon(s)
+-   CO Carbon Monoxide
+-   CPSC Consumer Product Safety Commission
+-   CRA Congressional Review Act
+-   CWA Clean Water Act
+-   DHS Department of Homeland Security
+-   DMR Discharge Monitoring Report (under CWA)
+-   DoD Department of Defense
+-   DOE Department of Energy
+-   DOT Department of Transportation
+-   dpm diesel particulate matter
+-   ECHO Enforcement and Compliance History Online, USEPA OECA
+-   EDGAR Electronic Data Gathering, Analysis, and Retrieval database
+    (SEC)
+-   EGU electricity generating unit in a power plant
+-   EJAM The Environmental and Residential Population Analysis Multisite tool
+-   ELG effluent limitation guideline
+-   EO Executive Order
+-   EP313 EPCRA Section 313 (established TRI)
+-   EPA United States Environmental Protection Agency
+-   EPCRA Emergency Planning and Community Right-to-Know Act
+-   ERNS Emergency Response Notification System
+-   ESA Endangered Species Act
+-   FAA Federal Aviation Administration
+-   FAQ Frequently Asked Questions
+-   FDA Food and Drug Administration
+-   FESOP Federally Enforceable State Operating Permit (CAA program)
+-   FIFRA Federal Insecticide, Fungicide, and Rodenticide Act
+-   FIP Federal Implementation Plan (CAA program)
+-   FIPS Codes Federal Information Processing Standards codes for
+    geographic locations such as Census block groups
+-   FR, FRN Federal Register, FR Notice (but sometimes FR refers to a
+    Final Rule)
+-   FRS Facility Registry Service
+-   GACT Generally Available Control Technology
+-   GAO Government Accountability Office
+-   GHG greenhouse gas
+-   HAP hazardous air pollutant (air toxic)
+-   HHS / DHHS Department of Health and Human Services
+-   HI Hazard Index, for HAPs
+-   HPV High Priority Violation (under CAA; also see SNC)
+-   ICIS Integrated Compliance Information System
+-   ICR information collection request
+-   ID Identifier or Identification Number
+-   IRA Inflation Reduction Act
+-   IRIS Integrated Risk Information System
+-   LOEL lowest observable effect level
+-   LQG Large Quantity Generator (RCRA Hazardous Waste)
+-   MACT Maximum Achievable Control Technology (CAA program)
+-   MIR maximum individual risk
+-   NAAQS National Ambient Air Quality Standards (for criteria air
+    pollutants, CAA program)
+-   NAICS North American Industry Classification System
+-   NCEE National Center for Environmental Economics, USEPA
+-   NDZ no discharge zone
+-   NESHAP National Emission Standards for Hazardous Air Pollutants (CAA
+    program)
+-   NEXUS analytic tool, USEPA/OAR
+-   NGO nongovernmental organization
+-   NHTSA National Highway Traffic Safety Administration
+-   NOAA National Oceanic and Atmospheric Administration
+-   NOEL no observable effect level
+-   NOV Notice of Violation
+-   NOx Nitrogen Oxides
+-   NPDES National Pollutant Discharge Elimination System (CWA permit
+    program)
+-   NPL National Priority List (related to Superfund)
+-   NRPM Notice of Proposed Rulemaking, or proposed rule or proposal
+-   NSPS New Source Performance Standards (CAA program)
+-   NSR New Source Review (CAA program)
+-   O3 ozone
+-   OA Office of the Administrator, USEPA
+-   OAR Office of Air and Radiation, USEPA
+-   OCHP Office of Children's Health Protection, USEPA
+-   OCIR Office of Congressional and Intergovernmental Relations, USEPA
+-   OCSPP Office of Chemical Safety and Pollution Prevention, USEPA
+-   OECA Office of Enforcement and Compliance Assurance, USEPA
+-   OEI Office of Environmental Information, USEPA
+-   OGC Office of General Counsel, USEPA
+-   OGWDW Office of Ground Water and Drinking Water, USEPA
+-   OIG / IG Office of Inspector General / Inspector General, USEPA
+-   OIRA Office of Information and Regulatory Affairs, OMB
+-   OITA Office of International and Tribal Affairs, USEPA
+-   OLEM Office of Land and Emergency Management, USEPA
+-   OMB Office of Management and Budget
+-   OMS Office of Mission Services, USEPA
+-   OMS Office of Mission Support, USEPA
+-   OP Office of Policy, or the Policy Office, USEPA
+-   ORD Office of Research and Development, USEPA
+-   ORPM Office of Regulatory Policy and Management, USEPA
+-   OSA Office of Science Advisor, USEPA
+-   OSHA Occupational Safety and Health Administration
+-   OTAQ Office of Transportation Air Quality, USEPA
+-   OW Office of Water, USEPA
+-   OWOW Office of Wetlands, Oceans and Watersheds, USEPA
+-   Pb lead
+-   PCE Partial Compliance Evaluation
+-   PEL Permissible Exposure Limits
+-   PFAS, e.g., PFOS, PFOA Per- and polyfloroalkyl substances (PFOS and
+    PFOA are the 8-carbon PFAS)
+-   PM, PM2.5, PM10 Particulate Matter
+-   POC people of color
+-   POTWs Publicly Owned Treatment Works
+-   PRA Paperwork Reduction Act
+-   PSD Prevention of Significant Deterioration (CAA program)
+-   QNCR Quarterly Noncompliance Report (under CWA)
+-   RCRA Resource Conservation and Recovery Act
+-   RCRAInfo Resource Conservation and Recovery Act Information System
+-   RE Risk Evaluation
+-   REL Reference Exposure Level
+-   RFA reg. Flex analysis or request for applications
+-   RfC reference concentration (toxicology)
+-   RfD reference dose (toxicology)
+-   RFF Resources for the Future
+-   RFG reformulated gasoline
+-   RFS renewable fuel standards
+-   RMP Risk Management Plan
+-   RNC Reportable Noncompliance (under CWA)
+-   RSEI risk estimation tool based on TRI
+-   RTP Research Triangle Park, NC, USEPA
+-   SaRA analytic tool, USEPA/OAR
+-   SARA Superfund Amendments and Reauthorization Act
+-   SDWA Safe Drinking Water Act
+-   SDWIS Safe Drinking Water Information System
+-   SEC U.S. Securities and Exchange Commission
+-   SES socio-economic status
+-   SIC Standard Industrial Classification
+-   SIP State Implementation Plan (under CAA)
+-   SNC Significant Noncompliance (or Noncomplier) (also see HPV)
+-   SOx Sulfur Oxides
+-   SOx oxides of sulfur
+-   SQG Small Quantity Generator (RCRA Hazardous Waste)
+-   TOSHI Target-Organ-Specific Hazard Index, for HAPs
+-   TRC Technical Review Criteria (under CWA)
+-   TRI Toxic Release Inventory (EPCRA)
+-   TRIS Toxics Release Inventory System
+-   TSCA Toxic Substances Control Act
+-   TSD technical support document
+-   TSDF Treatment, Storage, and Disposal Facility (RCRA Hazardous
+    Waste)
+-   UIC Underground Injection Control
+-   USCG United States Coast Guard
+-   USDA United States Department of Agriculture
+-   USEPA United States Environmental Protection Agency
+-   UST underground storage tank
+-   VOC Volatile Organic Compound
+-   VSQG Very Small Quantity Generator (RCRA Hazardous Waste)
+-   WOTUS Waters of the United States
+
+## Author contributions
+
+`r params$authorname1` was responsible for planning this analysis and
+defining the locations to be analyzed. `r params$authorname1` was
+responsible for completing the manuscript. All authors evaluated the
+literature on previous relevant analyses. All authors contributed to the
+writing and reviewing of the manuscript and agree on its contents.
+
+## Acknowledgements
+
+We thank \_\_\_\_ for helpful research assistance and \_\_\_ for
+suggesting useful background literature.
+
+\newpage
+
+## References
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+# <!-- -- References can come from report_bibliography.bib file -->
+# 
+## Notes on formatting for a manuscript
+
+This manuscript will follow the guidelines in the Guide for Authors of
+the relevant journal. For detailed instructions on the elsevier
+article class, see
+<https://www.elsevier.com/authors/policies-and-guidelines/latex-instructions>
+
+## Bibliography styles
+
+Here are two sample references: [@Feynman1963118; @Dirac1953888]. 
+
+By default, natbib will be used with the `authoryear` style, set in the 
+`classoption` variable in a YAML. 
+You can set  extra options with 
+`natbiboptions` variable in a YAML header:
+#``` yaml
+#natbiboptions: longnamesfirst,angle,semicolon
+#```
+
+There are various more specific bibliography styles available at
+<https://support.stmdocs.in/wiki/index.php?title=Model-wise_bibliographic_style_files>.
+To use one of these, add it in the header using, for example,
+`biblio-style: model1-num-names`.
+
+If `citation_package` is set to `default` in `elsevier_article()`, then
+pandoc is used for citations instead of `natbib`.
+
+
+
+# <!-- see citation()  and in Visual mode of  .Rmd editor in RStudio, see Insert Citation -->
+
+
+# <!-- Depends:  -->
+# <!--     check latest version of DESCRIPTION file  -->
+ 
+
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# Developer notes on creating this document
+
+#### Developer notes on EJAM Tool Parameter Values
+library(tidyverse)
+ind=NA;values=NA # (just to prevent RStudio warning these are not in scope)
+param_table <- aggregate(values~ind, stack(params), toString) %>% 
+  dplyr::rename(Parameter = ind, 'Current Value' = values)
+#knitr::kable(param_table)
+param_table
+```

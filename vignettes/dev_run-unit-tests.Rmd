@@ -1,0 +1,52 @@
+---
+title: "Testing EJAM Functions with Unit Tests"
+description: "How to run the suite of {testthat} unit tests"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Testing EJAM Functions with Unit Tests}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options:
+  markdown:
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo=FALSE, include=FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height = 6, fig.width = 7,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+## Notes for developers, on running unit tests in this package
+
+Modified or new functions in the EJAM package should be tested using unit tests.
+See https://testthat.r-lib.org 
+
+There are numerous unit tests in the `EJAM/tests/testthat/` folder that you can run
+and add to as needed. They can be run automatically by the [devtools::test()] function.
+
+However, instead of running all the unit tests (run in alphabetical order by default), 
+you might want to test only some groups of related functions that you are working on,
+and see a summary of which tests in which files from which groups are passing, skipped, etc. 
+To do this, note there is a file called `EJAM/tests/test_interactively.R` 
+that you can [source()] and then you can use that function to run the unit tests interactively.
+
+Assuming you want to use that function, 
+whenever you add or rename or delete unit test files in the `EJAM/tests/testthat/` folder you 
+need to edit the list of test file names in the source code of that function, `test_interactively()`
+or you can try to use it and it will stop and tell you which files are missing from the list in the source code at `EJAM/tests/test_interactively.R` 
+
+Note there is also a github workflow that runs unit tests, automatically triggered by certain events, such as a pull request to the main or development branch. See `EJAM/.github/workflows/run-test.yaml`
+
+Some functions relied on the EJScreen API and if that API is not available, those tests will be skipped or would fail.

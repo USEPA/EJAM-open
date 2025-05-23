@@ -1,0 +1,176 @@
+---
+title: "Examples of Input/Output Files & Data"
+description: "Examples of Inputs to and Outputs from the Web App and EJAM functions (Files & R Datasets)"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Examples of Input/Output Files & Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+editor_options: 
+  markdown: 
+    wrap: 80
+---
+
+```{r developernote, eval=FALSE, echo=FALSE, include=FALSE}
+#  *>>>>>>>>>> Developer note: vignettes need to be tested/edited/rebuilt regularly <<<<<<<<<<<*
+#    - **See ?pkgdown::build_site** and script in EJAM/data-raw/- EJAM uses the pkgdown R package to build help and articles/ vignettes as web pages
+```
+
+```{r SETUP_default_eval_or_not, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  fig.height = 6, fig.width = 7,
+  comment = "#>"
+)
+knitr::opts_chunk$set(eval = FALSE)
+# https://r-pkgs.org/vignettes.html
+```
+
+```{r libraryEJAM, eval=TRUE, echo=FALSE, include=FALSE}
+# rm(list = ls()); golem::detach_all_attached(); devtools::load_all()
+ 
+if (!exists("blockgroupstats")) {library(EJAM)} # use installed version only if pkg not yet attached
+
+dataload_dynamic('all') # varnames = all  currently means all defined by .arrow_ds_names
+
+indexblocks()
+```
+
+Note: This article is a work in progress
+
+## EXAMPLES OF FILES & TEST DATA EJAM CAN IMPORT OR OUTPUT
+
+
+### Sample spreadsheets & shapefiles for trying the web app
+
+Examples of .xlsx files and shapefiles are installed locally with EJAM, as input files you can use to try out EJAM functions or the web app, or to see what an input file should look like.
+
+**Files and Datasets Installed with EJAM**
+
+For just one topic you can see all files and data objects like this:
+```{r datapack_and_testdata, eval=TRUE, echo=TRUE}
+
+topic = "fips"  # or "shape" or "latlon" or "naics" or "address" etc.
+
+
+# datasets / R objects
+cbind(data.in.package  = sort(grep(topic, EJAM:::datapack()$Item, value = T)))
+
+# files
+cbind(files.in.package = sort(basename(testdata(topic, quiet = T))))
+```
+
+
+**Local folders with sample files**
+
+The best, simplest way to see all these files is the function called testdata()
+```{r, eval=FALSE}
+
+testdata()
+
+# just shapefile examples:
+ testdata('shape', quiet = TRUE)
+```
+
+You can try uploading these kinds of files in the web app, for example, by
+finding them in these local folders where you installed the package:
+
+-   /`EJAM/testdata/latlon/testpoints_100.xlsx`
+-   /`EJAM/testdata/shapes/portland_shp.zip`
+-   etc.
+
+To open the locally installed "testdata" folders (in Windows File Explorer, or
+MacOS Finder)
+
+```{r browseURL, eval=FALSE, echo=TRUE}
+browseURL(testdatafolder())
+```
+
+
+**Example of using a file in EJAM**
+
+```{r, eval=FALSE, echo=TRUE}
+testpoint_files <- list.files(
+  system.file("testdata/latlon", package = "EJAM"), 
+  full.names = T
+  )
+testpoint_files
+
+latlon_from_anything(testpoint_files[2]) 
+```
+
+
+
+### Sample R data objects: Examples of inputs & outputs of EJAM functions
+
+The package has a number of data objects, installed as part of EJAM and related packages,
+that are examples of inputs or intermediate data objects that you can use to try out EJAM
+functions, or you may just want to see what the outputs and inputs look like, 
+or you could use them for testing purposes.
+
+For documentation on each input or output item (R object), see 
+https://usepa.github.io/EJAM/reference/index.html#test-data
+
+This code snippet provides a useful list of test/ sample data
+objects in EJAM and related packages:
+
+**POINT DATA (LAT/LON COORDINATES)** for testing ejamit(), mapfast(),
+ejscreenit(), getblocksnearby(), etc.
+
+See all files and all dataset examples related to one topic:
+```{r}
+topic = "fips"
+cbind(data.in.package  = sort(grep(topic, EJAM:::datapack()$Item, value = T)))
+cbind(files.in.package = sort(basename(testdata(topic, quiet = T))))
+
+```
+
+```{r datapack, eval=T, echo=FALSE, message=FALSE, include=FALSE}
+x <- EJAM:::datapack(simple = FALSE)
+x <- x[order(x$Package, x$Item), !grepl("size", names(x))]
+```
+
+```{r datapackshow, eval=FALSE, echo=TRUE}
+x <- EJAM:::datapack(simple = FALSE)
+x <- x[order(x$Package, x$Item), !grepl("size", names(x))]
+```
+
+```{r testpoints_data, eval=TRUE, echo=TRUE}
+x[grepl("^testp", x$Item), ]
+```
+
+**STREET ADDRESSES** for testing geocoding in latlon_from_address() etc.
+
+```{r addresses_data, eval=TRUE, echo=TRUE}
+x[grepl("^test_", x$Item), ]
+cat("\n\n")
+```
+
+**FACILITY REGISTRY IDs** for testing latlon_from_regid() etc.
+
+```{r regids_data, eval=TRUE, echo=TRUE}
+x[grepl("^test[^op_]", x$Item), ]
+cat("\n\n")
+```
+
+**EXAMPLES OF OUTPUTS** from ejamit(), ejscreenit(), getblocksnearby(), etc.,
+you can use as inputs to ejam2report(), ejam2excel(), ejam2ratios(),
+ejam2barplot(), doaggregate(), etc.
+
+```{r testout_data, eval=TRUE, echo=TRUE}
+x[grepl("^testout", x$Item), ]
+cat("\n\n")
+```
+
+**LARGE DATASETS USED BY THE PACKAGE**
+
+Note that the largest files used by the package are mostly the block-related datasets with info about population size and location of US blocks, the facility datasets with info about EPA-regulated sites, and the blockgroup-related datasets with EJScreen indicators. 
+
+Some datasets get downloaded by the package at installation or launch or as needed. Datasets may include for example: 
+[blockwts], [blockpoints], [quaddata], [blockid2fips], [frs], [frs_by_programid], [frs_by_naics], [frs_by_sic], and [frs_by_mact].
+
+Blockgroup-related datasets incude [blockgroupstats], [bgpts], [bgej], [usastats], [statestats], [bgid2fips], and [bg_cenpop2020]. For more info see 
+https://usepa.github.io/EJAM/reference/index.html#datasets-with-indicators-etc-
+
