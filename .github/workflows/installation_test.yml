@@ -22,8 +22,8 @@ jobs:
     
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      GH_TOKEN: ${{ secrets.GH_TOKEN_REPO }}
-      GITHUB_PAT: ${{ secrets.GH_TOKEN_REPO }}
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_PAT: ${{ github.token }}
 
     steps:
       - name: Checkout repository
