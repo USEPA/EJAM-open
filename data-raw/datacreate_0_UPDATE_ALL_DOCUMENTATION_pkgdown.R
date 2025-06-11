@@ -4,7 +4,7 @@
   #
 
   # Note the URL of the repository publishing the pkgdown site belongs
-  # in DESCRIPTION and also must be separately placed 
+  # in DESCRIPTION and also must be separately placed
   # in _pkdgown.yml
   #
 
@@ -60,7 +60,7 @@ update_pkgdown = function(
     doyamlcheck        = TRUE, ## dataset_pkgdown_yaml_check() does siterep but also check internal v exported, listed in pkgdown reference TOC etc.
     dodocument         = TRUE,  ## in case we just edited help, exports, or func names,
     ##   since doinstall=T via this script omits document()
-    doinstall          = TRUE,  ## but skips document() and vignettes
+    doinstall          = FALSE,  ## but skips document() and vignettes
     doloadall_not_library = TRUE, ## (happens after install, if that is being done here)
     dobuild_site      = TRUE     ## use build_site() or stop?
 
@@ -109,7 +109,7 @@ update_pkgdown = function(
       && missing("doloadall_not_library")
   ) {doloadall_not_library  <- utils::askYesNo("do load_all() instead of library(EJAM) ?")}
   if (is.na(doloadall_not_library)) {stop('stopped')}
-  
+
   #################### #
 
   # UNIT TESTS ####
@@ -124,16 +124,16 @@ update_pkgdown = function(
     # also see  devtools::test()
   }
   #################### #
-  
+
   cat("\n\n   ------------- STARTED -------------- \n")
   print(Sys.time())
-  cat("\n\n")  
+  cat("\n\n")
   #################### #
-  
+
   # checkDocFiles() ####
-  
+
   tools::checkDocFiles(dir = ".")
-  
+
   # ? check() ?
   # devtools::check()
   ##   automatically builds and checks a source package, using all known best practices.
@@ -151,11 +151,11 @@ update_pkgdown = function(
     cat('Using dataset_pkgdown_yaml_check() which includes pkgdown_sitrep(), which reports status of all checks ... \n')
     missing_from_yml <- EJAM:::dataset_pkgdown_yaml_check() #  needs EJAM::: if haven't just done load_all(export_all=T)
     # that prints some results to console.
-    # `pkgdown::pkgdown_sitrep()` does, among other things, 
-    #   confirm the URL for publishing the pkgdown site listed in _pkgdown.yml 
+    # `pkgdown::pkgdown_sitrep()` does, among other things,
+    #   confirm the URL for publishing the pkgdown site listed in _pkgdown.yml
     #   matches what is in DESCRIPTION
     #    at  EJAM:::repo_from_desc('github.io', get_full_url = TRUE)
-  
+
     if (doask && interactive()  && rstudioapi::isAvailable()) {
       cat('\n\n')
       yn <- utils::askYesNo("Halt now to edit/fix _pkgdown.yml etc. ?")
@@ -188,7 +188,7 @@ update_pkgdown = function(
 
     # MAYBE NEED TO DELETE ALL IN THE man/ FOLDER TO REMOVE OBSOLETE .Rd files like no longer documented or renamed functions ?
 warning("You might need to delete all of /man/*.* to be sure there is nothing obsolete like renamed or deleted or no-longer-documented functions")
-    
+
     cat('trying to do document() \n')
     document()
   }
@@ -258,9 +258,9 @@ warning("You might need to delete all of /man/*.* to be sure there is nothing ob
   # doloadall_not_library = TRUE, ## (happens after install, if that is being done here)
   # dobuild_site      = TRUE     ## use build_site() or just stop?
   #################### # #################### # #################### # #################### #
-    
+
   # LOAD ALL FROM SOURCE  ####
-    
+
   print(Sys.time())
   if (doloadall_not_library) {
     cat('detaching packages, then doing load_all() \n')
@@ -300,8 +300,8 @@ warning("You might need to delete all of /man/*.* to be sure there is nothing ob
     print(Sys.time())
 
     # MAYBE NEED TO DELETE ALL IN THE docs/ FOLDER TO REMOVE OBSOLETE .html files like no longer used vignettes ?
-    warning("You might need to delete all of /docs/*.*  to be sure there is nothing obsolete like renamed or deleted or no-longer-documented functions?")
-    
+    warning("You might need to use pkgdown::clean_site('.') to delete all of /docs/*.*  to be sure there is nothing obsolete like renamed or deleted or no-longer-documented functions?")
+
 
     pkgdown::build_site(
       examples = FALSE, lazy = TRUE,
@@ -331,9 +331,9 @@ warning("You might need to delete all of /man/*.* to be sure there is nothing ob
     # pkgdown::build_site_github_pages() is meant to be used as part of github actions
     #   # https://pkgdown.r-lib.org/reference/build_site_github_pages.html
   }
-  
+
   print(Sys.time())
-  
+
   ################################################################## #
   # # ~ ####
   # remember to push so gh actions publish it ####
@@ -367,14 +367,15 @@ update_pkgdown(doask = TRUE)
 or change from any of these defaults:
 
 update_pkgdown(
-  doask              = FALSE,
-  dotests            = FALSE,
-  testinteractively  = FALSE, 
-  doyamlcheck        = TRUE,  ## dataset_pkgdown_yaml_check() does siterep but also check pkgdown reference TOC etc.
-  dodocument         = TRUE,  ## document() -- in case we just edited help, exports, or func names
-  doinstall          = TRUE,  ## installs but skips possibly redoing document()
-  doloadall_not_library = TRUE, ## (after installs, if that is being done here)
-  dobuild_site      = TRUE      ## does build_site() to create new pkgdown site html files in /docs/
+    doask              = FALSE,
+    dotests            = FALSE,
+    testinteractively  = FALSE, ## maybe we want to do this interactively even if ask=F ?
+    doyamlcheck        = TRUE, ## dataset_pkgdown_yaml_check() does siterep but also check internal v exported, listed in pkgdown reference TOC etc.
+    dodocument         = TRUE,  ## in case we just edited help, exports, or func names,
+    ##   since doinstall=T via this script omits document()
+    doinstall          = FALSE,  ## but skips document() and vignettes
+    doloadall_not_library = TRUE, ## (happens after install, if that is being done here)
+    dobuild_site      = TRUE     ## use build_site() to create new pkgdown site html files in /docs/ (or stop?)
 )
 
 ")

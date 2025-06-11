@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -116,12 +116,14 @@ this:</p>
 <span><span class="co">#&gt; Get more info with datapack(simple = FALSE)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; ignoring sortbysize because simple=TRUE</span></span>
-<span><span class="co">#&gt;      data.in.package             </span></span>
-<span><span class="co">#&gt; [1,] "testinput_fips_blockgroups"</span></span>
-<span><span class="co">#&gt; [2,] "testinput_fips_cities"     </span></span>
-<span><span class="co">#&gt; [3,] "testinput_fips_counties"   </span></span>
-<span><span class="co">#&gt; [4,] "testinput_fips_states"     </span></span>
-<span><span class="co">#&gt; [5,] "testinput_fips_tracts"</span></span>
+<span><span class="co">#&gt;      data.in.package                  </span></span>
+<span><span class="co">#&gt; [1,] "testinput_fips_blockgroups"     </span></span>
+<span><span class="co">#&gt; [2,] "testinput_fips_cities"          </span></span>
+<span><span class="co">#&gt; [3,] "testinput_fips_counties"        </span></span>
+<span><span class="co">#&gt; [4,] "testinput_fips_states"          </span></span>
+<span><span class="co">#&gt; [5,] "testinput_fips_tracts"          </span></span>
+<span><span class="co">#&gt; [6,] "testoutput_ejamit_fips_cities"  </span></span>
+<span><span class="co">#&gt; [7,] "testoutput_ejamit_fips_counties"</span></span>
 <span></span>
 <span><span class="co"># files</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>files.in.package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="fu"><a href="../reference/testdata.html">testdata</a></span><span class="op">(</span><span class="va">topic</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -129,8 +131,8 @@ this:</p>
 <span><span class="co">#&gt;  [1,] "cities_2.xlsx"                    </span></span>
 <span><span class="co">#&gt;  [2,] "counties_in_AL_detailed.xlsx"     </span></span>
 <span><span class="co">#&gt;  [3,] "counties_in_Alabama.xlsx"         </span></span>
-<span><span class="co">#&gt;  [4,] "counties_in_Delaware.xlsx"        </span></span>
-<span><span class="co">#&gt;  [5,] "counties_in_Delaware_invalid.xlsx"</span></span>
+<span><span class="co">#&gt;  [4,] "counties_in_Delaware_invalid.xlsx"</span></span>
+<span><span class="co">#&gt;  [5,] "counties_in_Delaware.xlsx"        </span></span>
 <span><span class="co">#&gt;  [6,] "county_10.xlsx"                   </span></span>
 <span><span class="co">#&gt;  [7,] "county_100.xlsx"                  </span></span>
 <span><span class="co">#&gt;  [8,] "county_1000.xlsx"                 </span></span>
@@ -185,11 +187,13 @@ and related packages, that are examples of inputs or intermediate data
 objects that you can use to try out EJAM functions, or you may just want
 to see what the outputs and inputs look like, or you could use them for
 testing purposes.</p>
-<p>For documentation on each input or output item (R object), see <a href="https://usepa.github.io/EJAM/reference/index.html#test-data" class="external-link uri">https://usepa.github.io/EJAM/reference/index.html#test-data</a></p>
+<p>For documentation on each input or output item (R object), see <a href="../reference/index.html#test-data">reference documentation on each
+object</a></p>
 <p>This code snippet provides a useful list of test/ sample data objects
 in EJAM and related packages:</p>
 <p><strong>POINT DATA (LAT/LON COORDINATES)</strong> for testing
-ejamit(), mapfast(), ejscreenit(), getblocksnearby(), etc.</p>
+<code><a href="../reference/ejamit.html">ejamit()</a></code>, <code><a href="../reference/mapfast.html">mapfast()</a></code>,
+<code><a href="../reference/ejscreenit.html">ejscreenit()</a></code>, <code><a href="../reference/getblocksnearby.html">getblocksnearby()</a></code>, etc.</p>
 <p>See all files and all dataset examples related to one topic:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">topic</span> <span class="op">=</span> <span class="st">"fips"</span></span>
@@ -204,33 +208,33 @@ ejamit(), mapfast(), ejscreenit(), getblocksnearby(), etc.</p>
 <span><span class="co">#&gt; 12     EJAM       testpoints_10</span></span>
 <span><span class="co">#&gt; 131    EJAM      testpoints_100</span></span>
 <span><span class="co">#&gt; 132    EJAM   testpoints_100_dt</span></span>
-<span><span class="co">#&gt; 152    EJAM     testpoints_1000</span></span>
-<span><span class="co">#&gt; 166    EJAM    testpoints_10000</span></span>
+<span><span class="co">#&gt; 153    EJAM     testpoints_1000</span></span>
+<span><span class="co">#&gt; 168    EJAM    testpoints_10000</span></span>
 <span><span class="co">#&gt; 120    EJAM        testpoints_5</span></span>
 <span><span class="co">#&gt; 129    EJAM       testpoints_50</span></span>
-<span><span class="co">#&gt; 147    EJAM      testpoints_500</span></span>
+<span><span class="co">#&gt; 148    EJAM      testpoints_500</span></span>
 <span><span class="co">#&gt; 121    EJAM      testpoints_bad</span></span>
 <span><span class="co">#&gt; 113    EJAM testpoints_overlap3</span></span>
 <span><span class="co">#&gt;                                                        Title</span></span>
 <span><span class="co">#&gt; 12  test points data.frame with columns sitenumber, lat, lon</span></span>
 <span><span class="co">#&gt; 131 test points data.frame with columns sitenumber, lat, lon</span></span>
 <span><span class="co">#&gt; 132 test points data.frame with columns sitenumber, lat, lon</span></span>
-<span><span class="co">#&gt; 152 test points data.frame with columns sitenumber, lat, lon</span></span>
-<span><span class="co">#&gt; 166 test points data.frame with columns sitenumber, lat, lon</span></span>
+<span><span class="co">#&gt; 153 test points data.frame with columns sitenumber, lat, lon</span></span>
+<span><span class="co">#&gt; 168 test points data.frame with columns sitenumber, lat, lon</span></span>
 <span><span class="co">#&gt; 120 test points data.frame with columns sitenumber, lat, lon</span></span>
 <span><span class="co">#&gt; 129 test points data.frame with columns sitenumber, lat, lon</span></span>
-<span><span class="co">#&gt; 147 test points data.frame with columns sitenumber, lat, lon</span></span>
+<span><span class="co">#&gt; 148 test points data.frame with columns sitenumber, lat, lon</span></span>
 <span><span class="co">#&gt; 121       test points data.frame with columns note, lat, lon</span></span>
 <span><span class="co">#&gt; 113       test points data.frame with columns note, lat, lon</span></span></code></pre></div>
 <p><strong>STREET ADDRESSES</strong> for testing geocoding in
-latlon_from_address() etc.</p>
+<code><a href="../reference/latlon_from_address.html">latlon_from_address()</a></code> etc.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^test_"</span>, <span class="va">x</span><span class="op">$</span><span class="va">Item</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt; [1] Package Item    Title  </span></span>
 <span><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\n\n"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>FACILITY REGISTRY IDs</strong> for testing
-latlon_from_regid() etc.</p>
+<code><a href="../reference/latlon_from_regid.html">latlon_from_regid()</a></code> etc.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^test[^op_]"</span>, <span class="va">x</span><span class="op">$</span><span class="va">Item</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;     Package                              Item</span></span>
@@ -252,6 +256,7 @@ latlon_from_regid() etc.</p>
 <span><span class="co">#&gt; 11     EJAM          testinput_program_sys_id</span></span>
 <span><span class="co">#&gt; 3      EJAM                   testinput_regid</span></span>
 <span><span class="co">#&gt; 4      EJAM             testinput_registry_id</span></span>
+<span><span class="co">#&gt; 136    EJAM                testinput_shapes_2</span></span>
 <span><span class="co">#&gt; 51     EJAM                     testinput_sic</span></span>
 <span><span class="co">#&gt; 5      EJAM                   testinput_xtrac</span></span>
 <span><span class="co">#&gt; 135    EJAM                      testshapes_2</span></span>
@@ -274,47 +279,56 @@ latlon_from_regid() etc.</p>
 <span><span class="co">#&gt; 11  test data, EPA program names and program system ID numbers to try using</span></span>
 <span><span class="co">#&gt; 3   testinput_regid (DATA) test data, vector of EPA FRS Registry ID numbers</span></span>
 <span><span class="co">#&gt; 4                  test data, EPA Facility Registry ID numbers to try using</span></span>
+<span><span class="co">#&gt; 136                                              testinput_shapes_2 dataset</span></span>
 <span><span class="co">#&gt; 51                                                    testinput_sic dataset</span></span>
 <span><span class="co">#&gt; 5                                                          for internal use</span></span>
 <span><span class="co">#&gt; 135                                                    testshapes_2 dataset</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\n\n"</span><span class="op">)</span></span></code></pre></div>
-<p><strong>EXAMPLES OF OUTPUTS</strong> from ejamit(), ejscreenit(),
-getblocksnearby(), etc., you can use as inputs to ejam2report(),
-ejam2excel(), ejam2ratios(), ejam2barplot(), doaggregate(), etc.</p>
+<p><strong>EXAMPLES OF OUTPUTS</strong> from <code><a href="../reference/ejamit.html">ejamit()</a></code>,
+<code><a href="../reference/ejscreenit.html">ejscreenit()</a></code>, <code><a href="../reference/getblocksnearby.html">getblocksnearby()</a></code>, etc., you can
+use as inputs to <code><a href="../reference/ejam2report.html">ejam2report()</a></code>, <code><a href="../reference/ejam2excel.html">ejam2excel()</a></code>,
+<code><a href="../reference/ejam2ratios.html">ejam2ratios()</a></code>, <code><a href="../reference/ejam2barplot.html">ejam2barplot()</a></code>,
+<code><a href="../reference/doaggregate.html">doaggregate()</a></code>, etc.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"^testout"</span>, <span class="va">x</span><span class="op">$</span><span class="va">Item</span><span class="op">)</span>, <span class="op">]</span></span>
 <span><span class="co">#&gt;     Package                                      Item</span></span>
-<span><span class="co">#&gt; 175    EJAM     testoutput_doaggregate_1000pts_1miles</span></span>
-<span><span class="co">#&gt; 167    EJAM      testoutput_doaggregate_100pts_1miles</span></span>
-<span><span class="co">#&gt; 159    EJAM       testoutput_doaggregate_10pts_1miles</span></span>
-<span><span class="co">#&gt; 176    EJAM          testoutput_ejamit_1000pts_1miles</span></span>
-<span><span class="co">#&gt; 168    EJAM           testoutput_ejamit_100pts_1miles</span></span>
-<span><span class="co">#&gt; 165    EJAM            testoutput_ejamit_10pts_1miles</span></span>
-<span><span class="co">#&gt; 143    EJAM        testoutput_ejscreenapi_1pts_1miles</span></span>
-<span><span class="co">#&gt; 150    EJAM             testoutput_ejscreenapi_plus_5</span></span>
-<span><span class="co">#&gt; 155    EJAM                   testoutput_ejscreenit_5</span></span>
-<span><span class="co">#&gt; 161    EJAM                  testoutput_ejscreenit_50</span></span>
-<span><span class="co">#&gt; 172    EJAM                 testoutput_ejscreenit_500</span></span>
-<span><span class="co">#&gt; 137    EJAM testoutput_ejscreenRESTbroker_1pts_1miles</span></span>
-<span><span class="co">#&gt; 171    EJAM testoutput_getblocksnearby_1000pts_1miles</span></span>
-<span><span class="co">#&gt; 158    EJAM  testoutput_getblocksnearby_100pts_1miles</span></span>
-<span><span class="co">#&gt; 149    EJAM   testoutput_getblocksnearby_10pts_1miles</span></span>
+<span><span class="co">#&gt; 179    EJAM     testoutput_doaggregate_1000pts_1miles</span></span>
+<span><span class="co">#&gt; 171    EJAM      testoutput_doaggregate_100pts_1miles</span></span>
+<span><span class="co">#&gt; 161    EJAM       testoutput_doaggregate_10pts_1miles</span></span>
+<span><span class="co">#&gt; 180    EJAM          testoutput_ejamit_1000pts_1miles</span></span>
+<span><span class="co">#&gt; 172    EJAM           testoutput_ejamit_100pts_1miles</span></span>
+<span><span class="co">#&gt; 167    EJAM            testoutput_ejamit_10pts_1miles</span></span>
+<span><span class="co">#&gt; 169    EJAM             testoutput_ejamit_fips_cities</span></span>
+<span><span class="co">#&gt; 170    EJAM           testoutput_ejamit_fips_counties</span></span>
+<span><span class="co">#&gt; 160    EJAM                testoutput_ejamit_shapes_2</span></span>
+<span><span class="co">#&gt; 144    EJAM        testoutput_ejscreenapi_1pts_1miles</span></span>
+<span><span class="co">#&gt; 151    EJAM             testoutput_ejscreenapi_plus_5</span></span>
+<span><span class="co">#&gt; 156    EJAM                   testoutput_ejscreenit_5</span></span>
+<span><span class="co">#&gt; 163    EJAM                  testoutput_ejscreenit_50</span></span>
+<span><span class="co">#&gt; 176    EJAM                 testoutput_ejscreenit_500</span></span>
+<span><span class="co">#&gt; 138    EJAM testoutput_ejscreenRESTbroker_1pts_1miles</span></span>
+<span><span class="co">#&gt; 175    EJAM testoutput_getblocksnearby_1000pts_1miles</span></span>
+<span><span class="co">#&gt; 159    EJAM  testoutput_getblocksnearby_100pts_1miles</span></span>
+<span><span class="co">#&gt; 150    EJAM   testoutput_getblocksnearby_10pts_1miles</span></span>
 <span><span class="co">#&gt;                                                                                     Title</span></span>
-<span><span class="co">#&gt; 175                                                          test output of doaggregate()</span></span>
-<span><span class="co">#&gt; 167                                                          test output of doaggregate()</span></span>
-<span><span class="co">#&gt; 159                                                          test output of doaggregate()</span></span>
-<span><span class="co">#&gt; 176                                                               test output of ejamit()</span></span>
-<span><span class="co">#&gt; 168                                                               test output of ejamit()</span></span>
-<span><span class="co">#&gt; 165                                                               test output of ejamit()</span></span>
-<span><span class="co">#&gt; 143                                                  test data, output from this function</span></span>
-<span><span class="co">#&gt; 150 test data examples of output from 'ejscreenapi_plus()' using testpoints_5, radius = 1</span></span>
-<span><span class="co">#&gt; 155       test data examples of output from 'ejscreenit()' using testpoints_5, radius = 1</span></span>
-<span><span class="co">#&gt; 161      test data examples of output from 'ejscreenit()' using testpoints_50, radius = 1</span></span>
-<span><span class="co">#&gt; 172     test data examples of output from 'ejscreenit()' using testpoints_500, radius = 1</span></span>
-<span><span class="co">#&gt; 137                                                  test data, output from this function</span></span>
-<span><span class="co">#&gt; 171                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
-<span><span class="co">#&gt; 158                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
-<span><span class="co">#&gt; 149                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
+<span><span class="co">#&gt; 179                                                          test output of doaggregate()</span></span>
+<span><span class="co">#&gt; 171                                                          test output of doaggregate()</span></span>
+<span><span class="co">#&gt; 161                                                          test output of doaggregate()</span></span>
+<span><span class="co">#&gt; 180                                                               test output of ejamit()</span></span>
+<span><span class="co">#&gt; 172                                                               test output of ejamit()</span></span>
+<span><span class="co">#&gt; 167                                                               test output of ejamit()</span></span>
+<span><span class="co">#&gt; 169                                                 testoutput_ejamit_fips_cities dataset</span></span>
+<span><span class="co">#&gt; 170                                               testoutput_ejamit_fips_counties dataset</span></span>
+<span><span class="co">#&gt; 160                                                    testoutput_ejamit_shapes_2 dataset</span></span>
+<span><span class="co">#&gt; 144                                                  test data, output from this function</span></span>
+<span><span class="co">#&gt; 151 test data examples of output from 'ejscreenapi_plus()' using testpoints_5, radius = 1</span></span>
+<span><span class="co">#&gt; 156       test data examples of output from 'ejscreenit()' using testpoints_5, radius = 1</span></span>
+<span><span class="co">#&gt; 163      test data examples of output from 'ejscreenit()' using testpoints_50, radius = 1</span></span>
+<span><span class="co">#&gt; 176     test data examples of output from 'ejscreenit()' using testpoints_500, radius = 1</span></span>
+<span><span class="co">#&gt; 138                                                  test data, output from this function</span></span>
+<span><span class="co">#&gt; 175                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
+<span><span class="co">#&gt; 159                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
+<span><span class="co">#&gt; 150                    test output of getblocksnearby(), and is an input to doaggregate()</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"\n\n"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>LARGE DATASETS USED BY THE PACKAGE</strong></p>
 <p>Note that the largest files used by the package are mostly the
@@ -322,12 +336,10 @@ block-related datasets with info about population size and location of
 US blocks, the facility datasets with info about EPA-regulated sites,
 and the blockgroup-related datasets with EJScreen indicators.</p>
 <p>Some datasets get downloaded by the package at installation or launch
-or as needed. Datasets may include for example: [blockwts],
-[blockpoints], [quaddata], [blockid2fips], [frs], [frs_by_programid],
-[frs_by_naics], [frs_by_sic], and [frs_by_mact].</p>
-<p>Blockgroup-related datasets incude [blockgroupstats], [bgpts],
-[bgej], [usastats], [statestats], [bgid2fips], and [bg_cenpop2020]. For
-more info see <a href="https://usepa.github.io/EJAM/reference/index.html#datasets-with-indicators-etc-" class="external-link uri">https://usepa.github.io/EJAM/reference/index.html#datasets-with-indicators-etc-</a></p>
+or as needed. See the article on <a href="dev_update-datasets.html">Updating EJAM Datasets</a> for more
+information on these.</p>
+<p>Also see <a href="../reference/index.html#datasets-with-indicators-etc-">reference
+documentation for each dataset</a>.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

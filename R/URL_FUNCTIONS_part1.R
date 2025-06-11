@@ -547,7 +547,7 @@ url_echo_facility_webpage <- function(regid, as_html=FALSE, linktext) {
 #'
 #' @return URL(s)
 #' @examples \donttest{
-#' browseURL(url_frs_report(testids_registry_id)[1])
+#' browseURL(url_frs_report(testinput_regid)[1])
 #' }
 #' url_frs_report(testinput_registry_id)
 #'

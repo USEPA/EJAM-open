@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -56,6 +56,47 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="2.32.4" id="ejam-v2324-june-2025">EJAM v2.32.4 (June 2025)<a class="anchor" aria-label="anchor" href="#ejam-v2324-june-2025"></a></h2>
+<div class="section level3">
+<h3 id="web-app-2-32-4">Web app<a class="anchor" aria-label="anchor" href="#web-app-2-32-4"></a></h3>
+<ul><li>Fixed logo in “About” tab, app header, and report header, in app_ui, generate_html_header(), global_defaults_xyz, etc., and updated testoutput files related to <code><a href="../reference/ejam2report.html">ejam2report()</a></code> and <code><a href="../reference/ejam2excel.html">ejam2excel()</a></code>
+</li>
+<li>corrected spelling in app and documentation</li>
+<li>added better examples of params one can pass via <code><a href="../reference/run_app.html">run_app()</a></code>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="rstudio-users-2-32-4">RStudio users<a class="anchor" aria-label="anchor" href="#rstudio-users-2-32-4"></a></h3>
+<ul><li>New summary table and plot are available via <code><a href="../reference/ejam2areafeatures.html">ejam2areafeatures()</a></code> and <code><a href="../reference/ejam2barplot_areafeatures.html">ejam2barplot_areafeatures()</a></code>. Changes in <code><a href="../reference/ejamit.html">ejamit()</a></code> provide information about what fraction of residents have certain features or types of areas where they live, such as schools, hospitals, Tribal areas, nonattainment areas, CJEST areas, etc. This is done via many changes to <code><a href="../reference/batch.summarize.html">batch.summarize()</a></code>.</li>
+<li>added better examples of params one can pass via <code><a href="../reference/run_app.html">run_app()</a></code>
+</li>
+<li>documented <code><a href="../reference/get_global_defaults_or_user_options.html">get_global_defaults_or_user_options()</a></code> and <code><a href="../reference/global_or_param.html">global_or_param()</a></code>
+</li>
+<li>fixed <code><a href="../reference/ejam2means.html">ejam2means()</a></code>
+</li>
+<li>
+<code><a href="../reference/ejam2report.html">ejam2report()</a></code> gets new params, and in <code><a href="../reference/build_community_report.html">build_community_report()</a></code> added report_title = NULL, logo_path = NULL, logo_html = NULL.</li>
+<li>
+<code><a href="../reference/ejam2barplot.html">plot_barplot_ratios()</a></code> gets new ylab and caption params</li>
+<li>added warning in <code><a href="../reference/url_countyhealthrankings.html">url_countyhealthrankings()</a></code> if default year seems outdated</li>
+<li>unexported read_and_clean_points()</li>
+<li>unexported ejam2quantiles()</li>
+<li>removed reference to obsolete testids_registry_id, replaced by testinput_regid</li>
+</ul></div>
+<div class="section level3">
+<h3 id="technical--internal-changes-2-32-4">Technical / internal changes:<a class="anchor" aria-label="anchor" href="#technical--internal-changes-2-32-4"></a></h3>
+<ul><li>drafted revisions to ui and server to try to allow for more <code><a href="../reference/run_app.html">run_app()</a></code> params or advanced tab or global_defaults_xyz to alter default method of upload vs dropdown, e.g., output ss_choose_method_ui, default_ss_choose_method, default_upload_dropdown. This included revising server and ui to use just EJAM:::global_or_param(“xyz”) not golem::get_golem_options(“xyz”), so that non-shiny global defaults can work (e.g., logo path as <code>global_defaults_package$.community_report_logo_path</code>) even outside shiny when global_defaults_package has happened via onattach but global_defaults_shiny etc. has not happened.</li>
+<li>changed .onAttach() to do source(global_defaults_package) with local = FALSE not TRUE, but this might need to be revisited – note both local = F and local = T are used in .onAttach() versus get_global_defaults_or_user_options()</li>
+<li>in server, <code><a href="../reference/ejam2excel.html">ejam2excel()</a></code> now figures out value of radius_or_buffer_description, ejam2excel() gets new parameters table_xls_from_ejam() uses improved buffer_desc_from_sitetype() and now uses <code><a href="../reference/ejam2report.html">ejam2report()</a></code> to add a report in one tab.</li>
+<li>reorganized server code by moving v1_demog_table() and v1_envt_table to long report section of server file</li>
+<li>cleaned up server code (eg, remove obsolete input$disconnect, remove obsolete community_download() and report_community_download(), and remove repetitive <code>ejam2repor()</code>, remove old EJScreen Batch Tool tab, used session = session as param in server calls to updateXYZINPUT, etc.)</li>
+<li>allow shiny.testmode to be TRUE even if not set in options</li>
+<li>used silent=TRUE in more cases of try()</li>
+<li>added validate(“problem with map_shapes_leaflet() function”)</li>
+<li>added validate(need(data_processed(), ‘Please run an analysis to see results.’))</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="2.32.3" id="ejam-v2323-may-2025">EJAM v2.32.3 (May 2025)<a class="anchor" aria-label="anchor" href="#ejam-v2323-may-2025"></a></h2>
 <div class="section level3">
 <h3 id="summary-report-and-related-improvements-2-32-3">Summary report and related improvements<a class="anchor" aria-label="anchor" href="#summary-report-and-related-improvements-2-32-3"></a></h3>
@@ -69,7 +110,7 @@
 <div class="section level3">
 <h3 id="other-web-app-improvements-2-32-3">Other web app improvements<a class="anchor" aria-label="anchor" href="#other-web-app-improvements-2-32-3"></a></h3>
 <ul><li>More types of shapefiles can be uploaded in the web app – json, geojson, kml, zip (of gdb or other), and shp.</li>
-<li>Census units like States, Counties, and Cities/Towns/CDPs can now be selected from a menu or searched by typing part of the name, in a shiny module called fipspicker, and the feature will be enabled via default_choices_for_type_of_site_category, once it is fully tested. It works but current does not check or alert users if boundaries are not available, until after the Start Analysis button is clicked.</li>
+<li>Census units like States, Counties, and Cities/Towns/CDPs can now be selected from a menu or searched by typing part of the name, in a shiny module called fipspicker, and the feature is enabled/disabled via global settings <code>use_fipspicker</code> and <code>default_choices_for_type_of_site_category</code>. It works but current does not check or alert users if boundaries are not available, until after the Start Analysis button is clicked.</li>
 <li>Simpler UI for “More info” button about file types and formats allowed in upload.</li>
 <li>Preview maps can show FIPS now, along with shapefile polygons, or points</li>
 <li>
@@ -78,30 +119,33 @@
 </ul></div>
 <div class="section level3">
 <h3 id="rstudio-user-related-or-internal-improvements-2-32-3">RStudio user-related or internal improvements<a class="anchor" aria-label="anchor" href="#rstudio-user-related-or-internal-improvements-2-32-3"></a></h3>
-<ul><li>
-<code><a href="../reference/ejamit.html">ejamit()</a></code> in interactive mode (RStudio) now lets you select any type of file to upload if no sites specified by parameters</li>
-<li>extensive additions of and improvements in vignettes, including documentation of how to maintain repo, package, datasets. vignettes avoid hardcoded repo urls, and working on relative links within pkgdown site… repo_from_desc() added, avoids hardcoded repo url; download_latest_arrow_data avoids hardcoded repo url; links to testdata files on webapp UI avoid hardcoded repo url; simpler 0_whatis.Rmd</li>
-<li>clarified/explained 2025 status of api and urls in CONTRIBUTING and README, etc.</li>
-<li>Many options or starting values or settings for the shiny app (and in general) can now be set as parameters passed to the <code><a href="../reference/run_app.html">run_app()</a></code> function, which overrides the defaults. extensive changes to global defaults vs user parameters allowed: replaced global.R; files renamed, put in 1 folder, etc. System for using user parameters passed to run_app(), global defaults otherwise, many can be changed in advanced tab; some may be bookmarkable. The default values are now set for the shiny app and in general in files called <code>global_defaults_package.R</code>, <code>global_defaults_shiny_public.R</code>, and <code>global_defaults_shiny.R</code> (rather than in the old files global.R or manage-public-private.R).</li>
-<li>acs_bybg examples added, on how to obtain and analyze new/custom indicators from the American Community Survey (ACS) data</li>
+<ul><li>Clarified/explained 2025 status of API and urls in CONTRIBUTING and README, etc.</li>
+<li>Extensive additions of and improvements in articles/vignettes, including documentation of how to maintain repo, package, and datasets. Articles/vignettes avoid hardcoded repo urls, and use relative links within pkgdown site… unexported helper function <code>EJAM:::repo_from_desc()</code> added, avoids hardcoded repo url; download_latest_arrow_data avoids hardcoded repo url; links to testdata files on webapp UI avoid hardcoded repo url; simpler <a href="../articles/0_whatis.html">What is EJAM</a> doc.</li>
 <li>
-<code><a href="../reference/testdata.html">testdata()</a></code> function improved, showing you examples of files that be used as inputs to <code><a href="../reference/ejamit.html">ejamit()</a></code>. testdata() files and data objects cleaned up/renamed consistently and new ones added for fips types, naics, sic, mact, etc.</li>
+<code><a href="../reference/ejamit.html">ejamit()</a></code> in interactive mode (RStudio) now lets you select any type of file to upload if no sites specified by parameters</li>
+<li>Many options or starting values or settings for the shiny app (and in general) can now be set as parameters passed to the <code><a href="../reference/run_app.html">run_app()</a></code> function, which overrides the defaults. extensive changes to global defaults vs user parameters allowed: replaced global.R; files renamed, put in 1 folder, etc. System for using user parameters passed to <code><a href="../reference/run_app.html">run_app()</a></code>, global defaults otherwise, many can be changed in advanced tab; some may be bookmarkable. The default values are now set for the shiny app and in general in files called <code>global_defaults_package.R</code>, <code>global_defaults_shiny_public.R</code>, and <code>global_defaults_shiny.R</code> (rather than in the old files global.R or manage-public-private.R).</li>
+<li>
+<code><a href="../reference/acs_bybg.html">acs_bybg()</a></code> examples added, on how to obtain and analyze new/custom indicators from the American Community Survey (ACS) data</li>
+<li>
+<code><a href="../reference/testdata.html">testdata()</a></code> function improved, showing you examples of files that be used as inputs to <code><a href="../reference/ejamit.html">ejamit()</a></code>. <code><a href="../reference/testdata.html">testdata()</a></code> files and data objects cleaned up/renamed consistently and new ones added for fips types, naics, sic, mact, etc.</li>
 <li>refactored names of plot functions made more consistent to use “plot” singular and “ratios” plural, as in <code><a href="../reference/ejam2boxplot_ratios.html">ejam2boxplot_ratios()</a></code>, <code>boxplot_ratios()</code>, etc.</li>
-<li>documentation fixed in some functions (e.g., ejam2map)</li>
-<li>large datasets managed via download_latest_arrow_data() and other new arrow-related functions and no longer on pins board or aws at all. arrow datasets faster format used most places, other changes to handling downloads etc.</li>
-<li>shape_from_fips() checks if census API key available and tidycensus pkg now imported, uses alt method (arcgis services) to get boundaries if necessary.</li>
+<li>documentation fixed in some functions (e.g., <code><a href="../reference/ejam2map.html">ejam2map()</a></code>)</li>
+<li>large datasets managed via <code><a href="../reference/download_latest_arrow_data.html">download_latest_arrow_data()</a></code> and other new arrow-related functions and no longer on pins board or aws at all. arrow datasets faster format used most places, other changes to handling downloads etc.</li>
+<li>
+<code>shape_from_fips()</code> checks if census API key available and tidycensus pkg now imported, uses alt method (arcgis services) to get boundaries if necessary.</li>
 <li>Continued towards refactoring/consolidating code in server vs in functions, related to creating summary report as HTML vs for download from shiny app vs from <code><a href="../reference/ejam2report.html">ejam2report()</a></code>, in functions such as <code><a href="../reference/report_residents_within_xyz.html">report_residents_within_xyz()</a></code>, renamed generate_demog_header to generate_env_demog_header, etc.</li>
-<li>server uses ejamit() for SHP and latlon, and cleanup</li>
-<li>server uses ejam2excel() now not table_xls_format()</li>
-<li>server uses ejam2report() now not community_download() etc.</li>
-<li>server uses shapefile_from_any now</li>
+<li>server uses <code><a href="../reference/ejamit.html">ejamit()</a></code> for SHP and latlon, and cleanup</li>
+<li>server uses <code><a href="../reference/ejam2excel.html">ejam2excel()</a></code> now not table_xls_format()</li>
+<li>server uses <code><a href="../reference/ejam2report.html">ejam2report()</a></code> now not obsolete report_community_download() etc.</li>
+<li>server uses <code><a href="../reference/shapefile_from_any.html">shapefile_from_any()</a></code> now</li>
 <li>server: removed use of data_summarized reactive everywhere, use data_processed$…</li>
-<li>2 new params doaggregate() has, to ejamit(), for calctype_maxbg and minbg</li>
-<li>bug fixes such as in ejamit() for wtdmeancols param, ejamit_compare_distances(), shapes_from_fips(), plot_ridgeline_ratios (), map_google(), in mapfast() for tracts vs blockgroups, many others</li>
+<li>2 new params <code><a href="../reference/doaggregate.html">doaggregate()</a></code> has, to <code><a href="../reference/ejamit.html">ejamit()</a></code>, for calctype_maxbg and minbg</li>
+<li>bug fixes such as in <code><a href="../reference/ejamit.html">ejamit()</a></code> for wtdmeancols param, <code><a href="../reference/ejamit_compare_distances.html">ejamit_compare_distances()</a></code>, <code><a href="../reference/shapes_from_fips.html">shapes_from_fips()</a></code>, <code><a href="../reference/plot_ridgeline_ratios.html">plot_ridgeline_ratios()</a></code>, <code><a href="../reference/map_google.html">map_google()</a></code>, in <code><a href="../reference/mapfast.html">mapfast()</a></code> for tracts vs blockgroups, many others</li>
 <li>unit tests added and others updated/fixed</li>
 <li>misc helpers/utility added/updated/documented</li>
-<li>renamed map_headernames to new version and made edits/fixes</li>
-<li>reposissues and repoissues2() help record snapshot of gh issues</li>
+<li>renamed .xlsx file of map_headernames info to reflect a new version and made edits/fixes</li>
+<li>
+<code>reposissues()</code> and <code>repoissues2()</code> help record snapshot of gh issues</li>
 <li>DESCRIPTION file now has new field ejam_data_repo</li>
 <li>updated workflow action to use latest version of github-pages-deploy-action</li>
 </ul></div>
@@ -151,7 +195,7 @@
 <h3 id="new-features--improvements-2-32">New Features + Improvements<a class="anchor" aria-label="anchor" href="#new-features--improvements-2-32"></a></h3>
 <ul><li>Enabled automatic download of latest arrow data from ejamdata repo</li>
 <li>Incorporated public-internal toggles to hide specific UI elements not yet applicable to the public version of EJAM</li>
-<li>Made improvements to maps of polgygons</li>
+<li>Made improvements to maps of polygons</li>
 <li>Added shapefile upload instructions</li>
 </ul></div>
 <div class="section level3">
@@ -163,7 +207,7 @@
 <h2 class="pkg-version" data-toc-text="2.32.0" id="ejam-v2320">EJAM v2.32.0<a class="anchor" aria-label="anchor" href="#ejam-v2320"></a></h2>
 <ul><li>The EJAM R package is available as an open source resource you can
 <ul><li>clone from the <a href="https://github.com/USEPA/EJAM-open" class="external-link">EJAM-open github repository</a> or</li>
-<li>install using the <a href="https://usepa.github.io/EJAM/articles/1_installing.html" class="external-link">installation instructions</a>
+<li>install using the <a href="../articles/1_installing.html">installation instructions</a>
 </li>
 </ul></li>
 </ul></div>
@@ -176,7 +220,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

@@ -564,7 +564,7 @@ knitr::kable(summary_table,
 ## Residential population indicator results
 
 In EJAM, values are compared to state or national average and presented as a
-ratio. This ratio is used as an indicator to detect any overrepresented
+ratio. This ratio is used as an indicator to detect any over-represented
 populations living within the radius of sites.
 
 ```{r}
@@ -772,7 +772,7 @@ indicator. `r demog_ind$pct_fac_1.01_st` The maximum demographic
 indicators above 1.01 times the state average for any one facility is
 `r demog_ind$max_count_1.01_st`.
 
-For more highly overrepresented populations, the ratio will be much greater
+For more highly over-represented populations, the ratio will be much greater
 than the average, such as more than two times or more than three times.
 For the facilities analyzed, `r demog_ind$count_2_st` residential population
 indicators were calculated on average to be greater than two times the

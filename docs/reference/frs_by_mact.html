@@ -3,31 +3,55 @@
 so it has multiple rows for one site if the site is covered by multiple subparts.
 It has been joined with frs_by_programid to get latlons for matching facilities.
 @details
+For background information on MACT NESHAP subparts:
+MACT NESHAP
+subpart(s) that categorize relevant EPA-regulated sites
+
+
 This file is not stored in the package, but is obtained via dataload_dynamic().
+See also frs_update_datasets()
 There are about 115k rows here but only about 86k unique program IDs in this table,
 which is from the ECHO data download of ICIS Air and AFS.
 The programid column here should be found in the pgm_sys_id column in frs_by_programid,
-but as of mid 2024 only 55k of them were found there.
+but as of mid 2025 only 55k of them were found there.
  table(frs_by_mact$programid %in% frs_by_programid$pgm_sys_id)
 FALSE  TRUE
-60425 55467
+59944  55429
 
-Also note we have found some typos in downloaded data from ECHO/FRS, such as
-"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"'><meta property="og:description" content='This is a data.table with one row per site – MACT subpart pair,
+Also note we have found some typos and nonstandard abbreviations
+in subpart titles in downloaded data from ECHO/FRS, such as
+"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"
+frs_by_mact[grepl("WOOD PERSERVING AREA SOURCES", frs_by_mact$title), ]
+"PHOSPERIC ACID PRODUCTION" instead of "PHOSPHORIC ACID PRODUCTION"
+frs_by_mact[grepl("PHOSPERIC", frs_by_mact$title), ]
+frs_by_mact[grepl("REDUCTN", frs_by_mact$title), ]
+frs_by_mact[grepl("ORGNCS", frs_by_mact$title), ]'><meta property="og:description" content='This is a data.table with one row per site – MACT subpart pair,
 so it has multiple rows for one site if the site is covered by multiple subparts.
 It has been joined with frs_by_programid to get latlons for matching facilities.
 @details
+For background information on MACT NESHAP subparts:
+MACT NESHAP
+subpart(s) that categorize relevant EPA-regulated sites
+
+
 This file is not stored in the package, but is obtained via dataload_dynamic().
+See also frs_update_datasets()
 There are about 115k rows here but only about 86k unique program IDs in this table,
 which is from the ECHO data download of ICIS Air and AFS.
 The programid column here should be found in the pgm_sys_id column in frs_by_programid,
-but as of mid 2024 only 55k of them were found there.
+but as of mid 2025 only 55k of them were found there.
  table(frs_by_mact$programid %in% frs_by_programid$pgm_sys_id)
 FALSE  TRUE
-60425 55467
+59944  55429
 
-Also note we have found some typos in downloaded data from ECHO/FRS, such as
-"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"'><meta property="og:image" content="https://usepa.github.io/EJAM-open/logo.svg"></head><body>
+Also note we have found some typos and nonstandard abbreviations
+in subpart titles in downloaded data from ECHO/FRS, such as
+"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"
+frs_by_mact[grepl("WOOD PERSERVING AREA SOURCES", frs_by_mact$title), ]
+"PHOSPERIC ACID PRODUCTION" instead of "PHOSPHORIC ACID PRODUCTION"
+frs_by_mact[grepl("PHOSPERIC", frs_by_mact$title), ]
+frs_by_mact[grepl("REDUCTN", frs_by_mact$title), ]
+frs_by_mact[grepl("ORGNCS", frs_by_mact$title), ]'><meta property="og:image" content="https://usepa.github.io/EJAM-open/logo.svg"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -62,7 +86,7 @@ Also note we have found some typos in downloaded data from ECHO/FRS, such as
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -89,16 +113,25 @@ Also note we have found some typos in downloaded data from ECHO/FRS, such as
 so it has multiple rows for one site if the site is covered by multiple subparts.
 It has been joined with frs_by_programid to get latlons for matching facilities.
 @details</p>
-<p>This file is not stored in the package, but is obtained via <code><a href="dataload_dynamic.html">dataload_dynamic()</a></code>.</p>
+<p>For background information on MACT NESHAP subparts:</p><ul><li><p><a href="https://en.wikipedia.org/wiki/National_Emissions_Standards_for_Hazardous_Air_Pollutants" class="external-link">MACT NESHAP</a></p></li>
+<li><p><a href="https://www.epa.gov/stationary-sources-air-pollution/national-emission-standards-hazardous-air-pollutants-neshap-8" class="external-link">subpart(s) that categorize relevant EPA-regulated sites</a></p></li>
+</ul><p>This file is not stored in the package, but is obtained via <code><a href="dataload_dynamic.html">dataload_dynamic()</a></code>.</p>
+<p>See also <code><a href="frs_update_datasets.html">frs_update_datasets()</a></code></p>
 <p>There are about 115k rows here but only about 86k unique program IDs in this table,
-which is from the ECHO data download of ICIS Air and AFS.
-The programid column here should be found in the pgm_sys_id column in frs_by_programid,
-but as of mid 2024 only 55k of them were found there.</p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="fu">table</span>(frs_by_mact<span class="sc">$</span>programid <span class="sc">%in%</span> frs_by_programid<span class="sc">$</span>pgm_sys_id)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">60425</span> <span class="dv">55467</span></span></code></pre><p></p></div>
-<p>Also note we have found some typos in downloaded data from ECHO/FRS, such as</p>
-<p>"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"</p>
+which is from the <a href="https://echo.epa.gov/files/echodownloads/" class="external-link">ECHO data download of ICIS Air and AFS</a>.</p>
+<p>The programid column here should be found in the pgm_sys_id column in frs_by_programid,
+but as of mid 2025 only 55k of them were found there.</p>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="fu">table</span>(frs_by_mact<span class="sc">$</span>programid <span class="sc">%in%</span> frs_by_programid<span class="sc">$</span>pgm_sys_id)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">59944</span>  <span class="dv">55429</span></span></code></pre><p></p></div>
+<p>Also note we have found some typos and nonstandard abbreviations
+in subpart titles in downloaded data from ECHO/FRS, such as</p>
+<p>"WOOD PERSERVING AREA SOURCES" instead of "WOOD PRESERVING AREA SOURCES"
+<code>frs_by_mact[grepl("WOOD PERSERVING AREA SOURCES", frs_by_mact$title), ]</code></p>
+<p>"PHOSPERIC ACID PRODUCTION" instead of "PHOSPHORIC ACID PRODUCTION"
+<code>frs_by_mact[grepl("PHOSPERIC", frs_by_mact$title), ]</code></p>
+<p><code>frs_by_mact[grepl("REDUCTN", frs_by_mact$title), ]</code></p>
+<p><code>frs_by_mact[grepl("ORGNCS", frs_by_mact$title), ]</code></p>
     </div>
 
 

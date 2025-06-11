@@ -36,7 +36,7 @@ Utility to quickly view one or more facility points on map with the blocks found
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -147,7 +147,7 @@ and then displays a map of those blocks near the specified point.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span>  <span class="co">#  see all Census Blocks within 1 mile of 1 site, if already had run getblocksnearby()</span></span>
-<span>  <span class="va">getblocks_output</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html" class="external-link">copy</a></span><span class="op">(</span><span class="va">testoutput_getblocksnearby_10pts_1miles</span><span class="op">)</span></span>
+<span>  <span class="va">getblocks_output</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">testoutput_getblocksnearby_10pts_1miles</span><span class="op">)</span></span>
 <span>  <span class="kw">if</span> <span class="op">(</span><span class="st">"siteid"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">getblocks_output</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">siteidvarname</span> <span class="op">&lt;-</span> <span class="st">"siteid"</span> <span class="co"># the old default</span></span>
 <span>  <span class="va">eg</span> <span class="op">&lt;-</span> <span class="va">getblocks_output</span><span class="op">[</span><span class="va">siteid</span> <span class="op">==</span> <span class="fl">1</span>,<span class="op">]</span></span>

@@ -4,14 +4,12 @@
 \alias{ejam2means}
 \title{ejam2means - quick look at averages, via ejamit() results}
 \usage{
-ejam2means(ejamitout, vars = names_these, w = dt$pop)
+ejam2means(ejamitout, vars = names_these)
 }
 \arguments{
 \item{ejamitout}{as from ejamit()}
 
-\item{vars}{colnames in ejamitout$results_bysite}
-
-\item{w}{weights}
+\item{vars}{all or some of colnames in ejamitout$results_overall}
 }
 \value{
 means in a useful format
@@ -20,15 +18,10 @@ means in a useful format
 ejam2means - quick look at averages, via ejamit() results
 }
 \examples{
-# pctiles
-ejam2quantiles(out,  vars = names_e_state_pctile, topx_insteadof_pctile = F) 
-# ratios  
-ejam2quantiles(out, vars = names_e_ratio_to_state_avg,  topx_insteadof_pctile = T)
-# see the quantiles and mean together
-t(rbind(
-  ejam2quantiles(out, vars = names_e_ratio_to_state_avg, probs = 0.5, topx_insteadof_pctile = T), 
-  AvgPerson = ejam2means(out, vars = names_e_ratio_to_state_avg)))
-# these tell you the same thing:
+out <- testoutput_ejamit_100pts_1miles
+ejam2means(out, vars = names_e_ratio_to_state_avg)
+
+#' # these should tell you the same thing:
 out$results_summarized$keystats[
   rownames(out$results_summarized$keystats) \%in\% names_e_ratio_to_state_avg, 
 ]

@@ -15,7 +15,7 @@
 
 ##################################################################### #
 nacounts = function(x, showall=FALSE) {
-  
+
   if (NCOL(x) == 1) {
     return(
       data.frame(nas = sum(is.na(x)),
@@ -84,12 +84,12 @@ unshared <- function(x,y) {setdiff(union(x,y), intersect(x,y))}
 #'   See [datapack()] for objects that are in R packages.
 #'
 #'   See [functions_in_pkg()] for functions in R package.
-#'   
+#'
 #'   See [functions_that_use()] - searches for text in each function exported by pkg (or each .R source file in pkg/R)
 #'
 #' @param folder1 path to other folder with R source files
 #' @param folder2 path to a folder with R source files, defaults to "./R"
-#' 
+#'
 #' @keywords internal
 #'
 dupeRfiles <- function(folder1 = '../EJAM/R', folder2 = './R') {
@@ -144,7 +144,7 @@ dupeRfiles <- function(folder1 = '../EJAM/R', folder2 = './R') {
 #' @keywords internal
 #'
 dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functions=TRUE) {
-  
+
   # Get list of exported names in package1, then look in package1 to
   #   obs <- getNamespaceExports(pkg)
   # find those appearing in source code .R files without package1:: specified,
@@ -152,13 +152,13 @@ dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functio
   #  (or need to add xyz:: specified)
   # and maybe want to do global search replace within files, like this:
   #   xfun::gsub_file()
-  
+
   if ("all" %in% pkg) {
     pkg <- as.vector(installed.packages()[,"Package"])
   } else {
-    
+
     # THIS COULD/SHOULD BE REPLACED USING ::: and/or getFromNamespace(), etc.
-    
+
     findPkgAll <- function(pkg) { # finds path to each installed package of those specified
       unlist(lapply(.libPaths(), function(lib)
         find.package(pkg, lib, quiet = TRUE, verbose = FALSE)))
@@ -173,15 +173,15 @@ dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functio
     pkg <- installed.packages.among(pkg)
   }
   # getNamespaceExports will get exported object names, but fails if any pkg is not installed, hence code above
-  
+
   xnames <-  sapply(pkg, function(x) {
-    
+
     # DO WE WANT TO CHECK EVEN NON-EXPORTED OBJECTS? see getFromNamespace() and :::
-    
-    y <- try(getNamespaceExports(x))
+
+    y <- try(getNamespaceExports(x), silent = TRUE)
     if (inherits(y,"try-error")) {return(paste0("nothing_exported_by_", x))} else {return(y)}
   } ) # extremely slow if "all" packages checked
-  
+
   counts <- sapply(xnames, length)
   xnames <- unlist(xnames)
   xnames_pkgs <- rep(names(counts), counts)
@@ -197,7 +197,7 @@ dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functio
     return(ddd)
   }
   if (sortbypkg) ddd <- ddd[order(ddd$package), ]
-  
+
   if (compare.functions) {
     ddd$problem = "ok"
     #  use all_equal_functions() here to compare all pairs (but ignores more 2d copy of a function, so misses check of trios)
@@ -216,7 +216,7 @@ dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functio
   } else {
     ddd$problem = "not checked"
   }
-  
+
   return(ddd)
 }
 ##################################################################### #
@@ -234,16 +234,16 @@ dupenames <- function(pkg = EJAM::ejampackages, sortbypkg=FALSE, compare.functio
 #' @keywords internal
 #'
 all_equal_functions <- function(fun="latlon_infer", package1="EJAM", package2) {
-  
+
   # not the same as base R all.equal.function() see  ?all.equal.function
-  
+
   # strange quirks did not bother to debug:
-  
+
   # 1) Normally it checks the first two cases of dupe named functions from 2 packages,
   # and answers with FALSE or TRUE (1 value).
   # But it returns FALSE 3 times only in the case of run_app (but not latlon_is.valid)
   # dupenames(ejampackages) # or just dupenames()
-  
+
   # 2) ### error when checking a package that is loaded but not attached.
   # eg doing this:
   # all_equal_functions("get.distance.all", "proxistat", "EJAM") # something odd about proxistat pkg
@@ -253,7 +253,7 @@ all_equal_functions <- function(fun="latlon_infer", package1="EJAM", package2) {
   # Error in all_equal_functions(fun = var, package1 = ddd$package[ddd$variable ==  :
   #                                                                   distances.all not found in proxistat
   #                                                                Called from: all_equal_functions(fun = var, package1 = ddd$package[ddd$variable ==
-  
+
   if (!(is.character(fun) & is.character(package1) & is.character(package2))) {
     warning("all params must be quoted ")
     return(NA)
@@ -270,20 +270,20 @@ all_equal_functions <- function(fun="latlon_infer", package1="EJAM", package2) {
     return(NA)
   }
   if (!(is.function(f1))) {warning(package1, "::", fun, " is not a function");return(NA)}
-  
+
   f2 = try(
     silent = TRUE,
     expr = getFromNamespace(fun, ns = package2)
     # get((fun), envir = as.environment(paste0("package:", (package2)) ) )
   )
-  
+
   if (inherits(f2,"try-error")) {
     # warning("fails when checking a package that is loaded but not attached - library func allows it to work. ")
     warning(fun, " not found in ",  package2)
     return(NA)
   }
   if (!(is.function(f2))) {warning(package2, "::", fun, " is not a function");return(NA)}
-  
+
   x <- (TRUE == all.equal(body(f1), body(f2))) & (TRUE == all.equal(formals(f1), formals(f2)))
   return(x)
 }
@@ -314,16 +314,16 @@ all_equal_functions <- function(fun="latlon_infer", package1="EJAM", package2) {
 #' @keywords internal
 #'
 functions_that_use <- function(text = "stop\\(", pkg = "EJAM", ignore_comments = TRUE) {
-  
-  
+
+
   if (grepl("\\(", text) & !grepl("\\\\\\(", text)) {warning('to look for uses of stop(), for example, use two slashes before the open parens, etc. as when using grepl()')}
-  
+
   stops <- NULL
   if (inherits(try(find.package(pkg), silent = TRUE), "try-error")) {
     # not an installed pkg.
     if (dir.exists(file.path(pkg, "R"))) {
       # it should be a folder that is root of source package with subfolder called R with .R files so search in those
-      
+
       for (this in list.files(file.path(pkg, 'R'), pattern = '.R', full.names = TRUE)) {
         text_lines_of_function_body <- readLines(this)
         # each row is an element of the vector here
@@ -335,7 +335,7 @@ functions_that_use <- function(text = "stop\\(", pkg = "EJAM", ignore_comments =
         if (grepl(text, text_of_function_body)) {
           stops <- c(stops, this)}
       }
-      
+
     } else {
       if (shiny::isRunning()) {
         warning('pkg must be the name of an installed package or a path to root of source package with R subfolder that has .R files')
@@ -348,14 +348,14 @@ functions_that_use <- function(text = "stop\\(", pkg = "EJAM", ignore_comments =
     # it is an installed package
     if (ignore_comments == FALSE) {warning('always ignores commented lines when checking exported functions of an installed package')}
     for (this in getNamespaceExports(pkg)) {
-      
+
       text_lines_of_function_body <- as.character(functionBody(get(this)))
       # or is that the same as just  as.character(body(this))  ??
       # each row is an element of the vector now
-      
+
       # also check the function parameter default values
       text_lines_of_function_body <- c(text_lines_of_function_body, paste0(formals(this), collapse = " "))
-      
+
       if (ignore_comments) {
         dropcommentedlines <- function(mytext) {gsub("^[ ]*#.*$", "", mytext)} # presumes each line is an element of mytext vector
         # however that will fail to ignore comments that are at the end of the line of actual code like  print(1) # that prints 1
@@ -396,30 +396,30 @@ functions_that_use <- function(text = "stop\\(", pkg = "EJAM", ignore_comments =
 #' @keywords internal
 #'
 functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE, exportedfuncs_included=TRUE, data_included=TRUE, vectoronly=FALSE) {
-  
+
   # helper functions inside this function ####
-  
+
   dataonly <- function(pkg) {datapack(pkg = pkg, simple = TRUE)$Item}
-  
+
   exported_plus_internal_withdata <- function(pkg) {sort(union(dataonly(pkg), ls(getNamespace(pkg), all.names = TRUE)))} # all.names filters those starting with "."
   exported_only_withdata          <- function(pkg) {ls(paste0("package:", pkg))}
   # same as ls(envir = as.environment(x = paste0("package:", pkg)))
   # same as  getNamespaceExports() except sorted
-  
+
   exported_plus_internal_nodata <- function(pkg) {sort(setdiff(
     exported_plus_internal_withdata(pkg = pkg),
     dataonly(pkg = pkg)))}
   exported_only_nodata <- function(pkg) {sort(setdiff(
     exported_only_withdata(pkg = pkg),
     dataonly(pkg = pkg)))}
-  
+
   internal_only_withdata <- function(pkg) {sort(setdiff(
     exported_plus_internal_withdata(pkg = pkg),
     exported_only_nodata(pkg = pkg)))}
   internal_only_nodata <- function(pkg) {sort(setdiff(
     internal_only_withdata(pkg = pkg),
     dataonly(pkg = pkg)))}
-  
+
   # # double-checks, obsolete now since phased out use of EJAMejscreenapi pkg
   #
   # setequal(      exported_plus_internal_withdata("EJAMejscreenapi"),
@@ -430,9 +430,9 @@ functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE,
   #
   # setequal(      internal_only_withdata(         "EJAMejscreenapi"),
   #          union(internal_only_nodata(           "EJAMejscreenapi"), dataonly("EJAMejscreenapi")))
-  
+
   # table format output
-  
+
   omni <- exported_plus_internal_withdata(pkg)
   y <- data.frame(
     object = omni,
@@ -448,7 +448,7 @@ functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE,
   if (!exportedfuncs_included) {
     y <- y[!(y$exported == 1 & y$data == 0), ]
   }
-  
+
   if (!vectoronly) {
     if (alphasort_table) {
       # already done by default
@@ -457,18 +457,18 @@ functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE,
     }
     return(y)
   }
-  
+
   # vector format output
-  
+
   if (vectoronly) {
     # cat('\n\n')
     # cat(pkg)
     # cat('\n\n')
     # print(y)
     # cat('\n\n')
-    
+
     return(y$object)
-    
+
     ################# #
     # if (internal_included & data_included) {
     #   x <- exported_plus_internal_withdata(pkg)
@@ -484,7 +484,7 @@ functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE,
     # }
     #   return(x)
     ################# #
-    
+
   }
 }
 ################# #    ################# #    ################# #    ################# #    ################# #
@@ -504,9 +504,9 @@ functions_in_pkg <- function(pkg, alphasort_table=FALSE, internal_included=TRUE,
 #' @keywords internal
 #'
 dependencies_of_ejam <- function(localpkg = "EJAM", depth = 6, ignores_grep = "0912873410239478") {
-  
+
   #################### #
-  
+
   cat(paste0("
 
   # This may be useful to see dependencies of a package like EJAM:
@@ -517,9 +517,9 @@ x = sort(packrat", ":::", "recursivePackageDependencies('",
 
 x
       "))
-  
+
   #################### #
-  
+
   #   cat(paste0("
   #
   #   # or if you have the deepdep package installed (it is not required by EJAM)...
@@ -549,7 +549,7 @@ x
   # setdiff(y,x)
   #       ")
   #################### #
-  
+
   ## report all dependencies and downstream ones etc.
   ## requires that packrat and deepdep packages be attached 1st:
   # x <- grep("asdfasdfasfasdfasdf", deepdep('EJAM', local = TRUE, downloads = FALSE, depth = 6)$name, value = TRUE, invert = TRUE)
@@ -557,7 +557,7 @@ x
   # setdiff(y, x)
   # ## [1] "snow"
   ## for some reason this 1 package is identified as a dependency one way but not the other way
-  
+
   invisible()
 }
 ##################################################################################### #
@@ -566,23 +566,23 @@ x
 
 # # utility to get the filename where a function is defined
 # #
-# # @details returns NA if e.g., function is defined as equal to / alias of another function, 
+# # @details returns NA if e.g., function is defined as equal to / alias of another function,
 # #  like askradius <- ask_number where ask_number = function() {}
 # #
 # # But this function would require another package / extra dependency on the findInFiles package.
 # #
 # functions_in_pkg_sourcefile <- function(pkg = "EJAM", internal_included = TRUE, exportedfuncs_included = FALSE) {
-#   
+#
 #   # get FUNCTIONS
-#   
-#   x =  functions_in_pkg(pkg = pkg, internal_included = internal_included, exportedfuncs_included = exportedfuncs_included, 
+#
+#   x =  functions_in_pkg(pkg = pkg, internal_included = internal_included, exportedfuncs_included = exportedfuncs_included,
 #                         data_included = FALSE, alphasort_table = TRUE)
 #   funcnames = x$object
-#   
+#
 #   # get R/*.R FILENAME that defines each function (assumes we are in root of source package)
-#   
+#
 #   fnames <- vector(length = length(funcnames))
-#   
+#
 #   for (i in seq_along(funcnames)) {
 #     # funcname <- "datapack"
 #     funcname <- funcnames[i]
@@ -597,20 +597,20 @@ x
 #     }
 #   }
 #   cat("\n")
-#   
+#
 #   fnames
 # }
 ##################################################################################### #
 
 # func_has_keywords_internal_tag <- function(x) {
-#   
+#
 #   # find the file that defines this function called x, get the name of the .R file in the R folder of the source package
 #   # and the line number of the function definition
 #   # this is the file that contains the function definition
-#   
+#
 #   name_of_file <- functions_in_pkg_sourcefile(x)
-#   
-#   
+#
+#
 # }
 ##################################################################################### #
 
@@ -625,10 +625,10 @@ x
 # x <- func_has_keywords_internal_tag()
 
 # > colSums(x[, 8:11])
-# both_but_differ   fname_is_func   fname_is_name  fname_is_name1 
-#               1             144               0             144 
+# both_but_differ   fname_is_func   fname_is_name  fname_is_name1
+#               1             144               0             144
 
-# table(func.na = is.na(x$func), 
+# table(func.na = is.na(x$func),
 #       name.na = is.na(x$name))
 #
 #             name.na
@@ -655,44 +655,44 @@ x
 # NOTE THIS IS SLOW SINCE IT LOADS THE PACKAGE (AND PARSES ALL ROXYGEN TAGS)
 
 func_has_keywords_internal_tag <- function(package.dir = ".") {
-  
+
   # Does load_all() first, so even unexported functions will seem exported, fyi
   #
   # Does not check undocumented functions (those lacking roxygen tags, like if func_alias <- definedfunc1)
   # but does check unexported functions with roxygen tags
   # and does check documented datasets not just functions
-  
+
   roclets <- NULL
   load_code <- NULL
   clean <- FALSE
-  
+
   base_path <- normalizePath(package.dir)
   is_first <- roxygen2:::roxygen_setup(base_path)
   roxygen2:::roxy_meta_load(base_path)
   packages <- roxygen2:::roxy_meta_get("packages")
   lapply(packages, loadNamespace)
-  
+
   load_code <- roxygen2:::find_load_strategy(load_code)
   env <- load_code(base_path) # slow step
   roxygen2:::local_roxy_meta_set("env", env)
   blocks <- roxygen2:::parse_package(base_path, env = NULL)  # slow step
-  
+
   results <- list()
   i <- 0
-  
+
   for (block in blocks) {
-    
+
     i <- i + 1
-    # block <- blocks[[671]] 
-    # block <- blocks[[1]] 
-    
+    # block <- blocks[[671]]
+    # block <- blocks[[1]]
+
     object_name <- roxygen2:::block_get_tag_value(block, 'name')
     if (is.null(object_name) || length(object_name) == 0 || any(is.na(object_name))) {
       object_name <- NA
       # cat("cannot find name in this block: \n")
       # cat("\n")
     }
-    
+
     if (!("call" %in% names(block))) {
       object_call <- NA
     } else {
@@ -708,10 +708,10 @@ func_has_keywords_internal_tag <- function(package.dir = ".") {
         }
       }
     }
-    
+
     cat(paste0(i, ". ", paste0(object_call, " / ", object_name), " "))
     tags <- roxygen2:::block_get_tags(block, "keywords")
-    
+
     if (length(tags) == 0) {
       cat(' \n')
       keywordval <- ""
@@ -722,26 +722,26 @@ func_has_keywords_internal_tag <- function(package.dir = ".") {
       #    keyword <- roxygen2:::block_get_tag_value(block, 'keywords')  # or
       tag <- tags[[1]] # only expect one keywords tag per documented object ?
       keywordval <- tag$val
-      
+
       # keywordinfo <- paste0("[", tag$file, ":", tag$line, "] ", tag$val)
       ## line is start of block, not the keywords tag itself
       cat(keywordval, "\n")
     }
-    
-    results[[i]] <- data.frame(n = i, func = object_call, name = object_name, 
+
+    results[[i]] <- data.frame(n = i, func = object_call, name = object_name,
                                file = basename(block$file), line = block$line, keywordval = keywordval)
     # } # would be loop over keyword tags
   }
-  
+
   results <- do.call(rbind, results)
   filename.no.ext = gsub(".R$", "", results$file)
-  
+
   results$name1 <- ifelse(is.na(results$func), results$name, results$func) # use func/call and only use name as backup 2d choice
   results$both_but_differ = !is.na(results$func)  & results$func != results$name & !is.na(results$name)
-  results$fname_is_func  <- !is.na(results$func)  & results$func  == filename.no.ext 
+  results$fname_is_func  <- !is.na(results$func)  & results$func  == filename.no.ext
   results$fname_is_data_name  <- !is.na(results$name)  & paste0("data_", results$name)  == filename.no.ext
   results$fname_is_name1 <- !is.na(results$name1) & results$name1 == filename.no.ext
-  
+
   return(results)
   # return(list(blocks = blocks, results = results) ) # for troubleshooting
 }

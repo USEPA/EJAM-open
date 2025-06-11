@@ -4,7 +4,10 @@
 #' @export
 #' @keywords internal
 #' 
-app_run_EJAM <- function(    # SHOULD BE IDENTICAL TO run_app() now
+app_run_EJAM <- function(
+    
+    # SHOULD BE IDENTICAL TO run_app()
+  
     onStart = NULL,
     options = list(),
     
@@ -25,5 +28,6 @@ app_run_EJAM <- function(    # SHOULD BE IDENTICAL TO run_app() now
     ... = ...
   )
 }
-## or 
+## autocomplete of params seems to work better if done as above, 
+## but this is essentially just doing this: 
 # app_run_EJAM <- run_app

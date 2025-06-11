@@ -885,7 +885,7 @@ proxistat_via_getblocks <- function(pts, countradius=5, maxradius=31) {
 #'   created for all blocks and block groups in the US (or just one State or Region).
 #'   Then the proximity scores can be analyzed in a tool like EJAM, just as the
 #'   existing pre-calculated proximity scores are analyzed to represent the
-#'   number of nearby hazardous waste treatment stoprage and disposal facilities,
+#'   number of nearby hazardous waste treatment storage and disposal facilities,
 #'   weighted by how far away each one is, as provided in the EJScreen proximity
 #'   score for TSDFs.
 #'
@@ -1397,7 +1397,7 @@ custom_doaggregate <- function(sites2blocks,
   # no averages looked up or created
   # no ratios calculated
   # no Summary Indexes created
-  # no summary stats like from batch.summarize(), etc.
+  # no summary stats like from batch.summarize, etc.
 
   #################### #
   # aggregate from blocks up to blockgroups

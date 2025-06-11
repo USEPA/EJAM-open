@@ -1374,7 +1374,7 @@ fips_counties_from_statename <- function(statename) {
 #' @param ST two letter abbreviation of State, such as "TX" -- Can only be
 #'   omitted if the 1st parameter has the full name and ST like
 #'   "Harris County, TX". Ignores case.
-#' @param exact TRUE requireS exact matches, FALSE to allow partial matches
+#' @param exact TRUE requires exact matches, FALSE to allow partial matches
 #'   which here means first few letters match (it is not using grep), and
 #'   in which case outputs might differ from inputs in length and not be 1-to-1
 #' @return the county FIPS (5 digits long with leading zero if needed, as character)

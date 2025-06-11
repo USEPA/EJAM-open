@@ -48,7 +48,7 @@ FRS dataset, and the functions in EJAM that help find or use NAICS codes.
 NAICS/SIC categories can be explored in a few ways:
 
 -   [Key EJAM functions for using
-    NAICS/SIC](reference/index.html#naics-sic-datasets)
+    NAICS/SIC](../reference/index.html#naics-sic-datasets)
 -   [NAICS.com website](https://www.naics.com) with extensive information [about
     NAICS](https://www.naics.com/everything-naics/) and
     [SIC](https://www.naics.com/everything-sic/)

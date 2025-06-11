@@ -13,7 +13,7 @@ download_latest_arrow_data(
 \arguments{
 \item{varnames}{use defaults, or vector of names like "bgej" or use "all" to get all available}
 
-\item{repository}{repository name such as "USEPA/ejamdata" or "XYZ/ejamdata"
+\item{repository}{repository name such as https://usepa.github.io/EJAM-open or "XYZ/ejamdata"
 (wherever the ejamdata repo is hosted, as specified in the DESCRIPTION file of this package)}
 
 \item{envir}{if needed to specify environment other than default, e.g., globalenv() or parent.frame()}

@@ -1,6 +1,6 @@
 
 # also SEE https://pharmar.github.io/riskmetric/  too for assess_size_codebase()
-########################################################## # 
+########################################################## #
 
 #' utility - quick way to do dir() but for query pattern like  *.xlsx
 #' useful if you forget [glob2rx()] is available
@@ -12,30 +12,31 @@
 #' @param ... passed to [dir()]
 #' @return vector of paths
 #' @examples
+#'  #  dir2()
 #' dontrun{
 #' dir2()
 #' dir2("*.zip", recursive = T)
 #' dir2("*.y*",  recursive = T)
-#' 
+#'
 #' # if recursive=T, left-aligned view of paths is shown
 #' dir2("*datacreate*.*", recursive = T)
 #' # for right-aligned view:
 #' data.frame(hit=dir2("*address*.*", recursive = T))
-#' 
+#'
 #' dir2("*.csv*", path = testdatafolder(installed = FALSE), recursive = T)
 #' }
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 dir2 <- function(query_glob = '*.*', ignore.case = TRUE, recursive = FALSE, silent = FALSE, ...) {
-  
+
   vector_of_paths <- dir(
-    pattern = glob2rx(query_glob), 
-    ignore.case = ignore.case, 
+    pattern = glob2rx(query_glob),
+    ignore.case = ignore.case,
     recursive = recursive,
     ...
   )
-  
+
   table_view <- as.data.frame(cbind(
     `Matching files found` = vector_of_paths
   ))
@@ -49,7 +50,7 @@ dir2 <- function(query_glob = '*.*', ignore.case = TRUE, recursive = FALSE, sile
   }
   invisible(vector_of_paths)
 }
-########################################################## # 
+########################################################## #
 
 #' UTILITY - count lines of source code per .R file (not per function)
 #' check how big each source code file is to help decide how to break it up into pieces
@@ -64,26 +65,26 @@ dir2 <- function(query_glob = '*.*', ignore.case = TRUE, recursive = FALSE, sile
 #' @param showrows optional
 #'
 #' @return data.frame of info about files
-#' 
+#'
 #' @keywords internal
-#' 
+#'
 #' @noRd
-#' 
+#'
 linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfolderonly=FALSE, cropfilename=40, croppath=20, showrows=NULL) {
-  
+
   # if packages is specified:   if (!missing(packages))
-  #   if both specified: if (!missing(folder)) {warn("packages and folder both specified, so ignoring folder param")} 
+  #   if both specified: if (!missing(folder)) {warn("packages and folder both specified, so ignoring folder param")}
   #   (if only packages names specified, quietly ignore default folder)
   #   find each of packages wherever, using find.package()
-  # if packages not specified:  if (missing(packages)) 
+  # if packages not specified:  if (missing(packages))
   #   (if neither folder nor packages param specified, use default folder.)
   #   (if only folder specified, use specified folder.)
   #   identify any pkgs in folder.
-  
+
   if (missing(packages)) {
     # identify any pkgs in folder
     # only if the folder contains all the source package dirs, this works:
-    
+
     dir_is_pkg = function(mydir) {
       devtools::is.package(devtools::as.package(mydir))
     }
@@ -104,10 +105,10 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
       pkgname.allfound = basename(pkg_dir)
     }
   }
-  
+
   if (!missing(packages)) {
     packages = basename(packages)
-    if (!missing(folder)) {warn("packages and folder both specified, so ignoring folder param")} 
+    if (!missing(folder)) {warn("packages and folder both specified, so ignoring folder param")}
     # find each of packages wherever, using find.package()
     # find each package - finds installed version unless load_all() has been done
     pkg_dir = vector()
@@ -124,11 +125,11 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
     pkgname.allfound <- packages[!is.na(pkg_dir)]
     pkg_dir = pkg_dir[!is.na(pkg_dir)]
     # > cbind(parent_dir, pkgname.allfound, pkg_dir)
-    # parent_dir                      pkgname.allfound   pkg_dir                                    
-    # [1,] "C:/Users/x/R/mysource"    "EJAM"             "C:/Users/x/R/mysource/EJAM"        
+    # parent_dir                      pkgname.allfound   pkg_dir
+    # [1,] "C:/Users/x/R/mysource"    "EJAM"             "C:/Users/x/R/mysource/EJAM"
     # [2,] "C:/Users/x/R/myinstalled" "data.table"        "C:/Users/x/R/myinstalled/data.table"
   }
-  
+
   Rfilenames <- NULL
   pnames <- NULL
   for (i in seq_along(pkg_dir)) {
@@ -137,13 +138,13 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
     Rfilenames <- c(Rfilenames,  rfiles_1path)
   }
   justfilename  <- basename(Rfilenames)
-  
+
   # *** get vector of package names as long as Rfilenames
-  
+
   pkgname <- pnames # pkgname.allfound[pkgname.allfound %in% packages ]
 
   n <- length(Rfilenames)
-  
+
   if (n == 0) {
     cat('No .R files found  \n')
   }
@@ -151,10 +152,12 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
     out <- matrix(nrow = n, ncol = 6)
     out <- as.data.frame(out)
     names(out) <- c('lines', 'comments', 'code', 'package', 'where', 'filename')
-    
+
     for (i in 1:n) {
-      
-      filetext <- suppressWarnings(  try(readLines(file.path(folder, Rfilenames[i])) ))
+
+      filetext <- suppressWarnings(  try(
+        readLines(file.path(folder, Rfilenames[i])),
+        silent = TRUE ))
       if (inherits(filetext, "try-error")) {
         linecount <- NA
         commentcount <- NA
@@ -163,7 +166,7 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
         commentcount <-  sum( grepl(pattern = '^#', x =  filetext, ignore.case = TRUE) )
       }
       codecount <- linecount - commentcount
-      
+
       out[i, 'lines'] <- linecount
       out[i, 'comments'] <- commentcount
       out[i, 'code'] <- codecount
@@ -175,9 +178,9 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
     }
     out <- out[order(out$lines, decreasing = T), ]
     rownames(out) <- NULL
-    
+
     if (rfolderonly) {out <- out[out$where == "/R/", ]}
-    
+
     mysums <- cbind(
       #   summarize(out$lines,    by = out$package, FUN = sum), # was from the Hmisc pkg
       #   summarize(out$filename, by = out$package, FUN = length) # was from the Hmisc pkg  #  c(out$package , out$lines  ,   out$package,  out$filename) from Hmisc # Group.1     x         Group.1   x  from aggregate
@@ -188,17 +191,17 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
     mysums <- mysums[ , c("package", "filename", "lines")]
     mysums <- mysums[order(mysums$lines, decreasing = T), ]
     rownames(mysums) <- NULL
-    
+
     if (sums) {
       return(mysums)
     } else {
       cat('\n'); print( mysums ); cat('\n')
-      
+
       cropped <- out
       cropit <- function(x, n) {x[nchar(x) > n + 3] <- paste0(substr(x[nchar(x) > n + 3], 1, n), "..." ); return(x)}
       cropped$filename  <- cropit(cropped$filename, cropfilename)
       cropped$where    <- cropit(cropped$where,     croppath)
-      
+
       if (is.null(showrows)) {
         showrows <- 1 + findInterval(sum(cropped$lines) / 2, cumsum(cropped$lines))
         cat("\nMost of the code is in these files: \n\n")}
@@ -206,18 +209,18 @@ linesofcode2 <- function(folder='.', packages, recursive=TRUE, sums=FALSE, rfold
       cat("\n Full list is returned invisibly \n")
       invisible(out)
     }
-  } 
+  }
 }
-########################################################## # 
+########################################################## #
 
 # linesofcode_per_section <- function(folder, ...) {
-#   
-#   
+#
+#
 #   x <- linesofcode2(folder, ...)
-#   
+#
 #   # to be continued
-#   
-#   
+#
+#
 # }
-# 
-########################################################## # 
+#
+########################################################## #

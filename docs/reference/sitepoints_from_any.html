@@ -36,7 +36,7 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column"><meta prop
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -120,7 +120,7 @@ Like latlon_from_anything() but this also adds a ejam_uniq_id column</p>
 <span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span>
 <span> <span class="va">pts</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Longitude <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span>, Latitude <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span><span class="op">)</span></span>
 <span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span>
-<span> <span class="va">pts</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>Lat <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span>, Long <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span><span class="op">)</span></span>
+<span> <span class="va">pts</span> <span class="op">=</span> <span class="fu">data.table</span><span class="op">(</span>Lat <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lat</span>, Long <span class="op">=</span> <span class="va">testpoints_10</span><span class="op">$</span><span class="va">lon</span><span class="op">)</span></span>
 <span> <span class="fu">sitepoints_from_any</span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span>
 <span> </span>
 <span> <span class="fu">sitepoints_from_anything</span><span class="op">(</span><span class="va">testpoints_bad</span>, set_invalid_to_na <span class="op">=</span> <span class="cn">F</span>, invalid_msg_table <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>

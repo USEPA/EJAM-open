@@ -164,7 +164,7 @@ count_sites_with_n_high_scores <- function(
       if (site_stat_type ==     "pct")   {stat_text <- "%"; stat_text2 = "exactly "}
       if (site_stat_type == "cum_count") {stat_text <- "";  stat_text2 = "at least "}
       if (site_stat_type ==     "count") {stat_text <- "";  stat_text2 = "exactly "}
-      
+      # see https://cli.r-lib.org/articles/pluralization.html
       sitetxt <- paste0(
         "At ", ifelse(pct > 0, paste0(stat_text2,                                     # At (at least or exactly) 
                                pct, stat_text, " of "), "none of "), "these sites, ",  # N or X% or none of these sites, 

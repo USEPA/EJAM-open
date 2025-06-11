@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -62,7 +62,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ejam2means</span><span class="op">(</span><span class="va">ejamitout</span>, vars <span class="op">=</span> <span class="va">names_these</span>, w <span class="op">=</span> <span class="va">dt</span><span class="op">$</span><span class="va">pop</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ejam2means</span><span class="op">(</span><span class="va">ejamitout</span>, vars <span class="op">=</span> <span class="va">names_these</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -74,11 +74,7 @@
 
 
 <dt id="arg-vars">vars<a class="anchor" aria-label="anchor" href="#arg-vars"></a></dt>
-<dd><p>colnames in ejamitout$results_bysite</p></dd>
-
-
-<dt id="arg-w">w<a class="anchor" aria-label="anchor" href="#arg-w"></a></dt>
-<dd><p>weights</p></dd>
+<dd><p>all or some of colnames in ejamitout$results_overall</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -88,15 +84,10 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># pctiles</span></span>
-<span><span class="fu"><a href="ejam2quantiles.html">ejam2quantiles</a></span><span class="op">(</span><span class="va">out</span>,  vars <span class="op">=</span> <span class="va">names_e_state_pctile</span>, topx_insteadof_pctile <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> </span>
-<span><span class="co"># ratios  </span></span>
-<span><span class="fu"><a href="ejam2quantiles.html">ejam2quantiles</a></span><span class="op">(</span><span class="va">out</span>, vars <span class="op">=</span> <span class="va">names_e_ratio_to_state_avg</span>,  topx_insteadof_pctile <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span>
-<span><span class="co"># see the quantiles and mean together</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span></span>
-<span>  <span class="fu"><a href="ejam2quantiles.html">ejam2quantiles</a></span><span class="op">(</span><span class="va">out</span>, vars <span class="op">=</span> <span class="va">names_e_ratio_to_state_avg</span>, probs <span class="op">=</span> <span class="fl">0.5</span>, topx_insteadof_pctile <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, </span>
-<span>  AvgPerson <span class="op">=</span> <span class="fu">ejam2means</span><span class="op">(</span><span class="va">out</span>, vars <span class="op">=</span> <span class="va">names_e_ratio_to_state_avg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co"># these tell you the same thing:</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">testoutput_ejamit_100pts_1miles</span></span>
+<span><span class="fu">ejam2means</span><span class="op">(</span><span class="va">out</span>, vars <span class="op">=</span> <span class="va">names_e_ratio_to_state_avg</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">#' # these should tell you the same thing:</span></span>
 <span><span class="va">out</span><span class="op">$</span><span class="va">results_summarized</span><span class="op">$</span><span class="va">keystats</span><span class="op">[</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_summarized</span><span class="op">$</span><span class="va">keystats</span><span class="op">)</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">names_e_ratio_to_state_avg</span>, </span>
 <span><span class="op">]</span></span>

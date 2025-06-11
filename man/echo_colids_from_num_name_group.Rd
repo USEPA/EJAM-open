@@ -10,7 +10,7 @@ echo_colids_from_num_name_group(x = NULL)
 \item{x}{vector of specifiers of variables needed to get from the ECHO facility query API,
 which can be the variable column id that the API needs (1 through about 316),
 or the actual ObjectName (variable name) found in varsinfo_ECHO_API,
-or a word spefying a group of variables like critical or best
+or a word specifying a group of variables like critical or best
 or others that are logical class columns in varsinfo_ECHO_API
 or the word all (for all available, about 316).}
 }

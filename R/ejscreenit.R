@@ -110,7 +110,7 @@
 #' @param y latitudes, or ignored if x was a file or table with lat,lon info.
 #' @param radius in miles - gets data on all residents within that distance from each point
 #' @param maxradiusmiles optional in case you want to use a radius of more than default cap
-#' @param nicenames whether to use long plain english headers in table or R variable names,
+#' @param nicenames whether to use long plain English headers in table or R variable names,
 #'   e.g.,  "Particulate Matter (PM 2.5 in ug/m3)" not "pm"
 #' @param fips if used instead of x,y it can specify fips codes of counties, tracts, or blockgroups
 #' @param shapefile not implemented

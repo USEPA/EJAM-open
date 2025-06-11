@@ -61,7 +61,7 @@ allows data entry of up to 2,000 IDs pasted from spreadsheet column, or comma- o
 \examples{
   x1 = get_facility_info_via_ECHO(562213, url_not_query = F)
   x2 = latlon_from_naics(562213)
-  
+
 }
 \seealso{
 varsinfo_ECHO_API  get_siteid_from_naics()

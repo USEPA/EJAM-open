@@ -132,6 +132,9 @@ url_4table <- function(lat, lon, radius=NULL, regid = NULL,
 #'
 url_countyhealthrankings <- function(fips, year = 2025) {
   
+  if (missing(year) && year != as.numeric(substr(Sys.Date(), 1, 4))) {
+    warning("default year is ", year, " but newer data might be available")
+  }
   if (missing(fips)) {
     return("https://www.countyhealthrankings.org")
   }

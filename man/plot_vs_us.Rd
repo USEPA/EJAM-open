@@ -75,7 +75,7 @@ more generally like for \code{\link[=ejamit_compare_types_of_places]{ejamit_comp
   plot_vs_us(out$results_bysite, varname = "pctlingiso", type =  'ggplot')
   plot_vs_us(out$results_bysite, varname = "pctnhaa", type =  'ggplot')
   plot_vs_us(out$results_bysite, varname = "pctnhaa", type = 'box', ylim = c(0, 20))
-  
+
  # td = testoutput_ejamit_1000pts_1miles$results_bysite
  # plot_vs_us(, type = 'box')
  # plot_vs_us(td, varname = "pctlingiso", type =  'box', ylim=c(0,20))
@@ -84,7 +84,7 @@ more generally like for \code{\link[=ejamit_compare_types_of_places]{ejamit_comp
  # plot_vs_us(td, varname = "pctnhaa", type = 'box', ylim = c(0,20))
  # plot_vs_us(td[td$ST \%in\% "DE", ], 'pcthisp', refdata = blockgroupstats[ST \%in\% "DE", .(pop, pcthisp)])
   }
-  
+
 }
 \seealso{
 See \code{\link[=plot_boxplot_pctiles]{plot_boxplot_pctiles()}} for Percentile indicators compared in one plot.

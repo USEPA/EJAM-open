@@ -66,7 +66,7 @@
 #'  vs <- ejscreen_vs()
 #'
 #'  # vs filtered to just the ones where rounded pop disagrees
-#'  
+#'
 #'  table(vs$same_shown$pop)
 #'  vspopoff <- lapply(vs, function(x) x[!vs$same_shown$pop, ])
 #'
@@ -395,9 +395,9 @@ ejscreen_vs_ejam_1var_bysite <- function(vs, pts, varname = "blockcount_near_sit
 #'   s100[s100$indicator %in% names_e, ]
 #'   s100[s100$indicator %in% names_d, ]
 #'   s100[s100$indicator %in% names_these, ]
-#'   s100[s100$indicator %in% c(names_ej_pctile, names_ej_state_pctile, 
+#'   s100[s100$indicator %in% c(names_ej_pctile, names_ej_state_pctile,
 #'     names_ej_supp_pctile, names_ej_supp_state_pctile), ]
-#'   
+#'
 #'   sum100_within5pct <- ejscreen_vs_ejam_summary(vs100, tol = 0.05)
 #'   sum100_within5pct[sum100_within5pct$indicator %in% names_these, ][ , c(1, 6:12)]
 #'
@@ -720,7 +720,7 @@ ejscreen_vs_ejam_1var = function(vs, varname = 'pop', # names_these[4], # "pctli
 #' Plot distribution of absolute values of Percent Differences in 1 indicator at tested sites
 #' @param vs output of ejscreen_vs() or similar
 #' @param varname like "pop" or any of colnames(testoutput_ejamit_10pts_1miles$results_bysite)
-#'   that are among those in 
+#'   that are among those in
 #'   \code{colnames(ejscreen_vs_ejam(testpoints_10[1:2,], save_ejscreen_output = F ))}
 #' @return CDF plot
 #'
@@ -775,7 +775,7 @@ ejscreen_vs_ejam_1var_cdf = function(vs, varname = 'pop') {
 #'   mysite <- 9
 #'   \donttest{
 #'   vs <- ejscreen_vs_ejam(testpoints_10, radius = 3)
-#'   ejscreen_vs_ejam_see1(vs, mysite = mysite, 
+#'   ejscreen_vs_ejam_see1(vs, mysite = mysite,
 #'     myvars = colnames(vs$EJAM))[!is.na(vs$EJSCREEN[mysite, ]) , 1:2]
 #'   }
 #'
@@ -1111,7 +1111,7 @@ ejscreen_vs_explain <- function(vs, ejam_uniq_id = NULL, pause_on_each_site = TR
       # seems to have been added or missed by EJAM
       suppressWarnings({
         meters_absdiff[i] = max(abs(this$meters[ this$explanation != "" ]), na.rm = TRUE)
-        #browser()
+
         met <- this$meters[ this$explanation != "" ][which.max(abs(this$meters[ this$explanation != "" ]))]
         if (length(met) > 0) {
           meters_diff[i] <- met
@@ -1160,8 +1160,8 @@ ejscreen_vs_explain_summary(why, radius = vs$EJAM$radius[1])
 #' @return summary table of info, on how many sites had each type of explanation
 #' @examples
 #' vs10 <- ejscreen_vs_ejam(
-#'           testpoints_10, radius = 3, 
-#'           save_ejscreen_output = F, 
+#'           testpoints_10, radius = 3,
+#'           save_ejscreen_output = F,
 #'           save_when_report = F,
 #'           calculate_ratios = F
 #'         )
@@ -1409,7 +1409,7 @@ ejscreen_vs <- function(defdir = '.',
     if (!dir.exists(defdir)) {message("specified defdir not found - please specify a valid folder")}
     defdir = ifelse(dir.exists(defdir), defdir, getwd())
     mydir = rstudioapi::selectDirectory("Folder for saving files?", path = defdir)
-    if (is.na(mydir)) {stop('cancelled')}
+    if (is.na(mydir)) {stop('canceled')}
   } else {
     mydir <- defdir
   }
@@ -1435,7 +1435,7 @@ ejscreen_vs <- function(defdir = '.',
       #  maybe they want to specify the file interactively or ask for new places interactively
       newpts = askYesNo("Use a new set of random places? (instead of saved places/points)")
     }
-    if (is.na(newpts)) {stop("cancelled")}
+    if (is.na(newpts)) {stop("canceled")}
   }
   ############################## #
   if (newpts) {
@@ -1443,7 +1443,7 @@ ejscreen_vs <- function(defdir = '.',
       junk = capture.output({
         n = ask_number(default = 100, title = "Places", message = "How many places to test?")
       })
-      if (is.na(n)) {stop('cancelled')}
+      if (is.na(n)) {stop('canceled')}
     }
   }
   if (newpts) {
@@ -1542,7 +1542,7 @@ ejscreen_vs <- function(defdir = '.',
     } else {
       radius = ask_number()
     }
-    if (is.na(radius)) {stop('cancelled')}
+    if (is.na(radius)) {stop('canceled')}
   }
   ######################################################################################### #
 
@@ -1579,7 +1579,7 @@ ejscreen_vs <- function(defdir = '.',
       usesavedejscreen <- FALSE
     } else {
       usesavedejscreen <- askYesNo("Use saved EJScreen results from prior run?")
-      if (is.na(usesavedejscreen)) {stop('cancelled')}
+      if (is.na(usesavedejscreen)) {stop('canceled')}
     }
   } else {
     # user can specify they dont want to get asked about using saved results like this:
@@ -1593,7 +1593,7 @@ ejscreen_vs <- function(defdir = '.',
     ###  to redo just the ejam part eg when iterating fixes but use already-run ejscreen numbers since that is slow.
     if (missing(savedejscreentableoutput)) {
       savedejscreentableoutput_FILENAME = rstudioapi::selectFile("Which file has saved ejscreenapi_plus_out results as .rda ?",  path = getwd(), filter = "rda files (*.rda)")
-      if (is.na(savedejscreentableoutput_FILENAME)) {stop("cancelled")}
+      if (is.na(savedejscreentableoutput_FILENAME)) {stop("canceled")}
       nameofobject <- load(savedejscreentableoutput_FILENAME) # load(file.path(mydir, "ejscreenapi_plus_out.rda"))
       savedejscreentableoutput <- get(nameofobject)
 

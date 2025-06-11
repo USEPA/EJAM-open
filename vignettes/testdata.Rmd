@@ -102,7 +102,6 @@ latlon_from_anything(testpoint_files[2])
 ```
 
 
-
 ### Sample R data objects: Examples of inputs & outputs of EJAM functions
 
 The package has a number of data objects, installed as part of EJAM and related packages,
@@ -111,13 +110,13 @@ functions, or you may just want to see what the outputs and inputs look like,
 or you could use them for testing purposes.
 
 For documentation on each input or output item (R object), see 
-https://usepa.github.io/EJAM/reference/index.html#test-data
+[reference documentation on each object](../reference/index.html#test-data)
 
 This code snippet provides a useful list of test/ sample data
 objects in EJAM and related packages:
 
-**POINT DATA (LAT/LON COORDINATES)** for testing ejamit(), mapfast(),
-ejscreenit(), getblocksnearby(), etc.
+**POINT DATA (LAT/LON COORDINATES)** for testing `ejamit()`, `mapfast()`,
+`ejscreenit()`, `getblocksnearby()`, etc.
 
 See all files and all dataset examples related to one topic:
 ```{r}
@@ -141,23 +140,23 @@ x <- x[order(x$Package, x$Item), !grepl("size", names(x))]
 x[grepl("^testp", x$Item), ]
 ```
 
-**STREET ADDRESSES** for testing geocoding in latlon_from_address() etc.
+**STREET ADDRESSES** for testing geocoding in `latlon_from_address()` etc.
 
 ```{r addresses_data, eval=TRUE, echo=TRUE}
 x[grepl("^test_", x$Item), ]
 cat("\n\n")
 ```
 
-**FACILITY REGISTRY IDs** for testing latlon_from_regid() etc.
+**FACILITY REGISTRY IDs** for testing `latlon_from_regid()` etc.
 
 ```{r regids_data, eval=TRUE, echo=TRUE}
 x[grepl("^test[^op_]", x$Item), ]
 cat("\n\n")
 ```
 
-**EXAMPLES OF OUTPUTS** from ejamit(), ejscreenit(), getblocksnearby(), etc.,
-you can use as inputs to ejam2report(), ejam2excel(), ejam2ratios(),
-ejam2barplot(), doaggregate(), etc.
+**EXAMPLES OF OUTPUTS** from `ejamit()`, `ejscreenit()`, `getblocksnearby()`, etc.,
+you can use as inputs to `ejam2report()`, `ejam2excel()`, `ejam2ratios()`,
+`ejam2barplot()`, `doaggregate()`, etc.
 
 ```{r testout_data, eval=TRUE, echo=TRUE}
 x[grepl("^testout", x$Item), ]
@@ -168,9 +167,6 @@ cat("\n\n")
 
 Note that the largest files used by the package are mostly the block-related datasets with info about population size and location of US blocks, the facility datasets with info about EPA-regulated sites, and the blockgroup-related datasets with EJScreen indicators. 
 
-Some datasets get downloaded by the package at installation or launch or as needed. Datasets may include for example: 
-[blockwts], [blockpoints], [quaddata], [blockid2fips], [frs], [frs_by_programid], [frs_by_naics], [frs_by_sic], and [frs_by_mact].
+Some datasets get downloaded by the package at installation or launch or as needed. See the article on [Updating EJAM Datasets](dev_update-datasets.html) for more information on these. 
 
-Blockgroup-related datasets incude [blockgroupstats], [bgpts], [bgej], [usastats], [statestats], [bgid2fips], and [bg_cenpop2020]. For more info see 
-https://usepa.github.io/EJAM/reference/index.html#datasets-with-indicators-etc-
-
+Also see [reference documentation for each dataset](../reference/index.html#datasets-with-indicators-etc-).

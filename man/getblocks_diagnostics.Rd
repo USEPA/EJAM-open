@@ -40,7 +40,7 @@ utility - How many blocks and many other stats about blocks and sites
 cbind(stats = zz)
 
   getblocks_diagostics(testoutput_getblocksnearby_1000pts_1miles, see_distanceplot = TRUE)
-  
+
 }
 \seealso{
 This relies on  \code{\link[=getblocks_summarize_blocks_per_site]{getblocks_summarize_blocks_per_site()}} and \code{\link[=getblocks_summarize_sites_per_block]{getblocks_summarize_sites_per_block()}}

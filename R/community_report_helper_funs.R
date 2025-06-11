@@ -465,7 +465,7 @@ fill_tbl_full_subgroups <- function(output_df,
       rnames <- rnames[!(rnames %in% rnames2drop)]
     }
 
-    longnames <- fixcolnames(rnames, 'r', 'long') # get plain english long indicator name to show in table
+    longnames <- fixcolnames(rnames, 'r', 'long') # get plain English long indicator name to show in table
     tbl_rows <- sapply(seq_along(rnames), function(x) {
       fill_tbl_row_subgroups(output_df = df,
                              Rname = rnames[x],
@@ -594,9 +594,10 @@ generate_report_footnotes <- function(
 #' @param in_shiny, whether the function is being called in or outside of shiny - affects location of header
 #' @param report_title generic name of this type of report, to be shown at top, like "EJAM Multisite Report"
 #' @param logo_path optional relative path to a logo for the upper right of the overall header.
-#'   Ignored if logo_html is specified.
+#'   Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()
 #' @param logo_html optional HTML for img of logo for the upper right of the overall header.
-#'   If specified, it overrides logo_path.
+#'   If specified, it overrides logo_path. If omitted, gets created based on logo_path.
+#'
 #' @keywords internal
 #'
 generate_html_header <- function(analysis_title,
@@ -608,13 +609,36 @@ generate_html_header <- function(analysis_title,
 ) {
 
   if (is.null(logo_path)) {
+
     if (!in_shiny) {
-      logo_path <- global_defaults_package$.community_report_logo_file
+      full_path <- global_defaults_package$.community_report_logo_path
+      logo_path <- full_path # ok
+      cat("TRYING TO USE logo_path = ", logo_path, "\n")
+
     } else {
-      ## maps to installed installed/EJAM/report/community_report using resource path defined in app_ui.R
+      ## maps to installed installed/EJAM/report/community_report using resource path defined in shiny app_ui.R
+
+      # ## fails:
+      # full_path <- EJAM:::global_or_param(".community_report_logo_path") #  "community_report/ejamhex4.png" # ***
+      # logo_path <- gsub(getwd(), ".", full_path)
+      ## hard coded but want it based on params or global !
+      ## the full path stored in the global object:  is if used load_all() .....then..EJAM/inst/report/community_report/ejamhex4.png"
+      # global_defaults_package$.community_report_logo_path
+      ## fails: (good path but fails to work in shiny)
+      # logo_path <- paste0('community_report/',
+      #                     EJAM:::global_or_param(".community_report_logo_file"))
+      #                     # global_defaults_package$.community_report_logo_file)
       logo_path <- 'community_report/ejamhex4.png'
+      cat("TRYING TO USE logo_path = ", logo_path, "\n")
     }
   }
+  # backup tried here since path was problematic:
+  # if (!file.exists(logo_path)) {
+  #   logo_path <- system.file('report/community_report/ejamhex4.png', package = "EJAM")
+  # cat("*******   using backup path to logo file \n")
+  # cat("TRYING TO USE logo_path = ", logo_path, "\n")
+  # }
+
   if (is.null(logo_html)) {
     # add padding and adjust size so that the img_html object is a bit lower on the screen and does not get shrunk
     logo_html <- paste0('<img src=\"', logo_path, '\" alt=\"logo\" width=\"220\" height=\"70\">')
@@ -648,27 +672,26 @@ generate_html_header <- function(analysis_title,
     '<div id="header-primary-background">',
     '<div id="header-primary-background-inner">',
 
-    '<h1 id="title" tabindex="0">',    report_title,    '</h1>',
-
-    '<p>This report summarizes environmental and residential population information for user-defined areas,<br> and combines that data into indexes.</p>',
+    '<h1 id="title" tabindex="0">',          report_title,
+    '</h1>',
+    '<p>This report summarizes environmental and residential population information for user-defined areas,',
+    '<br>and combines that data into indexes.</p>',
     '</div>',
-    '<div id="header-primary-background-img-container">',
-    logo_html,  # for example an EPA logo
+    '<div id="header-primary-background-img-container">',  logo_html,   # for example an EPA logo
     '</div>',
     '</div>',
-
     '<div class="header">
     <div>
-        <h2 id="placename">',    analysis_title ,    '</h2>
+        <h2 id="placename">',                analysis_title,
+    '</h2>
     </div>
   <div>
-  <h5>',    locationstr,    '<br>Population: <span id="TOTALPOP">',    totalpop,    '</span><br></h5>
-
+  <h5>',                                     locationstr,
+    '<br>Population: <span id="TOTALPOP">',    totalpop,
+    '</span><br></h5>
  </div>
 </div>',
-
     sep = '', collapse = '')
-
   # Population: <span id=\"TOTALPOP\">',totalpop,'</span><br>',
 }
 ################################################################### #
@@ -767,6 +790,7 @@ report_xmilesof <- function(radius, unitsingular = 'mile') {
     return(radius) # e.g., "1.3 km from "
     #  but if you provide custom text without ending with "of " then it will look odd
   }
+  # See  https://cli.r-lib.org/articles/pluralization.html
   xmilesof <- ifelse(
     (is.null(radius) || radius == 0 || is.na(radius)), "",
     paste0(radius, " ", unitsingular, ifelse(radius > 1, "s", ""), " of ")
@@ -920,6 +944,7 @@ report_residents_within_xyz <- function(text1 = 'Residents within ',
   } else {
     siteidtext_in_parens <- paste0("(", siteidtext, ")")
   }
+  # see https://cli.r-lib.org/articles/pluralization.html
   anyoftheplaces <- ifelse(nsites == 1,
                            paste0('this', location_type, " ", siteidtext_in_parens, ""),
                            paste0("any of the ", nsites, location_type, "s") # "(in aggregate)"
@@ -931,13 +956,6 @@ report_residents_within_xyz <- function(text1 = 'Residents within ',
 
   ################################################### #
 
-  # if (nsites == 1) {
-  ## If we had the lat,lon values here we could add that here:
-  # residents_within_xyz <- paste0(
-  #   residents_within_xyz, '<br>',
-  #   "(at ", ejamout1$lat, ', ', ejamout1$lon, ')'
-  # )
-  # }
 
   ################################################### #
 

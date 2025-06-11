@@ -37,16 +37,16 @@
 #'
 #' @examples
 #' address_from_table(testinput_address_table)
-#' 
+#'
 #' ## see available test data objects and files:
-#' 
+#'
 #' # cbind(data.in.package  = sort(grep("address", datapack()$Item, value = T)))
 #' # cbind(files.in.package = sort(basename(testdata('address', quiet = T))))
-#' 
+#'
 #' \donttest{
-#' 
+#'
 #' # This requires first attaching the AOI package.
-#' 
+#'
 #' pts <- latlon_from_address(testinput_address_9[1:2])
 #' ## out <- ejamit(pts, radius = 1)
 #' ## ejam2report(out)
@@ -62,7 +62,7 @@
 #' @export
 #'
 latlon_from_address_table <- function(x) {
-  
+
   if (missing(x) && interactive()) {
     x <- rstudioapi::selectFile(caption = "Select .csv or .xlsx with addresses")
     if(is.null(x)){
@@ -70,7 +70,7 @@ latlon_from_address_table <- function(x) {
       return(NULL)
     }
   } else if(missing(x)){
-    
+
     warning('No value provided for argument "x".')
     return(NULL)
   }else if (all(is.na(x)) | is.null(x)){
@@ -82,7 +82,7 @@ latlon_from_address_table <- function(x) {
       x <- read_csv_or_xl(x)
     }
   }
-  
+
   latlon_from_address(
     address_from_table(x)
   )
@@ -99,7 +99,7 @@ latlon_from_address_table <- function(x) {
 #' @export
 #'
 address_from_table <- function(x) {
-  
+
   if (missing(x) && interactive()) {
     x <- rstudioapi::selectFile(caption = "Select .csv or .xlsx with addresses")
     if(is.null(x)){
@@ -107,7 +107,7 @@ address_from_table <- function(x) {
       return(NULL)
     }
   } else if(missing(x)){
-    
+
     warning('No value provided for argument "x".')
     return(NULL)
   }else if (all(is.na(x)) | is.null(x)){
@@ -119,8 +119,8 @@ address_from_table <- function(x) {
       x <- read_csv_or_xl(x)
     }
   }
-  
-  names(x) <- fixcolnames_infer(names(x)) # see also fixnames_aliases() 
+
+  names(x) <- fixcolnames_infer(names(x)) # see also fixnames_aliases()
   addresses <- address_from_table_goodnames(x)
   return(addresses)
 }
@@ -138,7 +138,7 @@ address_from_table <- function(x) {
 #' @export
 #'
 address_from_table_goodnames <- function(x, colnames_allowed = c('address', 'street', 'city', 'state', 'zip')) {
-  
+
   # Get vector of addresses from a table.
   # Assumes "address" column has full address???
   # but that colname if not available,
@@ -147,7 +147,7 @@ address_from_table_goodnames <- function(x, colnames_allowed = c('address', 'str
   # i.e. columns called street, city, state, zip
   # or whichever of those are in the table as colnames.
   # Returns a vector of addresses.
-  
+
   if (missing(x) && interactive()) {
     x <- rstudioapi::selectFile(caption = "Select .csv or .xlsx with addresses")
     if(is.null(x)){
@@ -155,7 +155,7 @@ address_from_table_goodnames <- function(x, colnames_allowed = c('address', 'str
       return(NULL)
     }
   } else if(missing(x)){
-    
+
     warning('No value provided for argument "x".')
     return(NULL)
   }else if (all(is.na(x)) | is.null(x)){
@@ -222,10 +222,10 @@ address_from_table_goodnames <- function(x, colnames_allowed = c('address', 'str
 #' @export
 #'
 latlon_from_address <- function(address, xy=FALSE, pt = FALSE, aoimap=FALSE, batchsize=25, ...) {
-  
+
   stopifnot(is.atomic(address), is.character(address), length(address) <= 1000,
-            is.atomic(xy),     is.logical(xy), 
-            is.atomic(pt),     is.logical(pt), 
+            is.atomic(xy),     is.logical(xy),
+            is.atomic(pt),     is.logical(pt),
             is.atomic(aoimap), is.logical(aoimap),
             is.atomic(batchsize), is.numeric(batchsize), batchsize <= 100)
   if (offline()) {
@@ -243,8 +243,8 @@ latlon_from_address <- function(address, xy=FALSE, pt = FALSE, aoimap=FALSE, bat
   # if (!require("AOI")) {
   #   remotes::install_github("mikejohnson51/AOI") #
   # }
-  
-  x <- try(find.package("AOI"))
+
+  x <- try(find.package("AOI"), silent = TRUE)
   if (inherits(x, "try-error")) {
     warning('AOI package not available. To install, run:
             devtools::install_github("https://github.com/mikejohnson51/AOI/", auth_token = NULL)')
@@ -257,25 +257,25 @@ latlon_from_address <- function(address, xy=FALSE, pt = FALSE, aoimap=FALSE, bat
       warning('for this to work you would need to use library(', 'AOI', ') first\n')
       x <- NULL
       return(x)
-      # how to make it attached or used without triggering renv or packrat to think we want to import or depend on it?      
+      # how to make it attached or used without triggering renv or packrat to think we want to import or depend on it?
     }
-    
+
     # *** Also, clarify distinction between geocode() from the AOI package and geocode() from the tidygeocoder package -- AOI geocode() is described as a wrapper around the tidygeocoding and Wikipedia services.
     # x <- geocode(c("1200 Pennsylvania Ave, NW Washington DC", "Dupont Circle", "Research Triangle Park"))
-    
+
     if (length(address) > batchsize) {
       message("only ", batchsize," max supported per batch in this function until decide if more ok")
       x <- latlon_from_address_batched(address = address, xy = xy, pt = aoimap, aoimap = FALSE, batchsize = batchsize, ...)
       if (aoimap) {x |> aoi_map()} # check if it works like this here
       return(x)
-    }  
-    
+    }
+
     if (aoimap) {
       x <- geocode(address, pt = TRUE, xy = xy, ...)   |> aoi_map()   # AOI:: # avoid making renv think we require it
     } else {
       x <- geocode(address, pt = pt, xy = xy, ...)
     }
-    
+
     # geocode(xy=TRUE) does not work correctly for more than just 1 address, so fix output
     if (xy) {  # && length(address) > 1  ?? no
       x <- matrix(x, ncol = 2)
@@ -283,12 +283,12 @@ latlon_from_address <- function(address, xy=FALSE, pt = FALSE, aoimap=FALSE, bat
       colnames(x) <- c("x", "y")
     }
     x <- as.data.frame(x) # otherwise it is a tibble
-    
+
     # convert x and y colnames to lon and lat
     names(x)[names(x) == "x"] <- "lon"
     names(x)[names(x) == "y"] <- "lat"
   }
-  
+
   return(x)
 }
 ####################################################################### #
@@ -296,16 +296,16 @@ latlon_from_address <- function(address, xy=FALSE, pt = FALSE, aoimap=FALSE, bat
 
 
 latlon_from_address_batched = function(address, batchsize=25, ...) {
-  
+
   out = list()
   # batchsize = 25
-  
+
   # batches = length(address) %/% batchsize
   dividedby_canfithowmany = `%/%`
   dividedby_leaves = `%%`
   batches = dividedby_canfithowmany(length(address), batchsize)
   leftover = dividedby_leaves(length(address), batchsize)
-  
+
   if (batches > 0) {
     for (i in 1:batches) {
       nstart = 1 + (i - 1) * batchsize
@@ -318,7 +318,7 @@ latlon_from_address_batched = function(address, batchsize=25, ...) {
     batchsize = 0
   }
   if (leftover > 0) {
-    out[[i + 1]] <- latlon_from_address(address[(nstart + batchsize):length(address)])    
+    out[[i + 1]] <- latlon_from_address(address[(nstart + batchsize):length(address)])
   }
   out = do.call(rbind, out)
   out

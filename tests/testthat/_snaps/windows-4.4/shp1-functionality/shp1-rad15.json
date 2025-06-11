@@ -1,0 +1,355 @@
+{
+  "input": {
+    "._bookmark_": 0,
+    "Custom_title_for_bar_plot_of_indicators": "",
+    "acs_version": "",
+    "add_naics_subcategories": "TRUE",
+    "all_tabs": "See Results",
+    "an_leaf_map_bounds": {
+      "north": 45.66300666222867,
+      "east": -122.2455596923828,
+      "south": 45.42255200704734,
+      "west": -123.0880737304688
+    },
+    "an_leaf_map_center": {
+      "lng": -122.6671286388521,
+      "lat": 45.54289056588138
+    },
+    "an_leaf_map_zoom": 11,
+    "an_thresh_comp1": 80,
+    "an_thresh_comp2": 80,
+    "an_threshgroup1": "EJ-US-or-ST",
+    "an_threshgroup2": "Supp-US-or-ST",
+    "an_threshnames1": [
+      "pctile.EJ.DISPARITY.dpm.eo",
+      "pctile.EJ.DISPARITY.drinking.eo",
+      "pctile.EJ.DISPARITY.no2.eo",
+      "pctile.EJ.DISPARITY.o3.eo",
+      "pctile.EJ.DISPARITY.pctpre1960.eo",
+      "pctile.EJ.DISPARITY.pm.eo",
+      "pctile.EJ.DISPARITY.proximity.npdes.eo",
+      "pctile.EJ.DISPARITY.proximity.npl.eo",
+      "pctile.EJ.DISPARITY.proximity.rmp.eo",
+      "pctile.EJ.DISPARITY.proximity.tsdf.eo",
+      "pctile.EJ.DISPARITY.rsei.eo",
+      "pctile.EJ.DISPARITY.traffic.score.eo",
+      "pctile.EJ.DISPARITY.ust.eo",
+      "state.pctile.EJ.DISPARITY.dpm.eo",
+      "state.pctile.EJ.DISPARITY.drinking.eo",
+      "state.pctile.EJ.DISPARITY.no2.eo",
+      "state.pctile.EJ.DISPARITY.o3.eo",
+      "state.pctile.EJ.DISPARITY.pctpre1960.eo",
+      "state.pctile.EJ.DISPARITY.pm.eo",
+      "state.pctile.EJ.DISPARITY.proximity.npdes.eo",
+      "state.pctile.EJ.DISPARITY.proximity.npl.eo",
+      "state.pctile.EJ.DISPARITY.proximity.rmp.eo",
+      "state.pctile.EJ.DISPARITY.proximity.tsdf.eo",
+      "state.pctile.EJ.DISPARITY.rsei.eo",
+      "state.pctile.EJ.DISPARITY.traffic.score.eo",
+      "state.pctile.EJ.DISPARITY.ust.eo"
+    ],
+    "an_threshnames2": [
+      "pctile.EJ.DISPARITY.dpm.supp",
+      "pctile.EJ.DISPARITY.drinking.supp",
+      "pctile.EJ.DISPARITY.no2.supp",
+      "pctile.EJ.DISPARITY.o3.supp",
+      "pctile.EJ.DISPARITY.pctpre1960.supp",
+      "pctile.EJ.DISPARITY.pm.supp",
+      "pctile.EJ.DISPARITY.proximity.npdes.supp",
+      "pctile.EJ.DISPARITY.proximity.npl.supp",
+      "pctile.EJ.DISPARITY.proximity.rmp.supp",
+      "pctile.EJ.DISPARITY.proximity.tsdf.supp",
+      "pctile.EJ.DISPARITY.rsei.supp",
+      "pctile.EJ.DISPARITY.traffic.score.supp",
+      "pctile.EJ.DISPARITY.ust.supp",
+      "state.pctile.EJ.DISPARITY.dpm.supp",
+      "state.pctile.EJ.DISPARITY.drinking.supp",
+      "state.pctile.EJ.DISPARITY.no2.supp",
+      "state.pctile.EJ.DISPARITY.o3.supp",
+      "state.pctile.EJ.DISPARITY.pctpre1960.supp",
+      "state.pctile.EJ.DISPARITY.pm.supp",
+      "state.pctile.EJ.DISPARITY.proximity.npdes.supp",
+      "state.pctile.EJ.DISPARITY.proximity.npl.supp",
+      "state.pctile.EJ.DISPARITY.proximity.rmp.supp",
+      "state.pctile.EJ.DISPARITY.proximity.tsdf.supp",
+      "state.pctile.EJ.DISPARITY.rsei.supp",
+      "state.pctile.EJ.DISPARITY.traffic.score.supp",
+      "state.pctile.EJ.DISPARITY.ust.supp"
+    ],
+    "analysis_title": "Summary of EJ Analysis2",
+    "avoidorphans": "FALSE",
+    "back_to_site_sel2": 0,
+    "bt_get_results": 2,
+    "bt_rad_buff": 1.5,
+    "calculate_ratios": true,
+    "circleweight_in": 4,
+    "coauthor_emails": "",
+    "coauthor_names": "",
+    "conclusion1": "",
+    "conclusion2": "",
+    "conclusion3": "",
+    "default_miles": 1,
+    "default_miles_shapefile": 0,
+    "demog_high_at_what_share_of_sites": "some of these sites, just as it varies nationwide",
+    "demog_how_elevated": "",
+    "details_subtabs": "Site-by-Site Table",
+    "ejscreen_version": "",
+    "envt_high_at_what_share_of_sites": "some of these sites, just as it varies nationwide",
+    "envt_how_elevated": "",
+    "epa_program_help": 0,
+    "extra_demog": "TRUE",
+    "extratable_show_ratios_in_report": "FALSE",
+    "facilities_studied": "rule",
+    "facilities_studied_enter": "",
+    "fips_help": 0,
+    "format1pager": "html",
+    "frs_help": 0,
+    "fundingsource": "",
+    "in_areas_where": "in areas with",
+    "in_areas_where_enter": "",
+    "in_the_x_zone": "area",
+    "in_the_x_zone_enter": "in ",
+    "include_averages": true,
+    "include_ejindexes": "TRUE",
+    "include_extraindicators": true,
+    "latlon_help": 0,
+    "max_mb_upload": 50,
+    "max_miles": 10,
+    "max_pts_map": 5000,
+    "max_pts_run": 1000,
+    "max_pts_showtable": 1000,
+    "max_pts_upload": 5000,
+    "max_shapes_map": 159,
+    "maxradius": 31.06856,
+    "more3": "a",
+    "naics_digits_shown": "basic",
+    "need_proximityscore": "FALSE",
+    "ok2plot": true,
+    "plotkind_1pager": "bar",
+    "prefix_filenames": "",
+    "print_uploaded_points_to_log": true,
+    "quick_view_map_bounds": {
+      "north": 45.73494252455993,
+      "east": -121.4044189453125,
+      "south": 45.35021505925909,
+      "west": -123.9299011230469
+    },
+    "quick_view_map_center": {
+      "lng": -122.6674559876029,
+      "lat": 45.54299266149822
+    },
+    "quick_view_map_zoom": 10,
+    "results_tabs": "Community Report",
+    "return_to_results": 0,
+    "rg_add_coauthors": false,
+    "rg_author_email": "author@email.org",
+    "rg_author_name": "FirstName LastName",
+    "rg_enter_sites": "facilities in the _____ source category",
+    "rg_zonetype": "zone_is_named_x",
+    "risks_are_x": "risk is at or above 1 per million (lifetime individual cancer risk due to inhalation of air toxics from this source category)",
+    "shiny.testmode": "FALSE",
+    "shinyjs-resettable-ss_upload_fips": {
+
+    },
+    "shinyjs-resettable-ss_upload_frs": {
+
+    },
+    "shinyjs-resettable-ss_upload_latlon": {
+
+    },
+    "shinyjs-resettable-ss_upload_program": {
+
+    },
+    "shinyjs-resettable-ss_upload_shp": {
+
+    },
+    "show_data_preview": 0,
+    "show_ratios_in_report": "FALSE",
+    "shp_help": 0,
+    "source_of_latlons": "",
+    "ss_choose_method": "upload",
+    "ss_choose_method_drop": "NAICS",
+    "ss_choose_method_upload": "SHP",
+    "ss_select_mact": "AA",
+    "ss_select_naics": null,
+    "ss_select_program": "CAMDBS",
+    "ss_select_sic": null,
+    "ss_upload_fips": null,
+    "ss_upload_frs": null,
+    "ss_upload_latlon": null,
+    "ss_upload_program": null,
+    "ss_upload_shp": {
+      "name": [
+        "portland_shp.zip"
+      ],
+      "size": [
+        157707
+      ],
+      "type": [
+        "application/x-zip-compressed"
+      ],
+      "datapath": [
+        "0.zip"
+      ]
+    },
+    "standard_analysis_title": "Summary of EJ Analysis",
+    "subgroups_type": "nh",
+    "summ_hist_bins": 10,
+    "summ_hist_data": "pctile",
+    "summ_hist_distn": "People",
+    "testing": "FALSE",
+    "ui_hide_advanced_settings": 0,
+    "ui_show_advanced_settings": 0,
+    "within_x_miles_of": "near the"
+  },
+  "output": {
+    "an_map_text": {
+      "html": "<span style='border: 1px solid #005ea2; padding: 10px;'>Total shape(s) uploaded: <strong>98<\/strong><\/span>",
+      "deps": [
+
+      ]
+    },
+    "analysis_title_ui": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"analysis_title-label\" for=\"analysis_title\">Name of Your Analysis<\/label>\n  <input id=\"analysis_title\" type=\"text\" class=\"shiny-input-text form-control\" value=\"Summary of EJ Analysis\"/>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "comm_report_html": {
+      "html": "\n  <link href=\"https://fonts.googleapis.com/css2?family=Heebo:wght@500;600\" rel=\"stylesheet\">\n  <link href=\"https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&amp;display=swap\" rel=\"stylesheet\">\n  <link href=\"https://fonts.googleapis.com/css2?family=Noto+Sans&amp;display=swap\" rel=\"stylesheet\">\n  <link rel=\"stylesheet\"  type=\"text/css\" media=\"all\" href=\"communityreport.css\" /><div id=\"header-primary-background\"><div id=\"header-primary-background-inner\"><h1 id=\"title\" tabindex=\"0\">EJScreen Multisite Report<\/h1><p>This report summarizes environmental and socioeconomic information for user-defined areas,<br> and combines that data into environmental justice and supplemental indexes.<\/p><\/div><div id=\"header-primary-background-img-container\"><img src=\"www/EPA_logo_white_2.png\" alt=\"EPA logo\" width=\"220\" height=\"70\"><\/div><\/div><div class=\"header\">\n    <div>\n        <h2 id=\"placename\">Summary of EJ Analysis2<\/h2>\n    <\/div>\n  <div>\n  <h5>Residents within 1.5 miles of any of the 98 specified polygons<br>Population: <span id=\"TOTALPOP\">925,943<\/span><br><\/h5>\n\n <\/div>\n<\/div><h3 tabindex=\"12\" style=\"font-size: 8px\">Environmental and Socioeconomic Indicators Data<\/h3>\n\n  <table id=\"data-indicators-table\" class=\"color-alt-table\" style=\"margin-top: 0;\"  summary=\"EJScreen environmental and socioeconomic indicators data\">\n  <thead id=\"data-indicators-table-header\" class=\"color-alt-table-header\">\n  <tr>\n  <th id=\"data-indicators-table-selected-variables\" scope=\"col\" >SELECTED VARIABLES<\/th>\n  <th id=\"data-indicators-table-value\" scope=\"col\"              >VALUE<\/th>\n  <th id=\"data-indicators-table-state-average\" scope=\"col\"      >STATE<br> AVERAGE<\/th>\n  <th id=\"data-indicators-table-percentile-in-state\" scope=\"col\">PERCENTILE<br> IN STATE<\/th>\n  <th id=\"data-indicators-table-usa average\" scope=\"col\"        >USA AVERAGE<\/th>\n  <th id=\"data-indicators-table-percentile-in-usa\" scope=\"col\"  >PERCENTILE<br> IN USA<\/th>\n  \n<\/tr>\n<\/thead>\n\n<tbody>\n\n  <tr class=\"color-alt-table-subheader\">\n  <th colspan=\"8\">Pollution and Sources<\/th> \n  <\/tr><tr>\n<td headers=\"data-indicators-table-pm\">Particulate Matter (PM 2.5 in ug/m3)<\/td>\n<td>14.53<\/td>\n<td>13.10<\/td>\n<td>68<\/td>\n<td>8.45<\/td>\n<td>98<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-o3\">Ozone (ppb)<\/td>\n<td>54.5<\/td>\n<td>53.0<\/td>\n<td>61<\/td>\n<td>61.8<\/td>\n<td>20<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-no2\">Nitrogen Dioxide (NO2)<\/td>\n<td>9.1<\/td>\n<td>6.6<\/td>\n<td>84<\/td>\n<td>7.8<\/td>\n<td>65<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-dpm\">Diesel Particulate Matter (ug/m3)<\/td>\n<td>0.403<\/td>\n<td>0.220<\/td>\n<td>89<\/td>\n<td>0.191<\/td>\n<td>92<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-rsei\">Toxic Releases to Air<\/td>\n<td>2,600<\/td>\n<td>1,500<\/td>\n<td>83<\/td>\n<td>4,600<\/td>\n<td>77<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-traffic.score\">Traffic Proximity and Volume (daily traffic count/distance to road)<\/td>\n<td>3,000,000<\/td>\n<td>1,200,000<\/td>\n<td>91<\/td>\n<td>1,700,000<\/td>\n<td>82<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctpre1960\">Lead Paint Indicator (% pre-1960s housing)<\/td>\n<td>0.38<\/td>\n<td>0.26<\/td>\n<td>77<\/td>\n<td>0.3<\/td>\n<td>65<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-proximity.npl\">Superfund Proximity (site count/km distance)<\/td>\n<td>0.18<\/td>\n<td>0.07<\/td>\n<td>76<\/td>\n<td>0.39<\/td>\n<td>69<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-proximity.rmp\">RMP Proximity (facility count/km distance)<\/td>\n<td>1.45<\/td>\n<td>0.63<\/td>\n<td>81<\/td>\n<td>0.57<\/td>\n<td>88<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-proximity.tsdf\">Hazardous Waste Proximity (facility count/km distance)<\/td>\n<td>7.4<\/td>\n<td>2.7<\/td>\n<td>90<\/td>\n<td>3.5<\/td>\n<td>86<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-ust\">Underground Storage Tanks (UST) indicator<\/td>\n<td>5.0<\/td>\n<td>3.4<\/td>\n<td>77<\/td>\n<td>3.6<\/td>\n<td>79<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-proximity.npdes\">Wastewater Discharge Indicator (toxicity-weighted concentration/distance)<\/td>\n<td>87<\/td>\n<td>900<\/td>\n<td>79<\/td>\n<td>700,000<\/td>\n<td>54<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-drinking\">Drinking Water Non-Compliance<\/td>\n<td>8.0<\/td>\n<td>3.46<\/td>\n<td>80<\/td>\n<td>2.2<\/td>\n<td>92<\/td>\n<\/tr> <tr class=\"color-alt-table-subheader\">\n  <th colspan=\"8\">Socioeconomic Indicators<\/th> \n  <\/tr><tr>\n<td headers=\"data-indicators-table-Demog.Index\">Demographic Index USA<\/td>\n<td>1.08<\/td>\n<td>1.56<\/td>\n<td>55<\/td>\n<td>1.34<\/td>\n<td>46<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-Demog.Index.Supp\">Supplemental Demographic Index USA<\/td>\n<td>1.40<\/td>\n<td>1.64<\/td>\n<td>40<\/td>\n<td>1.64<\/td>\n<td>41<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctlowinc\">% Low Income<\/td>\n<td>24%<\/td>\n<td>29%<\/td>\n<td>45<\/td>\n<td>30%<\/td>\n<td>46<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctlingiso\">% in limited English-speaking Households<\/td>\n<td>3%<\/td>\n<td>2%<\/td>\n<td>75<\/td>\n<td>5%<\/td>\n<td>69<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctunemployed\">% Unemployed<\/td>\n<td>6%<\/td>\n<td>6%<\/td>\n<td>61<\/td>\n<td>6%<\/td>\n<td>63<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctlths\">% with Less Than High School Education<\/td>\n<td>7%<\/td>\n<td>8%<\/td>\n<td>43<\/td>\n<td>11%<\/td>\n<td>44<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctunder5\">% under Age 5<\/td>\n<td>5%<\/td>\n<td>5%<\/td>\n<td>49<\/td>\n<td>5%<\/td>\n<td>50<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctover64\">% over Age 64<\/td>\n<td>15%<\/td>\n<td>19%<\/td>\n<td>36<\/td>\n<td>18%<\/td>\n<td>44<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-pctmin\">% People of Color<\/td>\n<td>32%<\/td>\n<td>25%<\/td>\n<td>65<\/td>\n<td>40%<\/td>\n<td>51<\/td>\n<\/tr> \n<\/tbody>\n<\/table>\n<br>\n <div id=\"page-2-header\" class=\"header\" style=\"background-color: #005ea2;  color: white; text-align: center; padding: 20px 32px 10px 32px;\">\n            <h2 tabindex=\"8\" style=\"font-size: 18px; margin-bottom: 5px\">Environmental Justice & Supplemental Indexes<\/h2>\n            \n            <p style=\"font-family: Oswald, Arial, sans-serif; font-size: 15px; padding-left: 20px;\">The environmental justice and supplemental indexes are a combination of environmental and socioeconomic information. For each of the environmental indicators in EJScreen, there is an EJ Index and a Supplemental EJ Index. The indexes for a selected area are compared to those for all other locations in the state or nation. For more information and calculation details on the EJ and supplemental indexes, please visit the <a tabindex=\"9\" href=\"https://www.epa.gov/ejscreen\" style=\"color: white\">EJScreen website<\/a>. <\/p>\n        <\/div>\n        <div style=\"background-color: #71bf44; color: white; text-align: center; padding: 0 32px 7px 32px;\">\n            <h3  tabindex=\"10\" style=\"padding-top: 10px; margin-bottom: -10px; font-family: Arial, sans-serif; font-size: 23px;\">EJ INDEXES<\/h3>\n            <p style=\"font-family: Oswald, Arial, sans-serif; font-weight: 300; font-size: 16px; margin: 15px 15% -2px 15%\">The EJ indexes help users screen for potential EJ concerns. To do this, the EJ index combines data on low income and people of color populations with a single environmental indicator.<\/p>\n        <\/div><table id=\"data-indicators-table\"        class=\"color-alt-table\"  summary=\"EJScreen environmental and socioeconomic indicators data\">\n  <thead id=\"data-indicators-table-header\" class=\"color-alt-table-header\">\n  <tr>\n  <th id=\"data-indicators-table-selected-variables\" scope=\"col\">SELECTED VARIABLES<\/th>\n  <th id=\"data-indicators-table-percentile-in-state\" scope=\"col\">PERCENTILE<br> IN STATE<\/th>\n  <th id=\"data-indicators-table-percentile-in-usa\" scope=\"col\">PERCENTILE<br> IN USA<\/th>\n  <\/tr>\n  <\/thead><tbody>\n  <tr class=\"color-alt-table-subheader\">\n  \n  <th colspan=\"7\">EJ Indexes<\/th>\n  <\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Particulate Matter EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">71<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">75<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Ozone EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">67<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">28<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Nitrogen Dioxide (NO2) EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">75<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">60<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Diesel Particulate Matter EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">79<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">72<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Toxic Releases to Air EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">79<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">69<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Traffic Proximity and Volume EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">80<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">67<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Lead Paint EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">71<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">58<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Superfund Proximity EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">79<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">70<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">RMP Proximity EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">76<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">71<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Hazardous Waste Proximity EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">81<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">69<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Underground Storage Tanks EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">66<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">63<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Wastewater Discharge EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">75<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">53<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Drinking Water Non-Compliance EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">81<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">85<\/td>\n<\/tr> <tr class=\"color-alt-table-subheader\">\n  \n<th colspan=\"7\">Supplemental EJ Indexes<\/th>\n  <\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Particulate Matter Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">65<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">82<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Ozone Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">61<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">20<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Nitrogen Dioxide (NO2) Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">74<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">63<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Diesel Particulate Matter Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">78<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">79<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Toxic Releases to Air Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">77<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">71<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Traffic Proximity and Volume Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">80<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">74<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Lead Paint Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">63<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">55<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Superfund Proximity Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">77<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">66<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">RMP Proximity Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">74<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">75<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Hazardous Waste Proximity Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">81<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">75<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Underground Storage Tanks Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">61<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">61<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Wastewater Discharge Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">73<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">48<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Drinking Water Non-Compliance Supplemental EJ Index<\/td>\n<td headers=\"data-indicators-table-percentile-in-state\">77<\/td>\n<td headers=\"data-indicators-table-percentile-in-usa\">83<\/td>\n<\/tr> <\/tbody>\n<\/table>\n<table id=\"data-indicators-table\"   style=\"width: 60%\"     class=\"color-alt-table\"  summary=\"EJScreen environmental and socioeconomic indicators data\">\n  <thead id=\"data-indicators-table-header\" class=\"color-alt-table-header\">\n  <tr>\n  <th id=\"data-indicators-table-selected-variables\" width=\"65%\" scope=\"col\">ADDITIONAL INFORMATION<\/th>\n  <th id=\"data-indicators-table-value\" width=\"35%\" scope=\"col\">VALUE<\/th>\n\n\n\n  <\/tr>\n    <\/thead>\n    \n    <tbody>\n    \n    \n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Breakdown by Race/Ethnicity<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">% Hispanic or Latino<\/td>\n<td>11%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% Black or African American (non-Hispanic, single race)<\/td>\n<td>5%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% Asian (non-Hispanic, single race)<\/td>\n<td>9%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% American Indian and Alaska Native (non-Hispanic, single race)<\/td>\n<td>1%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% Native Hawaiian and Other Pacific Islander (non-Hispanic, single race)<\/td>\n<td>1%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% Other race (non-Hispanic, single race)<\/td>\n<td>0%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% Two or more races (non-Hispanic)<\/td>\n<td>6%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">% White (non-Hispanic, single race)<\/td>\n<td>68%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Language Spoken at Home<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of population speaking non-English at home<\/td>\n<td>19%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of population speaking Other Indo-European at home<\/td>\n<td>4%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of population speaking Asian and Pacific Island languages at home<\/td>\n<td>7%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of population speaking Other and Unspecified languages at home<\/td>\n<td>1%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of population speaking Spanish at home<\/td>\n<td>7%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Language in Limited English Speaking Households<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Speaking Spanish (as % of limited English households)<\/td>\n<td>27%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Speaking Other Indo-European languages (as % of limited English households)<\/td>\n<td>20%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Speaking Asian-Pacific Island languages (as % of limited English households)<\/td>\n<td>45%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Speaking Other languages (as % of limited English households)<\/td>\n<td>8%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Breakdown by Gender<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Males<\/td>\n<td>50%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Females<\/td>\n<td>50%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Health<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">% with Disabilities<\/td>\n<td>13%<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">%Low life expectancy<\/td>\n<td>19%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Community<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Occupied Housing Units<\/td>\n<td>395,922<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Life Expectancy in Years<\/td>\n<td>76<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Per Capita Income<\/td>\n<td>53,235<\/td>\n<\/tr>\n<tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent Owner Occupied households<\/td>\n<td>55%<\/td>\n<\/tr>\n<tr class=\"color-alt-table-subheader\">\n<th colspan=\"8\">Poverty<\/th>\n<\/tr><tr>\n<td headers=\"data-indicators-table-selected-variables\">Percent of Households below Poverty Level<\/td>\n<td>11%<\/td>\n<\/tr>\n \n                     <\/tbody>\n                     <\/table>\n  <span style= 'font-size: 9pt'>\n  <p tabindex='13' style='font-size: 9pt'><small>Note: Diesel particulate matter index is from the EPA's Air Toxics Data Update, which is the Agency's ongoing, comprehensive evaluation of air toxics in the United States. This effort aims to prioritize air toxics, emission sources, and locations of interest for further study. It is important to remember that the air toxics data presented here provide broad estimates of health risks over geographic areas of the country, not definitive risks to specific individuals or locations. More information on the Air Toxics Data Update can be found at: <a href=\"https://www.epa.gov/haps/air-toxics-data-update\", target=\"_blank\">https://www.epa.gov/haps/air-toxics-data-update<\/a><\/small><\/p>\n  <\/span>   ",
+      "deps": [
+
+      ]
+    },
+    "error_message": "",
+    "invalid_sites_alert2": {
+      "html": "",
+      "deps": [
+
+      ]
+    },
+    "radius_label": {
+      "html": "<b>Distance from Site: <br/>1.5 miles (2.41 km)<\/b>",
+      "deps": [
+
+      ]
+    },
+    "radius_slider_ui": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"bt_rad_buff-label\" for=\"bt_rad_buff\"><\/label>\n  <input class=\"js-range-slider\" id=\"bt_rad_buff\" data-skin=\"shiny\" data-min=\"0\" data-max=\"10\" data-from=\"1\" data-step=\"0.05\" data-grid=\"true\" data-grid-num=\"10\" data-grid-snap=\"false\" data-prettify-separator=\",\" data-prettify-enabled=\"true\" data-postfix=\" miles\" data-keyboard=\"true\" data-data-type=\"number\"/>\n<\/div>",
+      "deps": [
+        {
+          "name": "ionrangeslider-javascript",
+          "version": "2.3.1",
+          "src": {
+            "href": "ionrangeslider-javascript-2.3.1"
+          },
+          "meta": null,
+          "script": "js/ion.rangeSlider.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "strftime",
+          "version": "0.9.2",
+          "src": {
+            "href": "strftime-0.9.2"
+          },
+          "meta": null,
+          "script": "strftime-min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "ionrangeslider-css",
+          "version": "2.3.1",
+          "src": {
+            "href": "ionrangeslider-css-2.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/ion.rangeSlider.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "report_version_date": {
+      "html": "<p style=\"margin-bottom: 0\">Version 2.32 | Report created on [SHINYTEST DATE]<\/p>",
+      "deps": [
+
+      ]
+    },
+    "view1_summary_plot": {
+      "src": "[image data hash: b01b88fd25215390573f8b9c4b9af858]",
+      "width": 717,
+      "height": 400,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 0.4,
+              "right": 17.6,
+              "bottom": 0,
+              "top": 3.755790815717691,
+              "discrete_limits": {
+                "x": [
+                  " Demog.Ind.",
+                  " Suppl Demog.Ind.",
+                  " %Low-inc.",
+                  " %Limited English",
+                  " %Unemployed",
+                  " %< High School",
+                  " %< age 5",
+                  " %> age 64",
+                  " %POC",
+                  " %Hispanic",
+                  " %Black NHA",
+                  " %Asian NHA",
+                  " %AmerIndian/AK NHA",
+                  " %Hawaiian/PI NHA",
+                  " %Other race NHA",
+                  " %multirace NH",
+                  " %White NHA"
+                ]
+              }
+            },
+            "mapping": {
+              "x": "name",
+              "y": "value",
+              "fill": "color"
+            },
+            "range": {
+              "left": 28.0413099315068,
+              "right": 711.5205479452055,
+              "bottom": 255.6336006131884,
+              "top": 23.95890410958907
+            }
+          }
+        ],
+        "dims": {
+          "width": 717,
+          "height": 400
+        }
+      }
+    }
+  },
+  "export": {
+
+  }
+}

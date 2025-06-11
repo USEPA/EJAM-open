@@ -37,7 +37,7 @@ just the ones loaded from disk because not already in memory and found on disk l
 }
 \description{
 Utility for analysts / developers to store large block /
-other data locally instead of redownloading
+other data locally instead of re-downloading
 }
 \details{
 See \code{\link[=dataload_dynamic]{dataload_dynamic()}} also.

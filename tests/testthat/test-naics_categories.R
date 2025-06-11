@@ -4,7 +4,7 @@
 
 
 
-# should digits = 1 give a warning? since it's empty
+# should digits = 1 
 test_that('the function works for all digits',{
   table(nchar(NAICS))
   expect_no_warning({val <- naics_categories(digits = 1)})
@@ -13,6 +13,10 @@ test_that('the function works for all digits',{
   expect_no_warning({val <- naics_categories(digits = 4)})
   expect_no_warning({val <- naics_categories(digits = 5)})
   expect_no_warning({val <- naics_categories(digits = 6)})
+  
+  expect_true(
+    "matrix" %in% class(val)
+  )
 })
 
 

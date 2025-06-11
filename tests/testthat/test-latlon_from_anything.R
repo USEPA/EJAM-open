@@ -117,7 +117,7 @@ testthat::test_that("latlon_from_anything works with tibbles", {
 })
 ################################################ #
 
-testthat::test_that("latlon_from_anything works with csv", {
+testthat::test_that("latlon_from_anything (after create tempfile) works with csv", {
 
   tfile <- tempfile("junk", fileext = ".csv")
   skip_if(!dir.exists(dirname(tfile)), message = "cannot create tempfile, so skipping test")

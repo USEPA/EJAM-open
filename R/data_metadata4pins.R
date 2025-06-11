@@ -5,5 +5,5 @@
 #' @name metadata4pins
 #' @docType data
 #' @title metadata about data object, for pins
-#' @details metadata such as description of dataset, for pins board data in EJAM package
+#' @details metadata such as description of dataset, for data in EJAM package
 'metadata4pins'

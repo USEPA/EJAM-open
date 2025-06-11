@@ -9,7 +9,10 @@ build_barplot_report(
   totalpop,
   locationstr,
   in_shiny = FALSE,
-  filename = NULL
+  filename = NULL,
+  report_title = NULL,
+  logo_path = NULL,
+  logo_html = NULL
 )
 }
 \arguments{
@@ -22,6 +25,14 @@ build_barplot_report(
 \item{in_shiny, }{whether the function is being called in or outside of shiny - affects location of header}
 
 \item{filename, }{path to file to save HTML content to; if null, returns as string (used in Shiny app)}
+
+\item{report_title}{generic name of this type of report, to be shown at top, like "EJAM Multisite Report"}
+
+\item{logo_path}{optional relative path to a logo for the upper right of the overall header.
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()}
+
+\item{logo_html}{optional HTML for img of logo for the upper right of the overall header.
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.}
 }
 \value{
 can return HTML if filename not specified, but otherwise NULL

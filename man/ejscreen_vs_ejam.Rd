@@ -83,7 +83,7 @@ Consider using \code{\link[=ejscreen_vs]{ejscreen_vs()}} which does this all int
  vs <- ejscreen_vs()
 
  # vs filtered to just the ones where rounded pop disagrees
- 
+
  table(vs$same_shown$pop)
  vspopoff <- lapply(vs, function(x) x[!vs$same_shown$pop, ])
 

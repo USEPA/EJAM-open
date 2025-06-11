@@ -50,7 +50,7 @@ but only if demogvarname is not specified as a parameter.}
 
 \item{demogvarname}{name of column in results_bybg_people, e.g., "pctlowinc"}
 
-\item{demoglabel}{friendly text name for labelling graphic, like "Low income residents"}
+\item{demoglabel}{friendly text name for labeling graphic, like "Low income residents"}
 
 \item{colorlist}{colors like "red" etc. for the residential population groups of interest}
 

@@ -28,25 +28,93 @@ knitr::opts_chunk$set(eval = FALSE)
 # https://r-pkgs.org/vignettes.html
 ```
 
-## Notes for developers, on running unit tests in this package
+## Notes for developers, on writing or running unit tests in this package
 
-Modified or new functions in the EJAM package should be tested using unit tests.
-See https://testthat.r-lib.org 
+### Checking test coverage (where more unit tests need to be written)
 
-There are numerous unit tests in the `EJAM/tests/testthat/` folder that you can run
-and add to as needed. They can be run automatically by the [devtools::test()] function.
+Some functions in the package have incomplete unit test coverage as of version
+2.32.4 / mid 2025, so ideally more unit tests would be added in those cases.
 
-However, instead of running all the unit tests (run in alphabetical order by default), 
-you might want to test only some groups of related functions that you are working on,
-and see a summary of which tests in which files from which groups are passing, skipped, etc. 
-To do this, note there is a file called `EJAM/tests/test_interactively.R` 
-that you can [source()] and then you can use that function to run the unit tests interactively.
+You can see a grouped, organized list of unit test files *within the source
+code* of a function test_interactively(), in
+**`EJAM/tests/test_interactively.R`**
 
-Assuming you want to use that function, 
-whenever you add or rename or delete unit test files in the `EJAM/tests/testthat/` folder you 
-need to edit the list of test file names in the source code of that function, `test_interactively()`
-or you can try to use it and it will stop and tell you which files are missing from the list in the source code at `EJAM/tests/test_interactively.R` 
+You should check which functions have adequate unit tests. One quick but
+imperfect way is by using the rough draft function and notes found at
+**`EJAM/tests/test_coverage_check.R`**. The test_interactively() function noted
+above already prompts for using it, but you could separately `source()` it and
+use it.
 
-Note there is also a github workflow that runs unit tests, automatically triggered by certain events, such as a pull request to the main or development branch. See `EJAM/.github/workflows/run-test.yaml`
+Note it is a bit tedious to figure out which functions have unit tests since
+there is not a 1-to-1 relationship between functions like xyz() vs the
+EJAM/R/xyz.R files defining functions vs EJAM/tests/testthat/test-xyz.R files
+containing unit tests.
 
-Some functions relied on the EJScreen API and if that API is not available, those tests will be skipped or would fail.
+Also see the [covr package](https://covr.r-lib.org/) and
+`covr::package_coverage()` and the related RStudio addin.
+
+### Adding unit tests (for new functions or where unit tests not yet written)
+
+Unit tests should be written when the occur:
+
+-   where an existing function has no unit tests
+
+-   where an existing function has only limited tests, and e.g., some
+    combinations of parameter settings have not been tested in unit tests
+
+-   while a new function is being written
+
+See <https://testthat.r-lib.org> and `usethis::use_test()` for information on
+how to add unit tests. The unit tests are in the `EJAM/tests` and
+`EJAM/tests/testthat` folders.
+
+#### Updating unit tests (when functions are updated)
+
+Unit tests should be changed if necessary in these situations:
+
+-   while an existing function is being modified, such as when the function's
+    expected outputs/ warnings/ errors change.
+
+-   if the web app UI changes - then special tests of the web app functionality
+    can be created as explained in [Testing EJAM App with
+    shinytest2](dev_run-shinytests.html). Also note that any screenshots for any
+    [User Guide]{.underline} would need to be updated if the UI changes.
+
+### Running unit tests
+
+There are numerous unit tests in the `EJAM/tests/testthat/` folder that you can
+run and add to as needed. They can be run automatically by the
+`devtools::test()` function.
+
+However, instead of running all the unit tests (run in alphabetical order by
+default), you might want to test only some groups of related functions that you
+are working on, and see a summary of which tests in which files from which
+groups are passing, skipped, etc. To do this, note there is a file called
+**`EJAM/tests/test_interactively.R`** that you can `source()` and then you can
+use that function to run the unit tests interactively.
+
+Assuming you want to use that function, whenever you add or rename or delete
+unit test files in the `EJAM/tests/testthat/` folder you need to edit the list
+of test file names in the source code of that function, test_interactively() or
+you can try to use it and it will stop and tell you which files are missing from
+the list in the source code in `EJAM/tests/test_interactively.R`
+
+### Running tests of the web app functionality
+
+There are recorded interactions used as tests of the web app, as explained in
+[Testing EJAM App with shinytest2](dev_run-shinytests.html).
+
+### Running unit tests via github workflow
+
+There is also a github workflow in the package that runs unit tests,
+automatically triggered by certain events, such as a pull request to the main or
+development branch. See `EJAM/.github/workflows/run-test.yaml`
+
+### Other notes
+
+Be aware of whether the tests are using the last-installed version of the
+package or the latest, possibly recently-edited, local source package version
+that `devtools::load_all()` may be have loaded.
+
+Some functions relied on the EJScreen API and if the API is not available, those
+tests will be skipped or would fail.

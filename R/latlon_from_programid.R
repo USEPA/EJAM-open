@@ -8,7 +8,7 @@
 #'  
 #'  see [epa_programs] for a list of programs and their acronyms and a count
 #'  of FRS facilities under each.
-#'  Also see a simple lilst of names like this: 
+#'  Also see a simple list of names like this: 
 #'  as.vector(epa_programs)
 #'  or
 #'  sort(unique(frs_by_programid$program))

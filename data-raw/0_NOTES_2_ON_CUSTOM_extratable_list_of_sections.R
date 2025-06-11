@@ -64,7 +64,7 @@ shiny::shinyApp(
     extratable_list_of_sections <- reactive({
       
       mylist <- list(input$extratable_list_of_sections_code)
-      names(mylist) <- 
+      # names(mylist) <- 
         
         # section_choices_allowed <- 0
         # 

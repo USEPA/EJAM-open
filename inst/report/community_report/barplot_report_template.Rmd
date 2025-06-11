@@ -14,6 +14,9 @@ params:
   map: NA
   summary_plot: NA
   summary_plot_state: NA
+  report_title: NULL
+  logo_path: NULL
+  logo_html: NULL
 ---
 
 ```{r, echo=FALSE}
@@ -31,7 +34,10 @@ build_barplot_report(
   locationstr = params$locationstr,
   # include_ejindexes = params$include_ejindexes,
   in_shiny = params$in_shiny,
-  filename = params$filename
+  filename = params$filename,
+  report_title = params$report_title,
+  logo_path = params$logo_path,
+  logo_html = params$logo_html
 )
 ```
 
@@ -76,7 +82,7 @@ version <- substr(version, start = 1, stop = gregexpr('\\.',version)[[1]][2] - 1
 
 current_date <- ifelse(
   isTRUE(getOption("shiny.testmode")),
-  "[SHINYTEST DATE]",
+  "[SHINYTEST DATE]", # so the snapshot of the report is consistent, not diff date each time tested
   format(Sys.Date(), "%B %d, %Y"))
 
 HTML('

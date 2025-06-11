@@ -36,7 +36,7 @@ that explains those findings in plain English. It relies on colcounter_summary_a
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -140,7 +140,7 @@ stats is a 3-dimensional array of numbers. See dimnames(output$stats).</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># out &lt;- ejamit(testpoints_100, radius = 1)</span></span>
 <span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">testoutput_ejamit_1000pts_1miles</span> </span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">out</span><span class="op">$</span><span class="va">results_bysite</span></span>
-<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/setDF.html" class="external-link">setDF</a></span><span class="op">(</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html" class="external-link">copy</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">setDF</span><span class="op">(</span><span class="fu">copy</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">ratio_data</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span>, <span class="va">names_d_ratio_to_state_avg</span><span class="op">]</span></span>
 <span><span class="va">ratio_benchmarks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span></span>
 <span></span>

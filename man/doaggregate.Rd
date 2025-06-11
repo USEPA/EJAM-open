@@ -121,7 +121,7 @@ Used by ejamit() and the shiny app to summarize blockgroups scores at each site 
 \code{doaggregate()} takes a set of sites like facilities and the
 set of blocks that are near each,
 combines those with indicator scores for block groups, and
-aggregates the numbes within each place and across all overall.
+aggregates the numbers within each place and across all overall.
 
 For all examples, see \code{\link[=getblocksnearbyviaQuadTree]{getblocksnearbyviaQuadTree()}}
 

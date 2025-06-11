@@ -317,7 +317,7 @@ if (!do_update) {
 # rm(blocks)
 # names(xlist)
 
-# Those block data.table objecs were then saved via pins board 
+# Those block data.table objecs were then saved 
 
 #################################################################################### # 
 

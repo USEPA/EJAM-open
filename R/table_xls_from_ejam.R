@@ -10,6 +10,51 @@
 #'
 buffer_desc_from_sitetype <- function(sitetype, site_method) {
 
+  # see also the closely related function report_residents_within_xyz()
+
+  ## old way in server:
+  # if (submitted_upload_method() %in% c("SHP", "FIPS", "FIPS_PLACE")) {
+  #   radius_or_buffer_description <- 'Distance from each shape (buffering around each polygon)'
+  # } else {
+  #   radius_or_buffer_description <- 'Distance from each site (radius of circle around a point/site)'
+  # }
+
+  ######### #
+  site_method2text <- function(site_method) {
+    if (missing(site_method) || is.null(site_method)) {
+      return("")
+    }
+    if (site_method == "SHP") {
+      return("shapefile")
+    }
+    if (site_method == "latlon") {
+      return("coordinates")
+    }
+    if (site_method == "FIPS") {
+      return("FIPS codes")
+    }
+    if (site_method == "FIPS_PLACES") {
+      return("names of places")
+    }
+    if (site_method == "NAICS") {
+      return("EPA-regulated facilities by NAICS code (industry type)")
+    }
+    if (site_method == "FRS") {
+      return("EPA-regulated facilities by Registry ID")
+    }
+    if (site_method == "EPA_PROGRAM") {
+      return("EPA-regulated Facilities by EPA program")
+    }
+    if (site_method == "SIC") {
+      return("EPA-regulated facilities by SIC code (industry type)")
+    }
+    if (site_method == "MACT") {
+      return("EPA-regulated facilities by MACT category (air toxics emissions source type)")
+    }
+    return("")
+  }
+  ######### #
+
   if (missing(sitetype) || is.null(sitetype)) {
     buffer_desc <- "Selected Locations"
   } else {
@@ -24,6 +69,9 @@ buffer_desc_from_sitetype <- function(sitetype, site_method) {
         } else {
           buffer_desc <- "Selected locations"
         }}}}
+  if (buffer_desc == "") {
+    buffer_desc <- paste0(buffer_desc, ", based on ", site_method2text(site_method))
+  }
   return(buffer_desc)
 }
 ##################################################################################### #
@@ -53,39 +101,95 @@ table_xls_from_ejam <- function(ejamitout,
                                 react.v1_summary_plot = NULL,
                                 radius_or_buffer_in_miles = NULL,  #  input$bt_rad_buff
                                 buffer_desc = "Selected Locations",
-                                radius_or_buffer_description = 'Miles radius of circular buffer (or distance used if buffering around polygons)',
+                                radius_or_buffer_description = NULL, # 'Miles radius of circular buffer (or distance used if buffering around polygons)',
                                 # radius_or_buffer_description =   "Distance from each site (radius of each circular buffer around a point)",
                                 hyperlink_colnames = "ECHO Report",#c("EJScreen Report", "EJScreen Map","ACS Report","ECHO Report"),
                                 site_method = "",
-                                mapadd,
-                                report_map,
-                                community_reportadd,
-                                community_html,
+
+                                mapadd = FALSE,
+                                report_map = NULL,
+                                community_reportadd = TRUE,
+                                community_html = NULL,
+                                shp = NULL,
                                 ...
 ) {
+
+  npts <- NROW(ejamitout$results_bysite)
+
+  if (missing(radius_or_buffer_in_miles) || is.null(radius_or_buffer_in_miles)) {
+    radius_or_buffer_in_miles  <- ejamitout$results_overall$radius.miles
+  }
 
   #   Note `ejamitout$sitetype` is not quite the same as the `site_method` parameter used in building reports.
   #   sitetype    can be shp, latlon, fips
   #   site_method can be SHP, latlon, FIPS, NAICS, FRS, EPA_PROGRAM, SIC, or MACT
-
   sitetype <- ejamit_sitetype_from_output(ejamitout)
-
   if (missing(site_method) || is.null(site_method)) {
     site_method <- sitetype
     if (site_method == 'shp' ) site_method <- 'SHP'
     if (site_method == 'fips') site_method <- 'FIPS'
   }
-  # buffer_desc text for the notes tab of spreadsheet report "Locations analyzed: ____"
-  if (missing("buffer_desc") || buffer_desc == "Selected Locations") {
+
+  ## try to sort out what to say and do in these cases:
+  ## when shp param is essential  (sitetype == "shp" AND want report or map) but shp missing/null,
+  #  when shp param is irrelevant (sitetype == "latlon" OR need neither report nor map) but shp provided,
+  #  when shp param is redundant (sitetype == "shp" AND want report or map BUT ALREADY PROVIDED report/map) but shp provided,
+  ## when shp param is nonessential but useful (sitetype == "fips" AND want report or map) to avoid a redundant download of FIPS bounds
+#
+  ### TO BE CONTINUED:
+  #
+  # if (!is.null(shp) && !community_reportadd && !mapadd) {
+  #   message("ignoring shp since mapadd and community_reportadd are both FALSE")
+  #   shp <- NULL
+  # }
+  # if (!is.null(shp) && community_reportadd && !is.null(community_html)) {
+  #   message("ignoring shp for community report map since community_html was provided")
+  # }
+  # # if (sitetype %in% c("shp") && !is.null(shp) && mapadd && !is.null(report_map)) {
+  # #   message("using shp for community report map even though report_map was provided")
+  # # }
+  # if (sitetype %in% c("shp") && mapadd && is.null(report_map) && is.null(shp)) {
+  #   warning("cannot add map tab - requires either shp or report_map parameter if sitetype is shp")
+  #   mapadd <- FALSE
+  # }
+  # if (sitetype %in% c("shp") && community_reportadd && is.null(community_html) && is.null(shp)) {
+  #   warning("cannot add map in summary report tab - requires either shp or report_map parameter if sitetype is shp")
+  # }
+  # shp_for_report <- shp
+  #
+# create report if requested but not provided
+
+  if (community_reportadd && is.null(community_html)) {
+    # not provided so try to create it here, noting ejam2report() still requires shp to have FIPS or polygon map in report.
+    community_html <- ejam2report(
+      ejamitout = ejamitout,
+      return_html = FALSE,
+      launch_browser = FALSE,
+      shp = shp, # that will try to download if shp is null and type is fips or shp
+      fileextension = ".html",
+      submitted_upload_method = site_method
+
+### may need to pass more params here to build report just like server would have?
+### ***
+
+
+
+      )
+  }
+
+  # for the notes tab of spreadsheet
+  if (missing(buffer_desc) || is.null(buffer_desc)) {
     buffer_desc <- buffer_desc_from_sitetype(sitetype = sitetype, site_method = site_method)
   }
 
-  npts <- NROW(ejamitout$results_bysite)
-  if (missing(radius_or_buffer_in_miles)) {
-    radius_or_buffer_in_miles  <- ejamitout$results_overall$radius.miles
+  ## for the notes tab of spreadsheet
+  if (missing(radius_or_buffer_description) || is.null(radius_or_buffer_description)) {
+    radius_or_buffer_description <- report_residents_within_xyz(radius = radius_or_buffer_in_miles,
+                                                                nsites = npts,
+                                                                sitetype = sitetype)
   }
 
-  #changed the way the filename path was generated
+  # changed the way the filename path was generated
   default_pathname <- create_filename(file_desc = "results_table",
                                       title = in.analysis_title,
                                       buffer_dist = radius_or_buffer_in_miles,
@@ -100,49 +204,11 @@ table_xls_from_ejam <- function(ejamitout,
     pathname <- fname
   }
 
-  # server does something like this:
-  ## note analysis type or overview to 'notes' tab
-  # if (submitted_upload_method() == "SHP") {
-  #   radius_or_buffer_description <- 'Distance from each shape (buffering around each polygon)'
-  # } else {
-  # radius_or_buffer_description <- 'Distance from each site (radius of each circular buffer around a point)'
-  # }
-
-  # keepcols <- rep(TRUE, NCOL(ejamitout$results_overall))
-
-  # defaults in table_xls_format :
-  #
-  # overall, eachsite, longnames=NULL, bybg=NULL, formatted=NULL,
-  # summary_plot = NULL,
-  # plotlatest = TRUE,
-  # plotfilename = NULL,
-  #
-  # analysis_title = "EJAM analysis",
-  # buffer_desc = "Selected Locations",
-  # radius_or_buffer_in_miles = NULL,
-  # radius_or_buffer_description='Miles radius of circular buffer (or distance used if buffering around polygons)',
-  # notes=NULL,
-  #
-  # heatmap_colnames=NULL, heatmap_cuts = c(80, 90, 95), heatmap_colors = c("yellow", "orange", "red"),
-  # hyperlink_colnames = c("EJScreen Report","EJScreen Map","ECHO Report"),
-  # graycolnames=NULL, narrowcolnames=NULL, graycolor='gray', narrow6=6,
-  #
-  # testing=FALSE, launchexcel = FALSE, saveas = NULL,
-
-  # in server code:
-  #hyperlink_colnames = c("EJScreen Report", "EJScreen Map" ),
-  # summary_plot   = v1_summary_plot(),
-  # analysis_title = input$analysis_title,
-  # buffer_desc    = "Selected Locations",
-  # radius_or_buffer_in_miles = input$bt_rad_buff,
-  # radius_or_buffer_description = radius_or_buffer_description,
-  # # saveas = fname,
-  # testing = input$testing
-
-  # these should be data.tables or at least they used to be when coming from ejamit() but not within server code...
-  # so does that cause a problem for table_xls_format() if they are data.table format???
-
   # table_xls_format ####
+
+  # also see the defaults in ejamit() and in table_xls_format()
+
+  # also see the params as used in app_server.R code
 
   wb_out <- table_xls_format(
 
@@ -165,8 +231,7 @@ table_xls_from_ejam <- function(ejamitout,
     # heatmap_cuts=c(80, 90, 95), # can use defaults
     # heatmap_colors=c('yellow', 'orange', 'red') # can use defaults
     ## optional, shiny-specific arguments to go in 'Plot' and 'Notes' sheets
-    mapadd = mapadd,
-    report_map = report_map,
+
     summary_plot   = react.v1_summary_plot, # NULL is fine
     analysis_title = in.analysis_title,
     ok2plot = ok2plot,
@@ -176,6 +241,9 @@ table_xls_from_ejam <- function(ejamitout,
     # saveas = pathname, # could do it this way but then need to condition it on save_now and cannot offer interactive picking of pathname in RStudio
     testing = in.testing,
     launchexcel = launchexcel,
+
+    mapadd = mapadd,
+    report_map = report_map,
     community_reportadd = community_reportadd,
     community_html = community_html,
     ...

@@ -10,6 +10,8 @@
 #' @param y_latlon logical, if y_basic=T, whether to run the basic ejamit() using points
 #' @param y_shp logical, if y_basic=T, whether to run the basic ejamit() using shapefile
 #' @param y_fips logical, if y_basic=T, whether to run the basic ejamit() using FIPS
+#' @param y_coverage_check logical, whether to show simple lists of
+#'   which functions might not have unit tests, just based on matching source file and test file names
 #' @param y_runsome logical, whether to run only some groups of tests (so y_runall is FALSE)
 #' @param tname if y_runsome = T, a vector of group names like 'fips', 'naics', etc.
 #'   see source code for list
@@ -38,11 +40,16 @@ test_interactively = function(ask = TRUE,
 
                               y_basic = FALSE, y_latlon=TRUE, y_shp=TRUE, y_fips = TRUE,
 
+                              y_coverage_check = FALSE,
+
                               y_runsome = FALSE, # if T, need to also create partial_testlist
-                              tname = NULL,
-                              # c("test_fips", "test_naics", "test_frs", "test_latlon", "test_maps",
-                              # "test_shape", "test_getblocks", "test_fixcolnames", "test_doag",
-                              # "test_ejamit", "test_ejscreenapi", "test_mod", "test_app", "test_test")
+                              tname = NULL,  ## or...
+                              # c("test_fips", "test_naics", "test_frs", "test_latlon",
+                              #  "test_maps", "test_shape", "test_getblocks", "test_fixcolnames", "test_doag",
+                              #  "test_ejamit", "test_misc",
+                              #  "test_mod", "test_app",
+                              #  "test_ejscreenapi", "test_test", "test_golem"
+                              # )
 
                               y_runall = TRUE,
                               y_stopif = FALSE,
@@ -60,14 +67,14 @@ test_interactively = function(ask = TRUE,
     if (missing(y_basic)) {
       y_basic = askYesNo("Do ONLY basic quick checks (no unit tests, then STOP) ?", default = y_basic)
     }}
-  if (is.na(y_basic)) {stop("cancelled")}
+  if (is.na(y_basic)) {stop("canceled")}
   if (y_basic) {
     if (missing(y_latlon) & ask) {y_latlon = askYesNo("quick tests for latlon?", default = y_latlon)}
-    if (is.na(y_latlon)) {stop("cancelled")}
+    if (is.na(y_latlon)) {stop("canceled")}
     if (missing(y_shp)    & ask) {y_shp    = askYesNo("quick tests for shp?",    default = y_shp)}
-    if (is.na(y_shp))    {stop("cancelled")}
+    if (is.na(y_shp))    {stop("canceled")}
     if (missing(y_fips)   & ask) {y_fips   = askYesNo("quick tests for fips?",   default = y_fips)}
-    if (is.na(y_fips))   {stop("cancelled")}
+    if (is.na(y_fips))   {stop("canceled")}
   }
   # if only doing basic non-unit-testing then do not ask about other details and do not find groups of test files, etc. -
   #  just skip way ahead to load/library and do those quick checks
@@ -174,7 +181,9 @@ test_interactively = function(ask = TRUE,
         test_doag = c(
           "test-pctile_from_raw_lookup.R",
           "test-doaggregate.R",
-          "test-area_sqmi.R"
+          "test-area_sqmi.R",
+          "test-batch.summarize.R",
+          "test-utils_flagged_FUNCTIONS.R"
         ),
         test_ejamit = c(
           "test-ejamit.R",
@@ -201,11 +210,11 @@ test_interactively = function(ask = TRUE,
           "test-mod_specify_sites.R",
           "test-mod_view_results.R"
         ),
-        test_app = c(
+        test_app = c( # not to be confused with shinytest2::test_app() !
           #"test-report_residents_within_xyz.R",  # maybe belongs in a separate group about reports/tables?
           "test-ui_and_server.R",
-          "test-FIPS-functionality.R", 
-          "test-latlon-functionality.R", 
+          "test-FIPS-functionality.R",
+          "test-latlon-functionality.R",
           "test-NAICS-functionality.R",
           "test-shp-gdb-zip-functionality.R",
           "test-shp-json-functionality.R",
@@ -222,8 +231,13 @@ test_interactively = function(ask = TRUE,
           "test-golem_utils_ui.R"      # not used
         )
       )
+      # c("test_fips", "test_naics", "test_frs", "test_latlon", "test_maps",
+      #   "test_shape", "test_getblocks", "test_fixcolnames", "test_doag",
+      #   "test_ejamit", "test_misc", "test_ejscreenapi", "test_mod", "test_app",
+      #   "test_test", "test_golem")
 
       # Seconds to run each testfile or group ####
+      # x$bytest_all[, c("file", "seconds_byfile")]
 
       timebyfile <- structure(
         list(
@@ -240,9 +254,15 @@ test_interactively = function(ask = TRUE,
             "test-naics_from_code.R", "test-naics_from_name.R", "test-naics_subcodes_from_code.R",
             "test-naics_validation.R", "test-naics_from_any.R", "test-FIPS_FUNCTIONS.R",
             "test-is.numeric.text.R", "test-state_from_latlon.R", "test-state_from_fips_bybg.R",
-            "test-MAP_FUNCTIONS.R", "test-FIPS-shiny-functionality.R", "test-NAICS-shiny-functionality.R",
+            "test-MAP_FUNCTIONS.R",
+
+            # obsolete names:
+            "test-FIPS-shiny-functionality.R", "test-NAICS-shiny-functionality.R",
             "test-latlon-shiny-functionality.R", "test-shapefile-shiny-functionality.R",
-            "test-ui_and_server.R", "test-doaggregate.R", "test-pctile_from_raw_lookup.R",
+
+            "test-ui_and_server.R",
+
+            "test-doaggregate.R", "test-pctile_from_raw_lookup.R",
             "test-ejamit_sitetype_from_output.R", "test-ejam2barplot_sites.R",
             "test-ejamit.R", "test-ejamit_compare_distances.R", "test-ejamit_compare_types_of_places.R",
             "test-ejamit_sitetype_from_input.R", "test-getblocks_summarize_blocks_per_site.R",
@@ -274,6 +294,16 @@ test_interactively = function(ask = TRUE,
             2.19999999999891, 2.23999999999978)),
         class = "data.frame",
         row.names = c(NA, -69L))
+      # correct/new names:
+      timebyfile <- rbind(timebyfile,
+                          data.frame(file =  c("test-latlon-functionality.R", "test-shp-gdb-zip-functionality.R",
+                                               "test-shp-json-functionality.R", "test-shp-unzip-functionality.R",
+                                               "test-shp-zip-functionality.R", "test-FIPS-functionality.R",
+                                               "test-NAICS-functionality.R"
+                          ),
+                          seconds_byfile = c(119.793, 157.021, 156.421, 160.492, 163.264,
+                                             133.808, 114.904)
+                                       ))
 
       # timebygroup
       #            testgroup seconds_bygroup
@@ -284,7 +314,7 @@ test_interactively = function(ask = TRUE,
       #  4:       test_naics              52
       #  5:        test_fips              68
       #  6:        test_maps              22
-      #  7:         test_app              29
+      #  7:         test_app                 1035
       #  8:        test_doag              50
       #  9:      test_ejamit  ***        169
       # 10:   test_getblocks              64
@@ -296,8 +326,9 @@ test_interactively = function(ask = TRUE,
 
       timebygroup = structure(list(
         testgroup = c("test_latlon", "test_fixcolnames", "test_ejscreenapi", "test_naics", "test_fips", "test_maps", "test_app",
-                      "test_doag", "test_ejamit", "test_getblocks", "test_shape", "test_frs", "test_golem", "test_mod", "test_test"),
-        seconds_bygroup = c(70, 33, 123, 52, 68, 22, 29, 50, 169, 64, 30, 72, 11, 16, 11)
+                      "test_doag", "test_ejamit", "test_getblocks", "test_shape", "test_frs", "test_golem", "test_mod", "test_test",
+                      "test-misc"),
+        seconds_bygroup = c(70, 33, 123, 52, 68, 22, 1035, 50, 169, 64, 30, 72, 11, 16, 11, 10)
       ),
       row.names = c(NA, -15L), class = c("data.table", "data.frame")
       )
@@ -339,10 +370,7 @@ test_interactively = function(ask = TRUE,
       # 32:                   test-state_from_latlon.R          17.59
       # 33:                test-state_from_fips_bybg.R           2.30
       # 34:                       test-MAP_FUNCTIONS.R          20.12
-      # 35:            test-FIPS-shiny-functionality.R           2.17
-      # 36:           test-NAICS-shiny-functionality.R           2.25
-      # 37:          test-latlon-shiny-functionality.R           2.20
-      # 38:       test-shapefile-shiny-functionality.R           2.32
+
       # 39:                       test-ui_and_server.R           2.72
       # 40:                         test-doaggregate.R          42.25
       # 41:              test-pctile_from_raw_lookup.R           2.55
@@ -384,6 +412,7 @@ test_interactively = function(ask = TRUE,
       {
 
         if (!all(TRUE == all.equal(sort(test_all), sort(test_files_found)))) {
+          beepr::beep(10)
           cat("\n\n   test files found in folder does not match test_files_found list  \n")
           print(all.equal(sort(test_all), sort(test_files_found)))
           cat("\n\n")
@@ -393,7 +422,16 @@ test_interactively = function(ask = TRUE,
           cat("These are in test folder as files but not in list of groups above: \n\n")
           print(setdiff(test_files_found, test_all))
           cat("\n")
-          stop("fix list of files")
+          if (interactive() && ask) {
+          stopfix <- askYesNo("Stop now to fix list of files in test_interactively() source code?", default = TRUE)
+          } else {
+            stopfix <- TRUE
+          }
+          if (is.na(stopfix) || stopfix == TRUE) { # if ESC or asked and yes
+            stop("fix list of files in test_interactively() source code")
+          } else {
+            cat("Continuing anyway \n")
+          }
         }
 
         if (length(setdiff(test_all, test_files_found)) > 0) {
@@ -648,7 +686,7 @@ test_interactively = function(ask = TRUE,
             # using beepr::beep() since utils::alarm() may not work
             # using :: might create a dependency but prefer that pkg be only in Suggests in DESCRIPTION
             if (interactive()) {beepr::beep(10)}
-            cat(paste0("     ***      SOME UNTESTED OR WARNED OR FAILED IN ", tgroupname, ": ",  
+            cat(paste0("     ***      SOME UNTESTED OR WARNED OR FAILED IN ", tgroupname, ": ",
                 paste0(unique(xtable[[i]]$file[xtable[[i]]$flagged]), collapse = ","),
                 "\n"))
           }
@@ -656,7 +694,7 @@ test_interactively = function(ask = TRUE,
         } # looped over groups of test files
 
         xtable <- data.table::rbindlist(xtable)
-        time_minutes <-   round(sum(xtable[ , (seconds_bygroup[1]) / 60, by = testgroup][, V1]) , 1)
+        time_minutes <-   round(sum(xtable[ , (seconds_bygroup[1]) / 60, by = "testgroup"][, V1]) , 1)
         cat(paste0('\n', time_minutes[1], ' minutes total for all groups\n\n'))
 
         xtable[ , flagged_byfile := sum(flagged), by = "file"]
@@ -681,6 +719,13 @@ test_interactively = function(ask = TRUE,
 
     if (interactive() & ask) {
 
+      if (missing(y_coverage_check)) {
+        y_coverage_check <- askYesNo(
+          msg = "See lists of functions without matching unit test file names?",
+          default = FALSE)
+      }
+      if (is.na(y_coverage_check)) {stop("canceled")}
+
       if (missing(useloadall)) {
         useloadall <- askYesNo(msg = "Do you want to load and test the current source code files version of EJAM (via devtools::load_all() etc.,
                       rather than testing the installed version)?", default = TRUE)
@@ -689,7 +734,7 @@ test_interactively = function(ask = TRUE,
         if (!missing(tname)) {y_runsome <- TRUE}
         if ( missing(tname)) {y_runsome = askYesNo("Run ONLY SOME OF THE tests ?", default = FALSE)}
       }
-      if (is.na(y_runsome))  {stop("cancelled")}
+      if (is.na(y_runsome))  {stop("canceled")}
       if (y_runsome) {y_runall =  FALSE}
       if (y_runsome) {
         if (missing(tname)) {
@@ -704,22 +749,22 @@ test_interactively = function(ask = TRUE,
       } else {
         if (missing(y_runall)) {
           y_runall = askYesNo("RUN ALL TESTS NOW?")}
-        if (is.na(y_runall)) {stop("cancelled")}
+        if (is.na(y_runall)) {stop("canceled")}
       }
       if (missing(y_stopif)) {
         y_stopif = askYesNo("Halt when a test fails?")}
-      if (is.na(y_stopif)) {stop("cancelled")}
+      if (is.na(y_stopif)) {stop("canceled")}
 
       if (missing(y_seeresults)) {
         y_seeresults = askYesNo("View results of unit testing?")}
-      if (is.na(y_seeresults))  {stop("cancelled")}
+      if (is.na(y_seeresults))  {stop("canceled")}
       if (missing(y_save)) {
         y_save = askYesNo("Save results of unit testing (and log file of printed summaries)?")}
-      if (is.na(y_save)) {stop("cancelled")}
+      if (is.na(y_save)) {stop("canceled")}
       if (y_save) {
         if (missing(y_tempdir) & missing(mydir)) {
           y_tempdir = askYesNo("OK to save in a temporary folder you can see later? (say No if you want to specify a folder)")}
-        if (is.na(y_tempdir)) {stop("cancelled")}
+        if (is.na(y_tempdir)) {stop("canceled")}
         if (y_tempdir & missing(mydir)) {
           mydir <- tempdir()
         } else {
@@ -757,8 +802,8 @@ test_interactively = function(ask = TRUE,
   } # end if not just basic
   # finished asking what to do and setting up
 
-  # if did not ask and still have not defined mydir
-  if (missing(mydir) && (!exists('mydir') || is.null(mydir))) {
+  # if  still have not defined valid mydir
+  if (missing(mydir) || (!exists('mydir') || is.null(mydir)) || !dir.exists(mydir) ) {
     if (y_tempdir) {
       mydir <- tempdir()
     } else {
@@ -775,6 +820,7 @@ test_interactively = function(ask = TRUE,
   cat('\n')
   if (useloadall) {
     devtools::load_all()
+    cat("\n\nNOTE the testthat.R file might do library(EJAM) and make this test only installed not loaded version??\n\n")
   } else {
     suppressPackageStartupMessages({   library(EJAM)   })
   }
@@ -787,6 +833,16 @@ test_interactively = function(ask = TRUE,
   # } else {
   #   cat("Need to source the setup.R file first \n")
   # }
+  ########################### #  ########################################## #
+
+  # test_coverage_check() ####
+
+  if (y_coverage_check) {
+    cat("Also see the covr package at https://covr.r-lib.org/ \n")
+    source("tests/test_coverage_check.R")
+    test_coverage_info <- test_coverage_check()
+    # test_coverage_info table is not used. the function prints info.
+  }
   ########################### #  ########################################## #
 
   # RUN BASIC QUICK CHECKS NOT UNIT TESTS   ####
@@ -1042,6 +1098,10 @@ test_interactively = function(ask = TRUE,
     z <- system.time({
 
       shownlist = testlist
+
+     # cat("skipping ejscreenapi tests while API down \n")
+     #  testlist = testlist[names(testlist) %in% "ejscreenapi"]
+
       shownlist = cbind(testgroup = rep(names(shownlist), sapply(shownlist, length)), file = unlist(shownlist))
       rownames(shownlist) = NULL
       cat("\n USING THESE TEST FILES: \n\n")
@@ -1087,7 +1147,7 @@ test_interactively = function(ask = TRUE,
       # will do save of everything after summarizing results
     } else {
       # y_save = askYesNo("Save results of unit testing?")
-      if (is.na(y_save)) {stop("cancelled")}
+      if (is.na(y_save)) {stop("canceled")}
       if (y_save) {
         fname <- paste0("results_of_unit_testing_", as.character(Sys.Date()), ".rda")
         fname = (  file.path(mydir, fname) )
@@ -1104,7 +1164,7 @@ test_interactively = function(ask = TRUE,
   # SUMMARIZE results ####
 
   # y_seeresults = askYesNo("View results of unit testing?")
-  if (is.na(y_seeresults))  {stop("cancelled")}
+  if (is.na(y_seeresults))  {stop("canceled")}
   if (y_seeresults) {
     # consoleclear()
     ########################### #  ########################### #
@@ -1169,7 +1229,7 @@ test_interactively = function(ask = TRUE,
 
       # WHICH TESTS?
 
-      bytest_key = x[order(-x$flagged, -x$failed), ]
+      bytest_key = x[order(-x$failed, -x$warned, -x$flagged), ]
       these = bytest_key$flagged > 0
       if (any(these)) {
         bytest_key <- bytest_key[these, ]
@@ -1178,12 +1238,15 @@ test_interactively = function(ask = TRUE,
         cat("KEY TESTS")
 
         cat("\n\n")
-        print(as.data.frame(bytest_key)[ , !grepl("_byfile|_bygroup", names(bytest_key))])
+        bytest_key_niceview <- as.data.frame(bytest_key)[ , !grepl("_byfile|_bygroup|total|passed|flagged", names(bytest_key))]
+        bytest_key_niceview <- bytest_key_niceview[, c('testgroup', 'file', 'test', 'failed', 'warned', 'untested_cant', 'untested_skipped')]
+        print(bytest_key_niceview)
         cat("\n")
       } else {
         cat("\n")
         cat("No tests had issues\n\n")
         bytest_key = NA
+        bytest_key_niceview = NA
       }
       ########################### #
 
@@ -1224,6 +1287,7 @@ test_interactively = function(ask = TRUE,
     bygroup = bygroup,
     byfile = byfile,
     bytest_key = bytest_key,
+    bytest_key_niceview = bytest_key_niceview,
     bytest_all = bytest,
     folder = mydir,
     count_available_files_bygroup = count_available_files_bygroup,
@@ -1327,18 +1391,49 @@ loggable <- function(x, file = 'will be created using timestamp if not provided 
 }
 ################################### #
 
-# example of using it ####
-cat('
+# example of using this function ####
+cat('\n
+################################### #  ################################### #
+\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+\n  # examples of using this function: ####
 
-# examples of using it ####
+# Examples of using it ####
 
-x <- test_interactively(F)  # no questions, just defaults
+?test_interactively
 
-
-x <- test_interactively()   # it asks questions
-
+x <- test_interactively()   # it will ask about each parameter, by default
 
 x <- test_interactively(F, mydir = rstudioapi::selectDirectory())
+# uses defaults, except it asks you what folder to save in
+
+x <- test_interactively(F)  # no questions, just defaults, i.e. these:
+
+x <- test_interactively(
+  ask = TRUE,
+  noquestions = TRUE, # just for shapefile folder selections
+
+  useloadall  = TRUE, # might be essential actually
+
+  y_basic = FALSE,   y_latlon=TRUE, y_shp=TRUE, y_fips=TRUE,
+
+  y_coverage_check = FALSE,
+
+  y_runsome        = FALSE, # if T, need to also create partial_testlist
+  tname = NULL,  # or some of these:
+# c("test_fips", "test_naics", "test_frs", "test_latlon",
+#  "test_maps", "test_shape", "test_getblocks", "test_fixcolnames", "test_doag",
+#  "test_ejamit", "test_misc",
+#  "test_mod", "test_app",
+#  "test_ejscreenapi", "test_test", "test_golem"
+# )
+  y_runall     = TRUE,
+
+  y_stopif     = FALSE, # stop as soon as problem is hit?
+  y_seeresults = TRUE,
+  y_save       = TRUE,
+  y_tempdir    = TRUE,
+  mydir = NULL
+)
 
 ')
-################################### #  ################################### #  ################################### #
+

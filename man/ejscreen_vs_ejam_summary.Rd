@@ -98,9 +98,9 @@ EJAM/EJSCREEN comparisons - see summary stats after using ejscreen_vs_ejam()
   s100[s100$indicator \%in\% names_e, ]
   s100[s100$indicator \%in\% names_d, ]
   s100[s100$indicator \%in\% names_these, ]
-  s100[s100$indicator \%in\% c(names_ej_pctile, names_ej_state_pctile, 
+  s100[s100$indicator \%in\% c(names_ej_pctile, names_ej_state_pctile,
     names_ej_supp_pctile, names_ej_supp_state_pctile), ]
-  
+
   sum100_within5pct <- ejscreen_vs_ejam_summary(vs100, tol = 0.05)
   sum100_within5pct[sum100_within5pct$indicator \%in\% names_these, ][ , c(1, 6:12)]
 

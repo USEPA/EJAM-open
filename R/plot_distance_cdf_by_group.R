@@ -16,7 +16,7 @@
 #'   but if demogvarname is not specified here as a parameter,
 #'   this info could also be specified by the subgroups_type parameter here.
 #'   If neither is specified, the function will try to use a default
-#' @param demoglabel friendly text names for labelling graphic, like "Low income residents"
+#' @param demoglabel friendly text names for labeling graphic, like "Low income residents"
 #' @param colorlist colors like "red" etc. for the residential population groups of interest
 #' @param coloroverall color like "gray" for everyone as a whole
 #' @param returnwhat If returnwhat is "table", invisibly returns a
@@ -254,7 +254,7 @@ if (length(demogvarname) > 1) {
 #' @param results_bybg_people data.table from doaggregate()$results_bybg_people
 #' @param radius_miles miles radius that was max distance analyzed
 #' @param demogvarname name of column in results_bybg_people, e.g., "pctlowinc"
-#' @param demoglabel friendly text name for labelling graphic, like "Low income residents"
+#' @param demoglabel friendly text name for labeling graphic, like "Low income residents"
 #' @param color1 color like "red" for residential population group of interest
 #' @param color2 color like "gray" for everyone else
 #' @seealso [distance_by_group()] [getblocksnearbyviaQuadTree()] for examples

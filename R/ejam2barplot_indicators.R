@@ -37,7 +37,7 @@ ejam2barplot_indicators <- function(ejamitout, indicator_type = 'Demographic', d
   #                             'avg' = c('Average site','Average person')
   # )
   
-  ## filter to necessary parts of batch.summarize output
+  ## filter to necessary parts of batch.summarize output - needs work here
   
     barplot_data <- ejamitout$results_summarized$rows %>%
       tibble::rownames_to_column(var = 'Summary') %>%

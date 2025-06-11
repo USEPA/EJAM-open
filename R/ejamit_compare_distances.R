@@ -406,7 +406,7 @@ ejam2barplot_distances <- function(results_bydistance,
 # internal function to extract/reassemble tables from ejamit_compare_distances_fulloutput()
 # MAY NOT GET USED
 
-#' A way to focus on 1 DISTANCE (RADIUS) at a time (after a multidistance run), for the list of sites
+#' A way to focus on 1 DISTANCE (RADIUS) at a time (after a multi-distance run), for the list of sites
 #' Get a list of tables, one per distance. Each table has a row per site.
 #' @details This function might not be used at all.
 #'   Extract results_bysite for each distance

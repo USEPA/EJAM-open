@@ -2,7 +2,8 @@
 % Please edit documentation in R/utils_locate_by_id.R
 \name{url_by_id}
 \alias{url_by_id}
-\title{Get the URLs to use to query FRS API to find EPA facilities by ID}
+\title{Get the URLs to use to query FRS API to find EPA facilities by ID
+Note API might have changed and related functions like locate_by_id() might not work now}
 \usage{
 url_by_id(id, type = "frs", ...)
 }
@@ -19,10 +20,15 @@ Program ids are like "VA0088986" and frs ids are like "110015787683"}
 vector of URLs as strings, same length as id parameter
 }
 \description{
-This uses an API to find sites, but it is faster to look in a table
-if that FRS dataset is already loaded in an app, for example.
+Get the URLs to use to query FRS API to find EPA facilities by ID
+Note API might have changed and related functions like locate_by_id() might not work now
 }
 \details{
+Note API might have changed and related functions like locate_by_id() might not work now -
+use ?latlon_from_programid() and ?latlon_from_regid() instead
+
+This uses an API to find sites, but it is faster to look in a table
+if that FRS dataset is already loaded in an app, for example.
 For details on FRS API,
 see https://www.epa.gov/frs/frs-rest-services
 and examples at https://www.epa.gov/frs/frs-rest-services#ex1
@@ -34,12 +40,12 @@ Note: API URL for internal use at EPA appears to be different than public one?
 }
 \examples{
  \donttest{
-    url_by_id(testids_registry_id)
-    browseURL(url_by_id(testids_registry_id)[1])
+    url_by_id(testinput_regid)
+    browseURL(url_by_id(testinput_regid)[1])
 }
 
 }
 \seealso{
-locate_by_id()
+?latlon_from_programid() and ?latlon_from_regid() and the obsolete locate_by_id()
 }
 \keyword{internal}

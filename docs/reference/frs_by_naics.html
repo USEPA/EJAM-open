@@ -76,7 +76,7 @@ frs_by_naics[,uniqueN(REGISTRY_ID)]
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -114,8 +114,8 @@ where you can find facilities based on NAICS or SIC.</p>
 <p><code>length(unique(frs_by_naics[,REGISTRY_ID]))</code></p>
 <p><code>length(frs_by_naics[, unique(REGISTRY_ID)])</code></p>
 <p><code>frs_by_naics[,uniqueN(REGISTRY_ID)]</code></p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   e.g., <span class="dv">581</span>,<span class="dv">416</span> <span class="cf">in</span> <span class="dv">02</span><span class="sc">/</span><span class="dv">2025</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>   e.g., <span class="dv">581</span>,<span class="dv">416</span> <span class="cf">in</span> <span class="dv">02</span><span class="sc">/</span><span class="dv">2025</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    lat       lon  REGISTRY_ID  NAICS</span></code></pre><p></p></div>
 <p>1: 34.04722 -81.15136 110000854246 325211</p>
 <p>2: 34.04722 -81.15136 110000854246 325220</p>

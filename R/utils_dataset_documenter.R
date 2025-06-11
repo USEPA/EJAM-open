@@ -24,7 +24,7 @@ dataset_documenter = function(varname,
   if (seealso != "") {seealso = paste0("#' @seealso ", seealso,  "\n" )}
   
   # if dataset saved in pkg via use_data then the last line of the documentation file should be the name of the dataset in quotes.
-  # if dataset NOT saved in pkg, but to be posted on a pins board for example, then last line of doc file should be NULL without quotes,
+  # if dataset NOT saved in pkg,  last line of doc file should be NULL without quotes,
   #   so it can create documentation as .Rd file without the object being available as something exported by the pkg.
   if (saveinpackage) {
     varnametext_or_null <- paste0("'", varname,"'")

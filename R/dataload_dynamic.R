@@ -10,10 +10,10 @@
 #'   or set this to "all" to load all of them
 #' @param envir if needed to specify environment other than default, e.g., globalenv() or parent.frame()
 #' @param folder_local_source path of local folder to
-#'   look in for locally saved copies in case pins board is not reachable by user.
+#'   look in for locally saved copies
 #' @param silent set to TRUE to suppress cat() msgs to console
 #' @param return_data_table whether the [read_ipc_file()] should return a data.table (T, the default), or arrow (F). Passed to [dataload_from_local()]
-#' @param onAttach Indicates whether the function is being called from onAttach. IF so, it will download all arrow files if user cannot connect to PINS board
+#' @param onAttach Indicates whether the function is being called from onAttach. IF so, it will download all arrow files if necessary
 #'
 #' @return
 #'

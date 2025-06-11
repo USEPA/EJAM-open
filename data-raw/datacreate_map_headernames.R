@@ -6,8 +6,12 @@ if (!exists("rawdir")) {rawdir <- './data-raw'}
 #toanother(e.g.,shortereasierforanalysisorprogramminginR,etc.)
 
 datacreate_map_headernames <- function(rawdir = "./data-raw",
-                                       fname = 'map_headernames_2.32.2.xlsx',
+                                       fname = NULL,
                                        sheet = "map_headernames") {
+
+  if (missing(fname) || is.null(fname)) {
+    fname <- paste0('map_headernames_', as.vector(desc::desc(package = "EJAM")$get("Version")), '.xlsx')
+  }
 
   fpath <- file.path(rawdir, fname)
   if (!file.exists(fpath)) {stop("did not find (but this requires) ", fpath)}

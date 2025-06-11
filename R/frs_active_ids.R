@@ -8,7 +8,7 @@
 #'   which contains NATIONAL_ENVIRONMENTAL_INTEREST_FILE.CSV
 #' @param zipbaseurl optional Default is <https://ordsext.epa.gov/FLA/www3/state_files> 
 #'
-#' @return vector of FRS IDs that seeem to be active (actually, not clearly inactive sites)
+#' @return vector of FRS IDs that seem to be active (actually, not clearly inactive sites)
 #'   assuming parameter active=TRUE, which is the default
 #' @seealso [frs_inactive_ids()]  [frs_update_datasets()]
 #'

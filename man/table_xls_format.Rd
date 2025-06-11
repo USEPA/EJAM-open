@@ -14,16 +14,16 @@ table_xls_format(
   summary_plot = NULL,
   plotlatest = FALSE,
   plotfilename = NULL,
-  mapadd = FALSE,
-  community_reportadd = FALSE,
-  report_map = NULL,
-  community_html = NULL,
   ok2plot = TRUE,
+  mapadd = FALSE,
+  report_map = NULL,
+  community_reportadd = FALSE,
+  community_html = NULL,
   analysis_title = "EJAM analysis",
-  buffer_desc = "Selected Locations",
   radius_or_buffer_in_miles = NULL,
   radius_or_buffer_description =
     "Miles radius of circular buffer (or distance used if buffering around polygons)",
+  buffer_desc = "Selected Locations",
   notes = NULL,
   custom_tab = NULL,
   custom_tab_name = "other",
@@ -67,23 +67,23 @@ This requires that bybg be provided as a parameter input to this function.}
 
 \item{plotfilename}{the full path including name of .png file to insert}
 
-\item{mapadd}{logical optional - try to include a map of the points}
+\item{ok2plot}{can set to FALSE to prevent plots from being attempted, while debugging}
 
-\item{community_reportadd}{logical provided by shiny app to specify whether to include community report image}
+\item{mapadd}{logical optional - try to include a map of the points}
 
 \item{report_map}{leaflet map object passed from Shiny app to display in 'Map' sheet}
 
+\item{community_reportadd}{logical provided by shiny app to specify whether to include community report image}
+
 \item{community_html}{HTML file of community report provided by shiny app to include in spreadsheet}
 
-\item{ok2plot}{can set to FALSE to prevent plots from being attempted, while debugging}
-
 \item{analysis_title}{optional title passed from Shiny app to 'Notes' sheet}
-
-\item{buffer_desc}{optional description of buffer used in analysis, passed to 'Notes' sheet}
 
 \item{radius_or_buffer_in_miles}{If provided, miles buffer distance (from polygon or from point if circular buffers)}
 
 \item{radius_or_buffer_description}{optional text saying if distance is radius or polygon buffer, passed to 'Notes' sheet}
+
+\item{buffer_desc}{optional description of buffer used in analysis, passed to 'Notes' sheet}
 
 \item{notes}{Text of additional notes to put in the notes tab, optional vector of character elements pasted in as one line each.}
 
@@ -107,11 +107,11 @@ second color is for those >=2d cutpoint but <3d, etc.}
 
 \item{hyperlink_colnames}{names of which to treat as URLs that should be hyperlinks}
 
-\item{graycolnames}{which columns to deemphasize}
+\item{graycolnames}{which columns to de-emphasize}
 
 \item{narrowcolnames}{which column numbers to make narrow}
 
-\item{graycolor}{color used to deemphasize some columns}
+\item{graycolor}{color used to de-emphasize some columns}
 
 \item{narrow6}{how narrow}
 
@@ -140,7 +140,7 @@ Already took and put here most or all of code from table_xls_format() or table_x
 \examples{
 \donttest{
   table_xls_format(
-    testoutput_ejamit_100pts_1miles$results_overall, 
+    testoutput_ejamit_100pts_1miles$results_overall,
     testoutput_ejamit_100pts_1miles$results_bysite,
     saveas =  "out1.xlsx")
  # can just pass the whole results of ejamit(), for convenience

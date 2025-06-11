@@ -29,7 +29,10 @@ ejam2report(
      names_flag),
     Climate = names_climate, `Critical Services` = names_criticalservice, Other =
     names_d_other_count),
-  extratable_hide_missing_rows_for = as.vector(unlist(extratable_list_of_sections))
+  extratable_hide_missing_rows_for = as.vector(unlist(extratable_list_of_sections)),
+  report_title = NULL,
+  logo_path = NULL,
+  logo_html = NULL
 )
 }
 \arguments{
@@ -37,15 +40,15 @@ ejam2report(
 if sitenumber parameter is used, or a data.table called \code{results_overall} otherwise}
 
 \item{sitenumber}{If a number is provided, the report is about
-\code{ejamout$results_bysite[sitenumber, ]} and if no number is provided (param is NULL)
-then the report is about \code{ejamout$results_overall}}
+\code{ejamitout$results_bysite[sitenumber, ]} and if no number is provided (param is NULL)
+then the report is about \code{ejamitout$results_overall}}
 
 \item{analysis_title}{optional title of analysis}
 
 \item{submitted_upload_method}{something like "latlon", "SHP", "FIPS", etc. (just used as-is as part of the filename)}
 
 \item{shp}{provide the sf spatial data.frame of polygons that were analyzed so you can map them since
-they arenot in ejamitout}
+they are not in ejamitout}
 
 \item{return_html}{set TRUE to have function return HTML object instead of URL of local file}
 
@@ -72,7 +75,15 @@ to show in that section, in extra table of demog. subgroups, etc.}
 
 \item{extratable_hide_missing_rows_for}{only for the indicators named in this vector,
 leave out rows in table where raw value is NA,
-as with many of names_d_language, in extra table of demog. subgroups, etc.' #'}
+as with many of names_d_language, in extra table of demog. subgroups, etc.}
+
+\item{report_title}{optional generic name of this type of report, to be shown at top, like "EJAM Multisite Report"}
+
+\item{logo_path}{optional relative path to a logo for the upper right of the overall header.
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()}
+
+\item{logo_html}{optional HTML for img of logo for the upper right of the overall header.
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.}
 }
 \value{
 URL of temp file or object depending on return_html,
@@ -86,10 +97,6 @@ EJScreen Community Report
 This relies on \code{\link[=build_community_report]{build_community_report()}} as used in web app
 for viewing report on 1 site from a list of sites (or overall).
 You can customize the report somewhat by using parameters like extratable_list_of_sections
-
-Note  \code{\link[=report_community_download]{report_community_download()}} is similar to \code{\link[=build_community_report]{build_community_report()}}
-but renders and saves the report as an HTML or pdf file for download
-instead of returning HTML for display in a browser.
 }
 \examples{
 #out <- ejamit(testpoints_10, radius = 3, include_ejindexes = T)

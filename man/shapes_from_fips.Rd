@@ -59,6 +59,6 @@ This function also sets options(tigris_use_cache = TRUE), but each individual sh
     # mapfast(shp[[i]])
    }
   }
-  
+
 
 }

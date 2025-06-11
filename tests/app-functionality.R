@@ -1,4 +1,8 @@
+
+# This is for testing web app functionality
+
 main_shinytest <- function(test_category) {
+  
   test_snap_dir <- glue::glue("{normalizePath(testthat::test_path())}/_snaps/{platform_variant()}/{test_category}-functionality/")
 
   test_that("{shinytest2} recording: EJAM", {

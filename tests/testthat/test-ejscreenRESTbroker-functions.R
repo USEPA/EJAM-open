@@ -5,11 +5,9 @@
 apiok = EJAM:::ejscreenapi_online() # for   skip_if_not(apiok, message = "ejscreen API not available")
 
 
-
 ################################ # ########################## # ejscreenRESTbroker ####
 
 cat('\ntesting ejscreenRESTbroker\n')
-
 
 testthat::test_that("ejscreenRESTbroker() works live", {
   skip_if_not(apiok, message = "ejscreen API not available")
@@ -34,7 +32,6 @@ testthat::test_that("ejscreenRESTbroker() works live", {
   expect_no_error({
     x <- ejscreenRESTbroker(lon = testpoints_5$lon[1], lat = testpoints_5$lat[1], radius = testradius)
   })
-
 })
 
 if (!apiok) {
@@ -62,6 +59,7 @@ testthat::test_that("ejscreenRESTbroker() returns ok status code 200 and an elem
   expect(ok =  'content' %in% names(outrest), failure_message = 'names(outrest) fails to contain "content"')
   # same as expect_in()
 })
+  
 test_that("ejscreenRESTbroker() output class() is still identical to that of saved testoutput_ejscreenRESTbroker_1pts_1miles" , {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -81,6 +79,7 @@ test_that("ejscreenRESTbroker() output class() is still identical to that of sav
   skip_if(missing_api_results, "skipping because ejscreenRESTbroker() failed")
   expect_equal( class(brokerout), class(testoutput_ejscreenRESTbroker_1pts_1miles))
 })
+
 test_that("ejscreenRESTbroker() output names() are still identical to those of saved testoutput_ejscreenRESTbroker_1pts_1miles", {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -100,6 +99,7 @@ test_that("ejscreenRESTbroker() output names() are still identical to those of s
   skip_if(missing_api_results, "skipping because ejscreenRESTbroker() failed")
   expect_equal(names(testoutput_ejscreenRESTbroker_1pts_1miles), names(brokerout))
 })
+
 test_that("ejscreenRESTbroker() output $headers$`content-type` is still identical to those of saved testoutput_ejscreenRESTbroker_1pts_1miles", {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -119,6 +119,7 @@ test_that("ejscreenRESTbroker() output $headers$`content-type` is still identica
   skip_if(missing_api_results, "skipping because ejscreenRESTbroker() failed")
   expect_equal(brokerout$headers$`content-type`, testoutput_ejscreenRESTbroker_1pts_1miles$headers$`content-type`)
 })
+
 test_that("ejscreenRESTbroker() output $headers$`content-type` is still identical to those of saved testoutput_ejscreenRESTbroker_1pts_1miles", {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -140,13 +141,11 @@ test_that("ejscreenRESTbroker() output $headers$`content-type` is still identica
 })
 # expect_equal(brokerout$content, testoutput_ejscreenRESTbroker_1pts_1miles$content)
 
-
-
 ################################ # ########################## # ejscreenRESTbroker2table ####
 
 cat('\ntesting ejscreenRESTbroker2table\n')
 
-## also could add here a test of the getstatefromplacename parameter now
+## also could add here a test of the getstatefromplacename parameter now ***
 
 
 test_that("ejscreenRESTbroker2table() does not crash on 1 point", {
@@ -174,6 +173,7 @@ test_that("ejscreenRESTbroker2table() does not crash on 1 point", {
   )
   # CAN SOMETIMES TAKE 30 SECONDS, SOMETIMES 5 SECONDS
 })
+
 test_that('ejscreenRESTbroker2table() does not crash on 1 INVALID point', {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -195,6 +195,7 @@ test_that('ejscreenRESTbroker2table() does not crash on 1 INVALID point', {
     expect_no_error( ejscreenRESTbroker2table(ejscreenRESTbroker(lat = -100, lon = 30, radius = testradius)) )
   })  # CAN SOMETIMES TAKE 30 SECONDS, SOMETIMES 5 SECONDS
 })
+
 test_that('ejscreenRESTbroker2table(ejscreenRESTbroker()) returns 1-row data.frame', {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -214,6 +215,7 @@ test_that('ejscreenRESTbroker2table(ejscreenRESTbroker()) returns 1-row data.fra
   expect_equal(class(outrest2table), 'data.frame')
   expect_equal(NROW(outrest2table), 1)
 })
+
 test_that('ejscreenRESTbroker2table(ejscreenRESTbroker()) results are same as ejscreenapi1(), except latter makes it numeric and drops percent signs', {
   skip_if_not(apiok, message = "ejscreen API not available")
   testradius = 1
@@ -250,7 +252,6 @@ test_that('ejscreenRESTbroker2table(ejscreenRESTbroker()) results are same as ej
 
 ##   ........ (more testdata) ####
 
-
 test_that("warned if radius small so no block point inside" , {
   skip_if_not(apiok, message = "ejscreen API not available")
   xneg <- (ejscreenRESTbroker(lon = testpoints_500[108, 'lon'], lat = testpoints_500[108, 'lat'], radius = -1))
@@ -276,10 +277,7 @@ test_that("warned if radius small so no block point inside" , {
   # expect_equal(names(xx3), names(xx1))
   expect_equal(xx0$message, xx1$message)
   # expect_false("error" %in% names(xx0)) # "message" is the name there now
-
 })
 
 }
-
-
 ################################ #   ################################ #   ################################ #

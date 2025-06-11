@@ -7,8 +7,9 @@
 metadata_check(
   packages = EJAM::ejampackages,
   datasets = "all",
-  which = c("date_saved_in_package", "date_downloaded", "ejscreen_version",
-    "ejscreen_releasedate", "acs_releasedate", "acs_version", "census_version"),
+  which = c("ejam_package_version", "date_saved_in_package", "date_downloaded",
+    "ejscreen_version", "ejscreen_releasedate", "acs_releasedate", "acs_version",
+    "census_version"),
   grepdatasets = FALSE,
   loadifnotloaded = TRUE
 )

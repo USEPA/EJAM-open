@@ -519,7 +519,7 @@ bgej <- data.table(
 bgej = metadata_add(bgej)
 
 ## do not save via  usethis::use_data(bgej, overwrite = TRUE) - it is a large file
-cat("bgej created in globalenv but not saved yet - will try to save to pins board in later script... \n")
+cat("bgej created in globalenv but not saved yet - will try to save in later script... \n")
 
 ## documentation for bgej ####
 
@@ -584,7 +584,7 @@ rm(fnames)
 ## blockgroupstats_new is still needed for the next script
 
 ## bgej is left in globalenv by this script -
-# later can Save bgej to pins board as .arrow file
+# later can Save bgej  as .arrow file
 #   
 cat("FINISHED A SCRIPT\n")
 cat("\n In globalenv() so far: \n\n")

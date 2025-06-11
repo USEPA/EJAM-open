@@ -1,9 +1,9 @@
 #################################################################### #
 
-# Actually this specifies pins board info on 'title' and 'description' 
+# Actually this specified old pins board info on 'title' and 'description' 
 # but NOT what pins pkg calls metadata.
 # The actual pins metadata parameter will note the ejscreen version 
-# when the object is being written to the pins board using `pin_write(metadata = )`
+# when the object was being written to the old pins board using `pin_write(metadata = )`
 
 metadata4pins <- list(
   
@@ -88,6 +88,6 @@ metadata4pins = data.frame(metadata4pins)
 # attr(metadata4pins, "date_saved_in_package") <- as.character(Sys.Date()) # this should be a date assigned only when datacreate_ script is run for a specific dataset to create it.
 usethis::use_data(metadata4pins, overwrite = TRUE)
 dataset_documenter('metadata4pins', 
-                   title = "metadata about data object, for pins", 
-                   details = "metadata such as description of dataset, for pins board data in EJAM package")
+                   title = "metadata about data object - used to be for pins board but pins no longer used", 
+                   details = "metadata such as description of dataset")
 #################################################################### #

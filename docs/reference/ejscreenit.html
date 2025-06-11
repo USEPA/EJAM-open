@@ -38,7 +38,7 @@ multiple locations compiled in one table."><meta property="og:image" content="ht
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -173,7 +173,7 @@ If interactive() is TRUE, this actually defaults to TRUE.</p></dd>
 
 
 <dt id="arg-nicenames">nicenames<a class="anchor" aria-label="anchor" href="#arg-nicenames"></a></dt>
-<dd><p>whether to use long plain english headers in table or R variable names,
+<dd><p>whether to use long plain English headers in table or R variable names,
 e.g.,  "Particulate Matter (PM 2.5 in ug/m3)" not "pm"</p></dd>
 
 
@@ -334,7 +334,7 @@ and then prepends input table and renames columns as R variables like "traffic.s
 <span> <span class="co"># htmltools::save_html(x$map, "mapfile.html")</span></span>
 <span> </span>
 <span> <span class="co"># or make it printable as a static file like this:</span></span>
-<span> <span class="va">x</span><span class="op">$</span><span class="va">map</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">leaflet.extras2</span><span class="fu">::</span><span class="fu"><a href="https://trafficonese.github.io/leaflet.extras2/reference/easyprintMap.html" class="external-link">easyprintMap</a></span><span class="op">(</span></span>
+<span> <span class="va">x</span><span class="op">$</span><span class="va">map</span> <span class="op">%&gt;%</span> <span class="fu">leaflet.extras2</span><span class="fu">::</span><span class="fu"><a href="https://trafficonese.github.io/leaflet.extras2/reference/easyprintMap.html" class="external-link">easyprintMap</a></span><span class="op">(</span></span>
 <span>   filename <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="va">folder</span>, <span class="st">"map.png"</span><span class="op">)</span>, exportOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co"># }</span></span>
 <span></span></code></pre></div>

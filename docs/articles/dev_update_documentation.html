@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -96,44 +96,58 @@
 <p>This document addresses how to update the documentation supporting
 the package.</p>
 <div class="section level2">
-<h2 id="updating-package-documentation-in-rstudio-and-web-based-docs">Updating package documentation (in RStudio and web-based docs)<a class="anchor" aria-label="anchor" href="#updating-package-documentation-in-rstudio-and-web-based-docs"></a>
+<h2 id="updating-package-documentation">Updating package documentation<a class="anchor" aria-label="anchor" href="#updating-package-documentation"></a>
 </h2>
 <p>The R package is documented in webpages (and in standard help
 documents viewable in RStudio). Documentation will generally need to be
 updated in preparation for a new release of the package. Updates may be
 needed in the following:</p>
 <ol style="list-style-type: decimal">
-<li><p>Overall, package-wide information/ documents (e.g.,
-README)</p></li>
-<li><p>Reference docs explaining the R functions</p></li>
-<li><p>Reference docs explaining the datasets</p></li>
-<li><p>Articles/ vignettes to help R users with the package</p></li>
-<li><p>“User Guide” to help people use the web app</p></li>
-<li><p>Web pages providing all of the above in html format</p></li>
+<li><p><a href="#package-overall-package-wide-information-documents">Package:
+overall, package-wide information/ documents</a></p></li>
+<li><p><a href="#functions-reference-docs-explaining-the-r-functions">Functions:
+reference docs explaining the R functions</a></p></li>
+<li><p><a href="#datasets-reference-docs-explaining-the-datasets">Datasets:
+reference docs explaining the datasets</a> (in EJAM/R/data_*.R
+files)</p></li>
+<li><p><a href="#articles-vignettes-helping-r-users-with-the-package">Articles:
+vignettes helping R users with the package</a> (in
+<code>EJAM/vignettes/*.Rmd</code>)</p></li>
+<li><p><a href="#user-guide-help-for-people-using-the-web-app">User
+Guide: help for people using the web app</a> (in
+<code>EJAM/inst/app/www/</code> as a .pdf file)</p></li>
+<li><p><a href="#spell-checking-package-wide">Spell-checking
+package-wide</a></p></li>
+<li><p><a href="#website-web-pages-providing-all-of-the-above-in-html-format">Website:
+web pages providing all of the above in html format</a>, via the
+<a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> package</p></li>
 </ol>
 <p>Each is explained below:</p>
 <div class="section level3">
-<h3 id="updating-overall-package-wide-information-documents">Updating overall, package-wide information/ documents<a class="anchor" aria-label="anchor" href="#updating-overall-package-wide-information-documents"></a>
+<h3 id="package-overall-package-wide-information-documents">Package: overall, package-wide information/ documents<a class="anchor" aria-label="anchor" href="#package-overall-package-wide-information-documents"></a>
 </h3>
 <ul>
 <li><p>Package-wide documentation files can be updated/edited and
 include the following: <code>DESCRIPTION</code>, <code>README.Rmd</code>
-(for README, edit the .Rmd NOT the .md file), R/EJAM-package.R
-(<code>EJAM-package</code>), <code>NEWS.md</code>,
-<code>CONTRIBUTING.md</code>, <code>LICENSE.md</code>,
-<code>CITATION</code>, and others.</p></li>
+(for README, <strong>edit the README<u>.Rmd</u><em>NOT</em> the
+README.<u>md</u> file</strong>), R/EJAM-package.R (for
+<code>?EJAM-package</code>), <code>NEWS.md</code> used to make <a href="../news/index.html">NEWS</a>, <code>CONTRIBUTING.md</code> used to
+make <a href="../CONTRIBUTING.html">CONTRIBUTING</a>, <a href="../LICENSE.html">LICENSE</a> based on
+<code>inst/LICENSE.md</code>, <a href="../authors.html#citation">CITATION</a> based on
+<code>inst/CITATION</code>, and others.</p></li>
 <li><p>Some of these are used by and shown by the github.com repository,
 notably the <code>README.md</code> that is generated from the
-<code>README.Rmd</code> file, and the <code>DESCRIPTION</code> file that
-stores package version number and URLs of the package repository,
-etc.</p></li>
+<code>README.Rmd</code> file and appears on the github repository as <a href="%60r%20paste0(code_reponame_url,%20%22?tab=readme-ov-file#readme%22)%60">README</a>
+and in the pkgdown site as <a href="../index.html">README</a>, and the
+<code>DESCRIPTION</code> file that stores package version number and
+URLs of the package repository, etc.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="reference-docs-explaining-the-r-functions">Reference docs explaining the R functions<a class="anchor" aria-label="anchor" href="#reference-docs-explaining-the-r-functions"></a>
+<h3 id="functions-reference-docs-explaining-the-r-functions">Functions: reference docs explaining the R functions<a class="anchor" aria-label="anchor" href="#functions-reference-docs-explaining-the-r-functions"></a>
 </h3>
 <ul>
-<li><p><code>roxygen2</code> package tags define the documentation in
+<li><p><a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> package tags define the documentation in
 the R/*.R files that contain the source code and documentation of
 functions and datasets.</p></li>
 <li><p>While many functions or objects have their own .R files, some .R
@@ -141,18 +155,19 @@ files contain code and documentation for multiple functions, so not
 every function has a .R file of its own.</p></li>
 <li><p>some utility/helper functions, mostly not exported, are stored in
 files prefixed with “utils_” such as <code>R/utils_indexblocks.R</code>
-(but not all helper functions are in files named that way).</p></li>
+documenting <code><a href="../reference/indexblocks.html">indexblocks()</a></code> (but not all helper functions are
+in files named that way).</p></li>
 <li><p>you might find it useful to check docs with
-<code>tools::checkDocFiles("EJAM")</code></p></li>
+<code><a href="https://rdrr.io/r/tools/QC.html" class="external-link">tools::checkDocFiles</a></code>(“EJAM”)</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="reference-docs-explaining-the-datasets">Reference docs explaining the datasets<a class="anchor" aria-label="anchor" href="#reference-docs-explaining-the-datasets"></a>
+<h3 id="datasets-reference-docs-explaining-the-datasets">Datasets: reference docs explaining the datasets<a class="anchor" aria-label="anchor" href="#datasets-reference-docs-explaining-the-datasets"></a>
 </h3>
 <ul>
 <li><p>all datasets are documented in the files named with a prefix of
 “data_” such as <code>R/data_blockgroupstats.R</code> which documents
-the <code>blockgroupstats</code> dataset.</p></li>
+the <code><a href="../reference/blockgroupstats.html">?blockgroupstats</a></code> dataset.</p></li>
 <li><p>most dataset documentation is created/updated alongside the code
 that created or updates those datasets. That is best done starting with
 the overarching file called
@@ -167,19 +182,19 @@ the .R file directly.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="articles-vignettes-to-help-r-users-with-the-package">Articles/ vignettes to help R users with the package<a class="anchor" aria-label="anchor" href="#articles-vignettes-to-help-r-users-with-the-package"></a>
+<h3 id="articles-vignettes-helping-r-users-with-the-package">Articles: vignettes helping R users with the package<a class="anchor" aria-label="anchor" href="#articles-vignettes-helping-r-users-with-the-package"></a>
 </h3>
 <ul>
-<li><p>These are written/edited as .Rmd files in the
-<code>vignettes</code> folder. You can test one using something like
-<code><a href="https://pkgdown.r-lib.org/reference/build_articles.html" class="external-link">pkgdown::build_article()</a></code> before trying to rebuild the whole
-pkgdown site.</p></li>
+<li><p>Articles (called vignettes, here) are written/edited as .Rmd
+files in the <code>vignettes</code> folder. You can test one using
+something like <code><a href="https://pkgdown.r-lib.org/reference/build_articles.html" class="external-link">pkgdown::build_article()</a></code> before trying to
+rebuild the whole pkgdown site.</p></li>
 <li><p>New articles or renamed files require edits to the
 <code>_pkgdown.yml</code> file also.</p></li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="user-guide-to-help-people-use-the-web-app">“User Guide” to help people use the web app<a class="anchor" aria-label="anchor" href="#user-guide-to-help-people-use-the-web-app"></a>
+<h3 id="user-guide-help-for-people-using-the-web-app">User Guide: help for people using the web app<a class="anchor" aria-label="anchor" href="#user-guide-help-for-people-using-the-web-app"></a>
 </h3>
 <ul>
 <li>If you change the UI then new screenshots are needed for a new
@@ -187,8 +202,38 @@ version of the User Guide that was stored as a .pdf document.</li>
 </ul>
 </div>
 <div class="section level3">
-<h3 id="updating-the-web-pages-providing-all-of-the-above-in-html-format">Updating the web pages providing all of the above in html
-format<a class="anchor" aria-label="anchor" href="#updating-the-web-pages-providing-all-of-the-above-in-html-format"></a>
+<h3 id="spell-checking-package-wide">Spell-checking package-wide<a class="anchor" aria-label="anchor" href="#spell-checking-package-wide"></a>
+</h3>
+<ul>
+<li>To run a spell check (see terms flagged as possible problems)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">spelling</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/spelling//reference/spell_check_package.html" class="external-link">spell_check_package</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>      frq <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">found</span>, <span class="kw">function</span><span class="op">(</span><span class="va">z</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span><span class="op">)</span><span class="op">}</span><span class="op">)</span>, </span>
+<span>      word <span class="op">=</span> <span class="va">x</span><span class="op">$</span><span class="va">word</span><span class="op">)</span></span>
+<span>    <span class="va">x</span> <span class="op">&lt;-</span> <span class="va">x</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">frq</span><span class="op">)</span>, <span class="op">]</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span>
+<span>    <span class="va">x</span></span></code></pre></div>
+<ul>
+<li><p>Then you can use ctrl-shift-F to search in all files for a
+flagged term to check if it is actually a problem</p></li>
+<li><p>If you wanted to update the WORDLIST (list of words to ignore
+spelling of)</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>    <span class="co"># 1. Add obvious dataset names documented to the WORDLIST</span></span>
+<span>    <span class="va">datanames</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">'\\.R$'</span>, <span class="st">''</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">'^data_'</span>, <span class="st">''</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="st">'./R'</span>, pattern <span class="op">=</span> <span class="st">'^data_.*R'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="va">datanames</span> <span class="op">=</span> <span class="va">datanames</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">'aaaaaaaaaaaaa|xxxxxxxxxx'</span>, <span class="va">datanames</span><span class="op">)</span><span class="op">]</span></span>
+<span>    <span class="co"># 2. Add names of functions to the WORDLIST</span></span>
+<span>    <span class="va">funcnames</span> <span class="op">=</span> <span class="fu">EJAM</span><span class="fu">:::</span><span class="fu"><a href="../reference/functions_in_pkg.html">functions_in_pkg</a></span><span class="op">(</span> <span class="st">'EJAM'</span> <span class="op">)</span><span class="op">$</span><span class="va">object</span></span>
+<span>    <span class="va">wordlist</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="st">'inst/WORDLIST'</span><span class="op">)</span></span>
+<span>    <span class="va">wordlist</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">union</a></span><span class="op">(</span><span class="va">wordlist</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">datanames</span>, <span class="va">funcnames</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="co"># Write the revised list of words to the file</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/writeLines.html" class="external-link">writeLines</a></span><span class="op">(</span><span class="va">wordlist</span>, <span class="st">'inst/WORDLIST'</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="website-web-pages-providing-all-of-the-above-in-html-format">Website: web pages providing all of the above in html format<a class="anchor" aria-label="anchor" href="#website-web-pages-providing-all-of-the-above-in-html-format"></a>
 </h3>
 <p>The web-based documentation pages should be updated right after any
 of the above are edited/created. These pkgdown-based webpages should be
@@ -207,25 +252,25 @@ will require edits to the .yml file.</p></li>
 managing the package, and they should use the
 <code>update_pkgdown()</code> function found in
 <code>data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R</code>
-You have to source() that file and then use the function that it
-defines. Via that function, the pages get rebuilt by the
-<code>pkgdown</code> R package, based on the above files and all other
+You have to <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> that file and then use the function
+that it defines. Via that function, the pages get rebuilt by the
+<a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> R package, based on the above files and all other
 documentation from .R and .md files. For more information about using
-the pkgdown package to create documentation in the form of webpages, see
-<a href="https://pkgdown.r-lib.org/articles/pkgdown.html" class="external-link uri">https://pkgdown.r-lib.org/articles/pkgdown.html</a>. The
-documentation is created/updated using the <code>roxygen2</code> and
-<code>pkgdown</code> R packages, which read information from the .R
-files in the R folder, from .Rmd file vignettes (aka “articles”) in the
-vignettes folder, and from the <code>_pkgdown.yml</code> file in the
-root folder of the source package. The <code>roxygen2</code> package
-reads the .R files to create the .Rd files in the <code>man/</code>
-directory. The <code>pkgdown</code> package uses all those files as well
-as <code>DESCRIPTION</code> and others, to generate a website for the
-package, first created as files in the <code>docs/</code> folder, which
-are then published via github actions and the github repository
-settings, to be hosted on GitHub Pages. The packages
-<code>devtools</code> and <code>usethis</code> are also
-relevant.</p></li>
+the <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> package to create documentation in the form
+of webpages, see <a href="https://pkgdown.r-lib.org/articles/pkgdown.html" class="external-link">pkgdown
+articles</a>. The documentation is created/updated using the
+<a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> and <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> R packages, which
+read information from the .R files in the R folder, from .Rmd file
+vignettes (aka “articles”) in the vignettes folder, and from the
+<code>_pkgdown.yml</code> file in the root folder of the source package.
+The <a href="https://roxygen2.r-lib.org/" class="external-link">roxygen2</a> package reads the .R files to create the .Rd
+files in the <code>man/</code> directory. The <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+package uses all those files as well as <code>DESCRIPTION</code> and
+others, to generate a website for the package, first created as files in
+the <code>docs/</code> folder, which are then published via github
+actions and the github repository settings, to be hosted on GitHub
+Pages. The packages <a href="https://devtools.r-lib.org/" class="external-link">devtools</a> and <a href="https://usethis.r-lib.org" class="external-link">usethis</a>
+are also relevant.</p></li>
 <li><p>the package’s github repository settings define which branch and
 which folder should hold the html files for deployment (see github and
 pkgdown documentation on that)</p></li>
@@ -234,7 +279,8 @@ when triggered by an event like any push to the main branch, for
 example.</p></li>
 <li><p>depending on which folder you publish/deploy from, you might have
 to remove that folder from <code>.gitignore</code> in case it was listed
-there via some pkgdown or usethis function.</p></li>
+there via some <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> or <a href="https://usethis.r-lib.org" class="external-link">usethis</a>
+function.</p></li>
 </ul>
 </div>
 </div>

@@ -101,8 +101,8 @@ if (testing_ejscreenapi_module) {
 ################################################ ################################################# #
 
 # NOTE  ####
-# If a module needs to USE a reactive expression, the 
-#   outer function should take the reactive expression as a parameter. 
+# If a module needs to USE a reactive expression, the
+#   outer function should take the reactive expression as a parameter.
 #
 # If a module needs to access an input$ that isn’t part of the module, the
 #   containing app should pass the input$ value wrapped in a reactive expression (i.e. reactive(...)):
@@ -440,24 +440,24 @@ mod_ejscreenapi_server <- function(id, session,
     ns <- session$ns
 
 # Compare and consolidate/ merge these - unclear which is newer, and they may each have some updates others dont:
-    #  - mod_ejscreenapi_server()      in MODULE_ejscreenapi.R 
+    #  - mod_ejscreenapi_server()      in MODULE_ejscreenapi.R
     #  - app_server_EJAMejscreenapi()  in app_server_EJAMejscreenapi.R  - was deployable server code
     #  - "standalone" branch of the old EJAMejscreenapi package/ repo, that was the deployed app.
     #
     ## Code in nonexported mod_ejscreenapi_server() was initially based on the former
-    ##  EJAMejscreenapi package version of app_server(), which was also the starting point for 
+    ##  EJAMejscreenapi package version of app_server(), which was also the starting point for
     ##  EJAM package version of app_server_EJAMejscreenapi()
     ##
     ##  So the code below was copied from the app server body, right after this line:
     ##       app_server <- function(input, output, session) {
-     
+
     ###       or....
-    ### To use that non-module server function here wrapped as a module, try this: 
+    ### To use that non-module server function here wrapped as a module, try this:
     #
-    # app_server_EJAMejscreenapi(input = input, output = output, session = session) 
+    # app_server_EJAMejscreenapi(input = input, output = output, session = session)
     # stop()
-    
-    
+
+
     output$testinfo_sessionuser <- renderPrint(session$user)
 
     asynchronous <- FALSE
@@ -493,9 +493,9 @@ mod_ejscreenapi_server <- function(id, session,
     ############################################################# #
     ############################################################# #
     ############################################################# #
-    
+
     pts <- shiny::reactive({
-      
+
       # THIS GETS UPDATED WHEN THERE IS A CHANGE IN input$pointsfile
       ## if not uploaded yet, show default example. ####
       if (is.null(input$pointsfile)) {
@@ -561,9 +561,9 @@ mod_ejscreenapi_server <- function(id, session,
                   ### QUERY FRS for lat lon via facility registry ID ####
 
                   # THIS COULD BE REPLACED WITH EJAM CODE THAT USES FRS FILE ON SERVER TO DO THIS QUERY, NOT AN API ***
-                  showModal(modalDialog(title = "Please Wait", paste0("querying FRS based on facility registry_id to get lat and lon (ignores pgm_sys_id column since registry_id is present)", ''), easyClose = TRUE))
-                  cat(paste0("querying FRS based on facility registry_id to get lat and lon (ignores pgm_sys_id column since registry_id is present)", '\n'), file = stdout())
-                  x <- try(locate_by_id(id = pts_filecontents$registry_id, type = 'frs'))
+                  showModal(modalDialog(title = "Please Wait", paste0("querying the EPA FRS, using facility registry_id to get lat and lon (ignores pgm_sys_id column since registry_id is present)", ''), easyClose = TRUE))
+                  cat(paste0("querying the EPA FRS, using facility registry_id, to get lat and lon (ignores pgm_sys_id column since registry_id is present)", '\n'), file = stdout())
+                  x <- try(locate_by_id(id = pts_filecontents$registry_id, type = 'frs'), silent = TRUE)
                   # error handling could go here
                   pts_filecontents$lat <- as.numeric(x$Latitude83)
                   pts_filecontents$lon <- as.numeric(x$Longitude83)
@@ -576,27 +576,26 @@ mod_ejscreenapi_server <- function(id, session,
 
                   if ('pgm_sys_id' %in% names(pts_filecontents)) {
 
-                    # THIS COULD BE REPLACED WITH EJAM CODE THAT USED FRS FILE ON SERVER TO DO THIS QUERY, NOT AN API ***
-                    showModal(modalDialog(title = "Please Wait", paste0("querying FRS based on facility pgm_sys_id to get lat and lon", ''), easyClose = TRUE))
-                    cat(paste0("querying FRS based on facility pgm_sys_id to get lat and lon", ''), file = stdout())
+                    showModal(modalDialog(title = "Please Wait", paste0("querying the EPA FRS, using facility pgm_sys_id to get lat and lon", ''), easyClose = TRUE))
+                    cat(paste0("querying the EPA FRS, using facility pgm_sys_id, to get lat and lon", ''), file = stdout())
                     x <- try(locate_by_id(id = pts_filecontents$pgm_sys_id, type = 'program'))
                     # error handling could go here
                     pts_filecontents$lat <- as.numeric(x$Latitude83)
                     pts_filecontents$lon <- as.numeric(x$Longitude83)
                     # SOME CODE ASSUMES INPUT POINTS MATCH 1 TO 1 OUTPUT POINTS- CREATES PROBLEM IF INPUT ROW COUNT DIFFERS FROM OUTPUT ROW COUNT, WHICH MAYBE COULD HAPPEN FOR QUERY ON ID, AND ESPECIALLY IF QUERY ON NAICS, FOR EXAMPLE.
                   } else {
-                    
+
                     ## could try to handle FIPS here, via  # ## #
                     if ('fips' %in% names(pts_filecontents)) {
-                     pts_filecontents$lat = NA; pts_filecontents$lon = NA # just in case other code looks for them 
+                     pts_filecontents$lat = NA; pts_filecontents$lon = NA # just in case other code looks for them
                     } else {
-                    
+
                     showModal(modalDialog(title = "Error", paste0("The file must have columns named lat and lon, or registry_id, or pgm_sys_id or fips. Headers must be in row 1, data starting in row 2.", ''), easyClose = TRUE))
                     cat(paste0("The file must have columns named lat and lon, or registry_id, or pgm_sys_id. Headers must be in row 1, data starting in row 2.", '\n'), file = stdout())
                     pts_filecontents <- default_points_shown_at_startup  # defined in global_defaults_*.R   This line is so default example is shown instead of uploaded file that does not have correct columns
-                    
+
                     } ########## #
-                    
+
                   }
                 }
               }
@@ -640,17 +639,17 @@ mod_ejscreenapi_server <- function(id, session,
         mapurl <- url_ejscreenmap(lat = pts_filecontents$lat, lon = pts_filecontents$lon)  # e.g.,  "https://ejscreen.epa.gov/mapper/index.html?wherestr=35.3827475,-86.2464592"
       }
       pts_filecontents$mapurl  <- paste0('<a href=\"', mapurl, '\", target=\"_blank\" rel=\"noreferrer noopener\">EJScreen Map ', rownames(pts_filecontents), '</a>')
-      
+
       pts_filecontents
     }) # END OF pts() reactive
     ############################################################# #
     ############################################################# #
     ############################################################# #
-    
+
     # >>>>>> RADIUS input: UI and text and limit for radius slider: Miles / Km ####
     # Used either typed in radius or slider ####
     #  allow radius to get typed into a text box as an alternative !!! ***
-    
+
     if (!exists("minradius")) {minradius <- 0.5}
     if (!exists("stepradius")) {stepradius <-  0.05 }
     output$radius_slider <- renderUI({sliderInput(inputId = ns("radius_via_slider"),
@@ -808,7 +807,7 @@ mod_ejscreenapi_server <- function(id, session,
           ############################################################## #
 
           # NOTE MAY REPLACE THIS SECTION OF CODE WITH ejscreenapi_plus() which does this itself  :
-          #   or maybe even use  ejscreenit() or ejscreenit_for_ejam()  
+          #   or maybe even use  ejscreenit() or ejscreenit_for_ejam()
 
           # *_EJScreen API Get Results*  ####
           # BUT IT DOES NOT SUPPORT updateProgress like ejscreenapi() does, so far.
@@ -853,7 +852,7 @@ mod_ejscreenapi_server <- function(id, session,
             ### Put best cols 1st ####
             results_table <- cbind(pts(), results_table) # this would be a problem if we did not isolate or use bindEvent
             results_table <- urls_clusters_and_sort_cols(results_table)
-            
+
             results_table <- results_table[, names(results_table) != 'mapurl']   # drop this column that was only useful while viewing uploaded points but is redundant in final results here
           }
           ############################################################## #
@@ -905,7 +904,7 @@ mod_ejscreenapi_server <- function(id, session,
 
         # colnames in results table are always api version of names
         #_Rename columns from original format to use R-friendly names ## ##
-        
+
         names(table_as_displayed) <- fixcolnames(
           namesnow = names(table_as_displayed),
           oldtype = 'api', # because results_table()  never has renamed colnames
@@ -919,7 +918,7 @@ mod_ejscreenapi_server <- function(id, session,
         ############################################################# ############################################################## #
 
         # note: ejscreenapi_plus() vs app_server_EJAMejscreenapi vs MODULE ############################################################# #
-        
+
         # ### Add Ratios to us or state averages ####
         #
         if (input$include_ratios ) {
@@ -928,11 +927,11 @@ mod_ejscreenapi_server <- function(id, session,
 
         ############################################################## #
 
-        
-        
-        
+
+
+
         ############################################################## #
-        
+
         #-_Commas for pop count ####
         if ('totalPop' %in% names(table_as_displayed)) table_as_displayed$totalPop <- prettyNum(round(table_as_displayed$totalPop, 0), big.mark = ',')
         if ('pop'      %in% names(table_as_displayed)) table_as_displayed$pop      <- prettyNum(round(table_as_displayed$pop, 0),      big.mark = ',')
@@ -1010,7 +1009,7 @@ mod_ejscreenapi_server <- function(id, session,
     #####################   #####################   #####################   #################### #
     # . ####
     ## Downloading the Table + Excel format + Links!* ####
-    
+
     ### Buttons to Rename table header row -show only if results ready ####
     output$renameButton_ui <- renderUI({
 
@@ -1059,7 +1058,7 @@ mod_ejscreenapi_server <- function(id, session,
           #
           currentnametype <- input$usewhichnames
           pctile_colnums <-  which('pctile' ==  fixcolnames(names(table_as_displayed), oldtype = currentnametype, newtype = 'jsondoc_shortvartype') ) # this should get what type each is.
-         
+
           # fix URLs to work in csv pulled into Excel or in Excel files (as opposed to datatable shown in web brwsr)
           table_as_displayed$`EJScreen Report` <- gsub('.*(http.*)\", target=.*', '\\1', table_as_displayed$`EJScreen Report`)
           table_as_displayed$`EJScreen Map` <- gsub('.*(http.*)\", target=.*', '\\1', table_as_displayed$`EJScreen Map`)
@@ -1104,8 +1103,8 @@ mod_ejscreenapi_server <- function(id, session,
       )
     }), input$tabletips_button )
 
-    # ____________________________________________________________________ ####### 
-    
+    # ____________________________________________________________________ #######
+
     # ______________________  ####
     # . ####
     # 3. MAP  ####################
@@ -1120,20 +1119,20 @@ mod_ejscreenapi_server <- function(id, session,
     cluster_color   <- reactiveVal(cluster_color_default)
     highlight_color <- reactiveVal(highlight_color_default)
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     ### is_clustered (where one may double-count people):  ####
 
     is_clustered <- reactive({
@@ -1155,14 +1154,14 @@ mod_ejscreenapi_server <- function(id, session,
       if (most_recently_changed() == 'upload')  {x <- (popup_uploadedpoints())}
       x
     })
-    
+
     popup_uploadedpoints <- reactive({
       #  RESTRICT NUMBER OF POINTS MAPPED AND POPUPS TOO, HERE, BASED ON CAP input$max_pts_map
       popup_from_uploadedpoints(
         pts()[1:min( input$max_pts_map, NROW(pts())), ]
       )
     })
-    
+
     popup_ejstats <- reactive({
       # cat('recalculating popup_ejstats since results table changed\n')
       #  create popups for map, using results of analysis
@@ -1194,7 +1193,7 @@ mod_ejscreenapi_server <- function(id, session,
       names(mypoints) <- gsub('lon','longitude', names(mypoints)); names(mypoints) <- gsub('lat','latitude', names(mypoints))
       if (length(mypoints) != 0) {
         isolate({ # do not redraw entire map and zoom out and reset location viewed just because radius changed?
-          mymap <- leaflet::leaflet(mypoints) %>% 
+          mymap <- leaflet::leaflet(mypoints) %>%
             leaflet::addTiles()  %>%
             leaflet::addCircles(lat = ~latitude, lng = ~longitude,
                        radius = radius_miles() * meters_per_mile,
@@ -1206,8 +1205,8 @@ mod_ejscreenapi_server <- function(id, session,
           mymap
         })
       } else {  # length(mypoints) == 0
-        mymap <- leaflet::leaflet() %>% 
-          leaflet::addTiles() %>% 
+        mymap <- leaflet::leaflet() %>%
+          leaflet::addTiles() %>%
           leaflet::setView(-110, 46, zoom = 3)
         mymap
       }
@@ -1312,7 +1311,7 @@ mod_ejscreenapi_server <- function(id, session,
     ## Boxplots ####
     #
     # output$plot1out <- shiny::renderCachedPlot({
-    
+
     output$plot1out <- shiny::renderPlot({
       req(results_table())
       out <- results_table()
@@ -1334,17 +1333,17 @@ mod_ejscreenapi_server <- function(id, session,
     # ______________________  ####
     # . ####
 
-    ################################################################################################### # # 
+    ################################################################################################### # #
     #   END OF WHAT WAS IN app_server_EJAMejscreenapi.R
-    ################################################################################################### # # 
-    
-    
-    
-    
-    
-    
-    
-    
+    ################################################################################################### # #
+
+
+
+
+
+
+
+
     ## RETURN a TABLE as OUTPUT OF moduleServer() function that is within the overall server code of the module MODULE ####
     # see example at https://shiny.posit.co/r/articles/improve/modules/
 

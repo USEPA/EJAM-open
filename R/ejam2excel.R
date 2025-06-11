@@ -4,13 +4,12 @@
 #' @description ejam2excel() takes the output of something like ejamit() and
 #' creates a spreadsheet with an overall summary tab, a site by site table tab,
 #' as well as other tabs such as map, plot, notes, etc.
-#' 
+#'
 #' @return returns a workbook object for use by openxlsx::saveWorkbook(wb_out, pathname)
 #'   or returns just the full path/file name of where it was saved if save_now = TRUE
-#' 
-#' @param ejamitout output of [ejamit()] 
-#' @param mapadd Logical option for including a map of the points
-#' @param fname optional name or full path and name of file to save locally, like "out.xlsx" 
+#'
+#' @param ejamitout output of [ejamit()]
+#' @param fname optional name or full path and name of file to save locally, like "out.xlsx"
 #' @param save_now optional logical, whether to save as a .xlsx file locally or just return workbook object
 #'   that can later be written to .xlsx file using [openxlsx::saveWorkbook()]
 #' @param overwrite optional logical, passed to [openxlsx::saveWorkbook()]
@@ -30,27 +29,33 @@
 #'   Note `ejamitout$sitetype` is not quite the same as the `site_method` parameter used in building reports.
 #'   sitetype can be latlon, fips, or shp
 #'   site_method can be one of these: SHP, latlon, FIPS, NAICS, FRS, EPA_PROGRAM, SIC, MACT
-#' @param mapadd logical option for including a map of the points 
-#' @param ... optional additional parameters passed to [table_xls_format()], such as 
+#'
+#' @param mapadd Logical, whether to add a tab with a map of the sites. If report tab is added, though, standalone static map in excel tab is redundant.
+#' @param report_map the map to use if mapadd = TRUE (re-created if this is omitted/NULL but mapadd is TRUE)
+#' @param community_reportadd Logical, whether to add a tab with a static copy of the summary report (tables, map, barplot).
+#' @param community_html the HTML of the summary/community report if available (re-created if this is omitted/NULL but community_reportadd is TRUE)
+#' @param shp shapefile to create map if not providing it via report_map or community_html parameters
+#'
+#' @param ... optional additional parameters passed to [table_xls_format()], such as
 #'   heatmap_colnames, heatmap_cuts, heatmap_colors, etc.
 #' @examples
 #' \donttest{
 #' # Add purple to flag indicators at 99th percentile
-#' ejam2excel(testoutput_ejamit_10pts_1miles, 
+#' ejam2excel(testoutput_ejamit_10pts_1miles,
 #'   # View spreadsheet 1st without saving it as a file
-#'   launchexcel = T, save_now = F, 
-#'   heatmap_cuts = c(80, 90, 95, 99), 
-#'   heatmap_colors  = c("yellow", "orange", "red", "purple"), 
+#'   launchexcel = T, save_now = F,
+#'   heatmap_cuts = c(80, 90, 95, 99),
+#'   heatmap_colors  = c("yellow", "orange", "red", "purple"),
 #'   # Apply heatmap to only a few of the ratio columns
 #'   heatmap2_colnames = names_d_ratio_to_state_avg)
 #' }
-#' 
+#'
 #' @export
 #'
 ejam2excel <- function(ejamitout,
                        fname = NULL, # full path and name, or just name of .xlsx file
-                       save_now = TRUE, 
-                       overwrite = TRUE, 
+                       save_now = TRUE,
+                       overwrite = TRUE,
                        launchexcel = FALSE,
                        interactive_console = TRUE,
                        ok2plot = TRUE,
@@ -58,22 +63,31 @@ ejam2excel <- function(ejamitout,
                        in.analysis_title =  "EJAM analysis",
                        react.v1_summary_plot = NULL,
                        radius_or_buffer_in_miles = NULL,  #  input$bt_rad_buff
-                       buffer_desc = "Selected Locations",
+                       buffer_desc = NULL, # "Selected Locations",
                        radius_or_buffer_description = 'Miles radius of circular buffer (or distance used if buffering around polygons)',
                        # radius_or_buffer_description =   "Distance from each site (radius of each circular buffer around a point)",
                        hyperlink_colnames = "ECHO Report",#c("EJScreen Report", "EJScreen Map","ACS Report", "ECHO Report"),
                        site_method = "",
-                       mapadd = FALSE,
+
+                       mapadd = FALSE, # if report is added, map is redundant
+                       report_map = NULL,
                        community_reportadd = TRUE,
                        community_html = NULL,
+                       shp = NULL,
                        ...
 ) {
 
-  if (mapadd == T) {
-    report_map <- ejam2map(ejamitout, radius = radius_or_buffer_in_miles)
-  } else {
-    report_map <- NULL
-  }
+  # server already handles it, but for nonshiny we can handle adding a missing shapefile for MAP + shapefile for map for REPORT in lower-level function table_xls_format()
+  # if report is added, map is redundant
+  # if (mapadd == T && is.null(report_map)) {
+  #   report_map <- ejam2map(ejamitout, radius = radius_or_buffer_in_miles)
+  # }
+
+  # server already handles it, but for nonshiny we can handle adding a missing shapefile for MAP + shapefile for map for REPORT in lower-level function table_xls_format()
+  # if (community_reportadd && is.null(community_html)) {
+  #   community_html <- ejam2report(ejamitout = ejamitout, )
+  # }
+
   x <- table_xls_from_ejam(
     ejamitout = ejamitout,
     fname = fname,
@@ -90,10 +104,12 @@ ejam2excel <- function(ejamitout,
     radius_or_buffer_description = radius_or_buffer_description,
     hyperlink_colnames = hyperlink_colnames,
     site_method = site_method,
+
     mapadd = mapadd,
     report_map = report_map,
     community_reportadd = community_reportadd,
     community_html = community_html,
+    shp = shp,
     ...
   )
   invisible(x)

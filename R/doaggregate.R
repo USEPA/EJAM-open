@@ -7,7 +7,7 @@
 #'   `doaggregate()` takes a set of sites like facilities and the
 #'   set of blocks that are near each,
 #'   combines those with indicator scores for block groups, and
-#'   aggregates the numbes within each place and across all overall.
+#'   aggregates the numbers within each place and across all overall.
 #'
 #'   For all examples, see [getblocksnearbyviaQuadTree()]
 #'
@@ -790,11 +790,11 @@ doaggregate <- function(sites2blocks, sites2states_or_latlon=NA,
   #
   ############################################### #
   
-  #  weights = population count
+  #  weights = population count, which for "overall" is bgwt * pop for each bg, and for "bysite" is bgwt * pop per site.
   
   popmeancols_inbgstats <- wtdmeancols_inbgstats[calcweight(wtdmeancols_inbgstats) == "pop"]
   
-  ##     mean by SITE
+  ##     mean PERSON, AT EACH SITE i.e., by SITE - also could see results_summarized  from batch.summarize()
   results_bysite_popmeans <- sites2bgs_plusblockgroupdata_bysite[ , lapply(.SD, function(x) {
     collapse::fmean(x, w = bgwt * pop)
   }), .SDcols = popmeancols_inbgstats,
@@ -802,7 +802,7 @@ doaggregate <- function(sites2blocks, sites2states_or_latlon=NA,
   
   results_bysite <- merge(results_bysite, results_bysite_popmeans, by = "ejam_uniq_id")
   
-  ##     mean OVERALL
+  ##     mean PERSON OVERALL - also could see results_summarized  from batch.summarize()
   results_overall_popmeans <- sites2bgs_plusblockgroupdata_overall[, lapply(.SD, function(x) {
     collapse::fmean(x, w = bgwt * pop)
   }), .SDcols = popmeancols_inbgstats]

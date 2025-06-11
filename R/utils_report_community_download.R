@@ -1,5 +1,5 @@
 
-# Functions to Render Summary Report (html etc.) ####
+# OBSOLETE Functions to Render Summary Report (html etc.) ####
 
 # NOTE on refactoring this code:
 #
@@ -7,75 +7,35 @@
 # (instead of using the very similar EJAM version of 1-site report),
 # AND provided in a separate button, this pair of barplots on 1 site,
 # via this function.
-#  BUT, if EJAM code will provide all 3 reports
+#  BUT, while EJAM code will provide all 3 reports
 # (overall, 1site normal summary, and 1site barplots pair)
-# then clarify/refactor EJAM code to provide all 3 here or in a clear set of functions.
-# AND, consolidate ejam2report() & report_community_download()
-# to use the same code for both RStudio users and shiny app,
+# ...Consolidated ejam2report()  / server
+# to use the same code (ejam2report or build_community_report and helpers)
+# for both RStudio users and shiny app,
 # for both web view and download of file,
 # for both html and pdf format reports.
 
 ########################################################### #
 # ~ ####
 
-# > copy .Rmd (template), .png (logo), .css from Rmd_folder to a temp dir subfolder for rendering
-# > copy .Rmd (template), .png (logo), .css, to where they need to be for rendering ####
-
-# report_setup_temp_files() is used by report_community_download()
-
-#' helper - copies css, logo, and .Rmd template to tempdir for render of report
-#'
-#' @param Rmd_name .Rmd filename the package uses
-#' @param Rmd_folder folder the package stores the template in
-#'
-#' @keywords internal
-#'
-report_setup_temp_files <- function(Rmd_name = 'community_report_template.Rmd',
-                                    # or Rmd_name = 'barplot_report_template.Rmd' for single site barplot report
-                                    Rmd_folder = 'report/community_report/') {
-
-  tempReport <- file.path(tempdir( ), Rmd_name)
-
-  # .Rmd template file
-
-  if (!file.exists(app_sys(paste0(Rmd_folder, Rmd_name))) ||
-      !file.exists(app_sys(paste0(Rmd_folder, 'communityreport.css'))) ||
-      !file.exists(app_sys(file.path(Rmd_folder, 'main.css')))
-      ) {
-    stop(paste0("Necessary files missing from ", app_sys(paste0(Rmd_folder))))
-  }
-  file.copy(from = app_sys(paste0(Rmd_folder, Rmd_name)),
-            to = tempReport, overwrite = TRUE)
-
-  # main.css, communityreport.css -- both were in ejam2report() but main.css was not here - why?
-
-  if (!('main.css' %in% list.files(tempdir()))) {
-    file.copy(from = app_sys(file.path(Rmd_folder, 'main.css')),
-              to = file.path(tempdir(), 'main.css'), overwrite = TRUE)
-  }
-  if (!file.exists(file.path(tempdir( ),        'communityreport.css'))) {
-    file.copy(from = app_sys(paste0(Rmd_folder, 'communityreport.css')), # app_sys() is unexported by EJAM pkg
-              to = file.path(tempdir( ),        'communityreport.css'), overwrite = TRUE)
-  }
-
-  return(tempReport)
-}
-########################################################### #
 # ~ ####
 
-# > render and save html report ####
+# > OBSOLETE - rendered and saved html report ####
 
-#' Generate Single-site or Multi-site Summary Report rendered as an HTML file for download in shiny app
+#' OBSOLETE - Generated Single-site or Multi-site Summary Report rendered as an HTML file for download in shiny app
 #'
-#' Saves a 2 page report (on overall results or for just one site), with residential population and environmental indicators, Summary Indexes if needed, etc.
+#' Saved a 2 page report (on overall results or for just one site), with residential population and environmental indicators, Summary Indexes if needed, etc.
 #'
 #' @details
-#' This function [report_community_download()] is similar to [build_community_report()]
-#' (and could be merged with it ideally)
-#' but was used by the shiny app to render the report as an HTML file for download
+#'
+#' server now just uses `ejam2report()` and/or `build_community_report()`, not report_community_download()
+#' and ejam2report() also uses `build_community_report()`.
+#'
+#' This function [report_community_download()] was very similar to [build_community_report()]
+#' and was used by the shiny app to render the report as an HTML file for download
 #' instead of returning HTML for display in a browser.
 #'
-#' report_community_download() relies on helpers [report_setup_temp_files()] to copy files,
+#' report_community_download() relied on helpers [report_setup_temp_files()] to copy files,
 #' [map_single_location()] to draw map, [v1_summary_plot_report()] to draw plot,
 #' and [rmarkdown::render()] to do the parameterized render from .Rmd template into HTML
 #'
@@ -92,7 +52,7 @@ report_setup_temp_files <- function(Rmd_name = 'community_report_template.Rmd',
 #' @param input_extratable_title_top_row a shiny app input$
 #' @param extratable_list_of_sections see [build_community_report()]
 #' @param extratable_hide_missing_rows_for see [build_community_report()]
-#' 
+#'
 #' @param input_plotkind_1pager a shiny app input$, like "bar", "box", "ridgeline"
 #' @param input_Custom_title_for_bar_plot_of_indicators a shiny app input$
 #' @param input_circleweight_in a shiny app input$
@@ -115,6 +75,7 @@ report_setup_temp_files <- function(Rmd_name = 'community_report_template.Rmd',
 #' @returns Renders HTML report
 #'
 #' @keywords internal
+#' @noRd
 #'
 report_community_download <- function(file,
                                       row_index = NULL,
@@ -129,7 +90,7 @@ report_community_download <- function(file,
                                       input_extratable_title_top_row,
                                         extratable_list_of_sections,
                                         extratable_hide_missing_rows_for,
-                                      
+
                                       input_plotkind_1pager,
                                       input_Custom_title_for_bar_plot_of_indicators,
                                       input_circleweight_in,
@@ -223,7 +184,7 @@ report_community_download <- function(file,
       radius = rad,
       nsites = nsites,
       area_in_square_miles = NULL # area_in_square_miles
-    ) # XXX
+    ) # ***
 
     # Create a filtered version of react_report_map for single location #####################  #
 
@@ -252,6 +213,7 @@ report_community_download <- function(file,
 
     params <- list(
 
+      in_shiny = FALSE,
       # output_df = output_df,
       analysis_title = input_analysis_title,
       totalpop = popstr,
@@ -261,13 +223,15 @@ report_community_download <- function(file,
       extratable_title_top_row = input_extratable_title_top_row,
       extratable_list_of_sections = extratable_list_of_sections,
       extratable_hide_missing_rows_for = extratable_hide_missing_rows_for,
-      
-      in_shiny = FALSE,
+
       filename = NULL,
 
       map = map_to_use,
       summary_plot       = react_v1_summary_plot,
-      summary_plot_state = react_v1_summary_plot_state
+      summary_plot_state = react_v1_summary_plot_state,
+      report_title = NULL,
+      logo_path = NULL,
+      logo_html = NULL
     )
     # end of report on 1 site
 
@@ -313,6 +277,7 @@ report_community_download <- function(file,
 
     params <- list(
 
+      in_shiny = FALSE,
       output_df = output_df,
       analysis_title =  react_sanitized_analysis_title,
       totalpop = popstr,
@@ -322,15 +287,16 @@ report_community_download <- function(file,
       show_ratios_in_report = input_show_ratios_in_report,
       extratable_show_ratios_in_report = input_extratable_show_ratios_in_report,
       extratable_title =         input_extratable_title,
-      extratable_title_top_row = input_extratable_title_top_row, 
+      extratable_title_top_row = input_extratable_title_top_row,
       extratable_list_of_sections = extratable_list_of_sections,
       extratable_hide_missing_rows_for = extratable_hide_missing_rows_for,
-      
-      in_shiny = FALSE,
-      filename = NULL,
 
+      filename = NULL,
       map = map_to_use,
-      summary_plot = plot_to_use
+      summary_plot = plot_to_use,
+      report_title = NULL,
+      logo_path = NULL,
+      logo_html = NULL
     )
   }
 
@@ -349,9 +315,9 @@ report_community_download <- function(file,
 ########################################################### #
 # ~ ####
 
-# > leaflet MAP, of ONE SITE, for summary report ####
+# > OBSOLETE? - was used by report_community_download. leaflet MAP, of ONE SITE, for summary report ####
 
-#' helper - creates leaflet map for summary report
+#' helper - OBSOLETE? - was used by report_community_download. creates leaflet map for summary report
 #'
 #' @param row_index which site in the table is the one of interest
 #' @param inshiny logical
@@ -362,6 +328,7 @@ report_community_download <- function(file,
 #' @param react_data_processed  from shiny, results like output of ejamit(), but only 1 row of 1 table gets used
 #'
 #' @keywords internal
+#' @noRd
 #'
 map_single_location <- function(row_index = NULL,
                                 inshiny = FALSE,
@@ -451,9 +418,9 @@ map_single_location <- function(row_index = NULL,
 ########################################################### #
 # ~ ####
 
-# > bar/box/ridgeline PLOT, OVERALL, for summary report ####
+# >  OBSOLETE? - was used by report_community_download. bar/box/ridgeline PLOT, OVERALL, for summary report ####
 
-#' helper creates bar/box/ridgeline plot for summary report
+#'  OBSOLETE? - was used by report_community_download. helper - creates bar/box/ridgeline plot for summary report
 #'
 #' @param row_index  from shiny app, which row of table is the site of interest (should be related to react_cur_button)
 #' @param input_plotkind_1pager from shiny app, from input$plotkind_1pager like "bar", "box", "ridgeline"
@@ -464,6 +431,7 @@ map_single_location <- function(row_index = NULL,
 #' @param react_ratio.to.us.d  from shiny app
 #'
 #' @keywords internal
+#' @noRd
 #'
 v1_summary_plot_report <- function(row_index = NULL,
                                    input_plotkind_1pager,

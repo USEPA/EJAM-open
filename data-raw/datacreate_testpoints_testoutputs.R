@@ -21,7 +21,7 @@ if (!exists("metadata_add")) {
 # Specify which data to recreate using this script ####
 
 nvalues <- c(10, 100, 1000, 10000) # numbers of point locations, picked from FRS points.
-# nvalues <- 10 
+# nvalues <- 10
 
 myrad <- 1 # radius in miles. Larger would create MUCH larger versions of sites2blocks example objects
 
@@ -353,8 +353,8 @@ for (n in nvalues) {
         writeChar(filecontents, con = paste0("./R/data_", out_varname_doagg, ".R"))       ############# #
       }
 
-    } 
-    
+    }
+
   }
   ################################## #   ################################## #   ################################## #
   # _ ####
@@ -404,9 +404,10 @@ for (n in nvalues) {
         get(out_varname_ejamit),
         in.analysis_title = "Example of outputs of ejamit() being formatted and saved using ejam2excel()",
         radius_or_buffer_in_miles = myrad,
-        buffer_desc = paste0("Within ", myrad, " miles"),
+        # buffer_desc = paste0("Within ", myrad, " miles"),
         fname = paste0("./inst/testdata/examples_of_output/", fname, ".xlsx"),
         save_now = TRUE,
+        overwrite = TRUE,
         launchexcel = FALSE,
         interactive_console = FALSE
       )
@@ -417,10 +418,11 @@ for (n in nvalues) {
       fname <- paste0("testoutput_ejam2report_", n, "pts_", myrad, "miles")
       url_html <- ejam2report(
         get(out_varname_ejamit),
-        analysis_title = "Sample Summary Report",
+        # analysis_title = "Sample Summary Report",
         launch_browser = F
         )
-      file.copy(url_html, paste0("./inst/testdata/examples_of_output/", fname, ".html")
+      file.copy(url_html, paste0("./inst/testdata/examples_of_output/", fname, ".html"),
+                overwrite = TRUE
       )
     }
   }

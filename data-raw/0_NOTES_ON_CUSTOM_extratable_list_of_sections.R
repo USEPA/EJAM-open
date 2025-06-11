@@ -125,7 +125,7 @@ if (TRUE) {
       
       selectizeInput("extratable_list_of_sections_code",
                      "Choose Groups of Indicators:",
-                     choices = golem::get_golem_options("default_extratable_list_of_sections_ui"),
+                     choices = EJAM:::global_or_param("default_extratable_list_of_sections_ui"),
                      multiple = TRUE
       ),
       

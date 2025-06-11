@@ -11,14 +11,13 @@ For Summary Indexes, see \link{bgej}
 }
 \details{
 \itemize{
-\item Version 2.32.3 of EJAM
+\item Version 2.32.4 of EJAM
 uses EPA environmental indicators and population indicators derived from
-ACS data from `r a2018-2022 Each year this should be re-created as for the latest version.
-See attributes(blockgroupstats)
+ACS data from \verb{r a2018-2022 Each year this should be re-created as for the latest version.   See }attributes(blockgroupstats)`
 }
 
 It is a data.table of US Census blockgroups (not blocks).
 With PR, and Island Areas
 
-Column names include bgfips, bgid (for join to blockwt$bgid), pop, pctlowinc, etc.
+Column names include \code{bgfips}, \code{bgid} (for join to \link{blockwt} by/on \code{bgid}), \code{pop}, \code{pctlowinc}, etc.
 }

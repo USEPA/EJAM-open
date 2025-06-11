@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -96,7 +96,8 @@
 <p>This document outlines the general development process for updating
 EJAM (for a new release of the package) or relocating it to a different
 repository, including the surrounding GitHub infrastructure. Also see
-the separate vignettes on <a href="'dev_update-datasets'">updating datasets</a> and <a href="'dev_update-documentation'">updating
+the separate vignettes on <a href="dev_update-datasets.html">updating
+datasets</a> and <a href="dev_update-documentation.html">updating
 documentation</a>.</p>
 <div class="section level2">
 <h2 id="update-owners-and-names-of-repositories-if-relevant">Update owners and names of repositories if relevant<a class="anchor" aria-label="anchor" href="#update-owners-and-names-of-repositories-if-relevant"></a>
@@ -113,7 +114,7 @@ published also should be recorded as part of the URL parameter in the
 DESCRIPTION file in the root folder of the source package. The website
 providing documentation of the R package is created via code in
 <code>EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R</code>,
-relying on the R package <code>pkgdown</code> and hosted on github
+relying on the R package <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> and hosted on github
 pages.</p></li>
 <li><p>The name of the repo where datasets are stored should be recorded
 as the ejam_data_repo parameter in the DESCRIPTION file in the root

@@ -1,8 +1,14 @@
+stop("
+ this script needs to be fixed - not currently working since 
+ changes in use of get_global_defaults_or_user_options() and global_or_param()
+")
 
-## load EJAM package + data
-library(EJAM)
+## load installed version of EJAM package + data
+library(EJAM) # probably redundant if doing load_all next
+## load all EJAM functions, even if not-exported
+devtools::load_all()
 
-## load some other packages
+## load some other packages # probably redundant if loading EJAM pkg
 library(shiny)
 library(data.table)
 library(tidyverse)
@@ -10,13 +16,10 @@ library(leaflet)
 library(leaflet.extras2)
 library(sf)
 
-## load all EJAM functions, even if not-exported
-devtools::load_all()
-
 # quaddata and localtree seem to sometimes not get set after install 
 # which causes the app to crash upon running the analysis
 if (!exists("quaddata")) {
-  EJAM:::dataload_from_local(varnames = "quaddata")
+  dataload_from_local(varnames = "quaddata")
 }
 localtree <- SearchTrees::createTree( quaddata, treeType = "quad", dataType = "point")
 
@@ -28,11 +31,10 @@ source('R/app_config.R')
 source('R/app_ui.R')
 source('R/app_server.R')
 
-# This might be somewhat obsolete considering get_global_defaults_or_user_options() etc.:
-global_defaults_or_user_options <- list()
-source('inst/global_defaults_package.R')
-source('inst/global_defaults_shiny.R')
-source('inst/global_defaults_shiny_public.R')
+global_defaults_or_user_options <- get_global_defaults_or_user_options(
+  user_specified_options = list()
+)
 
 ## launch local version of Shiny app
+
 shinyApp(app_ui, app_server)

@@ -2,7 +2,8 @@
 % Please edit documentation in R/read_and_clean_points.R
 \name{read_and_clean_points}
 \alias{read_and_clean_points}
-\title{Flexibly read .csv or .xlsx of lat/lon points or facility IDs}
+\title{Flexibly read .csv or .xlsx of lat/lon points or facility IDs
+WORK IN PROGRESS THAT WAS DRAFTED}
 \usage{
 read_and_clean_points(filepath, default_points = NULL)
 }
@@ -16,6 +17,7 @@ data.frame with lat, lon, etc. columns
 }
 \description{
 Flexibly read .csv or .xlsx of lat/lon points or facility IDs
+WORK IN PROGRESS THAT WAS DRAFTED
 }
 \details{
 *** THIS WOULD REPLACE SOME OF THE CODE IN server.R

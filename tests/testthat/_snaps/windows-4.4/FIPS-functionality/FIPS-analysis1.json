@@ -1,0 +1,270 @@
+{
+  "input": {
+    "._bookmark_": 0,
+    "Custom_title_for_bar_plot_of_indicators": "",
+    "acs_version": "",
+    "add_naics_subcategories": "TRUE",
+    "all_tabs": "Site Selection",
+    "an_leaf_map_bounds": {
+      "north": 54.62297813269033,
+      "east": -44.6484375,
+      "south": 21.04349121680354,
+      "west": -152.490234375
+    },
+    "an_leaf_map_center": {
+      "lng": -98.5795,
+      "lat": 39.8283
+    },
+    "an_leaf_map_zoom": 4,
+    "an_thresh_comp1": 80,
+    "an_thresh_comp2": 80,
+    "an_threshgroup1": "EJ-US-or-ST",
+    "an_threshgroup2": "Supp-US-or-ST",
+    "an_threshnames1": [
+      "pctile.EJ.DISPARITY.dpm.eo",
+      "pctile.EJ.DISPARITY.drinking.eo",
+      "pctile.EJ.DISPARITY.no2.eo",
+      "pctile.EJ.DISPARITY.o3.eo",
+      "pctile.EJ.DISPARITY.pctpre1960.eo",
+      "pctile.EJ.DISPARITY.pm.eo",
+      "pctile.EJ.DISPARITY.proximity.npdes.eo",
+      "pctile.EJ.DISPARITY.proximity.npl.eo",
+      "pctile.EJ.DISPARITY.proximity.rmp.eo",
+      "pctile.EJ.DISPARITY.proximity.tsdf.eo",
+      "pctile.EJ.DISPARITY.rsei.eo",
+      "pctile.EJ.DISPARITY.traffic.score.eo",
+      "pctile.EJ.DISPARITY.ust.eo",
+      "state.pctile.EJ.DISPARITY.dpm.eo",
+      "state.pctile.EJ.DISPARITY.drinking.eo",
+      "state.pctile.EJ.DISPARITY.no2.eo",
+      "state.pctile.EJ.DISPARITY.o3.eo",
+      "state.pctile.EJ.DISPARITY.pctpre1960.eo",
+      "state.pctile.EJ.DISPARITY.pm.eo",
+      "state.pctile.EJ.DISPARITY.proximity.npdes.eo",
+      "state.pctile.EJ.DISPARITY.proximity.npl.eo",
+      "state.pctile.EJ.DISPARITY.proximity.rmp.eo",
+      "state.pctile.EJ.DISPARITY.proximity.tsdf.eo",
+      "state.pctile.EJ.DISPARITY.rsei.eo",
+      "state.pctile.EJ.DISPARITY.traffic.score.eo",
+      "state.pctile.EJ.DISPARITY.ust.eo"
+    ],
+    "an_threshnames2": [
+      "pctile.EJ.DISPARITY.dpm.supp",
+      "pctile.EJ.DISPARITY.drinking.supp",
+      "pctile.EJ.DISPARITY.no2.supp",
+      "pctile.EJ.DISPARITY.o3.supp",
+      "pctile.EJ.DISPARITY.pctpre1960.supp",
+      "pctile.EJ.DISPARITY.pm.supp",
+      "pctile.EJ.DISPARITY.proximity.npdes.supp",
+      "pctile.EJ.DISPARITY.proximity.npl.supp",
+      "pctile.EJ.DISPARITY.proximity.rmp.supp",
+      "pctile.EJ.DISPARITY.proximity.tsdf.supp",
+      "pctile.EJ.DISPARITY.rsei.supp",
+      "pctile.EJ.DISPARITY.traffic.score.supp",
+      "pctile.EJ.DISPARITY.ust.supp",
+      "state.pctile.EJ.DISPARITY.dpm.supp",
+      "state.pctile.EJ.DISPARITY.drinking.supp",
+      "state.pctile.EJ.DISPARITY.no2.supp",
+      "state.pctile.EJ.DISPARITY.o3.supp",
+      "state.pctile.EJ.DISPARITY.pctpre1960.supp",
+      "state.pctile.EJ.DISPARITY.pm.supp",
+      "state.pctile.EJ.DISPARITY.proximity.npdes.supp",
+      "state.pctile.EJ.DISPARITY.proximity.npl.supp",
+      "state.pctile.EJ.DISPARITY.proximity.rmp.supp",
+      "state.pctile.EJ.DISPARITY.proximity.tsdf.supp",
+      "state.pctile.EJ.DISPARITY.rsei.supp",
+      "state.pctile.EJ.DISPARITY.traffic.score.supp",
+      "state.pctile.EJ.DISPARITY.ust.supp"
+    ],
+    "analysis_title": "Summary of EJ Analysis",
+    "avoidorphans": "FALSE",
+    "back_to_site_sel2": 0,
+    "bt_get_results": 1,
+    "bt_rad_buff": 1,
+    "calculate_ratios": true,
+    "circleweight_in": 4,
+    "coauthor_emails": "",
+    "coauthor_names": "",
+    "conclusion1": "",
+    "conclusion2": "",
+    "conclusion3": "",
+    "default_miles": 1,
+    "default_miles_shapefile": 0,
+    "demog_high_at_what_share_of_sites": "some of these sites, just as it varies nationwide",
+    "demog_how_elevated": "",
+    "details_subtabs": "Site-by-Site Table",
+    "ejscreen_version": "",
+    "envt_high_at_what_share_of_sites": "some of these sites, just as it varies nationwide",
+    "envt_how_elevated": "",
+    "epa_program_help": 0,
+    "extra_demog": "TRUE",
+    "extratable_show_ratios_in_report": "FALSE",
+    "facilities_studied": "rule",
+    "facilities_studied_enter": "",
+    "fips_help": 0,
+    "format1pager": "html",
+    "frs_help": 0,
+    "fundingsource": "",
+    "in_areas_where": "in areas with",
+    "in_areas_where_enter": "",
+    "in_the_x_zone": "area",
+    "in_the_x_zone_enter": "in ",
+    "include_averages": true,
+    "include_ejindexes": "TRUE",
+    "include_extraindicators": true,
+    "latlon_help": 0,
+    "max_mb_upload": 50,
+    "max_miles": 10,
+    "max_pts_map": 5000,
+    "max_pts_run": 1000,
+    "max_pts_showtable": 1000,
+    "max_pts_upload": 5000,
+    "max_shapes_map": 159,
+    "maxradius": 31.06856,
+    "more3": "a",
+    "naics_digits_shown": "basic",
+    "need_proximityscore": "FALSE",
+    "ok2plot": true,
+    "plotkind_1pager": "bar",
+    "prefix_filenames": "",
+    "print_uploaded_points_to_log": true,
+    "results_tabs": "Community Report",
+    "return_to_results": 0,
+    "rg_add_coauthors": false,
+    "rg_author_email": "author@email.org",
+    "rg_author_name": "FirstName LastName",
+    "rg_enter_sites": "facilities in the _____ source category",
+    "rg_zonetype": "zone_is_named_x",
+    "risks_are_x": "risk is at or above 1 per million (lifetime individual cancer risk due to inhalation of air toxics from this source category)",
+    "shiny.testmode": "FALSE",
+    "shinyjs-resettable-ss_upload_fips": {
+
+    },
+    "shinyjs-resettable-ss_upload_frs": {
+
+    },
+    "shinyjs-resettable-ss_upload_latlon": {
+
+    },
+    "shinyjs-resettable-ss_upload_program": {
+
+    },
+    "shinyjs-resettable-ss_upload_shp": {
+
+    },
+    "show_data_preview": 0,
+    "show_ratios_in_report": "FALSE",
+    "shp_help": 0,
+    "source_of_latlons": "",
+    "ss_choose_method": "upload",
+    "ss_choose_method_drop": "NAICS",
+    "ss_choose_method_upload": "latlon",
+    "ss_select_mact": "AA",
+    "ss_select_naics": null,
+    "ss_select_program": "CAMDBS",
+    "ss_select_sic": null,
+    "ss_upload_fips": {
+      "name": [
+        "counties_in_Delaware.xlsx"
+      ],
+      "size": [
+        8918
+      ],
+      "type": [
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      ],
+      "datapath": [
+        "0.xlsx"
+      ]
+    },
+    "ss_upload_frs": null,
+    "ss_upload_latlon": null,
+    "ss_upload_program": null,
+    "ss_upload_shp": null,
+    "standard_analysis_title": "Summary of EJ Analysis",
+    "subgroups_type": "nh",
+    "summ_hist_bins": 10,
+    "summ_hist_data": "pctile",
+    "summ_hist_distn": "People",
+    "testing": "FALSE",
+    "ui_hide_advanced_settings": 0,
+    "ui_show_advanced_settings": 0,
+    "within_x_miles_of": "near the"
+  },
+  "output": {
+    "an_map_text": {
+      "message": "",
+      "call": "NULL",
+      "type": [
+        "shiny.silent.error",
+        "validation"
+      ]
+    },
+    "analysis_title_ui": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"analysis_title-label\" for=\"analysis_title\">Name of Your Analysis<\/label>\n  <input id=\"analysis_title\" type=\"text\" class=\"shiny-input-text form-control\" value=\"Summary of EJ Analysis\"/>\n<\/div>",
+      "deps": [
+
+      ]
+    },
+    "error_message": "",
+    "invalid_sites_alert2": {
+      "html": "",
+      "deps": [
+
+      ]
+    },
+    "radius_label": {
+      "html": "<b>Distance from Site: <br/>1 miles (1.61 km)<\/b>",
+      "deps": [
+
+      ]
+    },
+    "radius_slider_ui": {
+      "html": "<div class=\"form-group shiny-input-container\">\n  <label class=\"control-label\" id=\"bt_rad_buff-label\" for=\"bt_rad_buff\"><\/label>\n  <input class=\"js-range-slider\" id=\"bt_rad_buff\" data-skin=\"shiny\" data-min=\"0.5\" data-max=\"10\" data-from=\"1\" data-step=\"0.05\" data-grid=\"true\" data-grid-num=\"10\" data-grid-snap=\"false\" data-prettify-separator=\",\" data-prettify-enabled=\"true\" data-postfix=\" miles\" data-keyboard=\"true\" data-data-type=\"number\"/>\n<\/div>",
+      "deps": [
+        {
+          "name": "ionrangeslider-javascript",
+          "version": "2.3.1",
+          "src": {
+            "href": "ionrangeslider-javascript-2.3.1"
+          },
+          "meta": null,
+          "script": "js/ion.rangeSlider.min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "strftime",
+          "version": "0.9.2",
+          "src": {
+            "href": "strftime-0.9.2"
+          },
+          "meta": null,
+          "script": "strftime-min.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        },
+        {
+          "name": "ionrangeslider-css",
+          "version": "2.3.1",
+          "src": {
+            "href": "ionrangeslider-css-2.3.1"
+          },
+          "meta": null,
+          "script": null,
+          "stylesheet": "css/ion.rangeSlider.css",
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

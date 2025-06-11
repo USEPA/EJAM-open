@@ -1,6 +1,33 @@
 
 ################################################################### #
 if (FALSE) {
+
+  # see styler and lintr packages
+  # styler makes the changes. lintr just flags them.
+  
+  # https://lintr.r-lib.org/
+  # https://styler.r-lib.org/
+  
+  ### RStudio addins from lintr and styler packages can lint/style 
+  # a single active open source file, or entire package. 
+  #
+  # https://styler.r-lib.org/articles/styler.html
+  #
+  # styler provides the following API to format code:
+  #   
+  #   style_file() styles .qmd, .R, .Rmd, .Rmarkdown, .Rnw, and .Rprofile files.
+  # 
+  # style_dir() styles all these files in a directory.
+  # 
+  # style_pkg() styles the source files of an R package.
+  # 
+  # RStudio Addins for styling the active file, styling the current package and styling the highlighted selection, see help("styler_addins").
+  # 
+  
+  # !diagnostics off   ## would  disable diagnostics within a document
+  
+  
+  
   ###########  PICK SOME USEFUL linters in lintr package:
   
   #      see bundles of useful ones here:
@@ -63,10 +90,15 @@ if (FALSE) {
   ###########  
 }
 ################################################################### #
+################################################################### #
+################################################################### #
+
+
+
 
 ########### as alternative or supplement to lintr pkg, 
 ## draft code below would make some relevant changes:
-# define this one internal function. others can be sourced if wanted.
+# define this one internal function I like. others can be sourced if wanted.
 
 # remove trailing space(s) at end of line **** PRETTY MUCH ALWAYS WANT THIS
 
@@ -78,12 +110,27 @@ lint_trailing_spaces <- function(x) {
 }
 ################################################### #
 
+## could do something like this but the styler addin in RStudio already does this kind of thing
+
+lint_current_doc <- function(mylintfunction = lint_trailing_spaces) {
+  ## to just edit the currently open/active source doc in RStudio:
+  idx = rstudioapi::documentId(allowConsole = FALSE)
+  txt = rstudioapi::getSourceEditorContext(id = idx)$contents
+  txt <- mylintfunction(txt)
+  rstudioapi::setDocumentContents(txt, id = idx)
+}
+################################################### #
+
 if (FALSE) {
   
 ## SCRIPT TO USE DRAFT LINTING FUNCTION(S) TO ACTUALLY EDIT ALL .R FILES:
 #
 # Use a github diff to see what effects it has, confirming each change is ok
 
+  lint_current_doc()
+  
+  lint_current_doc()
+  
 rfiles <- file.path("./R", list.files("./R", pattern = "\\.R$"))
 
 for (f1 in rfiles) {
@@ -142,7 +189,7 @@ if (FALSE) {
   }
   ################################################### #
   
-  # lintr pkg infix_spaces_linter()  -- is like the lint_equals() function drafted below ! and also flags "1/3" vs "1 / 3", etc.
+  # lintr pkg infix_spaces_linter()  -- is like the lint_equals() function drafted here ! and also flags "1/3" vs "1 / 3", etc.
   lint_equals <- function(x) {
     
     x = gsub(":=", "999temporarysavethis999", x) # avoid messing with this special data.table function

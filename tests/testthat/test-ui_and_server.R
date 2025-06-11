@@ -1,21 +1,23 @@
 
 
-cat("\n NEED MORE UNIT TESTS OF SHINY APP IN test-ui_and_server.R \n\n")
+# devtools::load_all()  # need this if not yet done by testing setup 
 
+## source app-related scripts ?
+# source('R/app_config.R')
+# source('R/app_ui.R')
+# source('R/app_server.R')
+cat("NOTE: global_defaults_*.R are required - be aware of whether installed or local source version will be used by tests in test-ui_and_server.R \n")
+# and  update_global_defaults_or_user_options() # is used by get_global_defaults_or_user_options()
+global_defaults_or_user_options <- EJAM:::get_global_defaults_or_user_options(
+  user_specified_options = list()
+)
+
+
+cat("\n NEED MORE UNIT TESTS OF SHINY APP IN test-ui_and_server.R \n\n")
 
 # Configure   to fit your need.
 # testServer() function makes it possible to test code in server functions and modules, without needing to run the full Shiny application
 
-
-# NOTE THIS WOULD READ THE INSTALLED NOT SOURCE PACKAGE VERSION WHICH MAY DIFFER
-cat("NOTE: global_defaults_*.R are required, and installed version will be used by tests in test-ui_and_server.R but if it differs from local source version
-    test results will not reflect those changes\n")
-## check these would work here:
-source(system.file("global_defaults_package.R", package = "EJAM"))
-source(system.file("global_defaults_shiny.R", package = "EJAM"))
-source(system.file("global_defaults_shiny_public.R", package = "EJAM"))
-## not sure if we want to / can read this due to conflicts:
-# source(system.file("global_defaults_ejscreenapi.R", package = "EJAM"))
 
 test_that("app ui", {
 
@@ -33,8 +35,6 @@ test_that("app ui", {
   }
 })
 
-
-
 test_that("app server is a function", {
 
   if (!exists("app_server")) {
@@ -50,7 +50,6 @@ test_that("app server is a function", {
     expect_true(i %in% names(fmls))
   }
 })
-
 
 test_that(
   "app_sys works and finds golem-config.yml", {
@@ -68,7 +67,6 @@ test_that(
     )
   }
 )
-
 
 test_that(
   "golem-config works and app is set as 'production' not  'dev' ", {
@@ -104,9 +102,13 @@ test_that(
 ### testServer() function makes it possible to test code in server functions and modules, without needing to run the full Shiny application
 ### but seems to throw an error when running this test file via  test_file("./tests/testthat/test-ui_and_server.R")
 ###  cannot get this testServer to work without an error when running the test in console interactively
-#
+  
+# 
+# devtools::load_all()
+# 
+
 # testServer(app = app_server, expr = {  # unexported function, so would require using ::: or devtools::load_all()
-#
+# 
 #   suppressWarnings({
 #   ## Set and test an input
 #    session$setInputs(bt_rad_buff = 1, max_miles = 10, default_miles = 3.14,
@@ -114,44 +116,46 @@ test_that(
 #   ### stopifnot(input$bt_rad_buff == 1)
 #     expect_equal(input$bt_rad_buff, 1)
 #   })
-#
+# 
 #   ### Example of tests you can do on the server:
 #   ### - Checking reactiveValues
-#
- #   expect_equal(r$lg, 'EN')
-#
-  ### - Checking output
-  #
+# 
+#   expect_equal(r$lg, 'EN')
+# 
+# ## - Checking output
+# 
 #   expect_equal(output$txt, "Text")
-#
-#
+# 
+# 
 # })
 ################################################# #
 #
 # ## this is not finished yet
+# 
 # # https://shiny.posit.co/r/reference/shiny/1.7.2/testserver
 # # Configure this test to fit your need
-# test_that(
-#   "app can start and inputs can be set",
-#   {
-#     testServer(app = app_server, expr = {
-#
-#       golem::expect_running(sleep = 5)
-#       print(current_upload_method())
-#
-#         suppressWarnings({
-#         ## Set and test an input
-#          session$setInputs(bt_rad_buff = 3.14, max_miles = 10, default_miles = 3.14,
-#              ss_choose_method = "upload", ss_choose_method_upload = "latlon")
-#         ### stopifnot(input$bt_rad_buff == 1)
-#           # expect_equal(input$bt_rad_buff, 1)
-#           # expect_equal(input$max_miles, 10)
-#         })
-#
-#     })
-#
-#   }
-# )
+
+test_that(
+  "app can start and inputs can be set",
+  {
+    testServer(app = app_server, expr = {
+
+      golem::expect_running(sleep = 5)
+      print(current_upload_method())
+
+        suppressWarnings({
+        ## Set and test an input
+         session$setInputs(bt_rad_buff = 3.14, max_miles = 10, default_miles = 3.14,
+             ss_choose_method = "upload", ss_choose_method_upload = "latlon")
+        ### stopifnot(input$bt_rad_buff == 1)
+          # expect_equal(input$bt_rad_buff, 1)
+          # expect_equal(input$max_miles, 10)
+        })
+
+    })
+
+  }
+)
 ################################################# #
 
 # # TESTING A MODULE ####

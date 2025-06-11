@@ -27,7 +27,10 @@ build_community_report(
     names_d_other_count),
   extratable_hide_missing_rows_for = as.vector(unlist(extratable_list_of_sections)),
   in_shiny = FALSE,
-  filename = NULL
+  filename = NULL,
+  report_title = NULL,
+  logo_path = NULL,
+  logo_html = NULL
 )
 }
 \arguments{
@@ -62,6 +65,14 @@ as with many of names_d_language, in extra table of demog. subgroups, etc.'}
 \item{in_shiny}{whether the function is being called in or outside of shiny - affects location of header}
 
 \item{filename}{path to file to save HTML content to; if null, returns as string (used in Shiny app)}
+
+\item{report_title}{generic name of this type of report, to be shown at top, like "EJAM Multisite Report"}
+
+\item{logo_path}{optional relative path to a logo for the upper right of the overall header.
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()}
+
+\item{logo_html}{optional HTML for img of logo for the upper right of the overall header.
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.}
 }
 \description{
 Creates a short summary report with tables, map, and plot of indicators
@@ -70,11 +81,6 @@ Creates a short summary report with tables, map, and plot of indicators
 This is used by the shiny app server. For use in RStudio,
 see \code{\link[=ejam2report]{ejam2report()}} (which relies on this).
 
-This function \code{\link[=build_community_report]{build_community_report()}} is similar to \code{\link[=report_community_download]{report_community_download()}}
-but is used for displaying the returned HTML report in a browser
-instead of rendering it as a file for download from the shiny app.
-And
-
 This function gets called by
 app_server but also by \code{\link[=ejam2report]{ejam2report()}},
 and also is used by the community_report_template.Rmd used to generate a report
@@ -82,6 +88,6 @@ and also is used by the community_report_template.Rmd used to generate a report
 It uses functions in community_report_helper_funs.R, etc.
 }
 \seealso{
-\code{\link[=ejam2report]{ejam2report()}} \code{\link[=report_community_download]{report_community_download()}}
+\code{\link[=ejam2report]{ejam2report()}}
 }
 \keyword{internal}

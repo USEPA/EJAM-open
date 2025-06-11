@@ -64,9 +64,10 @@ test_that('fake NAICS in naics_validation() should report that valid is FALSE bu
 test_that('is multiple values for naics_validation(naics_select) supposed to give error? does it need to for shiny app??',{
   expect_no_error({
     capture_output({
-      val <- naics_validation(naics_enter = "211", naics_select = c(1,2))  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FAILED SINCE NO ERROR 
+      val <- naics_validation(naics_enter = "211", naics_select = c(1,2))  # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   NO ERROR 
     #           - not sure this makes sense to have no error or warning and it reports valid (TRUE) -- naics_validation() is too weak a test of validity
     })
     })
+  expect_true(val)
 })
 # <<<<<<<<<<<<<<<<<<<<<<<<

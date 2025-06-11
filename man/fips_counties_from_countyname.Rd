@@ -14,7 +14,7 @@ like "Johnson" or "Johnson County". Ignores case.}
 omitted if the 1st parameter has the full name and ST like
 "Harris County, TX". Ignores case.}
 
-\item{exact}{TRUE requireS exact matches, FALSE to allow partial matches
+\item{exact}{TRUE requires exact matches, FALSE to allow partial matches
 which here means first few letters match (it is not using grep), and
 in which case outputs might differ from inputs in length and not be 1-to-1}
 }

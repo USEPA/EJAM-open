@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -106,25 +106,26 @@
 <div class="section level3">
 <h3 id="code-repositories-and-open-source-contributions">code repositories and open source contributions<a class="anchor" aria-label="anchor" href="#code-repositories-and-open-source-contributions"></a>
 </h3>
-<p>The open source package EJAM was in a repository called <a href="https://github.com/USEPA/EJAM-open" class="external-link">USEPA/EJAM-open</a>, but <em>that repository will be archived in mid-2025</em> with no plans for it to be further developed by EPA. Any further development or open source contributions would need to take place elsewhere (not in the EPA repository), such as in forks of the package.</p>
-<p>The name of the repo storing the package code needs to be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. The owner/name can be read from there using the unexported helper function <code>EJAM:::repo_from_desc()</code>, and the full URL via <code>EJAM:::repo_from_desc(get_full_url=T)</code></p>
+<p>The open source package EJAM was in a repository <em>archived and/or unpublished in mid-2025</em> (<a href="https://github.com/USEPA/EJAM-open" class="external-link">USEPA/EJAM-open</a>) with no plans for it to be further developed by EPA. Any further development or open source contributions would need to take place elsewhere (not in the EPA repository), such as in forks of the package.</p>
+<p>The name of the repo storing the package code needs to be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. The owner/name can be read from there using the unexported helper function <code>repo_from_desc()</code>, and the full URL via the function <code>repo_from_desc()</code> as <code>EJAM:::repo_from_desc(get_full_url=T)</code> which currently returns <a href="https://github.com/USEPA/EJAM-open" class="external-link uri">https://github.com/USEPA/EJAM-open</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="documentation">documentation<a class="anchor" aria-label="anchor" href="#documentation"></a>
 </h3>
-<p>Documentation webpages had been on github pages at URLs related to the USEPA/EJAM and USEPA/EJAM-open repositories – but <em>those might be unpublished in mid-2025</em> when the repository is archived, with any further documentation presumably hosted by other repositories such as in forks of the package. The sites were created via code in EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R, relying on the R package <code>pkgdown</code> and hosted on github pages.</p>
-<p>The name of the repo where those are published at any given time needs to be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. That repo URL can be read from there using the unexported helper function <code>repo_from_desc('github.io', get_full_url=T).</code></p>
+<p>Documentation webpages had been on github pages at URLs related to the USEPA/EJAM and USEPA/EJAM-open repositories – but <em>those might be archived and/or unpublished in mid-2025</em>, with any subsequent documentation presumably hosted by other repositories such as in forks of the package. The ddocumentation web pages are created via code in <code>EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R</code>, relying on the R package <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> and hosted on github pages.</p>
+<p>The name of the repo where those are published at any given time needs to be recorded as part of the URL parameter in the <code>DESCRIPTION</code> file in the root folder of the source package. That repo URL can be read from there using the unexported helper function <code>repo_from_desc()</code> as <code>EJAM:::repo_from_desc('github.io', get_full_url=T)</code>, which currently returns (<a href="https://usepa.github.io/EJAM-open" class="uri">https://usepa.github.io/EJAM-open</a>).</p>
 </div>
 <div class="section level3">
 <h3 id="datasets">datasets<a class="anchor" aria-label="anchor" href="#datasets"></a>
 </h3>
-<p>Datasets had been at <a href="https://github.com/USEPA/ejamdata" class="external-link uri">https://github.com/USEPA/ejamdata</a> through mid-2025, but may be archived when the package is archived.</p>
-<p>The name of the repo where those are stored at any given time needs to be recorded as the ejam_data_repo parameter in the DESCRIPTION file in the root folder of the source package, available via <code>desc::desc(file = system.file("DESCRIPTION", package = "EJAM"))$get("ejam_data_repo")</code></p>
+<p>Datasets had been in a repository <em>archived and/or unpublished in mid-2025</em> (<a href="https://github.com/USEPA/ejamdata" class="external-link">USEPA/ejamdata</a>) through mid-2025 with no plans for it to be further updated by EPA.</p>
+<p>The name of the repo where those are stored at any given time needs to be recorded as the <code>ejam_data_repo</code> parameter in the <code>DESCRIPTION</code> file in the root folder of the source package, which can be retrieved via the function <code><a href="https://desc.r-lib.org/reference/desc.html" class="external-link">desc::desc()</a></code> as <code>desc::desc(file = system.file("DESCRIPTION", package = "EJAM"))$get("ejam_data_repo")</code> which currently returns USEPA/ejamdata, so the full URL would be <a href="https://github.com/USEPA/ejamdata" class="external-link uri">https://github.com/USEPA/ejamdata</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="web-app-hosting">web app hosting<a class="anchor" aria-label="anchor" href="#web-app-hosting"></a>
 </h3>
-<p>EJScreen and the EJAM/multisite tool web app were no longer hosted by EPA starting in early 2025. Changes have been taking place in terms of how and where EJAM or EJScreen might be available as web apps. EJAM as a web app was taken offline at EPA, and EJScreen likewise no longer provides access to EJAM’s multisite tool, and does not provide the API that had been generating community summary reports on individual locations. <a href="https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen</a> leveraged EJAM’s technology to provide public access to batches of reports, allowing rapid multisite analysis through EJScreen’s Multisite Tool. The web app attempted to balance user-friendliness of the visual interface and features, relevance to what the public finds useful, and resources that include appropriate documentation and user support.</p>
+<p>For information about how to host the web app, see <a href="https://usepa.github.io/EJAM-open/articles/dev_deploy-app.html">Deploying the Web App</a></p>
+<p>EJScreen and the EJAM/multisite tool web app were <em>no longer hosted by EPA starting in early 2025</em>. Changes have been taking place in terms of how and where EJAM or EJScreen might be available as web apps. EJAM as a web app was taken offline at EPA, and EJScreen likewise no longer provides access to EJAM’s multisite tool, and does not provide the API that had been generating community summary reports on individual locations. <a href="https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen" class="external-link uri" target="_blank" rel="noreferrer noopener" title="https://www.epa.gov/ejscreen">EJScreen (as archived here)</a> leveraged EJAM’s technology to provide public access to batches of reports, allowing rapid multisite analysis through EJScreen’s Multisite Tool. The web app attempted to balance user-friendliness of the visual interface and features, relevance to what the public finds useful, and resources that include appropriate documentation and user support.</p>
 </div>
 </div>
 </div>
@@ -162,7 +163,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer>

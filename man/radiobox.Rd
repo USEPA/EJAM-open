@@ -28,7 +28,7 @@ radiobox(
 \item{width}{width of box in pixels, e.g., 100}
 }
 \value{
-one of the choiceValues (if not cancelled/ error), once Done is clicked.
+one of the choiceValues (if not canceled/ error), once Done is clicked.
 }
 \description{
 DRAFT - addin/ gadget dialog box so RStudio user can pick a radio button
