@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -106,7 +106,7 @@ but see str() because it is a list in matrix form</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span>  <span class="va">mysite</span> <span class="op">&lt;-</span> <span class="fl">9</span></span>
 <span>  <span class="co"># \donttest{</span></span>
 <span>  <span class="va">vs</span> <span class="op">&lt;-</span> <span class="fu"><a href="ejscreen_vs_ejam.html">ejscreen_vs_ejam</a></span><span class="op">(</span><span class="va">testpoints_10</span>, radius <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span>  <span class="fu">ejscreen_vs_ejam_see1</span><span class="op">(</span><span class="va">vs</span>, mysite <span class="op">=</span> <span class="va">mysite</span>, </span>
+<span>  <span class="fu">ejscreen_vs_ejam_see1</span><span class="op">(</span><span class="va">vs</span>, mysite <span class="op">=</span> <span class="va">mysite</span>,</span>
 <span>    myvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">vs</span><span class="op">$</span><span class="va">EJAM</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">vs</span><span class="op">$</span><span class="va">EJSCREEN</span><span class="op">[</span><span class="va">mysite</span>, <span class="op">]</span><span class="op">)</span> , <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
 <span>  <span class="co"># }</span></span>
 <span></span></code></pre></div>

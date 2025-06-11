@@ -12,7 +12,7 @@ test_that('ejamit() returns a list with no error, for very simple example', {
     suppressWarnings({
 
       suppressMessages({
-        v10 <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # same as  ejamoutnow <- ejamit(testpoints_10, radius = 1) done in  setup.R, but tested here. - takes roughly 5-10 seconds
+        v10 <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # same as  ejamitoutnow <- ejamit(testpoints_10, radius = 1) done in  setup.R, but tested here. - takes roughly 5-10 seconds
       })
     })
   })
@@ -64,15 +64,15 @@ test_that("ejamit() still returns results_overall identical to what it used to r
           (saved as testoutput_ejamit_10pts_1miles$results_overall)", {
             suppressWarnings({
               suppressMessages({
-                ejamoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE)  #  - takes roughly 5-10 seconds
+                ejamitoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE)  #  - takes roughly 5-10 seconds
 
                 expect_equal(
-                  ejamoutnow$results_overall,
+                  ejamitoutnow$results_overall,
                   testoutput_ejamit_10pts_1miles$results_overall
                 )
               } )
             })
-            # all.equal(ejamoutnow$results_overall,
+            # all.equal(ejamitoutnow$results_overall,
             #           testoutput_ejamit_10pts_1miles$results_overall)
           })
 ################# #
@@ -81,13 +81,13 @@ test_that("ejamit() still returns results_bysite identical to expected numbers i
           (saved as testoutput_ejamit_10pts_1miles$results_bysite)", {
             suppressWarnings({
               suppressMessages({
-                ejamoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # see setup.R - takes roughly 5-10 seconds
+                ejamitoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # see setup.R - takes roughly 5-10 seconds
                 expect_equal(
-                  ejamoutnow$results_bysite,
+                  ejamitoutnow$results_bysite,
                   testoutput_ejamit_10pts_1miles$results_bysite,
                   ignore_attr = T
                 )
-                # all.equal(    ejamoutnow$results_bysite,
+                # all.equal(    ejamitoutnow$results_bysite,
                 #               testoutput_ejamit_10pts_1miles$results_bysite)
               } )
             })
@@ -95,10 +95,10 @@ test_that("ejamit() still returns results_bysite identical to expected numbers i
 ################# #
 
 test_that("ejamit() returns same exact colnames() in both results_bysite and results_overall", {
-  ejamoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # see setup.R - takes roughly 5-10 seconds
+  ejamitoutnow <- ejamit(testpoints_10, radius = 1, quiet = T, silentinteractive = TRUE) # see setup.R - takes roughly 5-10 seconds
   expect_identical(
-    colnames(ejamoutnow$results_bysite),
-    colnames(ejamoutnow$results_overall)
+    colnames(ejamitoutnow$results_bysite),
+    colnames(ejamitoutnow$results_overall)
   )
 })
 ########################################################## #

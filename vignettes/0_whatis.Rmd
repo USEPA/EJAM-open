@@ -74,7 +74,7 @@ This allows easy geospatial analysis to move beyond looking at a small number of
 
 **Immediate Results (Speed)**
 
-Compared to related GIS tools this new tool provides a ready-to-use summary report, plus more flexibility, accuracy, and speed than other tools have in the past. The website quickly provides results on the fly -- The software was optimized to be extremely fast (allowing realtime exploratory work), while still using the same block-population calculation EJScreen has been using, making it more consistent with how EJScreen has always worked and more accurate than other approaches (e.g., using "areal apportionment" of tracts or block groups, like some other tools have used).
+Compared to related GIS tools this new tool provides a ready-to-use summary report, plus more flexibility, accuracy, and speed than other tools have in the past. The website quickly provides results on the fly -- The software was optimized to be extremely fast (allowing real-time exploratory work), while still using the same block-population calculation EJScreen has been using, making it more consistent with how EJScreen has always worked and more accurate than other approaches (e.g., using "areal apportionment" of tracts or block groups, like some other tools have used).
 
 **Easy Ways to Specify the Places to Analyze**
 

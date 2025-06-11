@@ -26,10 +26,10 @@ generate_html_header(
 \item{report_title}{generic name of this type of report, to be shown at top, like "EJAM Multisite Report"}
 
 \item{logo_path}{optional relative path to a logo for the upper right of the overall header.
-Ignored if logo_html is specified.}
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()}
 
 \item{logo_html}{optional HTML for img of logo for the upper right of the overall header.
-If specified, it overrides logo_path.}
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.}
 }
 \description{
 Build HTML header for community report

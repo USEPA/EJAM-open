@@ -72,7 +72,7 @@ If interactive() is TRUE, this actually defaults to TRUE.}
 
 \item{calculate_ratios}{whether to add columns with ratio of raw score to the US or State average}
 
-\item{nicenames}{whether to use long plain english headers in table or R variable names,
+\item{nicenames}{whether to use long plain English headers in table or R variable names,
 e.g.,  "Particulate Matter (PM 2.5 in ug/m3)" not "pm"}
 
 \item{folder}{full path of directory in which to save files like map, plot, table

@@ -9,7 +9,7 @@
 #' @param label Appears at top of dialog box and between cancel and done, e.g., "Choose one:"
 #' @param height height of box in pixels, e.g., 250
 #' @param width width of box in pixels, e.g., 100
-#' @return one of the choiceValues (if not cancelled/ error), once Done is clicked.
+#' @return one of the choiceValues (if not canceled/ error), once Done is clicked.
 #'
 #' @details uses [shiny::runGadget()]
 #' 

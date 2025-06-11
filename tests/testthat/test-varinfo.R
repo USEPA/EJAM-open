@@ -9,11 +9,11 @@ test_that("varinfo() works for test case1", {
 
   # t1 <-
   expect_no_error(
-    suppressWarnings(
-      varinfo(var =   'pctmin',       info = 'decimals')
-    )
+    suppressWarnings({
+      z <- varinfo(var =   'pctmin',       info = 'decimals')
+    })
   )
-
+expect_true("data.frame" %in% class(z))
 })
 
 test_that("varinfo() works for test case2", {
@@ -24,9 +24,10 @@ test_that("varinfo() works for test case2", {
 
 
   # t2 <-
-  expect_no_error(varinfo(var = c('pctmin','pm'), info = 'decimals'))
-
-
+  expect_no_error({
+    z <- varinfo(var = c('pctmin','pm'), info = 'decimals')
+    })
+  expect_true("data.frame" %in% class(z))
 })
 
 test_that("varinfo() works for test case3", {
@@ -36,10 +37,11 @@ test_that("varinfo() works for test case3", {
   x = "long" # fails if just using varinfo2
 
   # t3 <-
-  expect_no_error(varinfo(var =   'pctmin',       info = c('decimals', x)))
-
+  expect_no_error({
+    z <- varinfo(var =   'pctmin',       info = c('decimals', x))
+    })
+  expect_true("data.frame" %in% class(z))
 })
-
 
 test_that("varinfo() works for test case4", {
 
@@ -48,10 +50,13 @@ test_that("varinfo() works for test case4", {
   x = "long" # fails if just using varinfo2
 
   # t4 <-
-  expect_no_error(varinfo(var = c('pctmin','pm'), info = c('decimals', x)))
-
+  expect_no_error({
+    tested <- c('pctmin','pm')
+    z <- varinfo(var = tested, info = c('decimals', x))
+    })
+  expect_true("data.frame" %in% class(z))
+  expect_equal(rownames(z), tested)
 })
-
 
 testthat::test_that("varinfo() output is of expected class, format for 1 or more values of var and 1 or more values of info", {
   x = "long"

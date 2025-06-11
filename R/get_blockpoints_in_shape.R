@@ -32,7 +32,7 @@ shapefile2blockpoints <- function(polys, addedbuffermiles = 0, blocksnearby = NU
 #'
 #'   For circular buffers, just using getblocksnearby() should work and not need this function.
 #'
-#'   For noncircular polygons, buffered or not, this function will provide a way to very quickly
+#'   For non-circular polygons, buffered or not, this function will provide a way to very quickly
 #'   filter down to which of the millions of US blocks should be examined by the sf:: join / intersect,
 #'   since otherwise it takes forever for sf:: to check all US blocks.
 #' @param polys Spatial data as from sf::st_as_sf(), with
@@ -206,7 +206,7 @@ get_blockpoints_in_shape <- function(polys, addedbuffermiles = 0, blocksnearby =
 
   if (is.null(blocksnearby) & !ARE_POINTS) {
     # must use extremely slow method ?
-    #stop("noncircular buffers not working yet - too slow to find all US blocks in each via simple sf::st_join   ")
+    #stop("non-circular buffers not working yet - too slow to find all US blocks in each via simple sf::st_join   ")
 
     if (dissolved) {
       # warning("using getblocksnearby() to filter US blocks to those near each site must be done before a dissolve  ")

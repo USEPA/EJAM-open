@@ -17,7 +17,7 @@ footer:
     right: [package, versionmsg]
   components:
     draftmsg: 2025
-    versionmsg: Version 2.32.3
+    versionmsg: Version 2.32.4
 development:
   mode: release
   destination:
@@ -74,6 +74,7 @@ reference:
   - ejam2map
   - ejam2barplot
   - ejam2barplot_indicators
+  - ejam2barplot_areafeatures
   - ejam2boxplot_ratios
   - ejam2barplot_sites
   - ejam2barplot_sitegroups
@@ -157,7 +158,7 @@ reference:
   - frs_by_mact
 - title: "Specify Places by Shapefile"
   contents:
-  - testshapes_2
+  - testinput_shapes_2
   - shapefile_from_any
   - shapefile_from_folder
   - shapefile_from_filepaths
@@ -329,6 +330,7 @@ reference:
 - subtitle: "Plots: Mean of each indicator as ratio to average (comparing populations/groups, comparing environmental factors, etc.)"
   contents:
   - ejam2barplot
+  - ejam2barplot_areafeatures
   - plot_barplot_ratios_ez
   - plot_barplot_ratios
 - subtitle: "Plots: Distribution of one indicator across residents or sites (comparing populations/groups, comparing environmental factors, etc.)"
@@ -356,6 +358,7 @@ reference:
   - ejam2report
   - ejam2excel
   - ejam2ratios
+  - ejam2areafeatures
   - ejam2means
   - ejam2tableviewer
   - ejam2table_tall
@@ -405,15 +408,9 @@ reference:
   - testoutput_ejamit_10pts_1miles
   - testoutput_ejamit_100pts_1miles
   - testoutput_ejamit_1000pts_1miles
-  - testoutput_getblocksnearby_10pts_1miles
-  - testoutput_getblocksnearby_100pts_1miles
-  - testoutput_getblocksnearby_1000pts_1miles
-  - testoutput_doaggregate_10pts_1miles
-  - testoutput_doaggregate_100pts_1miles
-  - testoutput_doaggregate_1000pts_1miles
-  - testoutput_ejscreenit_5
-  - testoutput_ejscreenit_50
-  - testoutput_ejscreenit_500
+  - testoutput_ejamit_shapes_2
+  - testoutput_ejamit_fips_cities
+  - testoutput_ejamit_fips_counties
 - title: "Utilities for finding URL or API info"
   contents:
   - url_countyhealthrankings
@@ -437,6 +434,16 @@ reference:
   - ejscreenit
 - title: internal
   contents:
+  - testshapes_2
+  - testoutput_getblocksnearby_10pts_1miles
+  - testoutput_getblocksnearby_100pts_1miles
+  - testoutput_getblocksnearby_1000pts_1miles
+  - testoutput_doaggregate_10pts_1miles
+  - testoutput_doaggregate_100pts_1miles
+  - testoutput_doaggregate_1000pts_1miles
+  - testoutput_ejscreenit_5
+  - testoutput_ejscreenit_50
+  - testoutput_ejscreenit_500
   - acsendyear
   - app_run_EJAMejscreenapi
   - app_run_EJAM

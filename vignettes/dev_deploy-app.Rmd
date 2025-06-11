@@ -17,7 +17,7 @@ While the EPA servers hosting the EJAM web application are no longer up and runn
 
 ## Update EJAM Application
 
-After updating the main branch in the public EJAM code repository (see `dev_update-package` vignette) so that the public repo had the latest version...
+After updating the main branch in the public EJAM code repository (see [Updating the Package as a New Release](dev_update-package.html) vignette) so that the public repo had the latest version...
 
 1.  Sourced `rsconnect_manifest_update.R`, using the public repo as the repo specified in the `remotes::install_github()` command.
 

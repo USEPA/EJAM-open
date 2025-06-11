@@ -2,7 +2,7 @@
 % Please edit documentation in R/ejamit_compare_distances.R
 \name{out_bydistance2results_bysite_bydistance}
 \alias{out_bydistance2results_bysite_bydistance}
-\title{A way to focus on 1 DISTANCE (RADIUS) at a time (after a multidistance run), for the list of sites
+\title{A way to focus on 1 DISTANCE (RADIUS) at a time (after a multi-distance run), for the list of sites
 Get a list of tables, one per distance. Each table has a row per site.}
 \usage{
 out_bydistance2results_bysite_bydistance(out_bydistance)
@@ -16,7 +16,7 @@ that is a list where each element is ejamit()$results_bysite for
 a unique distance (radius or buffer width)
 }
 \description{
-A way to focus on 1 DISTANCE (RADIUS) at a time (after a multidistance run), for the list of sites
+A way to focus on 1 DISTANCE (RADIUS) at a time (after a multi-distance run), for the list of sites
 Get a list of tables, one per distance. Each table has a row per site.
 }
 \details{

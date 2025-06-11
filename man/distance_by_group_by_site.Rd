@@ -22,7 +22,7 @@ facility point (or a whole set of facilities). These two ways of summarizing
 proximity are complementary:
 \enumerate{
 \item Which groups tend to live nearby in the sense of being within the selected radius
-versus outside the radius? In other words, which groups are "overrepresented"
+versus outside the radius? In other words, which groups are "over-represented"
 within X miles of the site? This treats proximity as a yes/no, binomial
 question -- a resident is nearby or not. It would focus on whether someone is
 anywhere within 3 miles, say, and ignore the differences between
@@ -32,7 +32,7 @@ facility? This question recognizes proximity is a continuous variable, and
 focuses on the difference between 1 mile, 1.5 miles, etc. However, it only
 looks at residents within the X miles radius area analyzed, so it fails
 to recognize that some groups tend to live more than 3 miles away, for example.
-This perspective does not take into account which groups are overrepresented
+This perspective does not take into account which groups are over-represented
 within the original total radius near a site.
 }
 
@@ -46,7 +46,7 @@ their average distance would be higher than that of any other group
 because this function only counts those within the radius analyzed.
 
 In some other location, the opposite could occur -- if one group is
-overrepresented within 3 miles, they still might all live in a community
+over-represented within 3 miles, they still might all live in a community
 about 2.9 miles away from the site -- that would mean their distance from
 the site on average is greater (or their proximity score is lower)
 than other groups within 3 miles of the site.

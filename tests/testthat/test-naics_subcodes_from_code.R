@@ -13,7 +13,12 @@ test_that('no ERROR for standard code lookup', {
     expect_no_error(naics_subcodes_from_code(21112))
     expect_no_error(naics_subcodes_from_code("21112"))
     expect_no_error(naics_subcodes_from_code(c(21112)))
-    expect_no_error(naics_subcodes_from_code(c("21112")))
+    expect_no_error({
+      x = naics_subcodes_from_code(c("21112"))
+    })
+    expect_true(
+      "21112" %in% x$code
+    )
   })
 })
 
@@ -21,13 +26,11 @@ test_that('no ERROR for standard code lookup', {
 # no errors but returns empty dataframe
 test_that('error for query string', {
   suppressWarnings({
-    
     expect_warning({val <- naics_subcodes_from_code("gold ore")})
     expect_warning({val <- naics_subcodes_from_code("$100,0")})
   })
-  
+  expect_true(NROW(val) == 0)
 })
-
 
 test_that('list of queries returns joined results', {
   # these do warn and that warning is about the function really, so changed test
@@ -35,22 +38,24 @@ test_that('list of queries returns joined results', {
     expect_no_error({x <- naics_subcodes_from_code(c("211",  "452"))})
     expect_no_error({ y <- naics_subcodes_from_code("211")})
     expect_no_error({ z <- naics_subcodes_from_code("452")})
-    expect_equal(x %>% dplyr::arrange(code), full_join(y,z) %>% dplyr::arrange(code))
+    suppressMessages({joinedyz = full_join(y,z)})
+    expect_equal(x %>% dplyr::arrange(code), 
+                 joinedyz %>% dplyr::arrange(code))
     
-  #   expect_no_warning({x <- naics_subcodes_from_code(c("211",  "452"))})
-  # expect_no_warning({ y <- naics_subcodes_from_code("211")})
-  # expect_no_warning({ z <- naics_subcodes_from_code("452")})
-  # expect_equal(x %>% dplyr::arrange(code), full_join(y,z) %>% dplyr::arrange(code))
+    #   expect_no_warning({x <- naics_subcodes_from_code(c("211",  "452"))})
+    # expect_no_warning({ y <- naics_subcodes_from_code("211")})
+    # expect_no_warning({ z <- naics_subcodes_from_code("452")})
+    # expect_equal(x %>% dplyr::arrange(code), full_join(y,z) %>% dplyr::arrange(code))
   })
 })
-
 
 # error if passed text string or invalid number string
 # no errors but returns empty dataframe
 test_that('1 digit gives error', {
   suppressWarnings({
-    expect_warning(  naics_subcodes_from_code(c("1",  "4"))  )
-    
+    expect_warning({
+      val <- naics_subcodes_from_code(c("1",  "4"))  
+    })
+    expect_true(is.data.frame(val) & NROW(val) == 0)
   })
-  
 })

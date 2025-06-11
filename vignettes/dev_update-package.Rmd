@@ -13,7 +13,7 @@ editor_options:
     wrap: 80
 ---
 
-This document outlines the general development process for updating EJAM (for a new release of the package) or relocating it to a different repository, including the surrounding GitHub infrastructure. Also see the separate vignettes on [updating datasets]('dev_update-datasets') and [updating documentation]('dev_update-documentation').
+This document outlines the general development process for updating EJAM (for a new release of the package) or relocating it to a different repository, including the surrounding GitHub infrastructure. Also see the separate vignettes on [updating datasets](dev_update-datasets.html) and [updating documentation](dev_update-documentation.html).
 
 ## Update owners and names of repositories if relevant
 
@@ -21,7 +21,7 @@ If the package were renamed, or a new name were used for the repository, or the 
 
 - The name of the github repository storing the package code should be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package.
 
-- The name of the repo where webpages of package documentation are published also should be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. The website providing documentation of the R package is created via code in `EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R`, relying on the R package `pkgdown` and hosted on github pages.
+- The name of the repo where webpages of package documentation are published also should be recorded as part of the URL parameter in the DESCRIPTION file in the root folder of the source package. The website providing documentation of the R package is created via code in `EJAM/data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R`, relying on the R package `{pkgdown}` and hosted on github pages.
 
 - The name of the repo where datasets are stored should be recorded as the ejam_data_repo parameter in the DESCRIPTION file in the root folder of the source package.
 

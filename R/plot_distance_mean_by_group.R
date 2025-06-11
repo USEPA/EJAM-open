@@ -224,7 +224,7 @@ distance_by_group     <- function(results_bybg_people,
 #'  (and also %D as a function of continuous distance),
 #'
 #'  and for those stats we would want to take only unique blockgroups from here,
-#'  using the shorter distance, so the distribution of distances does not doublecount people.
+#'  using the shorter distance, so the distribution of distances does not double-count people.
 #'
 #' But we might also want to see that distribution of distances by D for just 1 site?
 #'

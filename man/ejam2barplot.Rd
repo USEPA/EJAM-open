@@ -27,7 +27,9 @@ plot_barplot_ratios(
   ratio.to.us.d.overall,
   shortlabels = NULL,
   mycolorsavailable = c("gray", "yellow", "orange", "red"),
-  main = "Residential Populations at the Analyzed Locations Compared to US Overall"
+  main = "Residential Populations at the Analyzed Locations Compared to US Overall",
+  ylab = "Ratio vs. Average",
+  caption = "NH = \\"non-Hispanic\\"\\nNHA = \\"non-Hispanic alone, aka single race\\""
 )
 }
 \arguments{
@@ -42,13 +44,9 @@ if an integer, it is the row number to show from ejamitout$results_bysite.
 Important: note this is the row number which is
 NOT necessarily the same as the ejamitout$results_bysite$ejam_uniq_id}
 
-\item{main}{title for plot, like "Stats at the Analyzed Locations Compared to US Overall"}
+\item{main}{optional, title for plot, like "Stats at the Analyzed Locations Compared to US Overall"}
 
-\item{...}{
-  Arguments passed on to \code{\link[=ejam2barplot]{ejam2barplot}}
-  \describe{
-    \item{\code{}}{}
-  }}
+\item{...}{passed to plot_barplot_ratios()}
 
 \item{out}{the list of tables that is the output of ejamit() or a related function}
 
@@ -60,9 +58,13 @@ set to FALSE to view overall results from out$results_overall}
 \item{ratio.to.us.d.overall}{named list of a few ratios to plot, but see \code{\link[=ejam2barplot]{ejam2barplot()}}
 for an easier way to specify which indicator to show.}
 
-\item{shortlabels}{names to use for plot - should be same length as named list ratio.to.us.d.overall}
+\item{shortlabels}{optional, names to use for plot - should be same length as named list ratio.to.us.d.overall}
 
-\item{mycolorsavailable}{leave as default}
+\item{mycolorsavailable}{optional (best to leave as default)}
+
+\item{ylab}{optional, label for y axis}
+
+\item{caption}{text for a key defining some terms that are abbreviations}
 }
 \value{
 ggplot
@@ -85,6 +87,9 @@ This function is more flexible than \code{\link[=plot_barplot_ratios]{plot_barpl
 since this lets you specify
 whether to use overall results from ejamit()$results_overall
 or just one site from ejamit()$results_bysite
+
+If the parameter called main has the word "State" in it, then the legend
+will refer to "State Average" instead of "US Average"
 }
 \examples{
 
@@ -116,14 +121,30 @@ ejam2barplot(out,
   varnames = c(names_e_ratio_to_avg, names_e_ratio_to_state_avg),
   main = "Environmental Indicators at Selected Sites Compared to Averages")
   
-  
-  ejam2barplot(testoutput_ejamit_100pts_1miles)
-  
-  plot_barplot_ratios(
-    unlist(testoutput_ejamit_1000pts_1miles$results_overall[ , 
-    c(..names_d_ratio_to_avg , ..names_d_subgroups_ratio_to_avg) ])
+ ## select your own ratio-type indicators that are available
+ ## -- and you could see the range of available ratio indicators like this:
+ \dontrun{
+ varinfo(
+   grep("ratio",
+        names(testoutput_ejamit_10pts_1miles$results_overall),
+        value = TRUE),
+   info = c("varlist", "shortname")
+ )
+   }
+ 
+ # helper functions related to ejam2barplot()
+ 
+  plot_barplot_ratios_ez(
+    out, 
+    varnames = c(names_d_ratio_to_avg , names_d_subgroups_ratio_to_avg)
   )
-
+  
+  # same plot but with function that would need more work to format inputs:
+  plot_barplot_ratios(
+      unlist(out$results_overall[ ,
+      c(..names_d_ratio_to_avg , ..names_d_subgroups_ratio_to_avg) ])
+      )
+      
 }
 \seealso{
 \code{\link[=ejam2ratios]{ejam2ratios()}} \code{\link[=ejam2barplot]{ejam2barplot()}} \code{\link[=plot_barplot_ratios_ez]{plot_barplot_ratios_ez()}} \code{\link[=table_xls_format]{table_xls_format()}}

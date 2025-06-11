@@ -90,7 +90,7 @@ b.  Another way to get the source package is that in RStudio you can click New P
 
 c.  A third way is to Clone or Fork the package via GitHub Desktop.
 
-Regardless of how you got the full source code, you would then need to build/install the package from source on your computer using RStudio (using the Build menu) or using the devtools package, for example.
+Regardless of how you got the full source code, you would then need to build/install the package from source on your computer using RStudio (using the Build menu) or using the `{devtools}` package, for example.
 
 
 ------------------------------------------------------------------------
@@ -109,7 +109,7 @@ To work in the RStudio console, EJAM needs some datasets not stored as part of t
 
 On first use, it should automatically download some data files. Each time it is attached, it will check for updates and also will build a spatial index of Census block points.
 
-Typically you would not need to download any datasets yourself, because EJAM just downloads these when the app starts (technically, when the R package is attached) (or only as needed in the case of certain datasets that are not always needed). Some datasets are installed along with the package, such as the `blockgroupstats` data. But large files like `blockpoints` are stored on a "pins board" server and EJAM downloads them from there. You might want your own local copies, though, for these reasons:
+Typically you would not need to download any datasets yourself, because EJAM just downloads these when the app starts (technically, when the R package is attached) (or only as needed in the case of certain datasets that are not always needed). Some datasets are installed along with the package, such as the [blockgroupstats](../reference/blockgroupstats.html) data. But large files like [blockpoints](../reference/blockpoints.html) are stored in a separate data repo, and EJAM downloads them from there. You might want your own local copies, though, for these reasons:
  
 Attaching the package actually checks for copies in memory first (e.g., `exists("quaddata", envir = globalenv())`), then local disk (using `dataload_from_local()` looking in the data folder of the (source or installed) package, as defined by `app_sys()` which is just a wrapper for `system.file()`), then finally tries to download any still needed, using internal functions.
 

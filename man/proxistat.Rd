@@ -85,7 +85,7 @@ or all grocery stores, or all schools. A proximity score can be
 created for all blocks and block groups in the US (or just one State or Region).
 Then the proximity scores can be analyzed in a tool like EJAM, just as the
 existing pre-calculated proximity scores are analyzed to represent the
-number of nearby hazardous waste treatment stoprage and disposal facilities,
+number of nearby hazardous waste treatment storage and disposal facilities,
 weighted by how far away each one is, as provided in the EJScreen proximity
 score for TSDFs.
 

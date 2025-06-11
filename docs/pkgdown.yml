@@ -11,14 +11,14 @@ articles:
   dev_future_plans: dev_future_plans.html
   dev_run-shinytests: dev_run-shinytests.html
   dev_run-unit-tests: dev_run-unit-tests.html
+  dev_update_documentation: dev_update_documentation.html
   dev_update-datasets: dev_update-datasets.html
   dev_update-package: dev_update-package.html
-  dev_update_documentation: dev_update_documentation.html
   distances: distances.html
   naics: naics.html
   testdata: testdata.html
   zipcodes: zipcodes.html
-last_built: 2025-05-13T22:45Z
+last_built: 2025-06-10T17:22Z
 urls:
   reference: https://usepa.github.io/EJAM-open/reference
   article: https://usepa.github.io/EJAM-open/articles

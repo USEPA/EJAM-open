@@ -68,7 +68,7 @@ EJAM offers a variety of ways to specify the places to be analyzed and compared.
 The web app helps you select locations in several ways.
 
 If you are working in RStudio, and you already have identified the points or
-areas to analyze, the [ejamit()] function will accept 1) point coordinates, 2) a
+areas to analyze, the `ejamit()` function will accept 1) point coordinates, 2) a
 shapefile, or 3) a list of FIPS codes.
 
 However, if you first need to get the points (lat, lon values), or you need a
@@ -82,15 +82,15 @@ You can specify locations for analysis in a variety of ways:
 **Near each point:** Analyze residents & the area [NEAR EACH POINT (PROXIMITY
 ANALYSIS)](#near-each-point-proximity-analysis)
 
--   [**Latitude and Longitude**]
+-   **[Latitude and Longitude]**
 
--   [**Facilities by ID**] can be defined
+-   **[Facilities by ID]** can be defined
 
     -   [by Facility, using EPA Registry ID] or
 
     -   [by Facility, using EPA Program System ID]
 
--   [**Facilities by Type**] can be defined
+-   **[Facilities by Type]** can be defined
 
     -   [by Industry (NAICS)](#by-industry-naics) or
 
@@ -119,6 +119,7 @@ You can define locations as all residents within X miles of any one or more of
 the specified points, and you can define those points in a few ways. One way is
 to upload a table of coordinates -- latitude and longitude for each point, one
 row per site, with columns called lat and lon (or some synonyms that work).
+
 There are also [more detailed functions for working with latlon
 coordinates.](../reference/index.html#specify-points-by-lat-lon)
 
@@ -139,6 +140,8 @@ greenhouse gas reporters), or a Clean Air Act MACT subpart.
 
 EPA-regulated facilities can be found in the Facility Registry Services by
 identification number.
+
+[See a list of functions related to EPA IDs](../reference/index.html#specify-facilities-by-id)
 
 ### by Facility, using EPA Registry ID
 
@@ -178,6 +181,8 @@ if (exists("frs_by_programid")) {
 
 ## Facilities by Type
 
+[See a list of functions related to type of facility (NAICS/SIC/Program/MACT)](../reference/index.html#specify-facility-type)
+
 ### by Industry (NAICS) {#by-industry-naics data-link="by Industry (NAICS)"}
 
 You can specify sites by NAICS, but it is important to note the FRS lacks NAICS
@@ -197,7 +202,11 @@ naics_from_any("paint and coating", children = T)
 See many more examples of [Working with NAICS Codes (Industry
 Codes)](#working-with-naics-codes-industry-codes), in a section below.
 
+[Functions related to NAICS/SIC codes](../reference/index.html#choosing-naics-sic-industry-codes)
+
 ### by EPA Regulatory Program
+
+[See a list of functions related to EPA programs](../reference/index.html#epa-programs)
 
 ```{r tryload_frs_AND_frs_by_programid, include=FALSE}
 dataload_dynamic("frs_by_programid")
@@ -225,6 +234,8 @@ if (exists("frs_by_programid") && exists("frs")) {
 ```
 
 ### by MACT Subpart (hazardous air pollutant source category) {#by-mact-subpart-hazardous-air-pollutant-source-category}
+
+[Functions related to MACT codes](../reference/index.html#mact-categories)
 
 ```{r tryload_frs_by_mact, include=FALSE}
 dataload_dynamic("frs_by_mact")
@@ -426,7 +437,7 @@ if (exists("frs") & exists("frs_from_naics")) {
 You can upload polygons in a shapefile, and use EJAM to analyze them. See the
 Shiny app.
 
-See shapefile_from_any() and related functions:
+See shapefile_from_any() and other [shapefile-related functions](../reference/index.html#specify-places-by-shapefile):
 
 ```{r notrun_shapefile_functionlist, eval=FALSE, echo=TRUE}
 shapefile_from_any()
@@ -444,6 +455,8 @@ shp1 <- shapefile_from_gdbzip(system.file("testdata/shapes/portland.gdb.zip", pa
 ### Counties as the places to compare
 
 You can compare places defined by FIPS code, such as a group of US Counties.
+
+See a list of [functions for working with Census FIPS codes](../reference/index.html#specify-counties-etc-).
 
 Compare all Counties in a State, using EJAM indicators
 
@@ -498,22 +511,29 @@ mapfastej_counties(xmd$results_bysite, 'state.pctile.pctlowinc')
 
 # EXPLORING RESULTS
 
-### The most striking findings (e.g., which group is most overrepresented?)
+See also 
 
-See examples above using ejam2report() but also you can check some key findings
+-  [functions for mapping](../reference/index.html#viewing-results). 
+
+-  [functions for seeing plots/graphics](../reference/index.html#plots-mean-of-one-indicator-at-each-site-or-type-of-site-comparing-sites-or-categories-of-sites-)
+
+-  [functions for seeing tables of results](../reference/index.html#tables)
+
+### The most striking findings (e.g., which group is most over-represented?)
+
+See examples above using `ejam2report()` but also you can check some key findings
 like this:
 
 ```{r count_sites_with_n_high, eval=TRUE, echo = TRUE}
-x <- testoutput_ejamit_1000pts_1miles 
-out <- x$results_bysite
-out <- setDF(copy(out))
+out <- testoutput_ejamit_1000pts_1miles 
+bysite <- out$results_bysite
+bysite <- setDF(copy(bysite))
 ratio_benchmarks <- c(1.01, 1.50, 2, 3, 5, 10)
-ratiodata <- out[, names_d_ratio_to_state_avg]
+ratiodata <- bysite[, names_d_ratio_to_state_avg]
 
 findings <- count_sites_with_n_high_scores(ratiodata, quiet = TRUE)  # long output to console !
 
 tail(findings$text[findings$text != ""], 1) # the most extreme finding!
-
 ```
 
 ### The key facilities (e.g., which has the max of -- or has multiple elevated -- Summary Indexes?)
@@ -541,6 +561,59 @@ head(findings$stats[ , 1, ], 21)
 x = findings$stats[ , 1, ] 
 x[x[, "cum_pct"] >= 50 & x[, "cum_pct"] <= 80, ]
 findings$stats[ 1, , ]
+```
+
+## Local features and special areas – schools, hospitals, nonattainment areas, etc.
+
+`ejamit()` also provides special summary statistics related to the group of
+indicators that count features like schools within each blockgroup, overlaps
+with specially-designated areas such as
+[nonattainment areas](https://www.epa.gov/criteria-air-pollutants/process-determine-whether-areas-meet-naaqs-designations-process),
+and lack of critical services like health insurance.
+See the help for `batch.summarize()` for details.
+
+The function `ejam2areafeatures()` is just a convenient way to see the
+information in `ejamit()$results_summarized$flagged_areas` created by
+`batch.summarize()`, as used by `ejamit()`, from the indicators in these lists:
+
+-   `names_featuresinarea`
+-   `names_flag`
+-   `names_criticalservice`
+
+#### Summary of whether residents at the analyzed locations are more likely to have certain types of features (schools) or special areas (Tribal, nonattainment, etc.)
+
+**Table**
+
+```{r ejam2areafeatures, eval=TRUE}
+## out1k <- ejamit(testpoints_1000, radius = 1)
+out1k <- testoutput_ejamit_1000pts_1miles
+ejam2areafeatures(out1k)
+```
+
+**Plots showing whether residents at the analyzed locations are more likely to
+have certain types of features or special areas**
+
+To view these special ratios, since they are not in the main table
+`ejamit()$results_bysite`, you can reformat them for plotting like this:
+
+```{r ejam2barplot_areafeatures, eval=TRUE}
+#| fig.alt: >
+#|   Barplot of values of ejam2areafeatures(out1k)$ratio
+#|   for each of the special areas and features, such as schools, hospitals, etc.,
+#|   titled % of analyzed population that lives in blockgroups with given features
+#|   or that overlap given area type; y axis label as
+#|   Ratio of indicator in analyzed locations / in US Overall; 
+#|   showing ratios at 3x US average as orange (shown for overlapping with housing burden communities here),
+#|   ratios of >1x but <2x as yellow (several bars like for hospitals),
+#|   and ratios <=1x as gray.
+## out <- ejamit(testpoints_1000, radius = 1)
+out <- testoutput_ejamit_1000pts_1miles
+
+## simple barplot on special areas and features like schools:
+
+ejam2barplot_areafeatures(out1k)
+
+## note the sitenumber param is not supported for these stats
 ```
 
 ## Site by site detailed results in datatable format in RStudio viewer:
@@ -602,6 +675,8 @@ cbind(overall = as.list( out$results_overall[ , ..names_d_pctile])); cat("\n")
 
 # VISUALIZATION OF FINDINGS (PLOTS) {#visualization-of-findings-plots}
 
+See examples below, and the [list of plot-related functions](../reference/index.html#viewing-results).
+
 ## Indicators
 
 ### Barplot showing which indicator is most elevated overall
@@ -631,3 +706,5 @@ hist(out$results_bysite$pctile.traffic.score, 10, xlab = "Local traffic scores (
      vs flat line = USA overall")
 abline(h = nrow(out$results_bysite)/10)
 ```
+
+Table and barplot of

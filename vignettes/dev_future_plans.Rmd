@@ -64,7 +64,7 @@ Communicating key findings is challenging when such a large number of metrics ar
 
 ### Visualization Tools
 
-A variety of plots and maps will be explored as ways to communicate the rich data results calculated by EJAM. For example, EJAM R functions can calculate and display detailed estimates of the range of residential distances to facilities within each residential population subgroup - this type of visualization could be incorporated into the web app if there appears to be interest in it. Another possibility is that plots, maps, and tables could be made to interact in sync with each other, where that supports useful data exploration. See examples of plots in the vignettes, for example, and the many plot_xyz functions.
+A variety of plots and maps will be explored as ways to communicate the rich data results calculated by EJAM. For example, EJAM R functions can calculate and display detailed estimates of the range of residential distances to facilities within each residential population subgroup - this type of visualization could be incorporated into the web app if there appears to be interest in it. Another possibility is that plots, maps, and tables could be made to interact in sync with each other, where that supports useful data exploration. See examples of plots in the vignettes, for example, and [the many plot_xyz functions and mapping functions](../reference/index.html#viewing-results).
 
 ### Spatial Resolution
 

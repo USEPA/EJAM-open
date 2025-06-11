@@ -12,12 +12,16 @@
 test_that('no warning for standard code lookup', {
   capture_output({
     expect_no_warning(naics2children(21112))
-    expect_no_warning(naics2children("21112"))
+    x = expect_no_warning(naics2children("21112"))
   })
+  expect_true({21112 %in% x})
 })
 
 test_that("warn if text instead of code provided", {
-  expect_warning(naics2children(c("cement")))
+  expect_warning({
+    x = naics2children(c("cement"))
+    })
+  expect_true(length(x) == 0)
 }) 
 
 test_that('list of queries returns joined results', {

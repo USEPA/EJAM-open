@@ -5,18 +5,22 @@ output:
     css: ["communityreport.css"]
 params:
   community_html: NA
-  map: NA
+  map: NULL
   plot: NA
 ---
 
 ```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
+
 ```{r report_html, results='asis'}
 shiny::HTML(params$community_html)
 ```
+
 ```{r map_section, echo=FALSE}
+if (!(is.null(params$map) || anyNA(params$map) || length(params$map) == 0)) {
 params$map
+}
 ```
 
 ```{r plot, fig.align='center', out.width='100%'}

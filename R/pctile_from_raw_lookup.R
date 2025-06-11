@@ -217,7 +217,7 @@ pctile_from_raw_lookup <- function(myvector, varname.in.lookup.table, lookup=usa
     # rather than figuring out why some percentiles in lookup are NA in this zone.
     if (any(is.na(myvector_lookup))) {
       # whichinterval[zone == z] <- rep(NA, length(myvector_selection))
-      message("No percentile info is available in the percentile lookup table (all or at least some values here are NA, which is not allowed in lookup table), so percentile will be reported as NA, in zone = ", z, " for ", varname.in.lookup.table, ".")
+      message("In zone = ", z, " for ", varname.in.lookup.table, " indicator, ", "the lookup table lacks percentile information, so those percentiles will be reported as NA")
       percentiles_reported[zone == z] <- NA
       next  # go to next zone (for this one indicator)
     }
@@ -239,9 +239,9 @@ pctile_from_raw_lookup <- function(myvector, varname.in.lookup.table, lookup=usa
     whichinterval[zone == z] <- nondupvec[nondupe_interval]
     
     ## check if any inputted values match tied
-    if(any(dupvals %in% myvector_selection)){
+    if (any(dupvals %in% myvector_selection)) {
      
-      for(d in dupvals){
+      for (d in dupvals) {
         ## if they match a tied value, assign lowest of tied percentiles
         whichinterval[zone == z][myvector_selection == d] <- min(which(myvector_lookup == d))
       }

@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -85,7 +85,10 @@
 <span>    <span class="va">names_d_other_count</span><span class="op">)</span>,</span>
 <span>  extratable_hide_missing_rows_for <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">extratable_list_of_sections</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>  in_shiny <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  filename <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  filename <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  report_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  logo_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  logo_html <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -150,15 +153,25 @@ as with many of names_d_language, in extra table of demog. subgroups, etc.'</p><
 <dt id="arg-filename">filename<a class="anchor" aria-label="anchor" href="#arg-filename"></a></dt>
 <dd><p>path to file to save HTML content to; if null, returns as string (used in Shiny app)</p></dd>
 
+
+<dt id="arg-report-title">report_title<a class="anchor" aria-label="anchor" href="#arg-report-title"></a></dt>
+<dd><p>generic name of this type of report, to be shown at top, like "EJAM Multisite Report"</p></dd>
+
+
+<dt id="arg-logo-path">logo_path<a class="anchor" aria-label="anchor" href="#arg-logo-path"></a></dt>
+<dd><p>optional relative path to a logo for the upper right of the overall header.
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()</p></dd>
+
+
+<dt id="arg-logo-html">logo_html<a class="anchor" aria-label="anchor" href="#arg-logo-html"></a></dt>
+<dd><p>optional HTML for img of logo for the upper right of the overall header.
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>This is used by the shiny app server. For use in RStudio,
 see <code><a href="ejam2report.html">ejam2report()</a></code> (which relies on this).</p>
-<p>This function <code>build_community_report()</code> is similar to <code><a href="report_community_download.html">report_community_download()</a></code>
-but is used for displaying the returned HTML report in a browser
-instead of rendering it as a file for download from the shiny app.
-And</p>
 <p>This function gets called by
 app_server but also by <code><a href="ejam2report.html">ejam2report()</a></code>,
 and also is used by the community_report_template.Rmd used to generate a report</p>
@@ -166,7 +179,7 @@ and also is used by the community_report_template.Rmd used to generate a report<
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="ejam2report.html">ejam2report()</a></code> <code><a href="report_community_download.html">report_community_download()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="ejam2report.html">ejam2report()</a></code></p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

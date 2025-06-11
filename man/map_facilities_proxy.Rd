@@ -18,7 +18,7 @@ map_facilities_proxy(
 
 \item{rad, }{a size for drawing each circle (buffer search radius)}
 
-\item{highlight, }{a logicial for whether to highlight overlapping points (defaults to FALSE)}
+\item{highlight, }{a logical for whether to highlight overlapping points (defaults to FALSE)}
 
 \item{clustered, }{a vector of T/F values for each point, indicating if they overlap with another}
 

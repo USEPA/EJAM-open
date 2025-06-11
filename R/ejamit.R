@@ -91,29 +91,28 @@
 #'   * **results_bysite**   results for individual sites (buffers) - a data.table of results,
 #'     one row per ejam_uniq_id (i.e., each site analyzed), one column per indicator
 #'
-#'   * **results_bybg_people**  results for each block group, to allow for showing the distribution of each
-#'      indicator across everyone, including the distribution within a single residential population group, for example.
+#'   * **results_bybg_people**  results for each block group, to allow for 
+#'      showing the distribution of each
+#'      indicator across everyone, including the distribution within a 
+#'      single residential population group, for example. This table is essential
+#'      for analyzing the distribution of an indicator across all the unique residents analyzed.
+#'      Not all columns from results_bysite are here, however.
+#'      One row is one blockgroup that was either partly or entirely counted as
+#'      being at (or in) any one or more of the analyzed sites, and the bgid
+#'      can be linked to bgfips via the table blockgroupstats. 
+#'      All the indicators in that row are the totals or averages for the entire
+#'      blockgroup, not just the portion that was counted as at/in the analyzed sites.
+#'      The column bgwt records what fraction of the blockgroup was counted as
+#'      being at/in the analyzed sites as a whole, which may reflect more than
+#'      one blockgroup since it may be near two analyzed sites, for example.
+#'
+#'   * **results_summarized** See `batch.summarize()` documenting what is here!
 #'
 #'   * **longnames**  descriptive long names for the indicators in the above outputs
 #'
 #'   * **count_of_blocks_near_multiple_sites**  additional detail
 #'
 #'   * **sitetype** indicates if analysis used latlon, fips, or shp
-#'
-#'   * **results_summarized** named list with "rows", "cols", "keystats", "keyindicators",
-#'     each providing additional summary stats.
-#'     Each is a data.frame except x$results_summarized$keystats is a matrix/array.
-#'
-#'     - x$results_summarized$cols provides, at each site,
-#'     the count of Summary Indexes at or above a threshold like the 80th percentile.
-#'
-#'     - x$results_summarized$keyindicators provides summary stats for a handful of indicators.
-#'
-#'     - x$results_summarized$keystats provides, for each indicator, the average
-#'     across all sites and average across all (unique) residents, one row per indicator (a "tall" format).
-#'
-#'     - x$results_summarized$rows provides the same, but as one column per indicator,
-#'     corresponding to the format used in results_bysite or results_overall.
 #'
 #'   * **formatted** another tall format showing averages for all indicators
 #'
@@ -835,14 +834,19 @@ ejamit <- function(sitepoints = NULL,
   # For each indicator, calc AVG and PCTILES, across all SITES and all PEOPLE
   
   out$results_summarized <- batch.summarize(
-    sitestats = data.frame(out$results_bysite),
-    # popstats =  data.frame(out$results_bysite), # now does not have to get passed twice
-    quiet = quiet,
-    ## user-selected quantiles to use
+    
+    sitestats = out$results_bysite,
+    popstats =  out$results_bybg_people,
+    overall = out$results_overall,
+   
+    ## user-selected quantiles to report on
     #probs = as.numeric(input$an_list_pctiles), # probs = c(0, 0.25, 0.5, 0.75, 0.8, 0.9, 0.95, 0.99, 1)
+    
     thresholds = thresholds, # list(90, 90),
     threshnames = threshnames, # list(c(names_ej_pctile, names_ej_state_pctile), c(names_ej_supp_pctile, names_ej_supp_state_pctile)),
-    threshgroups = threshgroups # list("EJ-US-or-ST", "Supp-US-or-ST")
+    threshgroups = threshgroups, # list("EJ-US-or-ST", "Supp-US-or-ST")
+    
+    quiet = quiet
   )
   ################################################################ #
   

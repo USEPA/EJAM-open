@@ -1,41 +1,59 @@
 
 test_that("metadata_check default works", {
-  expect_no_error({
-    x <- metadata_check()
+  junk = capture_output({
+    expect_no_error({
+      x <- metadata_check()
+    })
+    expect_true(
+      any(x$has_metadata == TRUE)
+    )
   })
-  expect_true(
-     any(x$has_metadata == TRUE)
-  )
 })
 
 test_that("metadata_check format OK and finds some results", {
-  expect_no_error({
-    x <- metadata_check("EJAM")
-    # Error in get(x) : object 'ejamdata_version' not found because it was in data folder but was .txt not .rda
+  junk = capture_output({
+    expect_no_error({
+      x <- metadata_check("EJAM")
+      # Error in get(x) : object 'ejamdata_version' not found because it was in data folder but was .txt not .rda
+    })
+    expect_true(
+      "usastats" %in% x$item
+    )
+    expect_true(
+      "EJAM" %in% x$package
+    )
+    expect_true(
+      "census_version" %in% colnames(x)
+    )
+    expect_true(
+      any(2020 == x$census_version )
+    )
   })
-  expect_true(
-    "usastats" %in% x$item
-  )
-  expect_true(
-    "EJAM" %in% x$package
-  )
-  expect_true(
-    "census_version" %in% colnames(x)
-  )
-  expect_true(
-    any(2020 == x$census_version )
-  )
 })
 
 test_that("metadata_check(packages = 'EJAM', loadifnotloaded = FALSE) works", {
-  expect_no_error(
-    metadata_check(loadifnotloaded = FALSE)
+  junk = capture_output({
+    expect_no_error(
+      suppressWarnings({
+        x = metadata_check(loadifnotloaded = FALSE)  # Error in get(x) : object 'ejamdata_version' not found
+      })
     )
+    expect_true(
+      "data.frame" %in% class(x) &
+        "blockgroupstats" %in% x$item
+    )
+  })
 })
 
 test_that("metadata_check(loadifnotloaded = T) works", {
   expect_no_error(metadata_check(packages = "EJAM", loadifnotloaded = TRUE))
-  expect_no_error(metadata_check(loadifnotloaded = TRUE))
+  expect_no_error({
+    x <- metadata_check(loadifnotloaded = TRUE) # Error in get(x) : object 'ejamdata_version' not found
+    })
+  expect_true(
+    "data.frame" %in% class(x) &
+      "blockgroupstats" %in% x$item
+  )
 })
 
 # test_that("handles non-attached package? objects it cannot get() ? ", {
@@ -46,18 +64,25 @@ test_that("metadata_check(loadifnotloaded = T) works", {
 # })
 
 test_that("handles non-existant package", {
-  expect_no_error(
-    metadata_check(packages = "NOPACKAGEEXISTSOFTHISNAME", loadifnotloaded = TRUE)
+  expect_no_error({
+    x = metadata_check(packages = "NOPACKAGEEXISTSOFTHISNAME", loadifnotloaded = TRUE)
+  })
+  expect_equal(
+    nrow(x),
+    1
   )
 })
 
 test_that("metadata_check(various params) and unfound info works", {
-  expect_no_error(
-    metadata_check(packages = "EJAM",
-                   loadifnotloaded = FALSE,
-                   which = c("notfound", "acs_version")
-    )
-  )
+  junk = capture_output({
+    expect_no_error({
+      x = metadata_check(packages = "EJAM",
+                         loadifnotloaded = FALSE,
+                         which = c("notfound", "acs_version")
+      )
+    })
+  })
+  expect_true("notfound" %in% colnames(x))
 })
 ##################################################### #
 

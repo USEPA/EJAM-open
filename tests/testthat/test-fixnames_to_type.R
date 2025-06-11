@@ -22,7 +22,13 @@ test_that("fixnames_to_type() works at all", {
   expect_no_error({
     fixnames_to_type(namesnow = map_headernames$longname, oldtype = 'longname', newtype = 'shortlabel')
   })
+  
+  expect_equal(
+    fixnames_to_type("pop", oldtype = "rname", newtype = "shortlabel"),
+    "Population" 
+  )
 })
+
 test_that("no error but warns and fails to rename if alias not actual colname used, unlike fixcolnames() which allows alias", {
   expect_no_error({
     suppressWarnings({
@@ -40,6 +46,12 @@ test_that("no error but warns and fails to rename if alias not actual colname us
   })
   expect_warning({
     fixnames_to_type(namesnow = map_headernames$rname, oldtype = 'rname', newtype = 'long')
+  })
+  suppressWarnings({
+    expect_equal(
+      fixnames_to_type("unrecognized name", 'rname', 'long'),
+      "unrecognized name"
+    )
   })
 })
 

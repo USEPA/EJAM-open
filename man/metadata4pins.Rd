@@ -14,6 +14,6 @@ metadata4pins
 metadata about data object, for pins
 }
 \details{
-metadata such as description of dataset, for pins board data in EJAM package
+metadata such as description of dataset, for data in EJAM package
 }
 \keyword{datasets}

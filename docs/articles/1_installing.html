@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -152,7 +152,8 @@ Desktop.</p></li>
 </ol>
 <p>Regardless of how you got the full source code, you would then need
 to build/install the package from source on your computer using RStudio
-(using the Build menu) or using the devtools package, for example.</p>
+(using the Build menu) or using the <a href="https://devtools.r-lib.org/" class="external-link">devtools</a> package, for
+example.</p>
 <hr>
 </div>
 <div class="section level2">
@@ -191,10 +192,10 @@ spatial index of Census block points.</p>
 because EJAM just downloads these when the app starts (technically, when
 the R package is attached) (or only as needed in the case of certain
 datasets that are not always needed). Some datasets are installed along
-with the package, such as the <code>blockgroupstats</code> data. But
-large files like <code>blockpoints</code> are stored on a “pins board”
-server and EJAM downloads them from there. You might want your own local
-copies, though, for these reasons:</p>
+with the package, such as the <a href="../reference/blockgroupstats.html">blockgroupstats</a> data. But
+large files like <a href="../reference/blockpoints.html">blockpoints</a>
+are stored in a separate data repo, and EJAM downloads them from there.
+You might want your own local copies, though, for these reasons:</p>
 <p>Attaching the package actually checks for copies in memory first
 (e.g., <code>exists("quaddata", envir = globalenv())</code>), then local
 disk (using <code><a href="../reference/dataload_from_local.html">dataload_from_local()</a></code> looking in the data

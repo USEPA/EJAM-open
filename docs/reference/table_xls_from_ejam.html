@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -75,14 +75,14 @@
 <span>  react.v1_summary_plot <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  radius_or_buffer_in_miles <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  buffer_desc <span class="op">=</span> <span class="st">"Selected Locations"</span>,</span>
-<span>  radius_or_buffer_description <span class="op">=</span></span>
-<span>    <span class="st">"Miles radius of circular buffer (or distance used if buffering around polygons)"</span>,</span>
+<span>  radius_or_buffer_description <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  hyperlink_colnames <span class="op">=</span> <span class="st">"ECHO Report"</span>,</span>
 <span>  site_method <span class="op">=</span> <span class="st">""</span>,</span>
-<span>  <span class="va">mapadd</span>,</span>
-<span>  <span class="va">report_map</span>,</span>
-<span>  <span class="va">community_reportadd</span>,</span>
-<span>  <span class="va">community_html</span>,</span>
+<span>  mapadd <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  report_map <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  community_reportadd <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  community_html <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  shp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -158,7 +158,23 @@ site_method can be one of these: SHP, latlon, FIPS, NAICS, FRS, EPA_PROGRAM, SIC
 
 
 <dt id="arg-mapadd">mapadd<a class="anchor" aria-label="anchor" href="#arg-mapadd"></a></dt>
-<dd><p>logical option for including a map of the points</p></dd>
+<dd><p>Logical, whether to add a tab with a map of the sites. If report tab is added, though, standalone static map in excel tab is redundant.</p></dd>
+
+
+<dt id="arg-report-map">report_map<a class="anchor" aria-label="anchor" href="#arg-report-map"></a></dt>
+<dd><p>the map to use if mapadd = TRUE (re-created if this is omitted/NULL but mapadd is TRUE)</p></dd>
+
+
+<dt id="arg-community-reportadd">community_reportadd<a class="anchor" aria-label="anchor" href="#arg-community-reportadd"></a></dt>
+<dd><p>Logical, whether to add a tab with a static copy of the summary report (tables, map, barplot).</p></dd>
+
+
+<dt id="arg-community-html">community_html<a class="anchor" aria-label="anchor" href="#arg-community-html"></a></dt>
+<dd><p>the HTML of the summary/community report if available (re-created if this is omitted/NULL but community_reportadd is TRUE)</p></dd>
+
+
+<dt id="arg-shp">shp<a class="anchor" aria-label="anchor" href="#arg-shp"></a></dt>
+<dd><p>shapefile to create map if not providing it via report_map or community_html parameters</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>

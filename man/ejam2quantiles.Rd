@@ -2,20 +2,21 @@
 % Please edit documentation in R/ejam2means.R
 \name{ejam2quantiles}
 \alias{ejam2quantiles}
-\title{ejam2quantiles - draft - info about quantiles of places or people}
+\title{DRAFT - get quantiles of indicator values among all people analyzed
+See \code{ejamit()} (or \code{batch.summarize()}) instead of this, for percentiles!}
 \usage{
 ejam2quantiles(
   ejamitout,
   vars = names_e_state_pctile,
-  w = dt$pop,
+  w = NULL,
   probs = c(50, 90)/100,
-  topx_insteadof_pctile = T
+  topx_insteadof_pctile = TRUE
 )
 }
 \arguments{
 \item{ejamitout}{as from ejamit()}
 
-\item{vars}{colnames in ejamitout$results_bysite}
+\item{vars}{colnames in ejamitout$results_bybg_people}
 
 \item{w}{weights}
 
@@ -27,6 +28,31 @@ ejam2quantiles(
 info about quantiles of places or people
 }
 \description{
-ejam2quantiles - draft - info about quantiles of places or people
+DRAFT - get quantiles of indicator values among all people analyzed
+See \code{ejamit()} (or \code{batch.summarize()}) instead of this, for percentiles!
+}
+\details{
+DRAFT -- CANNOT YET ACTUALLY PROVIDE QUANTILES ACROSS UNIQUE PEOPLE if using results_bysite
+AND DIFFERENT WEIGHTS WOULD BE NEEDED FOR DIFFERENT INDICATORS if using results_bybg_people
+to avoid overlaps between sites to get unique people.
+
+See \code{ejamit()} (or \code{batch.summarize()}) instead of this, for percentiles!
+}
+\examples{
+
+# pctiles
+  ejam2quantiles(out,  vars = names_e_state_pctile, topx_insteadof_pctile = F) 
+# ratios  
+  ejam2quantiles(out, vars = names_e_ratio_to_state_avg,  topx_insteadof_pctile = T)
+# see the quantiles and mean together
+ t(rbind(
+  AvgPerson = ejam2means(out, vars = names_e_ratio_to_state_avg),
+  ejam2quantiles(
+     out, 
+     vars = names_e_ratio_to_state_avg, 
+     probs = 0.5, topx_insteadof_pctile = T
+  ) 
+  ))
+
 }
 \keyword{internal}

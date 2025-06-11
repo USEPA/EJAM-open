@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -105,6 +105,13 @@ Note State bounds are built into this package as data so do not need to be downl
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>spatial data.frame with one row per fips (assuming any fips are valid)</p>
     </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>when using tigris package ("tiger" as service-related parameter here),
+it uses the year that is the default in the version of the tigris package that is installed.
+You can use options(tigris_year = 2022) for example to specify it explicitly.
+This function also sets options(tigris_use_cache = TRUE), but each individual shapes_xyz_from_ function may not specify.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -125,7 +132,7 @@ Note State bounds are built into this package as data so do not need to be downl
 <span>    <span class="co"># mapfast(shp[[i]])</span></span>
 <span>   <span class="op">}</span></span>
 <span>  <span class="co"># }</span></span>
-<span>  </span>
+<span></span>
 <span></span></code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

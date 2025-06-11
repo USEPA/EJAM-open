@@ -19,6 +19,9 @@ params:
   filename: NULL
   map: NA
   summary_plot: NA
+  report_title: NULL
+  logo_path: NULL
+  logo_html: NULL
 ---
 
 ```{r, echo=FALSE}
@@ -34,7 +37,8 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 #library(EJAM) # note this overrides developer having just done load_all() !
 
-build_community_report(
+build_community_report(in_shiny = params$in_shiny,
+                       
   output_df = params$output_df,
   analysis_title = params$analysis_title,
   totalpop = params$totalpop,
@@ -48,8 +52,10 @@ build_community_report(
   extratable_list_of_sections = params$extratable_list_of_sections, # just use default
   extratable_hide_missing_rows_for = params$extratable_hide_missing_rows_for, # just use default
   
-  in_shiny = params$in_shiny,
-  filename = params$filename
+  filename = params$filename,
+  report_title = params$report_title,
+  logo_path = params$logo_path,
+  logo_html = params$logo_html
 )
 ```
 
@@ -82,7 +88,7 @@ version <- substr(version, start = 1, stop = gregexpr('\\.',version)[[1]][2] - 1
 
 current_date <- ifelse(
   isTRUE(getOption("shiny.testmode")),
-  "[SHINYTEST DATE]",
+  "[SHINYTEST DATE]", # so the snapshot of the report is consistent, not diff date each time tested
   format(Sys.Date(), "%B %d, %Y"))
 
 HTML('

@@ -413,6 +413,6 @@ if (rstudioapi::isAvailable()) {
 # 12   Assessment, Cleanup and Redevelopment Exchange System (ACRES) for Brownfields    ACRES
 # 13 Biennial Reporters (BR) Hazardous Waste Treatment, Storage, Disposal Facilities       BR
 
-# (frsprogramcodes.rda is tiny and not a table so cannot use .arrow for it and not in pins board
+# (frsprogramcodes.rda is tiny and not a table so cannot use .arrow for it  
 #  - see EJAM/data-raw/datacreate_frsprogramcodes.R )
 ############################################################################################ #

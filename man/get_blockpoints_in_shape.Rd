@@ -63,7 +63,7 @@ inside each polygon (e.g., circle) according to sf:: methods.
 
 For circular buffers, just using getblocksnearby() should work and not need this function.
 
-For noncircular polygons, buffered or not, this function will provide a way to very quickly
+For non-circular polygons, buffered or not, this function will provide a way to very quickly
 filter down to which of the millions of US blocks should be examined by the sf:: join / intersect,
 since otherwise it takes forever for sf:: to check all US blocks.
 }

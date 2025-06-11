@@ -1,4 +1,50 @@
+
+#' utility for server/ui to check value of a global default setting or user-defined setting
+#' This and get_golem_options() are very similar tools, useful in server and ui
+#' @details
+#' See help for `get_global_defaults_or_user_options()`
+#'
+#' `global_or_param()` is used a lot in server and also ui (while sometimes
+#' `golem::get_golem_options()` had been used instead but now is not, for the same purpose).
+#' It is used generally in ui to set default values for params that
+#' are set in the global_defaults_ files and often can be
+#' modified in the advanced tab. To provide alternative values as
+#' params passed to `run_app()` you would have to understand the options
+#' by seeing what they are defaulted to in the files and how they are used
+#' as parameters in ui or server. See ?run_app()
+#'
+#' This is much like `golem::get_golem_options()`
+#' but  `global_or_param()` is more flexible/robust since it will,
+#'  if vname is not already defined as found
+#' by `golem::get_golem_options()`
+#' then as a backup, check if the param called vname is
+#' defined in the search path such as in the
+#' calling or global envt already somehow,
+#' and return that value if it exists.
+#' But if it is not in golem options and not found in search path,
+#' this returns NULL
+#'
+#' @param vname a global default or user param - do a global find in files
+#'   of source code for this function to see how / where it is used.
+#'
+#' @returns value of the param, or NULL if not found
+#'
+#' @keywords internal
+#'
 global_or_param = function(vname) {
-  param_passed_to_run_app = golem::get_golem_options(vname)
-  if(!is.null(param_passed_to_run_app)) param_passed_to_run_app else get(vname)
+
+  param_passed_to_run_app_or_global_defaults <- golem::get_golem_options(vname)
+
+  if (!is.null(param_passed_to_run_app_or_global_defaults)) {
+    return(param_passed_to_run_app_or_global_defaults)
+  } else {
+
+    x = try(get(vname), silent = TRUE)
+
+    if (inherits(x, "try-error")) {
+      return(NULL)
+    } else {
+      get(vname) # from the global envt
+    }
+  }
 }

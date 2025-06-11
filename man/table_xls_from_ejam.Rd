@@ -17,14 +17,14 @@ table_xls_from_ejam(
   react.v1_summary_plot = NULL,
   radius_or_buffer_in_miles = NULL,
   buffer_desc = "Selected Locations",
-  radius_or_buffer_description =
-    "Miles radius of circular buffer (or distance used if buffering around polygons)",
+  radius_or_buffer_description = NULL,
   hyperlink_colnames = "ECHO Report",
   site_method = "",
-  mapadd,
-  report_map,
-  community_reportadd,
-  community_html,
+  mapadd = FALSE,
+  report_map = NULL,
+  community_reportadd = TRUE,
+  community_html = NULL,
+  shp = NULL,
   ...
 )
 }
@@ -65,7 +65,15 @@ Note \code{ejamitout$sitetype} is not quite the same as the \code{site_method} p
 sitetype can be latlon, fips, or shp
 site_method can be one of these: SHP, latlon, FIPS, NAICS, FRS, EPA_PROGRAM, SIC, MACT}
 
-\item{mapadd}{logical option for including a map of the points}
+\item{mapadd}{Logical, whether to add a tab with a map of the sites. If report tab is added, though, standalone static map in excel tab is redundant.}
+
+\item{report_map}{the map to use if mapadd = TRUE (re-created if this is omitted/NULL but mapadd is TRUE)}
+
+\item{community_reportadd}{Logical, whether to add a tab with a static copy of the summary report (tables, map, barplot).}
+
+\item{community_html}{the HTML of the summary/community report if available (re-created if this is omitted/NULL but community_reportadd is TRUE)}
+
+\item{shp}{shapefile to create map if not providing it via report_map or community_html parameters}
 
 \item{...}{optional additional parameters passed to \code{\link[=table_xls_format]{table_xls_format()}}, such as
 heatmap_colnames, heatmap_cuts, heatmap_colors, etc.}

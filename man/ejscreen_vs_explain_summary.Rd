@@ -31,8 +31,8 @@ Summarize output of ejscreen_vs_explain()
 }
 \examples{
 vs10 <- ejscreen_vs_ejam(
-          testpoints_10, radius = 3, 
-          save_ejscreen_output = F, 
+          testpoints_10, radius = 3,
+          save_ejscreen_output = F,
           save_when_report = F,
           calculate_ratios = F
         )

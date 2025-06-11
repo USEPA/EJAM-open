@@ -42,7 +42,7 @@ see also ejscreen_vs_ejam_1var_bysite() and ejscreen_vs_explain()
   mysite <- 9
   \donttest{
   vs <- ejscreen_vs_ejam(testpoints_10, radius = 3)
-  ejscreen_vs_ejam_see1(vs, mysite = mysite, 
+  ejscreen_vs_ejam_see1(vs, mysite = mysite,
     myvars = colnames(vs$EJAM))[!is.na(vs$EJSCREEN[mysite, ]) , 1:2]
   }
 

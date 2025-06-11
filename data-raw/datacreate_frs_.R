@@ -9,20 +9,18 @@
 ################################################################################ # 
 ## DOWNLOAD FRS info AND UPDATE/CREATE & SAVE LOCAL FILES for frs-related datasets
 ################################################################################ # 
-#
 
-mydir <- "~/../Downloads/EJAMbigfiles" # or where you want to save them locally once updated
-
+if (!exists("mydir") && interactive()) {
+  mydir <- choose.dir(".", "Select where to save large files being downloaded and modified/prepared")
+# mydir <- "~/../Downloads/EJAMbigfiles" #   where you want to save them locally
+}
 if (!dir.exists(mydir)) {dir.create(mydir)}
 if (!exists("alreadygot")) {
   alreadygot <- FALSE
   mytemp <- tempdir()
 }
-
-# This function frs_update_datasets() was in a separate pkg but moving it to EJAM pkg 
-
-
-# this invisibly returns frs:
+cat("Starting frs_update_datasets(), which invisibly returns frs data.table and related tables are saved too \n")
+# This function frs_update_datasets() used to be in a separate pkg but now in EJAM pkg 
 
 x = EJAM:::frs_update_datasets(folder = mytemp, # default would use a tempdir() but not return its name
                     downloaded_and_unzipped_already = alreadygot,
@@ -39,17 +37,15 @@ x = EJAM:::frs_update_datasets(folder = mytemp, # default would use a tempdir() 
                     save_as_data_frs_by_sic       = FALSE)
 alreadygot <- TRUE
 # dir(folder_save_as_arrow)
-
-
+cat("Finished frs_update_datasets() \n")
 ##################################### # 
 # frsprogramcodes.rda
 #
-# Manually also need to save updated frsprogramcodes.rda
-#  see EJAM/data-raw/datacreate_frsprogramcodes.R
-#
-# and may need to update counts! ... see ???
-
-
+cat("
+See EJAM/data-raw/datacreate_frsprogramcodes.R
+May need to manually save updated frsprogramcodes.rda
+May need to update counts too! 
+")
 ################################################################################ # 
 ##  LOAD dataset FILES INTO MEMORY (If saved as .arrow locally but not kept in memory)
 ################################################################################ # 
@@ -62,24 +58,27 @@ for (varname in frs_vars) {
 }
 
 ################################################################################ # 
-## WRITE .arrow FILES TO pins BOARD on Posit Connect server, once loaded in memory
+## obsolete- used to WRITE .arrow FILES TO pins BOARD on Posit Connect server, once loaded in memory
 ################################################################################ # 
-# 
-# THAT IS DONE BY  datawrite_to_pins() 
+# USED TO BE DONE BY  datawrite_to_pins() 
 
 # and copy to any local folder being used to cache them, e.g., EJAM/data folder
 
 cat("Note this should not be saved as a dataset in the package.\n")
 
-cat("UPDATE THE DOCUMENTATION MANUALLY in data_frs.R BUT USE NULL AT THE END SINCE IT IS NOT AN OBJECT STORED IN THE PACKAGE\n")
+cat("
+NOW, UPDATE THE DOCUMENTATION MANUALLY in relevant files like data_frs.R,
+since dataset_documenter() only works well for simple documentation and these are complicated to explain.
+REMEMBER TO USE a NULL AT THE END of the .R file that documents each,
+SINCE frs etc. are NOT dataset OBJECTS (so they are not STORED IN THE PACKAGE EJAM/data/  folder).\n")
 if (rstudioapi::isAvailable()) {
   for (myvar in frs_vars) {
     rstudioapi::documentOpen(paste0('./R/data_', myvar, '.R'))
   }
 }
-# or... 
+# not... 
 # for (myvar in frs_vars) {
 # dataset_documenter(myvar, 
-#                    # but these docs are complicated and best edited in the doc itself
+#                    #  these docs are complicated and best edited in the doc itself
 #                    saveinpackage = FALSE)
 # }

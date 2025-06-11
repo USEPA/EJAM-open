@@ -38,7 +38,7 @@ for a single population group."><meta property="og:image" content="https://usepa
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -149,7 +149,7 @@ which provides only block group resolution information about distance.</p>
 <span> </span>
 <span> <span class="co"># Example of area that has higher %Hispanic as you go </span></span>
 <span> <span class="co"># 10 to 30 miles away from this specific point</span></span>
-<span> <span class="va">pts</span> <span class="op">=</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">45.75464</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">94.36791</span><span class="op">)</span></span>
+<span> <span class="va">pts</span> <span class="op">=</span> <span class="fu">data.table</span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">45.75464</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">94.36791</span><span class="op">)</span></span>
 <span> <span class="fu">plot_distance_by_pctd</span><span class="op">(</span><span class="va">pts</span>,</span>
 <span>   sitenumber <span class="op">=</span> <span class="fl">1</span>, score_colname <span class="op">=</span> <span class="st">"pcthisp"</span><span class="op">)</span></span>
 <span> <span class="co"># browseURL(url_ejscreen_report(lat = pts$lat, lon = pts$lon, radius = 10))</span></span>

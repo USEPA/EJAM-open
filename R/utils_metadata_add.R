@@ -10,11 +10,52 @@
 attributes2 = function(x) {
   att = attributes(x)
   return(att[names(att) != "row.names"])
-  }
+}
 #################################################### #
 
+# helper function to update 1 attribute such as ONLY the EJAM VERSION metadata for ALL datasets in EJAM/data/
+# AND NOT ARROW FILES AND NOT TXT FILES - ONLY THE .RDA FILES
+
+metadata_update_attr <- function(x = datapack('EJAM')$Item, attr_name = "ejam_package_version", newvalue = desc::desc_get("Version")) {
+
+  # x param is vector of names of data objects to update in the source package
+  fnamesimplied = tolower(paste0(x, ".rda"))
+  fnamesfound = tolower(dir("./data"))
+  whichisrdafound = which(fnamesimplied %in% fnamesfound)
+  x = x[whichisrdafound]
+  # that should exclude ejamdata_version.txt
+  #  and excludes all the .arrow files ! those should get metadata updated separately ?
+
+  cat("newvalue is: \n")
+  print(newvalue)
+
+  for (i in 1:length(x))  {
+    src = paste0("attr(", x[i], ", '", attr_name, "') <- newvalue")
+    # e.g.,   attr(avg.in.us, "ejam_package_version") <- desc::desc_get("Version")
+    print(src)
+    eval(parse(text = src))
+    src = paste0("usethis::use_data(", x[i], ", overwrite = TRUE)")
+    print(src)
+    eval(parse(text = src))
+  }
+  cat("datasets have been updated\n")
+  return(NULL)
+}
+
+## important - unlike metadata_add or metadata_check, this has no output --
+## it changes the data in the source folder
+##
+## to use it:
+
+#   metadata_update_attr()
+#################################################### #
 
 #' helper function for package to set metadata attributes of a dataset
+#'
+#' @details
+#' to update only the ejam_package_version attribute of every data item:
+#'
+#'   metadata_update_attr()
 #'
 #' @description Together with the metadata_mapping script, this can be used
 #'  annually to update the metadata for datasets in a package.
@@ -25,6 +66,7 @@ attributes2 = function(x) {
 #'   add metadata to objects like x before use_data(x, overwrite=T)
 #' @param x dataset (or any object) whose metadata (stored as attributes) you want to update or create
 #'  EJAM, EJScreen, and other dataset versions and release dates are tracked in DESCRIPTION
+#'  @param update_date_saved_in_package set to FALSE to avoid changing this attribute
 #' @seealso metadata_check()
 #'
 #' @return returns x but with new or altered attributes
@@ -40,7 +82,7 @@ attributes2 = function(x) {
 # source("R/metadata_mapping.R")  # this already would get loaded via devtools::load_all() or library(EJAM)
 # rstudioapi::documentOpen("./R/metadata_mapping.R")
 
-metadata_add <- function(x) {
+metadata_add <- function(x, update_date_saved_in_package = TRUE) {
 
   metadata <- get_metadata_mapping(deparse(substitute(x)))
   if (is.null(metadata)) {
@@ -52,11 +94,13 @@ metadata_add <- function(x) {
   if (!is.list(metadata)) {stop('metadata has to be a named list')
     # return(NULL)
   }
-
-  metadata$date_saved_in_package <- as.character(Sys.Date())
+  if(update_date_saved_in_package) {
+    metadata$date_saved_in_package <- as.character(Sys.Date())
+  }
   for (i in seq_along(metadata)) {
     attr(x, which = names(metadata)[i]) <- metadata[[i]]
   }
+
   invisible(x)
 }
 #################################################### #
@@ -94,6 +138,7 @@ metadata_add <- function(x) {
 metadata_check <- function(packages = EJAM::ejampackages,
                            datasets = "all",
                            which = c(
+                             "ejam_package_version",
                              "date_saved_in_package",
                              "date_downloaded",
                              "ejscreen_version",
@@ -118,11 +163,18 @@ metadata_check <- function(packages = EJAM::ejampackages,
   # utility to check if year attribute is set on each data file
   # does it really need to lazy load all these to check their attributes? that would be slow for big datasets, right?
   get1attribute <- function(x, which, dates_as_text=FALSE) {
-    attribute1 <- try(attr(get(x), which = which))
-    if (is.null(attribute1) || inherits(attribute1, "try-error")) {
+    gotten <- try(get(x), silent = TRUE)
+    if (inherits(gotten, "try-error")) {
+      message("did not find ", x)
       attribute1 <- NA
+    } else {
+      attribute1 <- try(attr(gotten, which = which), silent = TRUE)
+      if (is.null(attribute1) || inherits(attribute1, "try-error")) {
+        attribute1 <- NA
+      }
     }
-    if (dates_as_text && "Date" %in% class(attribute1)) {attribute1 <- as.character(attribute1)}
+    attribute1 <- as.vector(attribute1) # remove names
+    if (dates_as_text && "Date" %in% class(attribute1)) {attribute1 <- as.character((attribute1))}
     return(attribute1)
   }
   ########################################### #   ########################################### #
@@ -149,7 +201,15 @@ metadata_check <- function(packages = EJAM::ejampackages,
                            which,
                            "has_metadata")
     for (dn in seq_along(datasets)) {
-      whichall <- attributes(get(datasets[dn]))
+      gotten <- try(get(datasets[dn]), silent = TRUE)
+      if (inherits(gotten, "try-errror")) {
+        whichall <- NA
+      } else {
+        whichall <- try(attributes(gotten), silent = TRUE)
+        if (inherits(whichall, "try-error")) {
+          whichall <- NA
+        }
+      }
       whichfound <- intersect(which, names(whichall))
       results[results$item == datasets[dn], whichfound]                <- unlist(whichall[whichfound])
       results[results$item == datasets[dn], "has_metadata"] <- any(!is.na(unlist(whichall[whichfound])))

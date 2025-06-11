@@ -69,9 +69,7 @@ It would normally be called from a script like
 \code{EJAM/data-raw/datacreate_0_UPDATE_ALL_DATASETS.R}
 
 These datasets are obtained from EPA servers, reformatted for this package, and
-then stored in a pins board for use by the package.
-The updated files can be moved to the pins board via the script,
-but where they are stored may change as the EJAM package develops.
+then stored in a separate repository - see \href{../articles/dev_update-datasets.html}{updating data for package}.
 The save_as_data_ parameters here are set to FALSE because the files are
 not saved in the source package or its repository like
 typical package datasets would be saved in the data folder of the source package.

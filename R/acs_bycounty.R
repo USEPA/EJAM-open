@@ -100,7 +100,7 @@ plot_bycounty <- function(x, myvars = x$variable[1], myvarnames = NULL, mystate 
     ### get long name of variable and of state
     if (missing(myvarnames) || is.null(myvarnames)) {
       if (missing(acsinfo)) {
-        cat("downloading acs variable information to get myvarnames (plain english names of variables) ... \n")
+        cat("downloading acs variable information to get myvarnames (plain English names of variables) ... \n")
         acsinfo <- load_variables(yr, "acs5")  # requires tidycensus package 
       }
       myvarnames <- acsinfo$label[match(myvars, acsinfo$name)]   # match is ok since each unique name should appear only once in acsinfo table.  anyDuplicated(acsinfo$name)

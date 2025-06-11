@@ -8,19 +8,15 @@
 #'   for viewing report on 1 site from a list of sites (or overall).
 #'   You can customize the report somewhat by using parameters like extratable_list_of_sections
 #'
-#'   Note  [report_community_download()] is similar to [build_community_report()]
-#'   but renders and saves the report as an HTML or pdf file for download
-#'   instead of returning HTML for display in a browser.
-#'
 #' @param ejamitout output as from [ejamit()], list with a data.table called `results_bysite`
 #'   if sitenumber parameter is used, or a data.table called `results_overall` otherwise
 #' @param sitenumber If a number is provided, the report is about
-#'   `ejamout$results_bysite[sitenumber, ]` and if no number is provided (param is NULL)
-#'   then the report is about `ejamout$results_overall`
+#'   `ejamitout$results_bysite[sitenumber, ]` and if no number is provided (param is NULL)
+#'   then the report is about `ejamitout$results_overall`
 #' @param analysis_title optional title of analysis
 #' @param submitted_upload_method something like "latlon", "SHP", "FIPS", etc. (just used as-is as part of the filename)
 #' @param shp provide the sf spatial data.frame of polygons that were analyzed so you can map them since
-#'   they arenot in ejamitout
+#'   they are not in ejamitout
 #' @param launch_browser set TRUE to have it launch browser and show report.
 #' @param return_html set TRUE to have function return HTML object instead of URL of local file
 #' @param fileextension html or .html or pdf or .pdf (assuming pdf option has been implemented).
@@ -40,7 +36,14 @@
 #'
 #' @param extratable_hide_missing_rows_for only for the indicators named in this vector,
 #'   leave out rows in table where raw value is NA,
-#'   as with many of names_d_language, in extra table of demog. subgroups, etc.' #'
+#'   as with many of names_d_language, in extra table of demog. subgroups, etc.
+#'
+#' @param report_title optional generic name of this type of report, to be shown at top, like "EJAM Multisite Report"
+#' @param logo_path optional relative path to a logo for the upper right of the overall header.
+#'   Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()
+#' @param logo_html optional HTML for img of logo for the upper right of the overall header.
+#'   If specified, it overrides logo_path. If omitted, gets created based on logo_path.
+#'
 #' @return URL of temp file or object depending on return_html,
 #'    and has side effect of launching browser to view it depending on return_html
 #'
@@ -93,7 +96,11 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
                           # , `Count above threshold` = names_countabove  # need to fix map_headernames longname and calctype and weight and drop 2 of the 6
                         ),
                         ## all the indicators that are in extratable_list_of_sections:
-                        extratable_hide_missing_rows_for = as.vector(unlist(extratable_list_of_sections))
+                        extratable_hide_missing_rows_for = as.vector(unlist(extratable_list_of_sections)),
+                        report_title = NULL,
+                        logo_path = NULL,
+                        logo_html = NULL
+                        ## Rmd_name and Rmd_folder could be made params to pass to report_setup_temp_files()
 ) {
 
   if (!interactive()) {launch_browser <- FALSE} # but that means other functions cannot override this while not interactive.
@@ -128,14 +135,13 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
     }
   }
 
-
   sitenumber <- as.numeric(sitenumber)
 
   if (is.null(sitenumber) || length(sitenumber) == 0) {
     ejamout1 <- ejamitout$results_overall # one row
     ejamout1$valid <- TRUE
     # but shp is all rows, remember, and popup can still be like for site by site
-    nsites <- NROW(ejamitout$results_bysite[ejamitout$results_bysite$valid %in% TRUE, ]) # might differ from ejamout1$sitecount_unique 
+    nsites <- NROW(ejamitout$results_bysite[ejamitout$results_bysite$valid %in% TRUE, ]) # might differ from ejamout1$sitecount_unique
     # # Get the name of the selected location
     selected_location_name_react <- NULL
   } else {
@@ -158,7 +164,8 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
     ##################### #
     # the way adapted from app_server
 
-    sitetype <- tolower(submitted_upload_method)
+    sitetype <- ejamitout$sitetype
+    # sitetype <- tolower(submitted_upload_method) # did not work here
     if (sitetype == "shp" && is.null(shp)) {
       warning("Cannot map polygons based on just output of ejamit() -- The sf class shapefile / spatial data.frame that was used should be provided as the shp parameter to ejam2report()")
     }
@@ -167,25 +174,28 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
     residents_within_xyz <- report_residents_within_xyz(
       sitetype = sitetype,
       radius = rad,
-      nsites = nsites,  # but should note these are only the ones where $results_bysite$valid %in% TRUE 
+      nsites = nsites,  # but should note these are only the ones where $results_bysite$valid %in% TRUE
       sitenumber = sitenumber,
       ejam_uniq_id = ejamout1$ejam_uniq_id
     )
     locationstr <- residents_within_xyz
-    #and could also add:  paste0('Centered at ', ejamout1$lat, ', ', ejamout1$lon)
-
+    ## and could also add here ?
+    # addlatlon = TRUE
+    # if (addlatlon && sitetype == "latlon" && nsites == 1) {
+    #   locationstr <- paste0(locationstr, ' Centered at ', ejamout1$lat, ', ', ejamout1$lon)
+    # }
     ##################### #
 
-    #   Note  [report_community_download()] is similar to [build_community_report()]
-    #   but copies files needed, via helper report_setup_temp_files(), and
-    #   then renders and saves the report as an HTML file for download,
-    #   instead of returning HTML for display in a browser.
-
     # > copy .Rmd (template), .png (logo), .css from Rmd_folder to a temp dir subfolder for rendering
-    # copy files to where they need to be for rendering ####
+    # report_setup_temp_files() copies files to where they need to be for rendering ####
     ## returns path to .Rmd template copied to a temp folder:
 
-    tempReport <- report_setup_temp_files() # copies files as needed
+
+    tempReport <- report_setup_temp_files(
+      # Rmd_name = 'community_report_template.Rmd', # default, for summary report
+      # # Rmd_name = 'barplot_report_template.Rmd' # for single site barplot report
+      # Rmd_folder = 'report/community_report/'
+    )
 
     # use create_filename() here like server does:
     if (!is.null(selected_location_name_react)) {
@@ -203,11 +213,11 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
         ext = fileextension # in server,  ifelse(input$format1pager == 'pdf', '.pdf', '.html')
       )
       temp_comm_report <- file.path(tempdir(), filename)
-      
+
     } else {
       temp_comm_report <- filename
     }
-    
+
     output_file      <- temp_comm_report
 
     if (return_html) {
@@ -217,21 +227,9 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
     }
     ####################################################### #
 
-    # build_community_report() ####
+    # build_community_report() does most of this work ####
 
-    # [report_community_download()] is similar to [build_community_report()]
-    # and they should get merged ideally.
-    #
-    ## How it was used in community_report_template.Rmd :
-    # build_community_report(
-    #   output_df = params$output_df,
-    #   analysis_title = params$analysis_title,
-    #   totalpop = params$totalpop,
-    #   locationstr = params$locationstr,
-    #   include_ejindexes = params$include_ejindexes,
-    #   in_shiny = params$in_shiny,
-    #   filename = params$filename
-    # )
+    ## note build_community_report() is also used in community_report_template.Rmd and in server
 
     x <- build_community_report(
 
@@ -250,7 +248,11 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
       extratable_hide_missing_rows_for = extratable_hide_missing_rows_for,
 
       in_shiny = FALSE,
-      filename = temp_comm_report_or_null # passing NULL should make it return the html object
+      filename = temp_comm_report_or_null, # passing NULL should make it return the html object
+
+      report_title = report_title,
+      logo_path = logo_path,
+      logo_html = logo_html
     )
 
     ## seems like using cat() was a simpler approach tried initially: ***
@@ -279,18 +281,26 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
         map <- mapfastej(ejamout1)
       }
     }
+    if (is.null(map)) {
+      report_params <- list(
+        community_html = x,
+        plot = plot
 
+      )
+    } else {
+      report_params <- list(
+        community_html = x,
+        plot = plot,
+        map = map
+      )
+    }
     # >>>>>>> issue303AddMapAndBarPlot
     if (return_html) {
       rendered_path <- rmarkdown::render(
         input = rmd_template,
         output_format = "html_document",   #   pdf option not relevant here
         output_file = tempfile(fileext = ".html"),  #  not output_file since here you do not care about or see the filename
-        params = list(
-          community_html = x,
-          plot = plot,
-          map = map
-        ),
+        params = report_params,
         envir = new.env(parent = globalenv()),
         quiet = TRUE
       )
@@ -303,12 +313,7 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
         input = rmd_template,
         output_format = ifelse(fileextension == ".pdf", "pdf_document", "html_document"), # add pdf option here
         output_file = output_file,
-
-        params = list(
-          community_html = x,
-          plot = plot,
-          map = map
-        ),
+        params = report_params,
         envir = new.env(parent = globalenv()),
         quiet = TRUE
       )
@@ -329,9 +334,8 @@ ejam2report <- function(ejamitout = testoutput_ejamit_10pts_1miles,
     ########################################################################################### #
     ## can also generate reports through knitting Rmd template
     ## this is easier to add in maps and plots but is slower to appear
-    # as done via report_community_download()
-    #   ## pass params to customize .Rmd doc  # ###
 
+    #   ## pass params to customize .Rmd doc  # ###
 
     #browseURL(temp_comm_report)
 

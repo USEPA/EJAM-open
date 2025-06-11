@@ -36,7 +36,7 @@ with new lat,lon columns"><meta property="og:image" content="https://usepa.githu
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -91,7 +91,7 @@ with new lat,lon columns</p>
 <span></span>
 <span><span class="co"># same but popups have all the indicators from EJScreen</span></span>
 <span><span class="va">myst</span> <span class="op">&lt;-</span> <span class="st">"NY"</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/copy.html" class="external-link">copy</a></span><span class="op">(</span><span class="va">blockgroupstats</span><span class="op">[</span><span class="va">ST</span> <span class="op">==</span> <span class="va">myst</span>, <span class="op">]</span><span class="op">)</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">copy</span><span class="op">(</span><span class="va">blockgroupstats</span><span class="op">[</span><span class="va">ST</span> <span class="op">==</span> <span class="va">myst</span>, <span class="op">]</span><span class="op">)</span></span>
 <span><span class="co"># add latlon cols by reference:</span></span>
 <span><span class="fu">latlon_join_on_bgid</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co"># specify useful labels for the map popups</span></span>

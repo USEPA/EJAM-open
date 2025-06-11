@@ -21,7 +21,7 @@ Get URL(s) for reports on facilities from EPA FRS (facility registry service)
 }
 \examples{
 \donttest{
-browseURL(url_frs_report(testids_registry_id)[1])
+browseURL(url_frs_report(testinput_regid)[1])
 }
 url_frs_report(testinput_registry_id)
 

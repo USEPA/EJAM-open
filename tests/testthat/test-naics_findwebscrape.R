@@ -2,7 +2,8 @@
 ## Author: Sara Sokolinski
 
 
-test_that('the function works for naics codes (numeric or string) and query text',{
+test_that('the function works for naics codes (numeric or string) and query text', {
+  skip_if(offline())
   expect_no_warning({
     val <- naics_findwebscrape("gold ore")
     })
@@ -12,6 +13,7 @@ test_that('the function works for naics codes (numeric or string) and query text
   expect_no_warning({
     val <- naics_findwebscrape(212221)
     })
+  expect_true(212221 %in% val$code)
 })
 
 
@@ -23,7 +25,8 @@ test_that('the function works for naics codes (numeric or string) and query text
 # for this example the order matters, as in,
 # it looks for gold mining and not mining gold
 
-test_that('you can filter the results of webscrape',{
+test_that('you can filter the results of webscrape', {
+  skip_if(offline())
   query = "gold mining"
   expect_no_warning({val <- naics_findwebscrape(query)})
 

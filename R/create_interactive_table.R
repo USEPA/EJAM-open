@@ -48,7 +48,7 @@ create_interactive_table <- function(data_processed, testing) {
   tableheadnames <- c(tableheadnames,
                       names(data_processed$results_summarized$cols),
                       # 'Max of selected indicators',  ###
-                      # '# of indicators above threshold',   # will be made more flexible
+                      # '# of indicators above threshold',
                       'State', 'EPA Region')
   # --------------------------------------------------- #
 

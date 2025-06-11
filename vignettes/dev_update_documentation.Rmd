@@ -13,70 +13,191 @@ editor_options:
     wrap: 80
 ---
 
+```{r, eval=TRUE, echo=FALSE, include=FALSE}
+
+code_reponame_with_owner <- EJAM:::repo_from_desc()           # "OWNER/REPONAME"
+code_reponame <- gsub(".*/", "", code_reponame_with_owner)    #       "REPONAME"
+code_reponame_url <- EJAM:::repo_from_desc(get_full_url = T)   
+# "https://github.com/OWNER/REPONAME"
+
+docs_reponame_with_owner <- EJAM:::repo_from_desc('github.io')# "OWNER/REPONAME"
+docs_reponame <- gsub(".*/", "", docs_reponame_with_owner)    #       "REPONAME"
+docs_reponame_url <- EJAM:::repo_from_desc('github.io', get_full_url = T) 
+# "https://OWNER.github.io/REPONAME"
+
+data_reponame_with_owner <- desc::desc(file = system.file(
+  "DESCRIPTION", package = "EJAM"))$get("ejam_data_repo")     # "OWNER/REPONAME"
+data_reponame <- gsub(".*/", "", data_reponame_with_owner)    #       "REPONAME"
+data_reponame_url <- paste0("https://github.com/", data_reponame_with_owner) 
+# "https://github.com/OWNER/REPONAME"
+```
+
 This document addresses how to update the documentation supporting the package.
 
-## Updating package documentation (in RStudio and web-based docs)
+## Updating package documentation
 
-The R package is documented in webpages (and in standard help documents viewable in RStudio). Documentation will generally need to be updated in preparation for a new release of the package. Updates may be needed in the following:
+The R package is documented in webpages (and in standard help documents viewable
+in RStudio). Documentation will generally need to be updated in preparation for
+a new release of the package. Updates may be needed in the following:
 
-1.  Overall, package-wide information/ documents (e.g., README)
+1.  [Package: overall, package-wide information/ documents]
 
-2.  Reference docs explaining the R functions
+2.  [Functions: reference docs explaining the R functions]
 
-3.  Reference docs explaining the datasets
+3.  [Datasets: reference docs explaining the datasets] (in EJAM/R/data\_\*.R
+    files)
 
-4.  Articles/ vignettes to help R users with the package
+4.  [Articles: vignettes helping R users with the package] (in
+    `EJAM/vignettes/*.Rmd`)
 
-5.  "User Guide" to help people use the web app
+5.  [User Guide: help for people using the web app] (in `EJAM/inst/app/www/` as
+    a .pdf file)
 
-6.  Web pages providing all of the above in html format
+6.  [Spell-checking package-wide]
+
+7.  [Website: web pages providing all of the above in html format], via the
+    `{pkgdown}` package
 
 Each is explained below:
 
-### Updating overall, package-wide information/ documents
+### Package: overall, package-wide information/ documents
 
--   Package-wide documentation files can be updated/edited and include the following: `DESCRIPTION`, `README.Rmd` (for README, edit the .Rmd NOT the .md file), R/EJAM-package.R (`EJAM-package`), `NEWS.md`, `CONTRIBUTING.md`, `LICENSE.md`, `CITATION`, and others.
+-   Package-wide documentation files can be updated/edited and include the
+    following: `DESCRIPTION`, `README.Rmd` (for README, **edit the
+    README[.Rmd]{.underline}*NOT* the README.[md]{.underline} file**),
+    R/EJAM-package.R (for `?EJAM-package`),
+    `NEWS.md` used to make [NEWS](../news/index.html), 
+    `CONTRIBUTING.md` used to make [CONTRIBUTING](../CONTRIBUTING.html),
+    [LICENSE](../LICENSE.html) based on `inst/LICENSE.md`,
+    [CITATION](../authors.html#citation) based on `inst/CITATION`, 
+    and others.
 
--   Some of these are used by and shown by the github.com repository, notably the `README.md` that is generated from the `README.Rmd` file, and the `DESCRIPTION` file that stores package version number and URLs of the package repository, etc.
+-   Some of these are used by and shown by the github.com repository, notably
+    the `README.md` that is generated from the `README.Rmd` file and appears on
+    the github repository as
+    [README](%60r%20paste0(code_reponame_url,%20%22?tab=readme-ov-file#readme%22)%60)
+    and in the pkgdown site as [README](../index.html), and the `DESCRIPTION`
+    file that stores package version number and URLs of the package repository,
+    etc.
 
-###  Reference docs explaining the R functions
+### Functions: reference docs explaining the R functions
 
--   `roxygen2` package tags define the documentation in the R/\*.R files that contain the source code and documentation of functions and datasets.
+-   `{roxygen2}` package tags define the documentation in the R/\*.R files that
+    contain the source code and documentation of functions and datasets.
 
--   While many functions or objects have their own .R files, some .R files contain code and documentation for multiple functions, so not every function has a .R file of its own.
+-   While many functions or objects have their own .R files, some .R files
+    contain code and documentation for multiple functions, so not every function
+    has a .R file of its own.
 
--   some utility/helper functions, mostly not exported, are stored in files prefixed with "utils\_" such as `R/utils_indexblocks.R` (but not all helper functions are in files named that way).
+-   some utility/helper functions, mostly not exported, are stored in files
+    prefixed with "utils\_" such as `R/utils_indexblocks.R` documenting `indexblocks()`
+    (but not all helper functions are in files named that way).
 
-- you might find it useful to check docs with `tools::checkDocFiles("EJAM")`
+-   you might find it useful to check docs with `tools::checkDocFiles`("EJAM")
 
-### Reference docs explaining the datasets
+### Datasets: reference docs explaining the datasets
 
--   all datasets are documented in the files named with a prefix of "data\_" such as `R/data_blockgroupstats.R` which documents the `blockgroupstats` dataset.
+-   all datasets are documented in the files named with a prefix of "data\_"
+    such as `R/data_blockgroupstats.R` which documents the `?blockgroupstats`
+    dataset.
 
--   most dataset documentation is created/updated alongside the code that created or updates those datasets. That is best done starting with the overarching file called `data-raw/datacreate_0_UPDATE_ALL_DATASETS.R` which helps walk through updating various datasets as needed and their documentation is often updated in that same process.
+-   most dataset documentation is created/updated alongside the code that
+    created or updates those datasets. That is best done starting with the
+    overarching file called `data-raw/datacreate_0_UPDATE_ALL_DATASETS.R` which
+    helps walk through updating various datasets as needed and their
+    documentation is often updated in that same process.
 
--   Many `R/*.R` files for datasets are created automatically, not edited by hand, through the `dataset_documenter()` function as used in the scripts within `data-raw/datacreate_*.R` while others are updated by editing the .R file directly.
+-   Many `R/*.R` files for datasets are created automatically, not edited by
+    hand, through the `dataset_documenter()` function as used in the scripts
+    within `data-raw/datacreate_*.R` while others are updated by editing the .R
+    file directly.
 
-### Articles/ vignettes to help R users with the package
+### Articles: vignettes helping R users with the package
 
--   These are written/edited as .Rmd files in the `vignettes` folder. You can test one using something like `pkgdown::build_article()` before trying to rebuild the whole pkgdown site.
+-   Articles (called vignettes, here) are written/edited as .Rmd files in the `vignettes` folder. You can
+    test one using something like `pkgdown::build_article()` before trying to
+    rebuild the whole pkgdown site.
 
 -   New articles or renamed files require edits to the `_pkgdown.yml` file also.
 
-### "User Guide" to help people use the web app
+### User Guide: help for people using the web app
 
--   If you change the UI then new screenshots are needed for a new version of the User Guide that was stored as a .pdf document.
+-   If you change the UI then new screenshots are needed for a new version of
+    the User Guide that was stored as a .pdf document.
 
-### Updating the web pages providing all of the above in html format
+### Spell-checking package-wide
 
-The web-based documentation pages should be updated right after any of the above are edited/created. These pkgdown-based webpages should be updated by someone who is managing the package, as follows:
+-   To run a spell check (see terms flagged as possible problems)
 
--   The first step in updating those web pages is updating the yml file. The web-based documentation pages are organized by a file called `_pkgdown.yml` -- see `usethis::edit_pkgdown_config()` -- which specifies the contents of the webpages of documentation, such as the names of any vignettes files to be shown in the list of articles, which functions are included in the reference pages index, etc. Any new or removed or renamed functions/ vignettes/ datasets, or changes in what is exported, will require edits to the .yml file.
+```{r, eval=FALSE}
+    x <- spelling::spell_check_package()
+    x <- data.frame(
+      frq = sapply(x$found, function(z) {length(unlist(z))}), 
+      word = x$word)
+    x <- x[order(x$frq), ]
+    rownames(x) <- NULL
+    x
+```
 
--   The pkgdown-based webpages should be updated by someone who is managing the package, and they should use the `update_pkgdown()` function found in `data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R` You have to source() that file and then use the function that it defines. Via that function, the pages get rebuilt by the `pkgdown` R package, based on the above files and all other documentation from .R and .md files. For more information about using the pkgdown package to create documentation in the form of webpages, see <https://pkgdown.r-lib.org/articles/pkgdown.html>. The documentation is created/updated using the `roxygen2` and `pkgdown` R packages, which read information from the .R files in the R folder, from .Rmd file vignettes (aka "articles") in the vignettes folder, and from the `_pkgdown.yml` file in the root folder of the source package. The `roxygen2` package reads the .R files to create the .Rd files in the `man/` directory. The `pkgdown` package uses all those files as well as `DESCRIPTION` and others, to generate a website for the package, first created as files in the `docs/` folder, which are then published via github actions and the github repository settings, to be hosted on GitHub Pages. The packages `devtools` and `usethis` are also relevant.
+-   Then you can use ctrl-shift-F to search in all files for a flagged term to
+    check if it is actually a problem
 
--   the package's github repository settings define which branch and which folder should hold the html files for deployment (see github and pkgdown documentation on that)
+-   If you wanted to update the WORDLIST (list of words to ignore spelling of)
 
--   the package's Github Actions can be used to deploy the webpages when triggered by an event like any push to the main branch, for example.
+```{r, eval=FALSE}
+    # 1. Add obvious dataset names documented to the WORDLIST
+    datanames = gsub('\\.R$', '', gsub('^data_', '', dir('./R', pattern = '^data_.*R')))
+    datanames = datanames[!grepl('aaaaaaaaaaaaa|xxxxxxxxxx', datanames)]
+    # 2. Add names of functions to the WORDLIST
+    funcnames = EJAM:::functions_in_pkg( 'EJAM' )$object
+    wordlist = readLines('inst/WORDLIST')
+    wordlist = sort(unique(union(wordlist, c(datanames, funcnames))))
+    # Write the revised list of words to the file
+    writeLines(wordlist, 'inst/WORDLIST')
+```
 
--   depending on which folder you publish/deploy from, you might have to remove that folder from `.gitignore` in case it was listed there via some pkgdown or usethis function.
+### Website: web pages providing all of the above in html format
+
+The web-based documentation pages should be updated right after any of the above
+are edited/created. These pkgdown-based webpages should be updated by someone
+who is managing the package, as follows:
+
+-   The first step in updating those web pages is updating the yml file. The
+    web-based documentation pages are organized by a file called `_pkgdown.yml`
+    -- see `usethis::edit_pkgdown_config()` -- which specifies the contents of
+    the webpages of documentation, such as the names of any vignettes files to
+    be shown in the list of articles, which functions are included in the
+    reference pages index, etc. Any new or removed or renamed functions/
+    vignettes/ datasets, or changes in what is exported, will require edits to
+    the .yml file.
+
+-   The pkgdown-based webpages should be updated by someone who is managing the
+    package, and they should use the `update_pkgdown()` function found in
+    `data-raw/datacreate_0_UPDATE_ALL_DOCUMENTATION_pkgdown.R` You have to
+    `source()` that file and then use the function that it defines. Via that
+    function, the pages get rebuilt by the `{pkgdown}` R package, based on the
+    above files and all other documentation from .R and .md files. For more
+    information about using the `{pkgdown}` package to create documentation in
+    the form of webpages, see [pkgdown
+    articles](https://pkgdown.r-lib.org/articles/pkgdown.html). The
+    documentation is created/updated using the `{roxygen2}` and `{pkgdown}` R
+    packages, which read information from the .R files in the R folder, from
+    .Rmd file vignettes (aka "articles") in the vignettes folder, and from the
+    `_pkgdown.yml` file in the root folder of the source package. The
+    `{roxygen2}` package reads the .R files to create the .Rd files in the
+    `man/` directory. The `{pkgdown}` package uses all those files as well as
+    `DESCRIPTION` and others, to generate a website for the package, first
+    created as files in the `docs/` folder, which are then published via github
+    actions and the github repository settings, to be hosted on GitHub Pages.
+    The packages `{devtools}` and `{usethis}` are also relevant.
+
+-   the package's github repository settings define which branch and which
+    folder should hold the html files for deployment (see github and pkgdown
+    documentation on that)
+
+-   the package's Github Actions can be used to deploy the webpages when
+    triggered by an event like any push to the main branch, for example.
+
+-   depending on which folder you publish/deploy from, you might have to remove
+    that folder from `.gitignore` in case it was listed there via some
+    `{pkgdown}` or `{usethis}` function.

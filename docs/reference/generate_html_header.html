@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -99,12 +99,12 @@
 
 <dt id="arg-logo-path">logo_path<a class="anchor" aria-label="anchor" href="#arg-logo-path"></a></dt>
 <dd><p>optional relative path to a logo for the upper right of the overall header.
-Ignored if logo_html is specified.</p></dd>
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()</p></dd>
 
 
 <dt id="arg-logo-html">logo_html<a class="anchor" aria-label="anchor" href="#arg-logo-html"></a></dt>
 <dd><p>optional HTML for img of logo for the upper right of the overall header.
-If specified, it overrides logo_path.</p></dd>
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.</p></dd>
 
 </dl></div>
     <div class="section level2">

@@ -2,7 +2,7 @@
 #' Load datasets from local disk folder
 #'
 #' Utility for analysts / developers to store large block /
-#' other data locally instead of redownloading
+#' other data locally instead of re-downloading
 #'
 #' @details
 #'

@@ -47,6 +47,8 @@ An outline of how to use key functions is provided below. After these examples
 is a discussion of background information and considerations in selecting
 radius.
 
+Also see the list of [functions related to comparing distances](../reference/index.html#comparing-distances-multiple-radius-values).
+
 ## RESIDENTIAL POPULATION GROUP PERCENTAGES BY DISTANCE AT BLOCK GROUP RESOLUTION
 
 It is easiest to analyze distance increments based on each blockgroup's average
@@ -56,7 +58,7 @@ resident here. Block resolution is covered in a later section.
 
 #### Overall list of sites
 
-At the *OVERALL LIST of sites* as a whole, which groups are *overrepresented*
+At the *OVERALL LIST of sites* as a whole, which groups are *over-represented*
 within X mile radius vs Statewide?
 
 ```{r ejamitrunnotshow, eval=TRUE, echo=FALSE, include=FALSE}
@@ -77,7 +79,7 @@ ejam2barplot(out)
 
 #### Just one site
 
-At *JUST ONE SITE*, which groups are *overrepresented* within X mile radius vs
+At *JUST ONE SITE*, which groups are *over-represented* within X mile radius vs
 Statewide?
 
 ```{r ejamitx, eval=TRUE, echo=FALSE, include=FALSE}
@@ -95,7 +97,7 @@ ejam2barplot(out1)
 
 #### Site by site comparison
 
-Which groups are *overrepresented* at *EACH SITE*, within X mile radius vs
+Which groups are *over-represented* at *EACH SITE*, within X mile radius vs
 Statewide
 
 ```{r tablesiteratios, eval=TRUE, echo=TRUE}
@@ -123,7 +125,7 @@ ejam2barplot_sites(out, "ratio.to.state.avg.pctlowinc", topn = 10, sortby = F)
 
 #### Overall list of sites
 
-At the *OVERALL LIST of sites* as a whole, which groups are *overrepresented*
+At the *OVERALL LIST of sites* as a whole, which groups are *over-represented*
 within X mile radius vs Statewide?
 
 ```{r ejamit_compare_distances, eval=TRUE, echo=TRUE}
@@ -235,7 +237,7 @@ for (i in 1:NROW(pts)) {
 ```
 
 Block by block details are also easy to view in a map of all the nearby blocks,
-as shown in the section on [plotblocksnearby()] and details of blocks near one
+as shown in the section on `plotblocksnearby()` and details of blocks near one
 site.
 
 ### Cumulative Distribution plots of groups as *a continuous function of distance*
@@ -384,7 +386,7 @@ proximity are complementary:
 
 1.  Which groups tend to live nearby in the sense of being **within the radius
     versus outside the radius** selected? In other words, which groups are
-    "overrepresented" within X miles of the site? This treats proximity as a
+    "over-represented" within X miles of the site? This treats proximity as a
     yes/no, binomial question -- **a resident is nearby or not**. It would focus
     on whether someone is anywhere within 3 miles, say, and ignore the
     differences between being 1, 2, or 3 miles away. Most proximity analysis has
@@ -396,9 +398,9 @@ proximity are complementary:
     However, it only looks at residents within the X miles radius area analyzed,
     so it fails to recognize that some groups tend to live more than 3 miles
     away, for example. This perspective does not take into account which groups
-    are overrepresented within the original total radius near a site.
+    are over-represented within the original total radius near a site.
 
-Some functions like distance_mean_by_group() or distance_by_group_by_site() do
+Some functions like `distance_mean_by_group()` or `distance_by_group_by_site()` do
 the second of these two types of analysis. They report, only among those
 anywhere inside the radius, which groups are closer to the site.
 
@@ -409,7 +411,7 @@ higher than that of any other group because this function only counts those
 within the radius analyzed.
 
 In some other location, the opposite could occur -- if one group is
-overrepresented within 3 miles, they still might all live in a community about
+over-represented within 3 miles, they still might all live in a community about
 2.9 miles away from the site -- that would mean their distance from the site on
 average is greater (or their proximity score is lower) than other groups within
 3 miles of the site.
@@ -515,9 +517,9 @@ technically called a block "internal point") are inside the circle or polygon.
 All the residents of a block are assumed to be inside if the block centroid is
 inside. This is exactly true unless a block is on the edge of the circle or
 polygon. Even for the ones on the edge, some centroids are just outside and some
-just inside the shape, so the contributions of some blocks are overcounted and
-other undercounted, but those tend to cancel each other out in the sense that it
-is unlikely they would all be undercounted, for example. Still, when a large
+just inside the shape, so the contributions of some blocks are over-counted and
+other under-counted, but those tend to cancel each other out in the sense that it
+is unlikely they would all be under-counted, for example. Still, when a large
 share of the block points in circle or polygon are from blocks not entirely
 inside, uncertainty is higher than when the vast majority of blocks are entirely
 inside. In other words, if the circle or polygon has a very large number of

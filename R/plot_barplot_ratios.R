@@ -42,6 +42,30 @@
 #'   varnames = c(names_e_ratio_to_avg, names_e_ratio_to_state_avg),
 #'   main = "Environmental Indicators at Selected Sites Compared to Averages")
 #'   
+#'  ## select your own ratio-type indicators that are available
+#'  ## -- and you could see the range of available ratio indicators like this:
+#'  \dontrun{
+#'  varinfo(
+#'    grep("ratio",
+#'         names(testoutput_ejamit_10pts_1miles$results_overall),
+#'         value = TRUE),
+#'    info = c("varlist", "shortname")
+#'  )
+#'    }
+#'  
+#'  # helper functions related to ejam2barplot()
+#'  
+#'   plot_barplot_ratios_ez(
+#'     out, 
+#'     varnames = c(names_d_ratio_to_avg , names_d_subgroups_ratio_to_avg)
+#'   )
+#'   
+#'   # same plot but with function that would need more work to format inputs:
+#'   plot_barplot_ratios(
+#'       unlist(out$results_overall[ ,
+#'       c(..names_d_ratio_to_avg , ..names_d_subgroups_ratio_to_avg) ])
+#'       )
+#'       
 #' @return ggplot
 #'
 #' @export
@@ -85,7 +109,7 @@ ejam2barplot = function(ejamitout, varnames = c(names_d_ratio_to_avg , names_d_s
 #' @param single_location set to TRUE if using row_index to view one site,
 #'  set to FALSE to view overall results from out$results_overall
 #' @param row_index the number of the row to use from out$results_bysite
-#' @inheritDotParams ejam2barplot
+#' @param ... passed to plot_barplot_ratios()
 #' 
 #' @export
 #' @keywords internal
@@ -118,21 +142,16 @@ plot_barplot_ratios_ez = function(out, varnames = c(names_d_ratio_to_avg, names_
 
 #' helper - Barplot of ratios of residential population percentages (or other scores) to averages (or other references)
 #' @rdname ejam2barplot
-#'
+#' @details If the parameter called main has the word "State" in it, then the legend 
+#'   will refer to "State Average" instead of "US Average"
 #' @param ratio.to.us.d.overall named list of a few ratios to plot, but see [ejam2barplot()]
 #'   for an easier way to specify which indicator to show.
-#' @param shortlabels names to use for plot - should be same length as named list ratio.to.us.d.overall
-#' @param mycolorsavailable leave as default
-#' @param main title for plot, like "Stats at the Analyzed Locations Compared to US Overall"
-#' @examples
-#'   
-#'   ejam2barplot(testoutput_ejamit_100pts_1miles)
-#'   
-#'   plot_barplot_ratios(
-#'     unlist(testoutput_ejamit_1000pts_1miles$results_overall[ , 
-#'     c(..names_d_ratio_to_avg , ..names_d_subgroups_ratio_to_avg) ])
-#'   )
-#'
+#' @param shortlabels optional, names to use for plot - should be same length as named list ratio.to.us.d.overall
+#' @param mycolorsavailable optional (best to leave as default)
+#' @param main optional, title for plot, like "Stats at the Analyzed Locations Compared to US Overall"
+#' @param ylab optional, label for y axis
+#' @param caption text for a key defining some terms that are abbreviations
+#' 
 #' @seealso  [ejam2ratios()] [ejam2barplot()] [plot_barplot_ratios_ez()] [table_xls_format()]
 #' @return ggplot should be returned
 #' 
@@ -140,8 +159,10 @@ plot_barplot_ratios_ez = function(out, varnames = c(names_d_ratio_to_avg, names_
 #' 
 plot_barplot_ratios <- function(ratio.to.us.d.overall,
                                 shortlabels = NULL,
-                                mycolorsavailable=c( "gray","yellow","orange","red"),
-                                main = "Residential Populations at the Analyzed Locations Compared to US Overall") {
+                                mycolorsavailable = c("gray","yellow","orange","red"),
+                                main = "Residential Populations at the Analyzed Locations Compared to US Overall",
+                                ylab = "Ratio vs. Average",
+                                caption = "NH = \"non-Hispanic\"\nNHA = \"non-Hispanic alone, aka single race\"") {
   
   if (is.null(main) || "" %in% main) {main <- "Residential Populations at the Analyzed Locations Compared to US Overall"}
   ########################################################## #
@@ -186,7 +207,6 @@ plot_barplot_ratios <- function(ratio.to.us.d.overall,
   # if (isTRUE(all.equal(names(ratio.to.us.d.overall), c(names_d_ratio_to_avg, names_d_subgroups_ratio_to_avg)))) {
   #
   # 
-
   # }
   if (is.null(shortlabels)) {
     shortlabels <- fixcolnames(names(ratio.to.us.d.overall), oldtype = "r", newtype = "shortlabel")
@@ -196,7 +216,6 @@ plot_barplot_ratios <- function(ratio.to.us.d.overall,
     names(ratio.to.us.d.overall) <- supershortnames
   }
     names(ratio.to.us.d.overall) <- shortlabels
-
 
   ratio.to.us.d.overall[is.infinite(ratio.to.us.d.overall)] <- 0
   # use yellow/orange/red for ratio >= 1x, 2x, 3x  #  work in progress
@@ -216,7 +235,6 @@ thisdata <-  data.frame(name = factor(names(ratio.to.us.d.overall),levels = name
              )) %>%
     ## drop any indicators with Inf or NaNs
     dplyr::filter(is.finite(.data$value))
-
 
 thisdata$name <- factor(thisdata$name) # factor(thisdata$name, levels = thisdata$name)
 
@@ -255,9 +273,9 @@ thisplot <- thisdata %>%
     ggplot2::theme_bw() +
     ggplot2::labs(
     x = NULL,
-    y = "Ratio vs. Average",
+    y = ylab,
     title = main,
-    caption = "NH = \"non-Hispanic\"\nNHA = \"non-Hispanic alone, aka single race\""
+    caption = caption
    ) +
     #scale_x_discrete(labels = scales::label_wrap(7)) +    # requires scales package
     #scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
@@ -274,7 +292,6 @@ thisplot <- thisdata %>%
     legend.text = ggplot2::element_text(size = 10),
     legend.position = "bottom"
   )
-
 
 return(thisplot)
 

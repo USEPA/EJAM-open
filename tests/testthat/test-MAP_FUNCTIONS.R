@@ -25,9 +25,9 @@ test_that("popup_from_ejscreen() works even if 1 row or 1 indicator", {
   expect_no_error({
     suppressWarnings({
       x = popup_from_ejscreen(testoutput_ejscreenapi_plus_5)
-      
+
       x = popup_from_ejscreen(testoutput_ejamit_10pts_1miles$results_bysite[1:2,])
-      
+
       # only one place (one row)
       x = popup_from_ejscreen(testoutput_ejamit_10pts_1miles$results_bysite[1,])
     })
@@ -47,30 +47,30 @@ test_that("popup_from_ejscreen() works even if 1 row or 1 indicator", {
 test_that("popup_from_any() works even if 1 row or 1 indicator", {
   expect_no_error({
     suppressMessages({
-      
+
       x1 = popup_from_any(testpoints_10[1:2,])
-      
+
       x2 = popup_from_any(testoutput_ejamit_10pts_1miles$results_bysite[1:2,], column_names = names_d, labels = fixcolnames(names_d, "r", "short"))
       x3 = popup_from_any(testoutput_ejamit_10pts_1miles$results_bysite[1:2,],  n = 7) # only uses the first 7 columns so NA reported for all others which seems not ideal
       length(x3)
-      
+
       # only one place (one row)
       x4 = popup_from_any(testpoints_10[1,])
-      
+
       # only one indicator
       x5 = popup_from_any(testoutput_ejamit_10pts_1miles$results_bysite[1:2,],  column_names = "pop")
       x5b = popup_from_any(testoutput_ejamit_10pts_1miles$results_bysite[1,],  n = 1) #  # one row, one indicator
       x5c = popup_from_any(testoutput_ejamit_10pts_1miles$results_bysite[1,],  column_names = "pctlowinc") #  # one row, one indicator
-      
+
       # if data.table format
       x6 = popup_from_any(data.table(testpoints_10[1:2,]))
       x7 = popup_from_any(data.table(testpoints_10[1,]))
       x8 = popup_from_any(data.table(testoutput_ejamit_10pts_1miles$results_bysite)[1:2, ],  column_names = "pop")
       x9 = popup_from_any(data.table(testoutput_ejamit_10pts_1miles$results_bysite)[1, ],  column_names = "pop") # one row, one indicator
-      
+
     })
   })
-  
+
   suppressWarnings({
     expect_warning({
       x0 = popup_from_any(testpoints_10,  column_names = "pop is not a column in that dataset")
@@ -192,7 +192,7 @@ test_that("map_facilities_proxy() works", {
     })
   })
   expect_true("leaflet" %in% class(x))
-  
+
   expect_no_error({
     suppressMessages({
       x = map_facilities_proxy(
@@ -211,15 +211,18 @@ test_that("map_facilities_proxy() works", {
 ############################################## #
 
 test_that("mapfastej_counties() works", {
-  
+
   # getblocksnearby_from_fips() has warnings here
   suppressMessages({
-    myshapes = shapes_counties_from_countyfips(fips_counties_from_state_abbrev("RI")[1])
+    suppressWarnings({
+      junk = capture.output(
+        myshapes <- shapes_counties_from_countyfips(fips_counties_from_state_abbrev("RI")[1])
+      )    })
     expect_no_error({
-      capture.output({
-        suppressWarnings({        
+      junk = capture.output({
+        suppressWarnings({
           mydat = ejamit(fips = fips_counties_from_statename("Rhode Island")[1], radius = 0, silentinteractive = TRUE)$results_bysite
-          
+
           x = mapfastej_counties(mydat)
         })
       })
@@ -239,42 +242,48 @@ test_that("mapfastej_counties() works", {
 #   stop("this requires having set up a census api key - see ?tidycensus::census_api_key  ")
 # }
 
-ftypes <- c("blockgroups", "tracts", "cities", "counties", "states") 
+ftypes <- c("blockgroups", "tracts", "cities", "counties", "states")
 servicetypes <- c("DEFAULT", "tiger", "cartographic")
 
 # ftypes <- "blockgroups"
 # servicetypes = "DEFAULT"
 
 for (ftype in ftypes) {
-  
+
   fips <- get(paste0("testinput_fips_", ftype))
-  
+
   for (servicetype in servicetypes) {
-    
+
     test_text <- paste0("if no CENSUS_API_KEY, fipstype=", ftype, ", svc=", servicetype)
-    
+
     test_that(test_text, {
       fips <- fips
       oldkey <- Sys.getenv("CENSUS_API_KEY")
       Sys.setenv(CENSUS_API_KEY = "")
       expect_no_error({
         if (servicetype == "DEFAULT") {
-          x <- shapes_from_fips(fips)
+          suppressWarnings({
+            junk <- capture_output({
+              x <- shapes_from_fips(fips)
+            })
+          })
         } else {
           suppressWarnings({
-            x <- shapes_from_fips(fips, 
-                                  myservice_blockgroup = servicetype,
-                                  myservice_tract = servicetype,
-                                  myservice_place = servicetype,
-                                  myservice_county = servicetype
-            )
+            junk <- capture_output({
+              x <- shapes_from_fips(fips,
+                                    myservice_blockgroup = servicetype,
+                                    myservice_tract = servicetype,
+                                    myservice_place = servicetype,
+                                    myservice_county = servicetype
+              )
+            })
           })
         }
+
+        expect_equal(NROW(x), length(fips))
+        Sys.setenv(CENSUS_API_KEY = oldkey)
       })
-      expect_equal(NROW(x), length(fips))
-      Sys.setenv(CENSUS_API_KEY = oldkey)
     })
-    
   }
 }
 
@@ -309,7 +318,7 @@ test_that("shapes_counties_from_countyfips() works", {
 test_that("map_shapes_plot() works", {
   suppressWarnings({
     myshapes = shapes_counties_from_countyfips(fips_counties_from_state_abbrev("DE")[1])  # kind of slow so just done once here for tests
-    
+
     expect_no_error({
       map_shapes_plot(myshapes)
     })
@@ -326,8 +335,11 @@ test_that("map_shapes_plot() works", {
 # })
 ############################################## #
 test_that("map_shapes_mapview() if mapview pkg available works", {
-  myshapes = shapes_counties_from_countyfips(fips_counties_from_state_abbrev("DE")[1])  # kind of slow so just done once here for tests
-  
+  junk = capture_output({
+    suppressWarnings({
+      myshapes = shapes_counties_from_countyfips(fips_counties_from_state_abbrev("DE")[1])  # kind of slow so just done once here for tests
+    })
+  })
   # myshapes = shapes_counties_from_countyfips(fips_counties_from_state_abbrev("DE")[1])
   skip_if_not_installed("mapview")
   # requires mapview pkg be attached by setup.R in tests folders
@@ -342,7 +354,7 @@ test_that("map_shapes_mapview() if mapview pkg available works", {
 ############################################## #
 test_that("shapes_blockgroups_from_bgfips() works", {
   junk = capture_output({
-    
+
     expect_no_error({
       x = shapes_blockgroups_from_bgfips()
     })

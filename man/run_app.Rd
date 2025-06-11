@@ -3,7 +3,7 @@
 \name{run_app}
 \alias{run_app}
 \alias{app_run_EJAM}
-\title{Launch EJAM as Shiny web app}
+\title{Launch EJAM as Shiny web app in RStudio.}
 \usage{
 run_app(
   onStart = NULL,
@@ -43,34 +43,100 @@ request. Note that the entire request path must match the regular
 expression in order for the match to be considered successful.}
 
 \item{...}{arguments to pass to golem_opts.
-Note that many defaults are defined in global_defaults_*.R. They can be changed there
-or passed here, to override the defaults for the duration of the app
+Note that many defaults are defined in files like global_defaults_*.R.
+They can be changed there, but also
+can be passed here to override those defaults for the duration of the app.
+
+For example:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{run_app(
-  default_default_miles=3.1, 
-  default_max_miles=31, 
-  default_max_mb_upload=100, 
-  default_default_miles_shapefile = 0.5, 
-  advanced=TRUE, 
-  testing=TRUE, 
-  shiny.testmode=TRUE, 
-  # and this will be implemented at some point: 
-  sitepoints = mytable such as testpoints_100
-  ## or maybe
-  ## sitepoints = 'latlondata.xlsx'
+  default_default_miles=3.1,
+  default_max_miles=31,
+  default_max_mb_upload=100
 )
-}\if{html}{\out{</div>}}
 
-This uses an internal function global_or_param()}
+}\if{html}{\out{</div>}}}
 }
 \value{
-An object that represents the app. Printing the object or passing it to \code{\link[=runApp]{runApp()}} will run the app.
+An object that represents the app. Printing the object or
+passing it to \code{\link[=runApp]{runApp()}} will run the app.
 }
 \description{
-Launches shiny web app from RStudio - \code{\link[=app_run_EJAM]{app_run_EJAM()}} and \code{\link[=run_app]{run_app()}} are the same
+Launch app. \code{\link[=app_run_EJAM]{app_run_EJAM()}} & \code{\link[=run_app]{run_app()}} are the same.
 }
 \details{
-run_app( isPublic = TRUE ) will launch the public-facing version.
+\code{run_app( isPublic = TRUE )} will launch a simpler version of the web app
+(e.g., for more general public use rather than the full set of complicated
+features that are used less often).
+
+Technical Notes:
+
+Examples of other parameters that you could pass to run_app()
+but these are not fully tested:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{run_app(shiny.testmode = TRUE, testing = TRUE,
+       default_default_miles = 3.1,
+       default_max_miles = 31,
+       default_max_mb_upload = 100,
+       default_default_miles_shapefile = 0.1,
+
+       default_hide_plot_histo_tab = FALSE,
+       default_hide_advanced_settings = FALSE,
+       default_testing = TRUE,
+       default_shiny.testmode = TRUE,
+
+       default_standard_analysis_title = "CUSTOM REPORT",
+
+       default.an_threshgroup1 = "Envt-US-or-ST",
+       default.an_thresh_comp1 = 95,
+       default.an_threshnames1 = EJAM::names_e_state_pctile,
+
+       # to have shapefiles, MACT, Cities as initial (default) selections:
+       ## default_upload_dropdown = "dropdown", #may not be implemented yet
+       default_choices_for_type_of_site_upload =c('Shapefile upload'='SHP'),
+       default_choices_for_type_of_site_category=c('by MACT subpart'='MACT'),
+       fipspicker_fips_type2pick_default = "Cities or Places",
+
+       # shorter reorganized list of extra indicators:
+       default_extratable_list_of_sections = list(
+         Health = c("pctdisability", "lowlifex",
+           "rateheartdisease", "rateasthma", "ratecancer", "lifexyears"),
+         Poverty_Income = c("pctpoor",  "percapincome"),
+         `Feature Counts` = c("count.NPL", "count.TSDF",
+           "num_waterdis", "num_airpoll", "num_brownfield", "num_tri",
+           "num_school", "num_hospital", "num_church")
+       )
+)
+
+# untested:    sitepoints = testpoints_10 # or 'latlondata.xlsx'
+}\if{html}{\out{</div>}}
+
+The \code{enableBookmarking} param lets a user, via the \code{\link[=bookmarkButton]{bookmarkButton()}} in ui,
+save any uploaded files plus state of all  input$  settings.
+if enableBookmarking="url" that is all saved on the server.
+See \code{\link[=shinyApp]{shinyApp()}} \code{\link[=onBookmark]{onBookmark()}} \code{\link[=onBookmarked]{onBookmarked()}} \code{\link[=onRestore]{onRestore()}} \code{\link[=onRestored]{onRestored()}}
+See https://mastering-shiny.org/action-bookmark.html
+or https://rdrr.io/cran/shiny/man/bookmarkButton.html
+
+Typically R Shiny apps are not distributed as R packages and
+launching a shiny app will just source() all .R files found in /R/ folder,
+and then run what is found in \code{app.R} (assuming it is a one-file Shiny app).
+
+This R Shiny app, however, is shared as an R package,
+via the \href{https://thinkr-open.github.io/golem/}{golem package} approach,
+which provides the useful features of a package and
+useful features that the golem package enables.
+
+There is a file \code{app.R} in the package root,
+used when the shiny app
+is started locally via RStudio's Run button or on posit connect server.
+The \code{app.R} script does \code{library(EJAM)} if the pkg is not already loaded,
+and then does \code{\link[=run_app]{run_app()}} which
+
+There is a file called \verb{_disable_autoload.R} in the /R/ folder
+used when the shiny app is started,
+to tell the server to NOT source all the .R files,
+since they are already being loaded from the package by \code{\link[=run_app]{run_app()}}
 }
 \seealso{
 \code{\link[=app_run_EJAM]{app_run_EJAM()}}

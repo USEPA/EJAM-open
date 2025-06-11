@@ -58,7 +58,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -105,8 +105,9 @@ in EJScreen (until early 2025).</p>
 <h2 id="update-ejam-application">Update EJAM Application<a class="anchor" aria-label="anchor" href="#update-ejam-application"></a>
 </h2>
 <p>After updating the main branch in the public EJAM code repository
-(see <code>dev_update-package</code> vignette) so that the public repo
-had the latest version…</p>
+(see <a href="dev_update-package.html">Updating the Package as a New
+Release</a> vignette) so that the public repo had the latest
+version…</p>
 <ol style="list-style-type: decimal">
 <li>
 <p>Sourced <code>rsconnect_manifest_update.R</code>, using the

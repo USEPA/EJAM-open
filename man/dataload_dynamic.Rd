@@ -20,13 +20,13 @@ or set this to "all" to load all of them}
 \item{envir}{if needed to specify environment other than default, e.g., globalenv() or parent.frame()}
 
 \item{folder_local_source}{path of local folder to
-look in for locally saved copies in case pins board is not reachable by user.}
+look in for locally saved copies}
 
 \item{silent}{set to TRUE to suppress cat() msgs to console}
 
 \item{return_data_table}{whether the \code{\link[=read_ipc_file]{read_ipc_file()}} should return a data.table (T, the default), or arrow (F). Passed to \code{\link[=dataload_from_local]{dataload_from_local()}}}
 
-\item{onAttach}{Indicates whether the function is being called from onAttach. IF so, it will download all arrow files if user cannot connect to PINS board}
+\item{onAttach}{Indicates whether the function is being called from onAttach. IF so, it will download all arrow files if necessary}
 }
 \value{
 returns vector of names of objects now in memory in specified envir, either because

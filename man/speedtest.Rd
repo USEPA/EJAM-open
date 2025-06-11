@@ -84,17 +84,17 @@ This is essentially a test script that times each step of EJAM for a large datas
 }
 }
 \examples{
-\donttest{ 
+\donttest{
   speedseen_few <- speedtest(c(50,500), radii=c(1, 3.106856), logging=FALSE, honk=FALSE)
-  
+
   speedseen_nearer_to1k <- speedtest(n = c(1e2,1e3,1e4 ), radii=c(1, 3.106856,5 ),
     logging=TRUE, honk=FALSE)
   save( speedseen_nearer_to1k, file = "~/../Downloads/speedseen_nearer_to1k.rda")
   rstudioapi::savePlotAsImage(        "~/../Downloads/speedseen_nearer_to1k.png")
-  
+
   speedseen_all <- speedtest(
-    n = c(1e2,1e3,1e4), 
-    radii=c(1, 3.106856, 5, 10, 31.06856), 
+    n = c(1e2,1e3,1e4),
+    radii=c(1, 3.106856, 5, 10, 31.06856),
     logging=TRUE, honk=TRUE
   )
  }

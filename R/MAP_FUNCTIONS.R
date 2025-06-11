@@ -134,7 +134,7 @@ map_ejam_plus_shp <- function(shp, out, radius_buffer = NULL, circle_color = '#0
 #' @description update a leaflet map within the EJAM shiny app with uploaded points such as facilities
 #' @param mymap, leafletProxy map object to be added to
 #' @param rad, a size for drawing each circle (buffer search radius)
-#' @param highlight, a logicial for whether to highlight overlapping points (defaults to FALSE)
+#' @param highlight, a logical for whether to highlight overlapping points (defaults to FALSE)
 #' @param clustered, a vector of T/F values for each point, indicating if they overlap with another
 #' @param popup_vec, a vector of popup values to display when points are clicked. Length should match number of rows in the dataset.
 #' @param use_marker_clusters, boolean for whether to group points into markerClusters. Uses logic from shiny app to only implement when n > 1000.
@@ -201,16 +201,16 @@ map_facilities_proxy <- function(mymap, rad = 3, highlight = FALSE, clustered = 
 
 #' Basic map of county outlines within specified state(s)
 #' Not used by shiny app
-#' @param ST a vector of one or more state abbreviations, like 
-#' 
-#'   ST = "ME"  or  ST = c("de", "RI"), or 
-#'   
+#' @param ST a vector of one or more state abbreviations, like
+#'
+#'   ST = "ME"  or  ST = c("de", "RI"), or
+#'
 #'   \code{ST = fips2state_abbrev(fips_state_from_statename(c("Rhode Island", "district of columbia")))}
-#'   
-#'   or e.g., all counties in EPA Region 1: 
-#'   
+#'
+#'   or e.g., all counties in EPA Region 1:
+#'
 #'   \code{ST = stateinfo$ST[stateinfo$REGION == 1]}
-#'   
+#'
 #' @param colorcolumn name of column to use in setting colors of counties on map,
 #'   but must be one returned by [shapes_counties_from_countyfips()] like "STATE_NAME"
 #' @param type must be "leaflet" or can be "mapview" if installed and loaded
@@ -439,8 +439,8 @@ map_blockgroups_over_blocks <- function(y) {
 
 
   bgfips <- bgid2fips_arrow %>%
-    mutate(bgid = cast(.data$bgid, arrow::string())) %>%  
-    filter(.data$bgid %in% bgids) %>% 
+    mutate(bgid = cast(.data$bgid, arrow::string())) %>%
+    filter(.data$bgid %in% bgids) %>%
     select(bgfips) %>%
     collect() %>%
     pull(bgfips)
@@ -495,7 +495,7 @@ map_shapes_leaflet <- function(shapes, color = "green", popup = NULL) {
   # check if spatial class
   if (!inherits(shapes, "sf")) {
     # maybe it is just points? no radius available
-    shapes <- try(shapefile_from_sitepoints(shapes))
+    shapes <- try(shapefile_from_sitepoints(shapes), silent = TRUE)
     if (inherits(shapes, "try-error")) {
       warning("shapes must be a simple features object (sf) or data.frame of points")
       return(NULL)

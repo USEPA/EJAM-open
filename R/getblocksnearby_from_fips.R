@@ -4,7 +4,7 @@
 #' Allows EJAM to analyze and compare Counties, for example
 #' 
 #' @param fips vector of FIPS codes identifying blockgroups, tracts, counties, or states.
-#'   This is useful if -- instead of gettings stats on and comparing circular buffers or polygons --
+#'   This is useful if -- instead of getting stats on and comparing circular buffers or polygons --
 #'    one will be getting stats on one or more tracts, 
 #'   or analyzing and comparing blockgroups in a county, 
 #'   or comparing whole counties to each other, within a State.

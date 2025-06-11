@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -63,16 +63,16 @@
 
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>For documentation on EJScreen, see (https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen)</p>
+    <p>There is <a href="https://web.archive.org/web/20250118193121/https://www.epa.gov/ejscreen" class="external-link">archived documentation on EJScreen</a></p>
 <p>blockpoints is a table of all census blocks, with the lat, lon
 providing the latitude and longitude of the Census Bureau-defined
 internal point, like a centroid, of each block.</p>
 <p>It also has a column
 called blockid that can join it to other block datasets.</p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">dataload_dynamic</span>(<span class="st">'blockpoints'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">names</span>(blockpoints)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">dim</span>(blockpoints)</span></code></pre><p></p></div>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="st">`</span><span class="at">dataload_dynamic('blockpoints')</span><span class="st">`</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="st">`</span><span class="at">names(blockpoints)</span><span class="st">`</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="st">`</span><span class="at">dim(blockpoints)</span><span class="st">`</span></span></code></pre><p></p></div>
     </div>
 
   </main></div>
