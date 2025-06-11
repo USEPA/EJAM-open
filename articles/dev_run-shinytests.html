@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Testing EJAM App with Shinytests • EJAM</title>
+<title>Testing EJAM App with shinytest2 • EJAM</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
@@ -15,7 +15,7 @@
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Testing EJAM App with Shinytests">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Testing EJAM App with shinytest2">
 <meta name="description" content="How to run {shinytest2} suite for app-based functionality testing.">
 <meta property="og:description" content="How to run {shinytest2} suite for app-based functionality testing.">
 <meta property="og:image" content="https://usepa.github.io/EJAM-open/logo.svg">
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -83,7 +83,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.svg" class="logo" alt=""><h1>Testing EJAM App with Shinytests</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Testing EJAM App with shinytest2</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/USEPA/EJAM-open/blob/main/vignettes/dev_run-shinytests.Rmd" class="external-link"><code>vignettes/dev_run-shinytests.Rmd</code></a></small>
@@ -92,32 +92,44 @@
 
     
     
-<p>This document outlines the general development process for updating
-EJAM, including the surrounding GitHub infrastructure.</p>
+<p>This document covers the UI-related automated tests.</p>
 <div class="section level2">
 <h2 id="dev-environment">Dev Environment<a class="anchor" aria-label="anchor" href="#dev-environment"></a>
 </h2>
 <p>If you are successfully running the app, you should have all the
 necessary packages. If you don’t, those packages should live in the
-<code>DESCRIPTION</code> file. However, there are some dev-related
-packages you may not have:</p>
+<code>DESCRIPTION</code> file. Some dev-related packages to note:</p>
 <ul>
-<li><strong>Shinytest2</strong></li>
-<li><strong>Diffviewer</strong></li>
 <li>
-<strong>PhantomJS</strong> – Needed for downloads (install with
-<code><a href="http://wch.github.io/webshot/reference/install_phantomjs.html" class="external-link">webshot::install_phantomjs()</a></code>)</li>
+<strong><a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a></strong> - <a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a> is the key R
+package helping to test shiny web app functionality</li>
 <li>
-<strong>Pandoc</strong> – May come with RStudio; different ways to
-install</li>
+<strong><a href="https://diffviewer.r-lib.org" class="external-link">diffviewer</a></strong> - <a href="https://diffviewer.r-lib.org" class="external-link">diffviewer</a> helps visually
+compare 2 files</li>
+<li>
+<strong>Pandoc</strong> – Comes bundled with RStudio</li>
+<li>
+<strong>PhantomJS</strong>? – Used to be needed for downloads
+(installed with <code><a href="http://wch.github.io/webshot/reference/install_phantomjs.html" class="external-link">webshot::install_phantomjs()</a></code>). But
+note:</li>
 </ul>
+<p>NOTE FROM <a href="https://rstudio.github.io/shinytest2/articles/z-migration.html" class="external-link uri">https://rstudio.github.io/shinytest2/articles/z-migration.html</a>:
+- <a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a> is the successor to
+<a href="https://github.com/rstudio/shinytest" class="external-link">shinytest</a>. <a href="https://github.com/rstudio/shinytest" class="external-link">shinytest</a> was implemented using
+<a href="https://github.com/rstudio/webdriver" class="external-link">webdriver</a> which uses <a href="https://phantomjs.org/api/" class="external-link">PhantomJS</a>. PhantomJS has been
+unsupported since 2017 and does not support displaying
+<a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a>’s Bootstrap v5. <a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a> uses
+<a href="https://rstudio.github.io/chromote/" class="external-link">chromote</a> to connect to your locally installed Chrome or
+Chromium application, allowing <a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a> to display
+<a href="https://rstudio.github.io/bslib/" class="external-link">bslib</a>’s Bootstrap v5.</p>
 </div>
 <div class="section level2">
-<h2 id="how-shinytest2-works">How Shinytest2 Works<a class="anchor" aria-label="anchor" href="#how-shinytest2-works"></a>
+<h2 id="how-shinytest2-works">How shinytest2 Works<a class="anchor" aria-label="anchor" href="#how-shinytest2-works"></a>
 </h2>
-<p>Shinytest2 (henceforth “shinytest”) automates app functionality
-testing, so we can determine if code updates break or unexpectedly
-modify parts of an application.</p>
+<p><a href="https://rstudio.github.io/shinytest2/" class="external-link">shinytest2</a> (here referred to henceforth as “shinytest”
+not to be confused with the older R package that was named shinytest!)
+automates shiny web app functionality testing, so we can determine if
+code updates break or unexpectedly modify parts of an application.</p>
 <p>It runs the installed version of the app in a headless Chromium
 browser, simulating user interactions and taking snapshots. These
 snapshots are stored as JSON files with accompanying PNG images. If
@@ -138,7 +150,7 @@ cause test failures)</li>
 </div>
 </div>
 <div class="section level2">
-<h2 id="ejams-shinytest-folder-structure">EJAM’s Shinytest Folder Structure<a class="anchor" aria-label="anchor" href="#ejams-shinytest-folder-structure"></a>
+<h2 id="ejams-shinytest2-folder-structure">EJAM’s shinytest2 Folder Structure<a class="anchor" aria-label="anchor" href="#ejams-shinytest2-folder-structure"></a>
 </h2>
 <pre class="plaintext"><code>tests/
   ├── testthat.R (modified for shinytest2)
@@ -167,20 +179,21 @@ cause test failures)</li>
 <code><a href="https://rstudio.github.io/shinytest2/reference/test_app.html" class="external-link">shinytest2::test_app()</a></code> to run all tests. Can filter
 specific tests using <code>filter="test-name"</code>.</li>
 <li>
-<strong><code>_snaps/</code></strong> – Stores snapshots categorized
-by OS, R version, and data type.</li>
-<li>
-<strong><code>setup-shinytest2.R</code></strong> – Loads
-defaults/etc. and app scripts into the testing environment.</li>
+<strong><code>testthat/setup-shinytest2.R</code></strong> – Loads
+<code>global.R</code> and app scripts into the testing environment.</li>
 <li>
 <strong><code>app-functionality.R</code></strong> – Contains generic
 function, <code>main_shinytest()</code>, that defines app interactions
 for testing, running tests for multiple data types (FIPS, shapefile,
 latlon, NAICS, etc.).</li>
 <li>
-<strong><code>test-[DATA TYPE]-functionality.R</code></strong> –
-Simple call to the main app functionality function, specifying the data
-type to test with.</li>
+<strong><code>testthat/test-[DATA TYPE]-functionality.R</code></strong>
+– Simple call to the main app functionality function, specifying the
+data type to test with.</li>
+<li>
+<strong><code>testthat/_snaps/</code></strong> – Stores snapshots
+categorized by OS, R version, and data type.
+<ul>
 <li>
 <strong><code>.json</code> files</strong> – Capture app
 snapshots.</li>
@@ -191,6 +204,8 @@ trigger failures).</li>
 <strong><code>.xlsx</code> &amp; <code>.html</code> files</strong> –
 Download files. Compared via content hashing to prevent false
 failures.</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -212,19 +227,20 @@ the app for the shinytest to test.</p>
 <h3 id="using-shinytest2record_test-to-generate-testing-code">Using <code>shinytest2::record_test()</code> to generate testing
 code<a class="anchor" aria-label="anchor" href="#using-shinytest2record_test-to-generate-testing-code"></a>
 </h3>
-<p>If you’re not sure how to code interactions directly, run this commad
-to test the app interactively and record your actions, which can then be
-copied into test scripts.</p>
+<p>If you’re not sure how to code interactions directly, run
+<code><a href="https://rstudio.github.io/shinytest2/reference/record_test.html" class="external-link">shinytest2::record_test()</a></code> to test the app interactively and
+record your actions, which can then be copied into test scripts.</p>
 </div>
 <div class="section level3">
-<h3 id="using-exporttestvaluesname-value">Using <code>exportTestValues(name = value)</code><a class="anchor" aria-label="anchor" href="#using-exporttestvaluesname-value"></a>
+<h3 id="using-shinyexporttestvaluesname-value">Using <code>shiny::exportTestValues(name = value)</code><a class="anchor" aria-label="anchor" href="#using-shinyexporttestvaluesname-value"></a>
 </h3>
-<p>Throughout the app code, this can be used to store values from
-reactive expressions or other items that are not inputs or outputs and
-therefore may not be included in the standard snapshots. Then, in the
-shinytests, you can specify <code>export=[name]</code> to include in the
-snapshot the export named “name” that you specified in the code, or
-<code>export=TRUE</code> to include all exports.</p>
+<p>Throughout the app code, <code><a href="https://rdrr.io/pkg/shiny/man/exportTestValues.html" class="external-link">shiny::exportTestValues()</a></code> can
+be used to store values from reactive expressions or other items that
+are not inputs or outputs and therefore may not be included in the
+standard snapshots. Then, in the shinytests, you can specify
+<code>export=[name]</code> to include in the snapshot the export named
+“name” that you specified in the code, or <code>export=TRUE</code> to
+include all exports.</p>
 </div>
 </div>
 <div class="section level2">
@@ -236,7 +252,7 @@ snapshot the export named “name” that you specified in the code, or
 <p>However, it is strongly recommended during development to run the
 entire <code>testthat.R</code> which runs
 <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code> to ensure your development code is
-the one tested. This is because shinytest automatically references the
+the one tested. This is because shinytest2 automatically references the
 installed version of a package.</p>
 </div>
 <div class="section level2">
@@ -291,7 +307,7 @@ snapshots.</p>
 <h2 id="debugging-tests-github-actions">Debugging Tests &amp; GitHub Actions<a class="anchor" aria-label="anchor" href="#debugging-tests-github-actions"></a>
 </h2>
 <div class="section level3">
-<h3 id="debugging-shinytest2">Debugging Shinytest2<a class="anchor" aria-label="anchor" href="#debugging-shinytest2"></a>
+<h3 id="debugging-shinytest2">Debugging shinytest2<a class="anchor" aria-label="anchor" href="#debugging-shinytest2"></a>
 </h3>
 <ul>
 <li>Use <code>save_log()</code> to inspect logs.</li>
@@ -343,18 +359,18 @@ compare snapshots in a diff viewer to identify discrepancies.</li>
 <h2 id="current-state-of-tests">Current State of Tests<a class="anchor" aria-label="anchor" href="#current-state-of-tests"></a>
 </h2>
 <ul>
-<li>As of 4/2/2025, the shinytests may be failing, as snapshots have not
-been updated locally and pushed after recent changes.</li>
-<li>The current version of R used for testing is 4.4.1 and should
-reflect the version used in your development environment, to ensure
-consistency as much as possible.</li>
+<li>If the shinytests are failing, it is likely because snapshots have
+not been updated locally and pushed after recent changes.</li>
+<li>The version of R used for testing was 4.4.1 as of early 2025, and
+should reflect the version used in your development environment, to
+ensure consistency as much as possible.</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="resources">Resources<a class="anchor" aria-label="anchor" href="#resources"></a>
 </h2>
 <p><a href="https://rstudio.github.io/shinytest2/reference/AppDriver.html#method-AppDriver-expect_download" class="external-link">RStudio
-Shinytest2 Documentation</a></p>
+shinytest2 Documentation</a></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -367,7 +383,7 @@ Shinytest2 Documentation</a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer>

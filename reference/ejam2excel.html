@@ -11,7 +11,7 @@ as well as other tabs such as map, plot, notes, etc."><meta property="og:image" 
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ as well as other tabs such as map, plot, notes, etc."><meta property="og:image" 
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -80,14 +80,16 @@ as well as other tabs such as map, plot, notes, etc.</p>
 <span>  in.analysis_title <span class="op">=</span> <span class="st">"EJAM analysis"</span>,</span>
 <span>  react.v1_summary_plot <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  radius_or_buffer_in_miles <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  buffer_desc <span class="op">=</span> <span class="st">"Selected Locations"</span>,</span>
+<span>  buffer_desc <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  radius_or_buffer_description <span class="op">=</span></span>
 <span>    <span class="st">"Miles radius of circular buffer (or distance used if buffering around polygons)"</span>,</span>
 <span>  hyperlink_colnames <span class="op">=</span> <span class="st">"ECHO Report"</span>,</span>
 <span>  site_method <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  mapadd <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  report_map <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  community_reportadd <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  community_html <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  shp <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -163,7 +165,23 @@ site_method can be one of these: SHP, latlon, FIPS, NAICS, FRS, EPA_PROGRAM, SIC
 
 
 <dt id="arg-mapadd">mapadd<a class="anchor" aria-label="anchor" href="#arg-mapadd"></a></dt>
-<dd><p>logical option for including a map of the points</p></dd>
+<dd><p>Logical, whether to add a tab with a map of the sites. If report tab is added, though, standalone static map in excel tab is redundant.</p></dd>
+
+
+<dt id="arg-report-map">report_map<a class="anchor" aria-label="anchor" href="#arg-report-map"></a></dt>
+<dd><p>the map to use if mapadd = TRUE (re-created if this is omitted/NULL but mapadd is TRUE)</p></dd>
+
+
+<dt id="arg-community-reportadd">community_reportadd<a class="anchor" aria-label="anchor" href="#arg-community-reportadd"></a></dt>
+<dd><p>Logical, whether to add a tab with a static copy of the summary report (tables, map, barplot).</p></dd>
+
+
+<dt id="arg-community-html">community_html<a class="anchor" aria-label="anchor" href="#arg-community-html"></a></dt>
+<dd><p>the HTML of the summary/community report if available (re-created if this is omitted/NULL but community_reportadd is TRUE)</p></dd>
+
+
+<dt id="arg-shp">shp<a class="anchor" aria-label="anchor" href="#arg-shp"></a></dt>
+<dd><p>shapefile to create map if not providing it via report_map or community_html parameters</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -181,17 +199,17 @@ or returns just the full path/file name of where it was saved if save_now = TRUE
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># Add purple to flag indicators at 99th percentile</span></span></span>
-<span class="r-in"><span><span class="fu">ejam2excel</span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span>, </span></span>
+<span class="r-in"><span><span class="fu">ejam2excel</span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># View spreadsheet 1st without saving it as a file</span></span></span>
-<span class="r-in"><span>  launchexcel <span class="op">=</span> <span class="cn">T</span>, save_now <span class="op">=</span> <span class="cn">F</span>, </span></span>
-<span class="r-in"><span>  heatmap_cuts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">95</span>, <span class="fl">99</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>  heatmap_colors  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"purple"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  launchexcel <span class="op">=</span> <span class="cn">T</span>, save_now <span class="op">=</span> <span class="cn">F</span>,</span></span>
+<span class="r-in"><span>  heatmap_cuts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">80</span>, <span class="fl">90</span>, <span class="fl">95</span>, <span class="fl">99</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  heatmap_colors  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span>, <span class="st">"purple"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  <span class="co"># Apply heatmap to only a few of the ratio columns</span></span></span>
 <span class="r-in"><span>  heatmap2_colnames <span class="op">=</span> <span class="va">names_d_ratio_to_state_avg</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRYING TO USE logo_path =  /home/runner/work/_temp/Library/EJAM/report/community_report/ejamhex4.png </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> mydf seems to be a list of tables such as output from ejamit() so using just the results_bysite table here</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> phantomjs has been installed to /home/runner/bin</span>
 <span class="r-plt img"><img src="ejam2excel-1.png" alt="" width="700" height="433"></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Error converting HTML to PNG:Need url.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> PNG file not found or could not be generated.</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in chooseExcelApp():</span> No applications (detected) available.</span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> Set options('openxlsx.excelApp'), instead.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
@@ -207,7 +225,7 @@ or returns just the full path/file name of where it was saved if save_now = TRUE
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

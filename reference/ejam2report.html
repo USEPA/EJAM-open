@@ -9,7 +9,7 @@ EJScreen Community Report"><meta property="og:image" content="https://usepa.gith
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ EJScreen Community Report"><meta property="og:image" content="https://usepa.gith
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -90,7 +90,10 @@ EJScreen Community Report</p>
 <span>     <span class="va">names_flag</span><span class="op">)</span>,</span>
 <span>    Climate <span class="op">=</span> <span class="va">names_climate</span>, `Critical Services` <span class="op">=</span> <span class="va">names_criticalservice</span>, Other <span class="op">=</span></span>
 <span>    <span class="va">names_d_other_count</span><span class="op">)</span>,</span>
-<span>  extratable_hide_missing_rows_for <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">extratable_list_of_sections</span><span class="op">)</span><span class="op">)</span></span>
+<span>  extratable_hide_missing_rows_for <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">extratable_list_of_sections</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  report_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  logo_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  logo_html <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -105,8 +108,8 @@ if sitenumber parameter is used, or a data.table called <code>results_overall</c
 
 <dt id="arg-sitenumber">sitenumber<a class="anchor" aria-label="anchor" href="#arg-sitenumber"></a></dt>
 <dd><p>If a number is provided, the report is about
-<code>ejamout$results_bysite[sitenumber, ]</code> and if no number is provided (param is NULL)
-then the report is about <code>ejamout$results_overall</code></p></dd>
+<code>ejamitout$results_bysite[sitenumber, ]</code> and if no number is provided (param is NULL)
+then the report is about <code>ejamitout$results_overall</code></p></dd>
 
 
 <dt id="arg-analysis-title">analysis_title<a class="anchor" aria-label="anchor" href="#arg-analysis-title"></a></dt>
@@ -119,7 +122,7 @@ then the report is about <code>ejamout$results_overall</code></p></dd>
 
 <dt id="arg-shp">shp<a class="anchor" aria-label="anchor" href="#arg-shp"></a></dt>
 <dd><p>provide the sf spatial data.frame of polygons that were analyzed so you can map them since
-they arenot in ejamitout</p></dd>
+they are not in ejamitout</p></dd>
 
 
 <dt id="arg-return-html">return_html<a class="anchor" aria-label="anchor" href="#arg-return-html"></a></dt>
@@ -166,7 +169,21 @@ to show in that section, in extra table of demog. subgroups, etc.</p></dd>
 <dt id="arg-extratable-hide-missing-rows-for">extratable_hide_missing_rows_for<a class="anchor" aria-label="anchor" href="#arg-extratable-hide-missing-rows-for"></a></dt>
 <dd><p>only for the indicators named in this vector,
 leave out rows in table where raw value is NA,
-as with many of names_d_language, in extra table of demog. subgroups, etc.' #'</p></dd>
+as with many of names_d_language, in extra table of demog. subgroups, etc.</p></dd>
+
+
+<dt id="arg-report-title">report_title<a class="anchor" aria-label="anchor" href="#arg-report-title"></a></dt>
+<dd><p>optional generic name of this type of report, to be shown at top, like "EJAM Multisite Report"</p></dd>
+
+
+<dt id="arg-logo-path">logo_path<a class="anchor" aria-label="anchor" href="#arg-logo-path"></a></dt>
+<dd><p>optional relative path to a logo for the upper right of the overall header.
+Ignored if logo_html is specified and not NULL, but otherwise uses default or param set in run_app()</p></dd>
+
+
+<dt id="arg-logo-html">logo_html<a class="anchor" aria-label="anchor" href="#arg-logo-html"></a></dt>
+<dd><p>optional HTML for img of logo for the upper right of the overall header.
+If specified, it overrides logo_path. If omitted, gets created based on logo_path.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -179,9 +196,6 @@ and has side effect of launching browser to view it depending on return_html</p>
     <p>This relies on <code><a href="build_community_report.html">build_community_report()</a></code> as used in web app
 for viewing report on 1 site from a list of sites (or overall).
 You can customize the report somewhat by using parameters like extratable_list_of_sections</p>
-<p>Note  <code><a href="report_community_download.html">report_community_download()</a></code> is similar to <code><a href="build_community_report.html">build_community_report()</a></code>
-but renders and saves the report as an HTML or pdf file for download
-instead of returning HTML for display in a browser.</p>
     </div>
 
     <div class="section level2">
@@ -190,8 +204,9 @@ instead of returning HTML for display in a browser.</p>
 <span class="r-in"><span><span class="va">out</span> <span class="op">&lt;-</span> <span class="va">testoutput_ejamit_10pts_1miles</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">ejam2report</span><span class="op">(</span><span class="va">out</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRYING TO USE logo_path =  /home/runner/work/_temp/Library/EJAM/report/community_report/ejamhex4.png </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> mydf seems to be a list of tables such as output from ejamit() so using just the results_bysite table here</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/RtmpuU15oN/EJAM_community_report_Summary_of_Analysis_1_Miles_from_places_by_latlon.html"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "/tmp/Rtmp9GMKhr/EJAM_community_report_Summary_of_Analysis_1_Miles_from_places_by_latlon.html"</span>
 <span class="r-in"><span><span class="fu"><a href="table_gt_from_ejamit_overall.html">table_gt_from_ejamit_overall</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_overall</span><span class="op">)</span></span></span>
 <div class="gt-table"><div id="dginazjvcw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -271,6 +286,7 @@ instead of returning HTML for display in a browser.</p>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in table_tall_from_overall(out$results_overall):</span> could not find function "table_tall_from_overall"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">ejam2report</span><span class="op">(</span><span class="va">out</span>, sitenumber <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> TRYING TO USE logo_path =  /home/runner/work/_temp/Library/EJAM/report/community_report/ejamhex4.png </span>
 <span class="r-in"><span><span class="fu"><a href="table_gt_from_ejamit_1site.html">table_gt_from_ejamit_1site</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_bysite</span><span class="op">[</span><span class="fl">1</span>, <span class="op">]</span><span class="op">)</span></span></span>
 <div class="gt-table"><div id="iditgwaebh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 
@@ -359,7 +375,7 @@ instead of returning HTML for display in a browser.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

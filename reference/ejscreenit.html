@@ -11,7 +11,7 @@ multiple locations compiled in one table."><meta property="og:image" content="ht
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ multiple locations compiled in one table."><meta property="og:image" content="ht
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -173,7 +173,7 @@ If interactive() is TRUE, this actually defaults to TRUE.</p></dd>
 
 
 <dt id="arg-nicenames">nicenames<a class="anchor" aria-label="anchor" href="#arg-nicenames"></a></dt>
-<dd><p>whether to use long plain english headers in table or R variable names,
+<dd><p>whether to use long plain English headers in table or R variable names,
 e.g.,  "Particulate Matter (PM 2.5 in ug/m3)" not "pm"</p></dd>
 
 
@@ -283,8 +283,8 @@ and then prepends input table and renames columns as R variables like "traffic.s
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span> <span class="va">pts</span> <span class="op">&lt;-</span> <span class="va">testpoints_50</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, <span class="op">]</span> <span class="co"># sample data from package</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="mapfast.html">mapfast</a></span><span class="op">(</span><span class="va">pts</span><span class="op">)</span></span></span>
-<div id="htmlwidget-ec658d41f8c4f2d124e9" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec658d41f8c4f2d124e9">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[33.5604162,41.0613821,40.8304508],[-111.9040233,-73.7917865,-73.9131946],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["sitenumber: 1<br>sitename: site 1<br>lon: -111.9040233<br>lat: 33.5604162","sitenumber: 2<br>sitename: site 2<br>lon: -73.7917865<br>lat: 41.0613821","sitenumber: 3<br>sitename: site 3<br>lon: -73.9131946<br>lat: 40.8304508"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[33.5604162,41.0613821],"lng":[-111.9040233,-73.7917865]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span> <span class="co">#pts &lt;- system.file("testdata/latlon/testpoints_10.xlsx", package="EJAM") </span></span></span>
+<div id="htmlwidget-6b83523733b890d61edc" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b83523733b890d61edc">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[33.5604162,41.0613821,40.8304508],[-111.9040233,-73.7917865,-73.9131946],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["sitenumber: 1<br>sitename: site 1<br>lon: -111.9040233<br>lat: 33.5604162","sitenumber: 2<br>sitename: site 2<br>lon: -73.7917865<br>lat: 41.0613821","sitenumber: 3<br>sitename: site 3<br>lon: -73.9131946<br>lat: 40.8304508"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[33.5604162,41.0613821],"lng":[-111.9040233,-73.7917865]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span> <span class="co">#pts &lt;- system.file("testdata/latlon/testpoints_10.xlsx", package="EJAM") </span></span></span>
 <span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="va">interactive</span><span class="op">)</span></span></span>
 <span class="r-in"><span> </span></span>
 <span class="r-in"><span> <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">ejscreenit</span><span class="op">(</span><span class="va">pts</span>, </span></span>
@@ -365,7 +365,7 @@ and then prepends input table and renames columns as R variables like "traffic.s
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

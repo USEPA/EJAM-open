@@ -15,7 +15,7 @@ to add new or update existing attributes."><meta property="og:image" content="ht
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@ to add new or update existing attributes."><meta property="og:image" content="ht
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -74,7 +74,7 @@ to add new or update existing attributes.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">metadata_add</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">metadata_add</span><span class="op">(</span><span class="va">x</span>, update_date_saved_in_package <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -83,7 +83,8 @@ to add new or update existing attributes.</p>
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>dataset (or any object) whose metadata (stored as attributes) you want to update or create
-EJAM, EJScreen, and other dataset versions and release dates are tracked in DESCRIPTION</p></dd>
+EJAM, EJScreen, and other dataset versions and release dates are tracked in DESCRIPTION
+@param update_date_saved_in_package set to FALSE to avoid changing this attribute</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -92,7 +93,9 @@ EJAM, EJScreen, and other dataset versions and release dates are tracked in DESC
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>This utility would be used in scripts in EJAM/data-raw/ to
+    <p>to update only the ejam_package_version attribute of every data item:</p>
+<p>metadata_update_attr()</p>
+<p>This utility would be used in scripts in EJAM/data-raw/ to
 add metadata to objects like x before use_data(x, overwrite=T)</p>
     </div>
     <div class="section level2">
@@ -127,7 +130,7 @@ add metadata to objects like x before use_data(x, overwrite=T)</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

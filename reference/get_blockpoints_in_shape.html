@@ -11,7 +11,7 @@ such as places at elevated risk, redlined areas, watersheds, etc."><meta propert
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ such as places at elevated risk, redlined areas, watersheds, etc."><meta propert
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -138,7 +138,7 @@ which US block points are nearby (with a safety margin - see param below),
 before then using sf:: to carefully identify which of those candidate blocks are actually
 inside each polygon (e.g., circle) according to sf:: methods.</p>
 <p>For circular buffers, just using getblocksnearby() should work and not need this function.</p>
-<p>For noncircular polygons, buffered or not, this function will provide a way to very quickly
+<p>For non-circular polygons, buffered or not, this function will provide a way to very quickly
 filter down to which of the millions of US blocks should be examined by the sf:: join / intersect,
 since otherwise it takes forever for sf:: to check all US blocks.</p>
     </div>
@@ -164,7 +164,7 @@ since otherwise it takes forever for sf:: to check all US blocks.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

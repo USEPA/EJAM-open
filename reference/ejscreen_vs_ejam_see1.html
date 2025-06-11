@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -109,7 +109,7 @@ but see str() because it is a list in matrix form</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Starting ejscreenapi_plus()... </span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ejscreenapi(lon = lon, lat = lat, radius = radius, unit = unit,     wkid = wkid, fips = fips, shapefile = shapefile, namestr = namestr,     format_report_or_json = format_report_or_json, ipurl = ipurl,     report_every_n = report_every_n, save_when_report = save_when_report,     on_server_so_dont_save_files = on_server_so_dont_save_files,     drop_redundant_indicators = TRUE, verbose = verbose, getstatefromplacename = getstatefromplacename):</span> API URL does not seem to be accessible</span>
-<span class="r-in"><span>  <span class="fu">ejscreen_vs_ejam_see1</span><span class="op">(</span><span class="va">vs</span>, mysite <span class="op">=</span> <span class="va">mysite</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">ejscreen_vs_ejam_see1</span><span class="op">(</span><span class="va">vs</span>, mysite <span class="op">=</span> <span class="va">mysite</span>,</span></span>
 <span class="r-in"><span>    myvars <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">vs</span><span class="op">$</span><span class="va">EJAM</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">vs</span><span class="op">$</span><span class="va">EJSCREEN</span><span class="op">[</span><span class="va">mysite</span>, <span class="op">]</span><span class="op">)</span> , <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ejscreen_vs_ejam_see1(vs, mysite = mysite, myvars = colnames(vs$EJAM)):</span> could not find function "ejscreen_vs_ejam_see1"</span>
 <span class="r-in"><span>  <span class="co"># }</span></span></span>
@@ -125,7 +125,7 @@ but see str() because it is a list in matrix form</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

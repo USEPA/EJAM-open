@@ -101,7 +101,9 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/dupeRfiles.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/dupenames.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/echo_colids_from_num_name_group.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/ejam2areafeatures.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/ejam2barplot.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/ejam2barplot_areafeatures.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/ejam2barplot_distances.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/ejam2barplot_indicators.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/ejam2barplot_sitegroups.html</loc></url>
@@ -226,6 +228,7 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/generate_report_footnotes.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/get_blockpoints_in_shape.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/get_facility_info_via_ECHO.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/get_global_defaults_or_user_options.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/getblocks_diagnostics.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/getblocks_predict_blocks_per_site.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/getblocks_summarize_blocks_per_site.html</loc></url>
@@ -238,6 +241,7 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/getfrsnearby.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/getpointsnearby.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/getpointsnearbyviaQuadTree.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/global_or_param.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/high_pctiles_tied_with_min.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/index.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/indexblocks.html</loc></url>
@@ -274,8 +278,6 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/latlon_join_on_bgid.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/latlon_join_on_blockid.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/latloncsv2nexus.html</loc></url>
-<url><loc>https://usepa.github.io/EJAM-open/reference/locate_by_id.html</loc></url>
-<url><loc>https://usepa.github.io/EJAM-open/reference/locate_by_id1.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/mact_table.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/map2browser.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/map_blockgroups_over_blocks.html</loc></url>
@@ -288,7 +290,6 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/map_shapes_leaflet_proxy.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/map_shapes_mapview.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/map_shapes_plot.html</loc></url>
-<url><loc>https://usepa.github.io/EJAM-open/reference/map_single_location.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/mapfast.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/mapfast_gg.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/mapfastej.html</loc></url>
@@ -456,7 +457,6 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/read_and_clean_points.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/read_csv_or_xl.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/regid_from_naics.html</loc></url>
-<url><loc>https://usepa.github.io/EJAM-open/reference/report_community_download.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/report_residents_within_xyz.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/report_setup_temp_files.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/report_xmilesof.html</loc></url>
@@ -555,6 +555,7 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/testinput_program_sys_id.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testinput_regid.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testinput_registry_id.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/testinput_shapes_2.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testinput_sic.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testinput_xtrac.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_doaggregate_1000pts_1miles.html</loc></url>
@@ -563,6 +564,9 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_1000pts_1miles.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_100pts_1miles.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_10pts_1miles.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_fips_cities.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_fips_counties.html</loc></url>
+<url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejamit_shapes_2.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejscreenRESTbroker_1pts_1miles.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejscreenapi_1pts_1miles.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/testoutput_ejscreenapi_plus_5.html</loc></url>
@@ -609,7 +613,6 @@
 <url><loc>https://usepa.github.io/EJAM-open/reference/usastats_query.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/usastats_queryd.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/usastats_querye.html</loc></url>
-<url><loc>https://usepa.github.io/EJAM-open/reference/v1_summary_plot_report.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/varin_map_headernames.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/varinfo.html</loc></url>
 <url><loc>https://usepa.github.io/EJAM-open/reference/varname2color_ejam.html</loc></url>

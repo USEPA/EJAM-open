@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -459,20 +459,20 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 164           1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 165           0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 417      72.662</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 418      66.855</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 418      83.142</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 419     117.641</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 420     116.821</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 421      59.572</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 422     118.693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 423      94.667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 423      94.692</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 424     108.065</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 425      36.502</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 426     122.999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 426     123.057</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 427      99.994</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 428     105.869</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 429      80.283</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 429      80.294</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 430      91.953</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 431      48.636</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 431      58.857</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 432     104.733</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 433      97.954</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 434       91.73</span>
@@ -480,12 +480,12 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 436      76.136</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 437      92.378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 438      54.627</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 439     106.014</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 439     106.043</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 440      83.854</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 441      91.479</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 442       46.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 442       46.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 350          63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 351          62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 351          69</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 352          76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 353          77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 354          58</span>
@@ -498,7 +498,7 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 361          76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 362          83</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 376          66</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 377          48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 377          53</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 378          68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 379          65</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 380          66</span>
@@ -511,20 +511,20 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 387          66</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 388          45</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 443      66.552</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 444      62.937</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 444      78.034</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 445     110.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 446     109.369</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 447      56.357</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 448     110.815</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 449      91.252</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 449      91.293</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 450     101.699</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 451      35.509</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 452     114.012</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 452     114.085</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 453      94.901</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 454      99.413</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 455      78.077</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 455       78.09</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 456      85.146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 457      45.359</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 457      55.113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 458      97.476</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 459      92.088</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 460      85.865</span>
@@ -532,12 +532,12 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 462      71.343</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 463      87.488</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 464      53.506</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 465      97.655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 465      97.693</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 466      80.199</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 467      84.606</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 468      47.177</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 468      47.318</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 363          47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 364          46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 364          57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 365          72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 366          73</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 367          41</span>
@@ -550,7 +550,7 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 <span class="r-out co"><span class="r-pr">#&gt;</span> 374          67</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 375          76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 389          64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 390          38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 390          45</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 391          67</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 392          65</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 393          61</span>
@@ -1091,7 +1091,7 @@ c(names_ej_pctile, names_ej_state_pctile, names_ej_supp_pctile, names_ej_supp_st
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -353,7 +353,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     575167.6       3633     72060.3     2342.8 1257.2 1330.3     67.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.pm.eo pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        69</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.no2.eo pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         76                         77</span>
@@ -374,7 +374,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              83                          47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.o3.supp pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          46                           72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          57                           72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.dpm.supp pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           73                            41</span>
@@ -395,7 +395,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67                                76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.pm.eo state.pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        48.16518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        52.93514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.no2.eo state.pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               &lt;num&gt;                            &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         68.18433                         64.88879</span>
@@ -413,7 +413,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                   58.49358</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.eo state.pctile.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.09933                         58.91824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.16374                         58.91824</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.npdes.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     66.00462</span>
@@ -422,7 +422,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              44.55852                          63.66636</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.o3.supp state.pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                &lt;num&gt;                              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          38.43499                           67.03026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          44.95977                           67.03026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.dpm.supp state.pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;                               &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           64.62914                            61.49396</span>
@@ -440,7 +440,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     50.84337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                      67.01102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67.0468</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             56.114</span>
@@ -449,7 +449,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       63.01635</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.drinking.supp bgcount_near_site</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;             &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                42.64172               211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                43.29091               211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    blockcount_near_site radius.miles disability disab_universe areawater</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;int&gt;        &lt;num&gt;      &lt;num&gt;          &lt;num&gt;     &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 1640            1    19906.2         210565  11335817</span>
@@ -458,25 +458,25 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1: 205467996     0 0.1717859 0.1185957 0.003659654 0.00345734    0.06901786</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     pctmulti     pctwa EJ.DISPARITY.pm.eo EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;     &lt;num&gt;              &lt;num&gt;              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           66.85458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           83.14169</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.no2.eo EJ.DISPARITY.dpm.eo EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;num&gt;               &lt;num&gt;                &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:            117.6406            116.8213             59.57203</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.traffic.score.eo EJ.DISPARITY.pctpre1960.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.66746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.69228</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npl.eo EJ.DISPARITY.proximity.rmp.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      108.0645                      36.50235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.tsdf.eo EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             &lt;num&gt;               &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       122.9987            99.99378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       123.0575            99.99378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npdes.eo EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                    &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.28275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.29359</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.pm.eo state.EJ.DISPARITY.o3.eo state.EJ.DISPARITY.no2.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       &lt;num&gt;                    &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 48.63573                  104.7334</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 58.85727                  104.7334</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.eo state.EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                  97.95379                   91.73033</span>
@@ -488,31 +488,31 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                            92.37824                            54.62696</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.eo state.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0142                  83.85385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0428                  83.85385</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.eo state.EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;num&gt;                          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.43048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.56037</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pm.supp EJ.DISPARITY.o3.supp EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;num&gt;                &lt;num&gt;                 &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             62.93654               110.354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             78.03351               110.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.dpm.supp EJ.DISPARITY.rsei.supp EJ.DISPARITY.traffic.score.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                  &lt;num&gt;                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              109.3686               56.35672                        110.8148</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pctpre1960.supp EJ.DISPARITY.proximity.npl.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.25176                        101.6988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.29337                        101.6988</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.rmp.supp EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0855</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.ust.supp EJ.DISPARITY.proximity.npdes.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                             &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              94.90104                          99.41322</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.drinking.supp state.EJ.DISPARITY.pm.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.07709                   85.14572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.08952                   85.14572</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.o3.supp state.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   45.35928                    97.47614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   55.11307                    97.47614</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.supp state.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                    92.08849                     85.86526</span>
@@ -524,10 +524,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              87.48847                              53.50602</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.supp state.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.65518                    80.19897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.69286                    80.19897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.supp state.EJ.DISPARITY.drinking.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.17743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.31849</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    area_sqmi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:  31.41593</span>
@@ -798,7 +798,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     575167.6       3633     72060.3     2342.8 1257.2 1330.3     67.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.pm.eo pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        69</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.no2.eo pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         76                         77</span>
@@ -819,7 +819,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              83                          47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.o3.supp pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          46                           72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          57                           72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.dpm.supp pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           73                            41</span>
@@ -840,7 +840,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67                                76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.pm.eo state.pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        48.16518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        52.93514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.no2.eo state.pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               &lt;num&gt;                            &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         68.18433                         64.88879</span>
@@ -858,7 +858,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                   58.49358</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.eo state.pctile.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.09933                         58.91824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.16374                         58.91824</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.npdes.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     66.00462</span>
@@ -867,7 +867,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              44.55852                          63.66636</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.o3.supp state.pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                &lt;num&gt;                              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          38.43499                           67.03026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          44.95977                           67.03026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.dpm.supp state.pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;                               &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           64.62914                            61.49396</span>
@@ -885,7 +885,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     50.84337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                      67.01102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67.0468</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             56.114</span>
@@ -894,7 +894,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       63.01635</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.drinking.supp bgcount_near_site</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;             &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                42.64172               211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                43.29091               211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    blockcount_near_site radius.miles disability disab_universe areawater</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;int&gt;        &lt;num&gt;      &lt;num&gt;          &lt;num&gt;     &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 1640            1    19906.2         210565  11335817</span>
@@ -903,25 +903,25 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1: 205467996     0 0.1717859 0.1185957 0.003659654 0.00345734    0.06901786</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     pctmulti     pctwa EJ.DISPARITY.pm.eo EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;     &lt;num&gt;              &lt;num&gt;              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           66.85458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           83.14169</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.no2.eo EJ.DISPARITY.dpm.eo EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;num&gt;               &lt;num&gt;                &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:            117.6406            116.8213             59.57203</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.traffic.score.eo EJ.DISPARITY.pctpre1960.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.66746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.69228</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npl.eo EJ.DISPARITY.proximity.rmp.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      108.0645                      36.50235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.tsdf.eo EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             &lt;num&gt;               &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       122.9987            99.99378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       123.0575            99.99378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npdes.eo EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                    &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.28275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.29359</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.pm.eo state.EJ.DISPARITY.o3.eo state.EJ.DISPARITY.no2.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       &lt;num&gt;                    &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 48.63573                  104.7334</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 58.85727                  104.7334</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.eo state.EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                  97.95379                   91.73033</span>
@@ -933,31 +933,31 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                            92.37824                            54.62696</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.eo state.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0142                  83.85385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0428                  83.85385</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.eo state.EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;num&gt;                          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.43048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.56037</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pm.supp EJ.DISPARITY.o3.supp EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;num&gt;                &lt;num&gt;                 &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             62.93654               110.354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             78.03351               110.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.dpm.supp EJ.DISPARITY.rsei.supp EJ.DISPARITY.traffic.score.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                  &lt;num&gt;                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              109.3686               56.35672                        110.8148</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pctpre1960.supp EJ.DISPARITY.proximity.npl.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.25176                        101.6988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.29337                        101.6988</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.rmp.supp EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0855</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.ust.supp EJ.DISPARITY.proximity.npdes.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                             &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              94.90104                          99.41322</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.drinking.supp state.EJ.DISPARITY.pm.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.07709                   85.14572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.08952                   85.14572</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.o3.supp state.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   45.35928                    97.47614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   55.11307                    97.47614</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.supp state.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                    92.08849                     85.86526</span>
@@ -969,10 +969,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              87.48847                              53.50602</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.supp state.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.65518                    80.19897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.69286                    80.19897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.supp state.EJ.DISPARITY.drinking.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.17743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.31849</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    area_sqmi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:  31.41593</span>
@@ -1243,7 +1243,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:     575167.6       3633     72060.3     2342.8 1257.2 1330.3     67.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.pm.eo pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        62</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        63                        69</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.no2.eo pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         76                         77</span>
@@ -1264,7 +1264,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              83                          47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.o3.supp pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          46                           72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          57                           72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    pctile.EJ.DISPARITY.dpm.supp pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           73                            41</span>
@@ -1285,7 +1285,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67                                76</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.pm.eo state.pctile.EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        48.16518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        65.99167                        52.93514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.no2.eo state.pctile.EJ.DISPARITY.dpm.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               &lt;num&gt;                            &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                         68.18433                         64.88879</span>
@@ -1303,7 +1303,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                   58.49358</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.eo state.pctile.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.09933                         58.91824</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                    68.16374                         58.91824</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.npdes.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     66.00462</span>
@@ -1312,7 +1312,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              44.55852                          63.66636</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.o3.supp state.pctile.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                &lt;num&gt;                              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          38.43499                           67.03026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                          44.95977                           67.03026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.dpm.supp state.pctile.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;                               &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                           64.62914                            61.49396</span>
@@ -1330,7 +1330,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                     50.84337</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                      67.01102</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       67.0468</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                 &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             56.114</span>
@@ -1339,7 +1339,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                       63.01635</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.pctile.EJ.DISPARITY.drinking.supp bgcount_near_site</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;             &lt;int&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                42.64172               211</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                43.29091               211</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    blockcount_near_site radius.miles disability disab_universe areawater</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;int&gt;        &lt;num&gt;      &lt;num&gt;          &lt;num&gt;     &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 1640            1    19906.2         210565  11335817</span>
@@ -1348,25 +1348,25 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1: 205467996     0 0.1717859 0.1185957 0.003659654 0.00345734    0.06901786</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     pctmulti     pctwa EJ.DISPARITY.pm.eo EJ.DISPARITY.o3.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;     &lt;num&gt;              &lt;num&gt;              &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           66.85458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1: 0.1053545 0.5281291           72.66196           83.14169</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.no2.eo EJ.DISPARITY.dpm.eo EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                  &lt;num&gt;               &lt;num&gt;                &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:            117.6406            116.8213             59.57203</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.traffic.score.eo EJ.DISPARITY.pctpre1960.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.66746</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      118.6931                   94.69228</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npl.eo EJ.DISPARITY.proximity.rmp.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                            &lt;num&gt;                         &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                      108.0645                      36.50235</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.tsdf.eo EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                             &lt;num&gt;               &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       122.9987            99.99378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                       123.0575            99.99378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.npdes.eo EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                    &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.28275</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        105.8691                 80.29359</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.pm.eo state.EJ.DISPARITY.o3.eo state.EJ.DISPARITY.no2.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                       &lt;num&gt;                    &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 48.63573                  104.7334</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                 91.95275                 58.85727                  104.7334</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.eo state.EJ.DISPARITY.rsei.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        &lt;num&gt;                      &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                  97.95379                   91.73033</span>
@@ -1378,31 +1378,31 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                            92.37824                            54.62696</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.eo state.EJ.DISPARITY.ust.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                   &lt;num&gt;                     &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0142                  83.85385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                             106.0428                  83.85385</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.eo state.EJ.DISPARITY.drinking.eo</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                    &lt;num&gt;                          &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.43048</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              91.47862                       46.56037</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pm.supp EJ.DISPARITY.o3.supp EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   &lt;num&gt;                &lt;num&gt;                 &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             62.93654               110.354</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:              66.5519             78.03351               110.354</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.dpm.supp EJ.DISPARITY.rsei.supp EJ.DISPARITY.traffic.score.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                  &lt;num&gt;                           &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              109.3686               56.35672                        110.8148</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.pctpre1960.supp EJ.DISPARITY.proximity.npl.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                           &lt;num&gt;                           &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.25176                        101.6988</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                     91.29337                        101.6988</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.proximity.rmp.supp EJ.DISPARITY.proximity.tsdf.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0118</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                        35.50907                         114.0855</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.ust.supp EJ.DISPARITY.proximity.npdes.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                    &lt;num&gt;                             &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:              94.90104                          99.41322</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    EJ.DISPARITY.drinking.supp state.EJ.DISPARITY.pm.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                      &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.07709                   85.14572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   78.08952                   85.14572</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.o3.supp state.EJ.DISPARITY.no2.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   45.35928                    97.47614</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                   55.11307                    97.47614</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.dpm.supp state.EJ.DISPARITY.rsei.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                          &lt;num&gt;                        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                    92.08849                     85.86526</span>
@@ -1414,10 +1414,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:                              87.48847                              53.50602</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.tsdf.supp state.EJ.DISPARITY.ust.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                     &lt;num&gt;                       &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.65518                    80.19897</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                               97.69286                    80.19897</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    state.EJ.DISPARITY.proximity.npdes.supp state.EJ.DISPARITY.drinking.supp</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                      &lt;num&gt;                            &lt;num&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.17743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1:                                 84.6057                         47.31849</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    area_sqmi</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        &lt;num&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1:  31.41593</span>
@@ -1433,7 +1433,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

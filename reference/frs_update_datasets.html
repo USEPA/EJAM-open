@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -156,9 +156,7 @@ the locations, IDs, etc. for hundreds of thousands of EPA-regulated sites.</p>
 It would normally be called from a script like
 <code>EJAM/data-raw/datacreate_0_UPDATE_ALL_DATASETS.R</code></p>
 <p>These datasets are obtained from EPA servers, reformatted for this package, and
-then stored in a pins board for use by the package.
-The updated files can be moved to the pins board via the script,
-but where they are stored may change as the EJAM package develops.
+then stored in a separate repository - see <a href="../articles/dev_update-datasets.html">updating data for package</a>.
 The save_as_data_ parameters here are set to FALSE because the files are
 not saved in the source package or its repository like
 typical package datasets would be saved in the data folder of the source package.</p>
@@ -180,7 +178,7 @@ of installing the EJAM package.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

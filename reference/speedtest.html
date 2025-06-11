@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -182,10 +182,10 @@ NOTE this slows it down though.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{ </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span>  <span class="va">speedseen_few</span> <span class="op">&lt;-</span> <span class="fu">speedtest</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>,<span class="fl">500</span><span class="op">)</span>, radii<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3.106856</span><span class="op">)</span>, logging<span class="op">=</span><span class="cn">FALSE</span>, honk<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in speedtest(c(50, 500), radii = c(1, 3.106856), logging = FALSE,     honk = FALSE):</span> could not find function "speedtest"</span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">speedseen_nearer_to1k</span> <span class="op">&lt;-</span> <span class="fu">speedtest</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1e2</span>,<span class="fl">1e3</span>,<span class="fl">1e4</span> <span class="op">)</span>, radii<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3.106856</span>,<span class="fl">5</span> <span class="op">)</span>,</span></span>
 <span class="r-in"><span>    logging<span class="op">=</span><span class="cn">TRUE</span>, honk<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in speedtest(n = c(100, 1000, 10000), radii = c(1, 3.106856, 5),     logging = TRUE, honk = FALSE):</span> could not find function "speedtest"</span>
@@ -193,10 +193,10 @@ NOTE this slows it down though.</p></dd>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in save(speedseen_nearer_to1k, file = "~/../Downloads/speedseen_nearer_to1k.rda"):</span> object ‘speedseen_nearer_to1k’ not found</span>
 <span class="r-in"><span>  <span class="fu">rstudioapi</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/rstudioapi/reference/savePlotAsImage.html" class="external-link">savePlotAsImage</a></span><span class="op">(</span>        <span class="st">"~/../Downloads/speedseen_nearer_to1k.png"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> RStudio not running</span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">speedseen_all</span> <span class="op">&lt;-</span> <span class="fu">speedtest</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1e2</span>,<span class="fl">1e3</span>,<span class="fl">1e4</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>    radii<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3.106856</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">31.06856</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1e2</span>,<span class="fl">1e3</span>,<span class="fl">1e4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    radii<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3.106856</span>, <span class="fl">5</span>, <span class="fl">10</span>, <span class="fl">31.06856</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    logging<span class="op">=</span><span class="cn">TRUE</span>, honk<span class="op">=</span><span class="cn">TRUE</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in speedtest(n = c(100, 1000, 10000), radii = c(1, 3.106856, 5,     10, 31.06856), logging = TRUE, honk = TRUE):</span> could not find function "speedtest"</span>
@@ -212,7 +212,7 @@ NOTE this slows it down though.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

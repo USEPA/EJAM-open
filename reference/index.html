@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -76,7 +76,7 @@
           <code><a href="run_app.html">run_app()</a></code> <code><a href="run_app.html">app_run_EJAM()</a></code>
 
         </dt>
-        <dd>Launch EJAM as Shiny web app</dd>
+        <dd>Launch EJAM as Shiny web app in RStudio.</dd>
       </dl><dl><dt>
 
           <code><a href="ejamit.html">ejamit()</a></code>
@@ -142,6 +142,12 @@
 
         </dt>
         <dd>Create facetted barplots of groups of indicators</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2barplot_areafeatures.html">ejam2barplot_areafeatures()</a></code>
+
+        </dt>
+        <dd>barplot of summary stats on special areas and features at the sites</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2boxplot_ratios.html">ejam2boxplot_ratios()</a></code>
@@ -610,10 +616,10 @@
 
       <dl><dt>
 
-          <code><a href="testshapes_2.html">testshapes_2</a></code>
+          <code><a href="testinput_shapes_2.html">testinput_shapes_2</a></code>
 
         </dt>
-        <dd>testshapes_2 dataset</dd>
+        <dd>testinput_shapes_2 dataset</dd>
       </dl><dl><dt>
 
           <code><a href="shapefile_from_any.html">shapefile_from_any()</a></code>
@@ -1282,7 +1288,7 @@
           <code><a href="batch.summarize.html">batch.summarize()</a></code>
 
         </dt>
-        <dd>Core function that calculates summary stats across all sites and nearby people for EJScreen batch analysis</dd>
+        <dd>Calculate more summary stats across all sites and all people</dd>
       </dl><dl><dt>
 
           <code><a href="count_sites_with_n_high_scores.html">count_sites_with_n_high_scores()</a></code>
@@ -1541,6 +1547,12 @@
 
         </dt>
         <dd>Barplot of ratios of residential population (or other) scores to averages - simpler syntax</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2barplot_areafeatures.html">ejam2barplot_areafeatures()</a></code>
+
+        </dt>
+        <dd>barplot of summary stats on special areas and features at the sites</dd>
       </dl></div><div class="section level2">
 
       <h3 id="plots-distribution-of-one-indicator-across-residents-or-sites-comparing-populations-groups-comparing-environmental-factors-etc-">Plots: Distribution of one indicator across residents or sites (comparing populations/groups, comparing environmental factors, etc.)<a class="anchor" aria-label="anchor" href="#plots-distribution-of-one-indicator-across-residents-or-sites-comparing-populations-groups-comparing-environmental-factors-etc-"></a></h3>
@@ -1681,6 +1693,12 @@
 
         </dt>
         <dd>Quick view of summary stats by type of stat, but lacks rounding specific to each type, etc.</dd>
+      </dl><dl><dt>
+
+          <code><a href="ejam2areafeatures.html">ejam2areafeatures()</a></code>
+
+        </dt>
+        <dd>simple way to see the table of summary stats on special areas and features like schools</dd>
       </dl><dl><dt>
 
           <code><a href="ejam2means.html">ejam2means()</a></code>
@@ -1965,58 +1983,22 @@
         <dd>test output of ejamit()</dd>
       </dl><dl><dt>
 
-          <code><a href="testoutput_getblocksnearby_10pts_1miles.html">testoutput_getblocksnearby_10pts_1miles</a></code>
+          <code><a href="testoutput_ejamit_shapes_2.html">testoutput_ejamit_shapes_2</a></code>
 
         </dt>
-        <dd>test output of getblocksnearby(), and is an input to doaggregate()</dd>
+        <dd>testoutput_ejamit_shapes_2 dataset</dd>
       </dl><dl><dt>
 
-          <code><a href="testoutput_getblocksnearby_100pts_1miles.html">testoutput_getblocksnearby_100pts_1miles</a></code>
+          <code><a href="testoutput_ejamit_fips_cities.html">testoutput_ejamit_fips_cities</a></code>
 
         </dt>
-        <dd>test output of getblocksnearby(), and is an input to doaggregate()</dd>
+        <dd>testoutput_ejamit_fips_cities dataset</dd>
       </dl><dl><dt>
 
-          <code><a href="testoutput_getblocksnearby_1000pts_1miles.html">testoutput_getblocksnearby_1000pts_1miles</a></code>
+          <code><a href="testoutput_ejamit_fips_counties.html">testoutput_ejamit_fips_counties</a></code>
 
         </dt>
-        <dd>test output of getblocksnearby(), and is an input to doaggregate()</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_doaggregate_10pts_1miles.html">testoutput_doaggregate_10pts_1miles</a></code>
-
-        </dt>
-        <dd>test output of doaggregate()</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_doaggregate_100pts_1miles.html">testoutput_doaggregate_100pts_1miles</a></code>
-
-        </dt>
-        <dd>test output of doaggregate()</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_doaggregate_1000pts_1miles.html">testoutput_doaggregate_1000pts_1miles</a></code>
-
-        </dt>
-        <dd>test output of doaggregate()</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_ejscreenit_5.html">testoutput_ejscreenit_5</a></code>
-
-        </dt>
-        <dd>test data examples of output from <code><a href="../reference/ejscreenit.html">ejscreenit()</a></code> using testpoints_5, radius = 1</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_ejscreenit_50.html">testoutput_ejscreenit_50</a></code>
-
-        </dt>
-        <dd>test data examples of output from <code><a href="../reference/ejscreenit.html">ejscreenit()</a></code> using testpoints_50, radius = 1</dd>
-      </dl><dl><dt>
-
-          <code><a href="testoutput_ejscreenit_500.html">testoutput_ejscreenit_500</a></code>
-
-        </dt>
-        <dd>test data examples of output from <code><a href="../reference/ejscreenit.html">ejscreenit()</a></code> using testpoints_500, radius = 1</dd>
+        <dd>testoutput_ejamit_fips_counties dataset</dd>
       </dl></div><div class="section level2">
       <h2 id="utilities-for-finding-url-or-api-info">Utilities for finding URL or API info<a class="anchor" aria-label="anchor" href="#utilities-for-finding-url-or-api-info"></a></h2>
 
@@ -2138,7 +2120,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

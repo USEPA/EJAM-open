@@ -9,7 +9,7 @@ Utility to quickly view one or more facility points on map with the blocks found
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ Utility to quickly view one or more facility points on map with the blocks found
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -173,8 +173,8 @@ and then displays a map of those blocks near the specified point.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Analyzing 1 points, radius of 2 miles around each.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Finding Census blocks with internal point within  2  miles of the site (point), for each of 1  sites (points)...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Stats via getblocks_diagnostics(), but NOT ADJUSTING UP FOR VERY SHORT DISTANCES: </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> min distance before adjustment:  0.001444678 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> max distance before adjustment:  3.098718 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> min distance before adjustment:  0.245296 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> max distance before adjustment:  2.573153 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span>  <span class="co"># See two sites and all Census Blocks within 5 kilometers</span></span></span>
 <span class="r-in"><span>    <span class="fu">plotblocksnearby</span><span class="op">(</span><span class="va">testpoints_2</span>, radius <span class="op">=</span> <span class="fu"><a href="convert_units.html">convert_units</a></span><span class="op">(</span><span class="fl">5</span>, from <span class="op">=</span> <span class="st">"km"</span>, towhat <span class="op">=</span> <span class="st">"miles"</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -199,7 +199,7 @@ and then displays a map of those blocks near the specified point.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

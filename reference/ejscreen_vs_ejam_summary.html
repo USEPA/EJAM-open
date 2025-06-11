@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -162,10 +162,10 @@ It uses 100 * quantile(y, probs = prob, type = 1)</p>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 's100' not found</span>
 <span class="r-in"><span>  <span class="va">s100</span><span class="op">[</span><span class="va">s100</span><span class="op">$</span><span class="va">indicator</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">names_these</span>, <span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 's100' not found</span>
-<span class="r-in"><span>  <span class="va">s100</span><span class="op">[</span><span class="va">s100</span><span class="op">$</span><span class="va">indicator</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">names_ej_pctile</span>, <span class="va">names_ej_state_pctile</span>, </span></span>
+<span class="r-in"><span>  <span class="va">s100</span><span class="op">[</span><span class="va">s100</span><span class="op">$</span><span class="va">indicator</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">names_ej_pctile</span>, <span class="va">names_ej_state_pctile</span>,</span></span>
 <span class="r-in"><span>    <span class="va">names_ej_supp_pctile</span>, <span class="va">names_ej_supp_state_pctile</span><span class="op">)</span>, <span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 's100' not found</span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">sum100_within5pct</span> <span class="op">&lt;-</span> <span class="fu">ejscreen_vs_ejam_summary</span><span class="op">(</span><span class="va">vs100</span>, tol <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ejscreen_vs_ejam_summary(vs100, tol = 0.05):</span> could not find function "ejscreen_vs_ejam_summary"</span>
 <span class="r-in"><span>  <span class="va">sum100_within5pct</span><span class="op">[</span><span class="va">sum100_within5pct</span><span class="op">$</span><span class="va">indicator</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">names_these</span>, <span class="op">]</span><span class="op">[</span> , <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">6</span><span class="op">:</span><span class="fl">12</span><span class="op">)</span><span class="op">]</span></span></span>
@@ -190,7 +190,7 @@ It uses 100 * quantile(y, probs = prob, type = 1)</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

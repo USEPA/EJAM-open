@@ -9,7 +9,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column"><
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column"><
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -91,8 +91,8 @@ unused. Not needed if you have sites2blocks table that includes a bgid column</p
 <span class="r-in"><span><span class="fu">state_from_blockid</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">[</span><span class="op">]</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid(x):</span> could not find function "state_from_blockid"</span>
 <span class="r-in"><span><span class="fu"><a href="mapfast.html">mapfast</a></span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span></span></span>
-<div id="htmlwidget-2cc72939cff063e85a1f" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2cc72939cff063e85a1f">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[33.63258400000007,36.30207080000002,18.03344600000003],[-91.84105369999997,-119.6655162,-66.53610329999998],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 407126<br>lat: 33.6325840000001<br>lon: -91.8410537","blockid: 610315<br>lat: 36.3020708<br>lon: -119.6655162","blockid: 8152930<br>lat: 18.033446<br>lon: -66.5361033"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[18.03344600000003,36.30207080000002],"lng":[-119.6655162,-66.53610329999998]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-6c3c002142b1d07728ac" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6c3c002142b1d07728ac">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addCircles","args":[[37.43307150000004,36.12420680000002,27.54462700000005],[-122.151938,-108.6333537,-98.12092249999995],4828.032,null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2},["blockid: 947000<br>lat: 37.4330715<br>lon: -122.151938","blockid: 4737575<br>lat: 36.1242068<br>lon: -108.6333537","blockid: 7109584<br>lat: 27.544627<br>lon: -98.1209224999999"],{"maxHeight":400,"maxWidth":850},null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null,null]},{"method":"addEasyprint","args":[{"title":"Print map","position":"topleft","sizeModes":["A4Portrait","A4Landscape","CurrentSize"],"exportOnly":false,"tileWait":500,"filename":"map","hidden":false,"hideControlContainer":true,"spinnerBgColor":"#0DC5C1","customSpinnerClass":"epLoader"}]}],"limits":{"lat":[27.54462700000005,37.43307150000004],"lng":[-122.151938,-98.12092249999995]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/all.equal.html" class="external-link">all.equal</a></span><span class="op">(</span><span class="fu">state_from_blockid</span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fu"><a href="state_from_blockid_table.html">state_from_blockid_table</a></span><span class="op">(</span><span class="va">blockpoints</span><span class="op">[</span><span class="va">blockid</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">x</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in state_from_blockid(x):</span> could not find function "state_from_blockid"</span>
 <span class="r-in"><span></span></span>
@@ -107,7 +107,7 @@ unused. Not needed if you have sites2blocks table that includes a bgid column</p
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

@@ -9,7 +9,7 @@ For Summary Indexes, see bgej"><meta property="og:image" content="https://usepa.
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ For Summary Indexes, see bgej"><meta property="og:image" content="https://usepa.
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -67,13 +67,12 @@ For Summary Indexes, see bgej"><meta property="og:image" content="https://usepa.
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
 
-<ul><li><p>Version 2.32.3 of EJAM
+<ul><li><p>Version 2.32.4 of EJAM
 uses EPA environmental indicators and population indicators derived from
-ACS data from `r a2018-2022 Each year this should be re-created as for the latest version.
-See attributes(blockgroupstats)</p></li>
+ACS data from <code>r a2018-2022 Each year this should be re-created as for the latest version.   See </code>attributes(blockgroupstats)`</p></li>
 </ul><p>It is a data.table of US Census blockgroups (not blocks).
 With PR, and Island Areas</p>
-<p>Column names include bgfips, bgid (for join to blockwt$bgid), pop, pctlowinc, etc.</p>
+<p>Column names include <code>bgfips</code>, <code>bgid</code> (for join to blockwt by/on <code>bgid</code>), <code>pop</code>, <code>pctlowinc</code>, etc.</p>
     </div>
 
   </main></div>
@@ -84,7 +83,7 @@ With PR, and Island Areas</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

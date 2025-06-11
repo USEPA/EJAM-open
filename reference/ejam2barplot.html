@@ -11,7 +11,7 @@ helper - Barplot of ratios of residential population percentages (or other score
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ helper - Barplot of ratios of residential population percentages (or other score
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -89,7 +89,9 @@ helper - Barplot of ratios of residential population percentages (or other score
 <span>  <span class="va">ratio.to.us.d.overall</span>,</span>
 <span>  shortlabels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mycolorsavailable <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gray"</span>, <span class="st">"yellow"</span>, <span class="st">"orange"</span>, <span class="st">"red"</span><span class="op">)</span>,</span>
-<span>  main <span class="op">=</span> <span class="st">"Residential Populations at the Analyzed Locations Compared to US Overall"</span></span>
+<span>  main <span class="op">=</span> <span class="st">"Residential Populations at the Analyzed Locations Compared to US Overall"</span>,</span>
+<span>  ylab <span class="op">=</span> <span class="st">"Ratio vs. Average"</span>,</span>
+<span>  caption <span class="op">=</span> <span class="st">"NH = \"non-Hispanic\"\nNHA = \"non-Hispanic alone, aka single race\""</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -115,15 +117,11 @@ NOT necessarily the same as the ejamitout$results_bysite$ejam_uniq_id</p></dd>
 
 
 <dt id="arg-main">main<a class="anchor" aria-label="anchor" href="#arg-main"></a></dt>
-<dd><p>title for plot, like "Stats at the Analyzed Locations Compared to US Overall"</p></dd>
+<dd><p>optional, title for plot, like "Stats at the Analyzed Locations Compared to US Overall"</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
-<dd><p>Arguments passed on to <code>ejam2barplot</code></p><dl><dt><code></code></dt>
-<dd></dd>
-
-
-</dl></dd>
+<dd><p>passed to plot_barplot_ratios()</p></dd>
 
 
 <dt id="arg-out">out<a class="anchor" aria-label="anchor" href="#arg-out"></a></dt>
@@ -145,11 +143,19 @@ for an easier way to specify which indicator to show.</p></dd>
 
 
 <dt id="arg-shortlabels">shortlabels<a class="anchor" aria-label="anchor" href="#arg-shortlabels"></a></dt>
-<dd><p>names to use for plot - should be same length as named list ratio.to.us.d.overall</p></dd>
+<dd><p>optional, names to use for plot - should be same length as named list ratio.to.us.d.overall</p></dd>
 
 
 <dt id="arg-mycolorsavailable">mycolorsavailable<a class="anchor" aria-label="anchor" href="#arg-mycolorsavailable"></a></dt>
-<dd><p>leave as default</p></dd>
+<dd><p>optional (best to leave as default)</p></dd>
+
+
+<dt id="arg-ylab">ylab<a class="anchor" aria-label="anchor" href="#arg-ylab"></a></dt>
+<dd><p>optional, label for y axis</p></dd>
+
+
+<dt id="arg-caption">caption<a class="anchor" aria-label="anchor" href="#arg-caption"></a></dt>
+<dd><p>text for a key defining some terms that are abbreviations</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -166,6 +172,8 @@ using the row_index param. The <code>ejam2barplot()</code> function just uses a 
 since this lets you specify
 whether to use overall results from ejamit()$results_overall
 or just one site from ejamit()$results_bysite</p>
+<p>If the parameter called main has the word "State" in it, then the legend
+will refer to "State Average" instead of "US Average"</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -208,16 +216,32 @@ or just one site from ejamit()$results_bysite</p>
 <span class="r-in"><span>  main <span class="op">=</span> <span class="st">"Environmental Indicators at Selected Sites Compared to Averages"</span><span class="op">)</span></span></span>
 <span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in `levels&lt;-`(`*tmp*`, value = as.character(levels)):</span> factor level [14] is duplicated</span>
 <span class="r-in"><span>  </span></span>
-<span class="r-in"><span>  </span></span>
-<span class="r-in"><span>  <span class="fu">ejam2barplot</span><span class="op">(</span><span class="va">testoutput_ejamit_100pts_1miles</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="co">## select your own ratio-type indicators that are available</span></span></span>
+<span class="r-in"><span> <span class="co">## -- and you could see the range of available ratio indicators like this:</span></span></span>
+<span class="r-in"><span> <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span> <span class="fu"><a href="varinfo.html">varinfo</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"ratio"</span>,</span></span>
+<span class="r-in"><span>        <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">testoutput_ejamit_10pts_1miles</span><span class="op">$</span><span class="va">results_overall</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>        value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>   info <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"varlist"</span>, <span class="st">"shortname"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span> <span class="co"># helper functions related to ejam2barplot()</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">plot_barplot_ratios_ez</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="va">out</span>, </span></span>
+<span class="r-in"><span>    varnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">names_d_ratio_to_avg</span> , <span class="va">names_d_subgroups_ratio_to_avg</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ejam2barplot-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># same plot but with function that would need more work to format inputs:</span></span></span>
 <span class="r-in"><span>  <span class="fu">plot_barplot_ratios</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">testoutput_ejamit_1000pts_1miles</span><span class="op">$</span><span class="va">results_overall</span><span class="op">[</span> , </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">..names_d_ratio_to_avg</span> , <span class="va">..names_d_subgroups_ratio_to_avg</span><span class="op">)</span> <span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/unlist.html" class="external-link">unlist</a></span><span class="op">(</span><span class="va">out</span><span class="op">$</span><span class="va">results_overall</span><span class="op">[</span> ,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">..names_d_ratio_to_avg</span> , <span class="va">..names_d_subgroups_ratio_to_avg</span><span class="op">)</span> <span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>      <span class="op">)</span></span></span>
 <span class="r-plt img"><img src="ejam2barplot-6.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>      </span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -229,7 +253,7 @@ or just one site from ejamit()$results_bysite</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

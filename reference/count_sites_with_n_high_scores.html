@@ -9,7 +9,7 @@ that explains those findings in plain English. It relies on colcounter_summary_a
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ that explains those findings in plain English. It relies on colcounter_summary_a
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -186,7 +186,7 @@ stats is a 3-dimensional array of numbers. See dimnames(output$stats).</p>
 <span class="r-in"><span><span class="co">## or </span></span></span>
 <span class="r-in"><span><span class="fu">count_sites_with_n_high_scores</span><span class="op">(</span><span class="va">pctile_data</span>, <span class="fl">90</span>, </span></span>
 <span class="r-in"><span>  xwide <span class="op">=</span> <span class="st">"nationwide"</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">$</span><span class="va">stats</span><span class="op">[</span>count <span class="op">=</span> <span class="st">"1"</span>, cut <span class="op">=</span> <span class="st">"90"</span>, stat <span class="op">=</span> <span class="st">"cum"</span><span class="op">]</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 266</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 268</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># see most striking stat only</span></span></span>
 <span class="r-in"><span><span class="va">mx</span> <span class="op">&lt;-</span> <span class="fu">count_sites_with_n_high_scores</span><span class="op">(</span><span class="va">pctile_data</span>, </span></span>
@@ -207,7 +207,7 @@ stats is a 3-dimensional array of numbers. See dimnames(output$stats).</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

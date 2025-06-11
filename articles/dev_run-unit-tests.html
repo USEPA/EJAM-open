@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,7 +57,7 @@
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -93,35 +93,111 @@
     
     
 <div class="section level2">
-<h2 id="notes-for-developers-on-running-unit-tests-in-this-package">Notes for developers, on running unit tests in this package<a class="anchor" aria-label="anchor" href="#notes-for-developers-on-running-unit-tests-in-this-package"></a>
+<h2 id="notes-for-developers-on-writing-or-running-unit-tests-in-this-package">Notes for developers, on writing or running unit tests in this
+package<a class="anchor" aria-label="anchor" href="#notes-for-developers-on-writing-or-running-unit-tests-in-this-package"></a>
 </h2>
-<p>Modified or new functions in the EJAM package should be tested using
-unit tests. See <a href="https://testthat.r-lib.org" class="external-link uri">https://testthat.r-lib.org</a></p>
+<div class="section level3">
+<h3 id="checking-test-coverage-where-more-unit-tests-need-to-be-written">Checking test coverage (where more unit tests need to be
+written)<a class="anchor" aria-label="anchor" href="#checking-test-coverage-where-more-unit-tests-need-to-be-written"></a>
+</h3>
+<p>Some functions in the package have incomplete unit test coverage as
+of version 2.32.4 / mid 2025, so ideally more unit tests would be added
+in those cases.</p>
+<p>You can see a grouped, organized list of unit test files <em>within
+the source code</em> of a function test_interactively(), in
+<strong><code>EJAM/tests/test_interactively.R</code></strong></p>
+<p>You should check which functions have adequate unit tests. One quick
+but imperfect way is by using the rough draft function and notes found
+at <strong><code>EJAM/tests/test_coverage_check.R</code></strong>. The
+test_interactively() function noted above already prompts for using it,
+but you could separately <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> it and use it.</p>
+<p>Note it is a bit tedious to figure out which functions have unit
+tests since there is not a 1-to-1 relationship between functions like
+xyz() vs the EJAM/R/xyz.R files defining functions vs
+EJAM/tests/testthat/test-xyz.R files containing unit tests.</p>
+<p>Also see the <a href="https://covr.r-lib.org/" class="external-link">covr package</a> and
+<code>covr::package_coverage()</code> and the related RStudio addin.</p>
+</div>
+<div class="section level3">
+<h3 id="adding-unit-tests-for-new-functions-or-where-unit-tests-not-yet-written">Adding unit tests (for new functions or where unit tests not yet
+written)<a class="anchor" aria-label="anchor" href="#adding-unit-tests-for-new-functions-or-where-unit-tests-not-yet-written"></a>
+</h3>
+<p>Unit tests should be written when the occur:</p>
+<ul>
+<li><p>where an existing function has no unit tests</p></li>
+<li><p>where an existing function has only limited tests, and e.g., some
+combinations of parameter settings have not been tested in unit
+tests</p></li>
+<li><p>while a new function is being written</p></li>
+</ul>
+<p>See <a href="https://testthat.r-lib.org" class="external-link uri">https://testthat.r-lib.org</a> and
+<code><a href="https://usethis.r-lib.org/reference/use_r.html" class="external-link">usethis::use_test()</a></code> for information on how to add unit
+tests. The unit tests are in the <code>EJAM/tests</code> and
+<code>EJAM/tests/testthat</code> folders.</p>
+<div class="section level4">
+<h4 id="updating-unit-tests-when-functions-are-updated">Updating unit tests (when functions are updated)<a class="anchor" aria-label="anchor" href="#updating-unit-tests-when-functions-are-updated"></a>
+</h4>
+<p>Unit tests should be changed if necessary in these situations:</p>
+<ul>
+<li><p>while an existing function is being modified, such as when the
+function’s expected outputs/ warnings/ errors change.</p></li>
+<li><p>if the web app UI changes - then special tests of the web app
+functionality can be created as explained in <a href="dev_run-shinytests.html">Testing EJAM App with shinytest2</a>.
+Also note that any screenshots for any <u>User Guide</u> would need to
+be updated if the UI changes.</p></li>
+</ul>
+</div>
+</div>
+<div class="section level3">
+<h3 id="running-unit-tests">Running unit tests<a class="anchor" aria-label="anchor" href="#running-unit-tests"></a>
+</h3>
 <p>There are numerous unit tests in the
 <code>EJAM/tests/testthat/</code> folder that you can run and add to as
-needed. They can be run automatically by the [devtools::test()]
-function.</p>
+needed. They can be run automatically by the
+<code><a href="https://devtools.r-lib.org/reference/test.html" class="external-link">devtools::test()</a></code> function.</p>
 <p>However, instead of running all the unit tests (run in alphabetical
 order by default), you might want to test only some groups of related
 functions that you are working on, and see a summary of which tests in
 which files from which groups are passing, skipped, etc. To do this,
-note there is a file called <code>EJAM/tests/test_interactively.R</code>
-that you can [source()] and then you can use that function to run the
+note there is a file called
+<strong><code>EJAM/tests/test_interactively.R</code></strong> that you
+can <code><a href="https://rdrr.io/r/base/source.html" class="external-link">source()</a></code> and then you can use that function to run the
 unit tests interactively.</p>
 <p>Assuming you want to use that function, whenever you add or rename or
 delete unit test files in the <code>EJAM/tests/testthat/</code> folder
 you need to edit the list of test file names in the source code of that
-function, <code>test_interactively()</code> or you can try to use it and
-it will stop and tell you which files are missing from the list in the
-source code at <code>EJAM/tests/test_interactively.R</code></p>
-<p>Note there is also a github workflow that runs unit tests,
+function, test_interactively() or you can try to use it and it will stop
+and tell you which files are missing from the list in the source code in
+<code>EJAM/tests/test_interactively.R</code></p>
+</div>
+<div class="section level3">
+<h3 id="running-tests-of-the-web-app-functionality">Running tests of the web app functionality<a class="anchor" aria-label="anchor" href="#running-tests-of-the-web-app-functionality"></a>
+</h3>
+<p>There are recorded interactions used as tests of the web app, as
+explained in <a href="dev_run-shinytests.html">Testing EJAM App with
+shinytest2</a>.</p>
+</div>
+<div class="section level3">
+<h3 id="running-unit-tests-via-github-workflow">Running unit tests via github workflow<a class="anchor" aria-label="anchor" href="#running-unit-tests-via-github-workflow"></a>
+</h3>
+<p>There is also a github workflow in the package that runs unit tests,
 automatically triggered by certain events, such as a pull request to the
 main or development branch. See
 <code>EJAM/.github/workflows/run-test.yaml</code></p>
-<p>Some functions relied on the EJScreen API and if that API is not
+</div>
+<div class="section level3">
+<h3 id="other-notes">Other notes<a class="anchor" aria-label="anchor" href="#other-notes"></a>
+</h3>
+<p>Be aware of whether the tests are using the last-installed version of
+the package or the latest, possibly recently-edited, local source
+package version that <code><a href="https://devtools.r-lib.org/reference/load_all.html" class="external-link">devtools::load_all()</a></code> may be have
+loaded.</p>
+<p>Some functions relied on the EJScreen API and if the API is not
 available, those tests will be skipped or would fail.</p>
 </div>
-  </main>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -131,7 +207,7 @@ available, those tests will be skipped or would fail.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer>

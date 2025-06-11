@@ -13,7 +13,7 @@ but it is not coded to be able to check attributes without doing that."><meta pr
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,7 +40,7 @@ but it is not coded to be able to check attributes without doing that."><meta pr
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -74,8 +74,9 @@ but it is not coded to be able to check attributes without doing that.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">metadata_check</span><span class="op">(</span></span>
 <span>  packages <span class="op">=</span> <span class="fu">EJAM</span><span class="fu">::</span><span class="va"><a href="ejampackages.html">ejampackages</a></span>,</span>
 <span>  datasets <span class="op">=</span> <span class="st">"all"</span>,</span>
-<span>  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date_saved_in_package"</span>, <span class="st">"date_downloaded"</span>, <span class="st">"ejscreen_version"</span>,</span>
-<span>    <span class="st">"ejscreen_releasedate"</span>, <span class="st">"acs_releasedate"</span>, <span class="st">"acs_version"</span>, <span class="st">"census_version"</span><span class="op">)</span>,</span>
+<span>  which <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ejam_package_version"</span>, <span class="st">"date_saved_in_package"</span>, <span class="st">"date_downloaded"</span>,</span>
+<span>    <span class="st">"ejscreen_version"</span>, <span class="st">"ejscreen_releasedate"</span>, <span class="st">"acs_releasedate"</span>, <span class="st">"acs_version"</span>,</span>
+<span>    <span class="st">"census_version"</span><span class="op">)</span>,</span>
 <span>  grepdatasets <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  loadifnotloaded <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -139,7 +140,7 @@ via grep to identify which datasets to check. It always uses ignore.case=TRUE fo
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

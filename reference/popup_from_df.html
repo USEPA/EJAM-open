@@ -9,7 +9,7 @@ MAY DEPRECATE - See popup_from_any() for newer more general replacement for this
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ MAY DEPRECATE - See popup_from_any() for newer more general replacement for this
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -118,8 +118,8 @@ Each popup has one row of text per column of the data.frame</p>
 <span class="r-in"><span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/leaflet.html" class="external-link">leaflet</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html" class="external-link">addTiles</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span></span>
 <span class="r-in"><span>   <span class="fu">leaflet</span><span class="fu">::</span><span class="fu"><a href="https://rstudio.github.io/leaflet/reference/map-layers.html" class="external-link">addPopups</a></span><span class="op">(</span>popup <span class="op">=</span> <span class="fu">popup_from_df</span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Assuming "lon" and "lat" are longitude and latitude, respectively</span>
-<div id="htmlwidget-4f958905070244af18d5" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4f958905070244af18d5">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addPopups","args":[[51.671389,51.8703],[-178.051111,-176.659],["RegistryId: 110071102551<br>FacilityName: USDOI FWS AK MARITIME NWR etc<br>LocationAddress: 65 MI W. OF ADAK NAVAL FACILITY<br>CityName: ADAK<br>CountyName: ALEUTIAN ISLANDS<br>StateAbbr: AK<br>ZipCode: 99546<br>FIPSCode: 02010<br>lat: 51.671389<br>lon: -178.051111<br>SupplementalLocation: NA","RegistryId: 110015787683<br>FacilityName: ADAK POWER PLANT<br>LocationAddress: 100 HILLSIDE BLVD<br>CityName: ADAK<br>CountyName: ALEUTIANS WEST<br>StateAbbr: AK<br>ZipCode: 99546<br>FIPSCode: 02016<br>lat: 51.8703<br>lon: -176.659<br>SupplementalLocation: NA"],null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[51.671389,51.8703],"lng":[-178.051111,-176.659]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
+<div id="htmlwidget-9c19102d4833d58590aa" style="width:700px;height:432.632880098888px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9c19102d4833d58590aa">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://openstreetmap.org/copyright/\">OpenStreetMap<\/a>,  <a href=\"https://opendatacommons.org/licenses/odbl/\">ODbL<\/a>"}]},{"method":"addPopups","args":[[51.671389,51.8703],[-178.051111,-176.659],["RegistryId: 110071102551<br>FacilityName: USDOI FWS AK MARITIME NWR etc<br>LocationAddress: 65 MI W. OF ADAK NAVAL FACILITY<br>CityName: ADAK<br>CountyName: ALEUTIAN ISLANDS<br>StateAbbr: AK<br>ZipCode: 99546<br>FIPSCode: 02010<br>lat: 51.671389<br>lon: -178.051111<br>SupplementalLocation: NA","RegistryId: 110015787683<br>FacilityName: ADAK POWER PLANT<br>LocationAddress: 100 HILLSIDE BLVD<br>CityName: ADAK<br>CountyName: ALEUTIANS WEST<br>StateAbbr: AK<br>ZipCode: 99546<br>FIPSCode: 02016<br>lat: 51.8703<br>lon: -176.659<br>SupplementalLocation: NA"],null,null,{"maxWidth":300,"minWidth":50,"autoPan":true,"keepInView":false,"closeButton":true,"className":""}]}],"limits":{"lat":[51.671389,51.8703],"lng":[-178.051111,-176.659]}},"evals":[],"jsHooks":[]}</script><span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -131,7 +131,7 @@ Each popup has one row of text per column of the data.frame</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

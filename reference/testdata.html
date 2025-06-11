@@ -9,7 +9,7 @@ See list of samples of input files to try in EJAM, and output examples from EJAM
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +36,7 @@ See list of samples of input files to try in EJAM, and output examples from EJAM
     <li><hr class="dropdown-divider"></li>
     <li><h6 class="dropdown-header" data-toc-skip>For package/app developers</h6></li>
     <li><a class="dropdown-item" href="../articles/dev_deploy-app.html">Deploying the Web App</a></li>
-    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with Shinytests</a></li>
+    <li><a class="dropdown-item" href="../articles/dev_run-shinytests.html">Testing EJAM App with shinytest2</a></li>
     <li><a class="dropdown-item" href="../articles/dev_run-unit-tests.html">Testing EJAM Functions with Unit Tests</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update-datasets.html">Updating EJAM Datasets</a></li>
     <li><a class="dropdown-item" href="../articles/dev_update_documentation.html">Updating Documentation</a></li>
@@ -106,7 +106,7 @@ without seeing all the info in console and without browsing to the folder</p></d
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/portland_shp.zip</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/stations.zip</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/stations_shp.zip</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/testshapes_2.zip</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/testinput_shapes_2.zip</span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">testdata</span><span class="op">(</span><span class="st">'shape'</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">x</span><span class="op">[</span><span class="fu">fs</span><span class="fu">::</span><span class="fu"><a href="https://fs.r-lib.org/reference/is_file.html" class="external-link">is_file</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/portland.gdb.zip</span></span>
@@ -116,7 +116,7 @@ without seeing all the info in console and without browsing to the folder</p></d
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/portland_shp.zip</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/stations.zip</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/stations_shp.zip</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/testshapes_2.zip</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/shapes/testinput_shapes_2.zip</span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">testdata</span><span class="op">(</span><span class="st">'fips'</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB; font-weight: bold;">/home/runner/work/_temp/Library/EJAM/testdata/fips</span></span>
@@ -171,12 +171,14 @@ without seeing all the info in console and without browsing to the folder</p></d
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ignoring sortbysize because simple=TRUE </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      data.in.package             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "testinput_fips_blockgroups"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] "testinput_fips_cities"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] "testinput_fips_counties"   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] "testinput_fips_states"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] "testinput_fips_tracts"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      data.in.package                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1,] "testinput_fips_blockgroups"     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] "testinput_fips_cities"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] "testinput_fips_counties"        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [4,] "testinput_fips_states"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [5,] "testinput_fips_tracts"          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [6,] "testoutput_ejamit_fips_cities"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [7,] "testoutput_ejamit_fips_counties"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># files</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span>files.in.package <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">basename</a></span><span class="op">(</span><span class="fu">testdata</span><span class="op">(</span><span class="va">topic</span>, quiet <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -210,7 +212,7 @@ without seeing all the info in console and without browsing to the folder</p></d
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>
