@@ -29,7 +29,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -708,7 +708,7 @@ working with Census FIPS codes</a>.</p>
 <span><span class="va">mystate</span> <span class="op">&lt;-</span> <span class="st">"Maryland"</span></span>
 <span><span class="va">vname</span> <span class="op">&lt;-</span> <span class="st">"% low income"</span></span>
 <span><span class="va">xmd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ejamit.html">ejamit</a></span><span class="op">(</span>fips <span class="op">=</span> <span class="fu"><a href="../reference/fips_counties_from_statename.html">fips_counties_from_statename</a></span><span class="op">(</span><span class="va">mystate</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">ggblanket</span><span class="fu">::</span><span class="fu">gg_col</span><span class="op">(</span>data <span class="op">=</span> <span class="va">xmd</span><span class="op">$</span><span class="va">results_bysite</span>,</span>
+<span><span class="fu">ggblanket</span><span class="fu">::</span><span class="fu"><a href="https://davidhodge931.github.io/ggblanket/reference/gg_col.html" class="external-link">gg_col</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">xmd</span><span class="op">$</span><span class="va">results_bysite</span>,</span>
 <span>                  y <span class="op">=</span> <span class="va">pctlowinc</span>,</span>
 <span>                  x <span class="op">=</span> <span class="va">ejam_uniq_id</span>,</span>
 <span>                  title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">vname</span>, <span class="st">' by County in '</span>, <span class="va">mystate</span><span class="op">)</span>,</span>
@@ -1096,7 +1096,7 @@ sites<a class="anchor" aria-label="anchor" href="#histogram-of-indicators-distri
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer>

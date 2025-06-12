@@ -59,7 +59,7 @@ frs_by_mact[grepl("ORGNCS", frs_by_mact$title), ]'><meta property="og:image" con
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -121,8 +121,8 @@ It has been joined with frs_by_programid to get latlons for matching facilities.
 which is from the <a href="https://echo.epa.gov/files/echodownloads/" class="external-link">ECHO data download of ICIS Air and AFS</a>.</p>
 <p>The programid column here should be found in the pgm_sys_id column in frs_by_programid,
 but as of mid 2025 only 55k of them were found there.</p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="fu">table</span>(frs_by_mact<span class="sc">$</span>programid <span class="sc">%in%</span> frs_by_programid<span class="sc">$</span>pgm_sys_id)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a> <span class="fu">table</span>(frs_by_mact<span class="sc">$</span>programid <span class="sc">%in%</span> frs_by_programid<span class="sc">$</span>pgm_sys_id)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="cn">FALSE</span>  <span class="cn">TRUE</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">59944</span>  <span class="dv">55429</span></span></code></pre><p></p></div>
 <p>Also note we have found some typos and nonstandard abbreviations
 in subpart titles in downloaded data from ECHO/FRS, such as</p>
@@ -163,7 +163,7 @@ in subpart titles in downloaded data from ECHO/FRS, such as</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>

@@ -11,7 +11,7 @@ or in a set of polygons from a shapefile, or in a list of Census Units like Coun
 
     <a class="navbar-brand me-2" href="../index.html">EJAM</a>
 
-    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.3</small>
+    <small class="nav-text text-warning me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Released version">2.32.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -288,11 +288,11 @@ passed to <code><a href="doaggregate.html">doaggregate()</a></code> also. app se
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>This returns a named list of results.</p>
-<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># To see the structure of the outputs of ejamit()</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">structure.of.output.list</span>(testoutput_ejamit_10pts_1miles)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>keystats)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>rows)</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>cols)</span>
+<p></p><div class="sourceCode"><pre><code><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># To see the structure of the outputs of ejamit()</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">structure.of.output.list</span>(testoutput_ejamit_10pts_1miles)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>keystats)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>rows)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>cols)</span>
 <span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">dim</span>(testoutput_ejamit_10pts_1miles<span class="sc">$</span>results_summarized<span class="sc">$</span>keyindicators)</span></code></pre><p></p></div><ul><li><p><strong>results_overall</strong>  a data.table with one row that provides the summary across all sites, the aggregated results for all unique residents.</p></li>
 <li><p><strong>results_bysite</strong>   results for individual sites (buffers) - a data.table of results,
 one row per ejam_uniq_id (i.e., each site analyzed), one column per indicator</p></li>
@@ -408,7 +408,7 @@ one blockgroup since it may be near two analyzed sites, for example.</p></li>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>EJAM Version 2.32.3</p>
+  <p>EJAM Version 2.32.4</p>
 </div>
 
     </footer></div>
